@@ -1,0 +1,133 @@
+
+
+
+ .payment-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.06);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.option-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border 0.2s, background 0.2s;
+  background-color: #f9f9f9;
+}
+
+.option-card.selected {
+  border-color: #635a5f;
+  background-color: #fff0f5;
+}
+
+.option-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.option-label {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.card-logos img,
+.klarna-logo {
+  height: 24px;
+  margin-left: 10px;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.form-group input {
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #726069;
+  outline: none;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.checkbox {
+  margin-bottom: 1.5rem;
+}
+
+.checkbox input {
+  transform: scale(1.2);
+  margin-right: 8px;
+}
+
+.info-box {
+  background: #f1f1f1;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.submit-button {
+  width: 100%;
+  background: linear-gradient(to right, #b0d8f1, #0d87a5);
+  color: #000000;
+  font-size: 1rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.submit-button:hover {
+  background-color: #0c0c0c;
+}
+
+
+.payment-container {
+  border: 5px solid red !important;
+}

@@ -1,0 +1,256 @@
+
+
+
+
+.trending-products {
+  padding: 3rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Helvetica', sans-serif;
+}
+
+.cards {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+
+.card img {
+  width: 100%;
+  height: 240px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 1px 2px #2f9198;
+}
+
+.card h3 {
+  font-size: 1rem;
+  color: #333;
+}
+
+.product-section h3 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #000000;
+  margin-bottom: 2rem;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.product-card {
+  background-color: #fefefe;
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 240px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: 0.3s ease;
+
+ 
+
+}
+
+.product-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 1px 2px #2f9198;
+
+}
+
+.product-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.product-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.product-card p {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0.3rem 0;
+
+}
+
+.product-card button {
+ 
+  background: linear-gradient(to right, #b0d8f1, #0d87a5);
+  color: #000000;
+  font-weight: 400;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.product-card button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.pagination {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.pagination button {
+  background: transparent;
+  border: 1px solid #ccc;
+  margin: 0 0.3rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #0093e9;
+  color: #fff;
+  border-color: #0093e9;
+}
+
+.back-button {
+
+  background: linear-gradient(to right, #b0d8f1, #0d87a5);
+  color: #030303;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  margin: 1rem 0;
+}
+
+.modal-content button {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cards {
+    gap: 1rem;
+  }
+
+  .card {
+    width: 45%;
+    padding: 1rem;
+  }
+
+  .product-list {
+    gap: 1rem;
+  }
+
+  .product-card {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  .modal-content {
+    padding: 1rem;
+    width: 95%;
+  }
+
+  .modal-content img {
+    max-height: 150px;
+  }
+
+  .back-button,
+  .checkout-btn,
+  .product-card button,
+  .modal-content button {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100%;
+  }
+
+  .product-card {
+    width: 100%;
+  }
+
+  .modal-content {
+    padding: 0.8rem;
+  }
+
+  .pagination button {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+.no-products-message {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.5rem;
+  color: #555;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
