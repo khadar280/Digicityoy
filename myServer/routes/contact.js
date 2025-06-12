@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Contact = require('../models/Contact');
+const contact = require('../models/contact');
 const nodemailer = require('nodemailer');
 
 // Email setup (Don't reinitialize this in the route again)
