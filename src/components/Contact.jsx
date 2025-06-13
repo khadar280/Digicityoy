@@ -101,13 +101,13 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+    const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-6.onrender.com';
 
     try {
       const res = await fetch(`${API_URL}/api/contact`, {
@@ -116,16 +116,15 @@ const Contact = () => {
         body: JSON.stringify({ ...formData, lang: i18n.language }),
       });
 
-      const data = await res.json();
-
       if (res.ok) {
         setSubmitted(true);
       } else {
-        console.error('Server error:', data.error);
+        const errorData = await res.json();
+        console.error('Server error:', errorData.error);
         alert('Failed to send message. Please try again.');
       }
-    } catch (err) {
-      console.error('Contact error:', err);
+    } catch (error) {
+      console.error('Network error:', error);
       alert('Error connecting to server. Please try again later.');
     }
   };
