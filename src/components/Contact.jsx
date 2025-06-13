@@ -106,20 +106,27 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+
     try {
-      const res = await fetch('http://localhost:3000/api/contact', {
+      const res = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, lang: i18n.language }),
       });
+
       const data = await res.json();
+
       if (res.ok) {
         setSubmitted(true);
       } else {
         console.error('Server error:', data.error);
+        alert('Failed to send message. Please try again.');
       }
     } catch (err) {
       console.error('Contact error:', err);
+      alert('Error connecting to server. Please try again later.');
     }
   };
 
@@ -180,4 +187,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
