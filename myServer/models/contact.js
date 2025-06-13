@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 
 const contactSchema = new mongoose.Schema({
@@ -8,4 +7,5 @@ const contactSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('contact', contactSchema);
+// Correct: Use PascalCase for the model
+module.exports = mongoose.model('Contact', contactSchema);

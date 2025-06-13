@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const contact = require('../models/contact');
+const Contact = require('../models/contact');
 const nodemailer = require('nodemailer');
-
 // Email setup (Don't reinitialize this in the route again)
 const transporter = nodemailer.createTransport({
   service: 'gmail',
