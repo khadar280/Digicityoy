@@ -18,33 +18,33 @@ const AuthPage = () => {
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
 
+  const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-6.onrender.com';
+
   const handleAuth = async (e) => {
     e.preventDefault();
+
     const payload =
       activeTab === 'login'
-        ? {
-            type: 'signin',
-            email: loginEmail,
-            password: loginPassword,
-          }
-        : {
-            type: 'signup',
-            name: signupName,
-            email: signupEmail,
-            password: signupPassword,
-          };
+        ? { email: loginEmail, password: loginPassword }
+        : { name: signupName, email: signupEmail, password: signupPassword };
+
+    const endpoint = activeTab === 'login' ? '/api/auth/signin' : '/api/auth/signup';
 
     try {
-      const res = await axios.post('http://localhost:3000/api/auth', payload);
+      const res = await axios.post(`${API_URL}${endpoint}`, payload);
+
+      // Save to local storage and context
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
       setUser(res.data.user);
       setToken(res.data.token);
+
       toast.success(
         activeTab === 'login'
           ? t('auth.loginSuccess')
           : t('auth.signupSuccess')
       );
+
       navigate('/profile');
     } catch (err) {
       toast.error(err.response?.data?.error || t('auth.generalError'));
