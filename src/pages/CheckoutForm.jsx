@@ -41,7 +41,7 @@ const handleSubmit = async (e) => {
     const payload = {
       items: cartItems.map(item => ({
         name: item.name,
-        price: item.price.replace(/[^\d.]/g, ''), // Remove € or other symbols
+        price: item.price.replace(/[^\d.]/g, ''),
         quantity: item.quantity || 1,
       })),
       total: totalPrice.toFixed(2),
@@ -57,7 +57,9 @@ const handleSubmit = async (e) => {
       },
     };
 
-    const response = await fetch('http://localhost:3000/api/payment/create-checkout-session', {
+    const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-6.onrender.com';
+
+    const response = await fetch(`${API_URL}/api/payment/create-checkout-session`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
