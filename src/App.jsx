@@ -1,8 +1,4 @@
-
-
-
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './i18n';
 import Navbar from './components/Navbar';
@@ -34,23 +30,25 @@ import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import 'react-toastify/dist/ReactToastify.css';
 
-// مسیرهایی که Footer توشون نباید باشه
+// Paths where footer should be hidden
 const hideFooterPaths = [
-  
   '/checkout',
   '/payment-success/stripe',
   '/payment-success/klarna',
   '/booking',
   '/cart',
   '/profile',
-  '/resetPassword ',
-  '/forgotpassword ',
-  
-  
+  '/resetPassword',
+  '/forgotpassword',
 ];
 
 const AppRoutes = () => {
   const location = useLocation();
+
+  useEffect(() => {
+    // Set the document title on route change
+    document.title = "Digicity";
+  }, [location]);
 
   return (
     <div className="app-container">
