@@ -10,7 +10,8 @@ const BookingFormModal = ({ service, onClose }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
 
-  const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-6.onrender.com';
+const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -57,8 +57,7 @@ const handleSubmit = async (e) => {
       },
     };
 
-    const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-6.onrender.com';
-
+   const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
     const response = await fetch(`${API_URL}/api/payment/create-checkout-session`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
