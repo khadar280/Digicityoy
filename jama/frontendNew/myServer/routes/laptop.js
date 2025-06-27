@@ -40,7 +40,7 @@
         `,
       });
 
-      // ✅ Define localized messages
+  
       const messages = {
         fi: {
           subject: '✅ Kiitos huoltopyynnöstäsi',

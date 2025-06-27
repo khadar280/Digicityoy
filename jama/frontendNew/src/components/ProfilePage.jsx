@@ -72,6 +72,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const userData = localStorage.getItem('user');
     if (userData) {
+      console.log('Loaded user from localStorage:', userData);
       setUser(JSON.parse(userData));
     }
   }, []);

@@ -10,6 +10,9 @@ const BookingFormModal = ({ service, onClose }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
 
+const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -29,8 +32,7 @@ const BookingFormModal = ({ service, onClose }) => {
   const generateTimes = () => {
     const times = [];
     for (let h = 11; h < 20; h++) {
-      times.push(`${h.toString().padStart(2, '0')}:00`);
-      // times.push(`${h.toString().padStart(2, '0')}:1.00`);
+      times.push(`${h.toString().padStart(2, "0")}:00`);
     }
     return times;
   };
@@ -40,63 +42,63 @@ const BookingFormModal = ({ service, onClose }) => {
 
     const fetchBookedTimes = async () => {
       try {
-      const res = await fetch(`http://localhost:3000/api/booking?date=${form.date}`);
+        const res = await fetch(`${API_URL}/api/booking?date=${form.date}`);
+        if (!res.ok) throw new Error("Failed to fetch booked times");
+
         const data = await res.json();
-        setBookedTimes(data.map(item => item.time?.slice(0, 5)));
+        setBookedTimes(data.map((item) => item.time?.slice(0, 5)));
       } catch (error) {
         console.error("❌ Failed to fetch booked times:", error);
       }
     };
 
     fetchBookedTimes();
-  }, [form.date]);
+  }, [form.date, API_URL]);
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
-   
-    return;
-  }
-
-  setLoading(true);
-
-  try {
-   
-
-const response = await fetch("http://localhost:3000/api/booking", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    customerName: form.name,
-    customerEmail: form.email,
-    phone: form.phone,
-    service,
-    bookingDate: `${form.date}T${form.time}`,
-    lang: i18n.language.split("-")[0],
-  }),
-});
-    const data = await response.json();
-
-    if (response.ok) {
-      setShowSuccess(true);
-      setTimeout(() => {
-        setShowSuccess(false);
-        onClose();
-      }, 10000);
-    } else {
-      alert(data.error || t("bookingForm.errorMessage"));
+    if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
+      alert(t("bookingForm.fillAllFields"));
+      return;
     }
-  } catch (error) {
-    console.error("Booking error:", error);
-    alert(t("bookingForm.errorMessage"));
-  } finally {
-    setLoading(false);
-  }
-};
 
+    setLoading(true);
+
+    try {
+      const response = await fetch(`${API_URL}/api/booking`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customerName: form.name,
+          customerEmail: form.email,
+          phone: form.phone,
+          service,
+          bookingDate: `${form.date}T${form.time}`,
+          lang: i18n.language.split("-")[0],
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setShowSuccess(true);
+        setTimeout(() => {
+          setShowSuccess(false);
+          onClose();
+        }, 10000);
+      } else {
+        alert(data.error || t("bookingForm.errorMessage"));
+      }
+    } catch (error) {
+      console.error("Booking error:", error);
+      alert(t("bookingForm.errorMessage"));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="modal-overlay">
@@ -111,16 +113,52 @@ const response = await fetch("http://localhost:3000/api/booking", {
           <p className="success-message">{t("bookingForm.successMessage")}</p>
         ) : (
           <form onSubmit={handleSubmit}>
-            <input type="text" name="name" placeholder={t("bookingForm.name")} value={form.name} onChange={handleChange} required />
-            <input type="tel" name="phone" placeholder={t("bookingForm.phone")} value={form.phone} onChange={handleChange} required />
-            <input type="email" name="email" placeholder={t("bookingForm.email")} value={form.email} onChange={handleChange} required />
-            <input type="date" name="date" value={form.date} onChange={handleChange} required />
+            <input
+              type="text"
+              name="name"
+              placeholder={t("bookingForm.name")}
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder={t("bookingForm.phone")}
+              value={form.phone}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder={t("bookingForm.email")}
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="date"
+              name="date"
+              value={form.date}
+              onChange={handleChange}
+              required
+            />
 
-            <select name="time" value={form.time} onChange={handleChange} required>
+            <select
+              name="time"
+              value={form.time}
+              onChange={handleChange}
+              required
+            >
               <option value="">{t("bookingForm.selectTime")}</option>
               {generateTimes().map((time) => (
-                <option key={time} value={time} disabled={bookedTimes.includes(time)}>
-                  {time} {bookedTimes.includes(time) && "(busy)"}
+                <option
+                  key={time}
+                  value={time}
+                  disabled={bookedTimes.includes(time)}
+                >
+                  {time} {bookedTimes.includes(time) ? "(busy)" : ""}
                 </option>
               ))}
             </select>
@@ -131,7 +169,9 @@ const response = await fetch("http://localhost:3000/api/booking", {
           </form>
         )}
 
-        <button className="close-btn" onClick={onClose}>✖ {t("bookingForm.close")}</button>
+        <button className="close-btn" onClick={onClose}>
+          ✖ {t("bookingForm.close")}
+        </button>
       </div>
     </div>
   );

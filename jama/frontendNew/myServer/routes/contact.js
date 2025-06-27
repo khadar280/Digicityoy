@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Contact = require('../models/Contact');
+const Contact = require('../models/contact');
 const nodemailer = require('nodemailer');
-
 // Email setup (Don't reinitialize this in the route again)
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -22,10 +21,10 @@ router.post('/', async (req, res) => {
     const newContact = new Contact({ name, email, message });
     await newContact.save();
 
-    // Send email to your Gmail
+    
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // Send email to your own Gmail
+      to: process.env.EMAIL_USER, 
       subject: "New Contact Submission",
       html: `
         <h2>New Contact Submission</h2>

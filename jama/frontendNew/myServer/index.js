@@ -1,13 +1,12 @@
-require('dotenv').config(); // Ensure environment variables are loaded first
+require('dotenv').config(); // Load environment variables
 console.log("JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY ? "✅ loaded" : "❌ missing");
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const mongoose = require('mongoose');
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
-const bodyParser = require('body-parser');  // Optional if you’re already using express.json()
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-// Import routes
+// Route imports
 const contactRoutes = require('./routes/contact');
 const orderRoutes = require('./routes/order');
 const bookingRoutes = require('./routes/booking');
@@ -17,51 +16,53 @@ const authRoutes = require('./routes/auth');
 const searchbarRoutes = require('./routes/searchbar');
 const laptopRoutes = require('./routes/laptop');
 
-// Initialize Express app
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000; // Use Render’s assigned port
 
 // Middleware
-app.use(cors());
-app.use(express.json()); // Built-in middleware for parsing JSON requests
+app.use(cors({
+  origin: 'https://your-frontend-domain.vercel.app'
+}));
+app.use(express.json());
 
-// Define routes
+// API Routes
 app.use('/api/contact', contactRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/booking', bookingRoutes);
-app.use("/api/checkout", checkoutRoutes);
+app.use('/api/checkout', checkoutRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/searchbar', searchbarRoutes);
-app.use("/api/laptop", laptopRoutes);
+app.use('/api/laptop', laptopRoutes);
 
-// 404 Handler (for routes not found)
+// ✅ Root Route - responds to browser at "/"
+app.get('/', (req, res) => {
+  res.send('👋 Welcome to DigiCity API — backend is live!');
+});
+
+// 404 Handler (after all routes)
 app.use((req, res, next) => {
   res.status(404).json({ error: 'Route not found!' });
 });
-console.log("JWT Secret Key:", process.env.JWT_SECRET_KEY);
-console.log("Stripe Secret Key:", process.env.STRIPE_SECRET_KEY);
 
-// Generic error handler (Make sure this is the last middleware)
+// Global Error Handler
 app.use((err, req, res, next) => {
-  console.error(err);  // Log error to the server console
-  res.status(500).json({ error: 'Something went wrong!' });  // Respond with 500
+  console.error('❌ Server error:', err);
+  res.status(500).json({ error: 'Something went wrong!' });
 });
 
+// Connect to MongoDB and start the server
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useNewUrlParser: true, // deprecated but safe
+  useUnifiedTopology: true, // deprecated but safe
 })
-
-
 .then(() => {
   console.log("✅ MongoDB connected");
 
-  app.listen(port, () => {
-    console.log(`🚀 mercy is running at http://localhost:${port}`);
+  app.listen(PORT, () => {
+    console.log(`🚀 mercy is running at http://localhost:${PORT}`);
   });
 })
 .catch((err) => {
   console.error("❌ MongoDB connection error:", err);
 });
-
