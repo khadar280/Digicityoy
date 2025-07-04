@@ -21,7 +21,8 @@ const PORT = process.env.PORT || 3000; // Use Render’s assigned port
 
 // Middleware
 app.use(cors({
-  origin: 'https://your-frontend-domain.vercel.app'
+  origin: ['https://www.digicity.com'], // replace with your real domain
+  credentials: true // if you use cookies or auth headers
 }));
 app.use(express.json());
 
