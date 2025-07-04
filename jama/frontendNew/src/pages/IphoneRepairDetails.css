@@ -1,0 +1,79 @@
+
+
+
+
+   .repair-container {
+    padding: 5rem 2rem;
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    background: linear-gradient(to bottom, #f8f9fb, #eef1f5);
+  }
+  
+  .repair-container h2 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 2rem;
+  }
+  
+  .iphone-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    
+
+    
+  
+    /* object-fit: contain; */
+    filter: drop-shadow(0px 0px 5px #0d87a5);
+  }
+  
+  .iphone-item {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 2rem 1rem;
+    
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #0d87a5;
+
+  }
+  
+  .iphone-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 1px 2px #0d87a5;
+  }
+  
+  .iphone-item img {
+    width: 150px;
+    height: 200px;
+    margin-bottom: 1rem;
+    object-fit: contain;
+  }
+  
+  .iphone-item p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .repair-card {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+  }
+  
+   .back-btn {
+    background: none;
+    border: none;
+    color: #007aff;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    text-decoration: underline;
+  } 

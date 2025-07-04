@@ -1,0 +1,115 @@
+
+
+
+/* Android Repair Details Modern Styling */
+.android-repair-container {
+  padding: 6rem 2rem;
+  text-align: center;
+  background: linear-gradient(to bottom, #f7fafe, #e6ecf5);
+  font-family: "Inter", sans-serif;
+}
+
+.android-repair-container h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: #222;
+}
+
+.series-selector {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.series-btn {
+  background: linear-gradient(to right, #b0d8f1, #0d87a5);
+  color: #000000;
+  font-weight: 600;
+  border: none;
+  padding: 0.8rem 1.9rem;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.series-btn.active,
+.series-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px) scale(1.02);
+
+}
+
+.android-grid {
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  filter: drop-shadow(0px 0px 5px #0d87a5);
+}
+
+.android-item {
+
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2rem 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid  #2f9198;
+}
+
+.android-item:hover {
+  transform: translateY(-6px);
+    box-shadow: 0 1px 2px #2f9198;
+}
+
+.android-item img {
+  width: 150px;
+  height: 200px;
+  margin-bottom: 1rem;
+  object-fit: contain;
+}
+
+.android-item p {
+  font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.repair-card {
+
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+}
+
+.repair-card h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+
+.back-btn {
+  background: linear-gradient(to right, #b0d8f1, #0d87a5);
+  color: #030303;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #d8561f;
+}
