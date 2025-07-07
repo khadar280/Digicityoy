@@ -1,22 +1,27 @@
-
-
-
-
 .trending-products {
   padding: 3rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
   font-family: 'Helvetica', sans-serif;
+  box-sizing: border-box;
 }
 
+/* =================== CARD STYLING =================== */
 .cards {
   display: flex;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
 }
 
-
+.card {
+  width: 240px;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
 
 .card img {
   width: 100%;
@@ -35,20 +40,22 @@
   color: #333;
 }
 
+/* =================== PRODUCT SECTION =================== */
 .product-section h3 {
   text-align: center;
   font-size: 1.8rem;
-  color: #000000;
+  color: #000;
   margin-bottom: 2rem;
 }
 
 .product-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
   justify-content: center;
+  gap: 1rem;
 }
 
+/* =================== PRODUCT CARD =================== */
 .product-card {
   background-color: #fefefe;
   border-radius: 16px;
@@ -57,15 +64,11 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   text-align: center;
   transition: 0.3s ease;
-
- 
-
 }
 
-.product-card:hover{
+.product-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 1px 2px #2f9198;
-
 }
 
 .product-card img {
@@ -85,13 +88,11 @@
   font-size: 0.95rem;
   color: #666;
   margin: 0.3rem 0;
-
 }
 
 .product-card button {
- 
   background: linear-gradient(to right, #b0d8f1, #0d87a5);
-  color: #000000;
+  color: #000;
   font-weight: 400;
   border: none;
   padding: 0.5rem 0.8rem;
@@ -106,6 +107,7 @@
   transform: translateY(-2px) scale(1.02);
 }
 
+/* =================== PAGINATION =================== */
 .pagination {
   margin-top: 2rem;
   text-align: center;
@@ -126,8 +128,8 @@
   border-color: #0093e9;
 }
 
+/* =================== BACK BUTTON =================== */
 .back-button {
-
   background: linear-gradient(to right, #b0d8f1, #0d87a5);
   color: #030303;
   border: none;
@@ -138,7 +140,7 @@
   transition: background 0.3s ease;
 }
 
-/* Modal Styling */
+/* =================== MODAL =================== */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -179,25 +181,35 @@
   cursor: pointer;
 }
 
+/* =================== NO PRODUCTS MESSAGE =================== */
+.no-products-message {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.5rem;
+  color: #555;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
 
-/* Responsive Design */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =================== RESPONSIVE MEDIA QUERIES =================== */
 @media (max-width: 768px) {
-  .cards {
-    gap: 1rem;
-  }
-
-  .card {
-    width: 45%;
+  .card,
+  .product-card {
+    width: 48%;
     padding: 1rem;
   }
 
+  .cards,
   .product-list {
     gap: 1rem;
-  }
-
-  .product-card {
-    width: 90%;
-    padding: 1rem;
   }
 
   .modal-content {
@@ -219,10 +231,7 @@
 }
 
 @media (max-width: 480px) {
-  .card {
-    width: 100%;
-  }
-
+  .card,
   .product-card {
     width: 100%;
   }
@@ -235,22 +244,4 @@
     padding: 0.4rem 0.7rem;
     font-size: 0.9rem;
   }
-}
-
-
-.no-products-message {
-  text-align: center;
-  margin-top: 50px;
-  font-size: 1.5rem;
-  color: #555;
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
 }
