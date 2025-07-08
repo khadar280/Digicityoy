@@ -1,48 +1,36 @@
-require('dotenv').config(); // Load environment variables
-console.log("JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY ? "✅ loaded" : "❌ missing");
-
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-// Route imports
-const contactRoutes = require('./routes/contact');
-const orderRoutes = require('./routes/order');
-const bookingRoutes = require('./routes/booking');
-const paymentRoutes = require('./routes/payment');
-const checkoutRoutes = require('./routes/checkout');
-const authRoutes = require('./routes/auth');
-const searchbarRoutes = require('./routes/searchbar');
-const laptopRoutes = require('./routes/laptop');
-
 const app = express();
-const PORT = process.env.PORT || 3000; // Use Render’s assigned port
+const PORT = process.env.PORT || 3000;
 
-// Middleware
+// ✅ Allow both local dev and production frontend
 app.use(cors({
-  origin: ['https://www.digicity.com'], // replace with your real domain
-  credentials: true // if you use cookies or auth headers
+  origin: ['https://en.digicity.fi', 'https://www.digicity.fi', 'http://localhost:3000'],
+  credentials: true
 }));
 app.use(express.json());
 
-// API Routes
-app.use('/api/contact', contactRoutes);
-app.use('/api/order', orderRoutes);
-app.use('/api/payment', paymentRoutes);
-app.use('/api/booking', bookingRoutes);
-app.use('/api/checkout', checkoutRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/searchbar', searchbarRoutes);
-app.use('/api/laptop', laptopRoutes);
+// ✅ API Routes
+app.use('/api/contact', require('./routes/contact'));
+app.use('/api/order', require('./routes/order'));
+app.use('/api/payment', require('./routes/payment'));
+app.use('/api/booking', require('./routes/booking'));
+app.use('/api/checkout', require('./routes/checkout'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/searchbar', require('./routes/searchbar'));
+app.use('/api/laptop', require('./routes/laptop'));
 
-// ✅ Root Route - responds to browser at "/"
+// ✅ Root
 app.get('/', (req, res) => {
   res.send('👋 Welcome to DigiCity API — backend is live!');
 });
 
-// 404 Handler (after all routes)
-app.use((req, res, next) => {
+// 404
+app.use((req, res) => {
   res.status(404).json({ error: 'Route not found!' });
 });
 
@@ -52,16 +40,15 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-// Connect to MongoDB and start the server
+// ✅ DB and Server Start
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true, // deprecated but safe
-  useUnifiedTopology: true, // deprecated but safe
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
 .then(() => {
   console.log("✅ MongoDB connected");
-
   app.listen(PORT, () => {
-    console.log(`🚀 mercy is running at http://localhost:${PORT}`);
+    console.log(`🚀 Server running on port ${PORT}`);
   });
 })
 .catch((err) => {
