@@ -8,10 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ✅ Allow both local dev and production frontend
-app.use(cors({
-  origin: ['https://en.digicity.fi', 'https://www.digicity.fi', 'http://localhost:3000'],
+cors({
+  origin: ['https://digicity.fi', 'https://en.digicity.fi', 'https://api.digicity.fi'],
   credentials: true
-}));
+})
+
 app.use(express.json());
 
 // ✅ API Routes
