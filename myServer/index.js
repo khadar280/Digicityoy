@@ -7,7 +7,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ✅ Allow both local dev and production frontend
+
 cors({
   origin: ['https://digicity.fi', 'https://en.digicity.fi', 'https://api.digicity.fi'],
   credentials: true
@@ -17,7 +17,7 @@ app.use(express.json());
 
 // ✅ API Routes
 app.use('/api/contact', require('./routes/contact'));
-app.use('/api/order', require('./routes/order'));
+app.use('/api/Order', require('./routes/Order'));
 app.use('/api/payment', require('./routes/payment'));
 app.use('/api/booking', require('./routes/booking'));
 app.use('/api/checkout', require('./routes/checkout'));
