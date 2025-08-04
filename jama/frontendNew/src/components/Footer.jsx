@@ -30,7 +30,7 @@ function Footer() {
     <a href="https://www.instagram.com/digicity21" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
   </div>
 </div>
-<div> waraa</div>
+
       </div>
 
       <div className="footer-bottom">
