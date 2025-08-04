@@ -20,7 +20,7 @@ const OrderRoutes = require('./routes/Order');
 const PaymentRoutes = require('./routes/Payment');
 const BookingRoutes = require('./routes/Booking');
 const CheckoutRoutes = require('./routes/Checkout');
-const AuthRoutes = require('./routes/Auth');
+const AuthRoutes = require('./routes/auth');
 const SearchbarRoutes = require('./routes/Searchbar');
 const LaptopRoutes = require('./routes/Laptop');
 
