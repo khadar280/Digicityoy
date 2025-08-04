@@ -12,15 +12,11 @@ const AboutSection = () => {
   return (
     <section className="about-section">
       <div className="about-container">
-        {/* تصویر */}
+       
         <div className="about-image-wrapper">
           <img
-            src={aboutImage} alt ="About DigiCity"/>
-
-           
+            src={aboutImage} alt ="About DigiCity"/> 
         </div>
-
-        {/* متن */}
         <div className="about-text">
           <h2>{t("about.title")}</h2>
           <p>{t("about.p1")}</p>

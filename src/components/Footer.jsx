@@ -21,7 +21,7 @@ function Footer() {
           <h4>{t('footer.contactTitle')}</h4>
           <p>{t('footer.email')}: info@digicity.fi</p>
           <p>{t('footer.phone')}: 0453418323</p>
-          <p>{t('footer.address')}: Klaneettotie 12 Helsinki 00420</p>
+          <p>{t('footer.address')}: Klaneettitie 12 Helsinki 00420</p>
         </div>
 <div className="footer-socials">
   <h4>{t('footer.followUs')}</h4>
