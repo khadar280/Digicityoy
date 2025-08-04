@@ -193,55 +193,77 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.5s ease-in-out;
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* =================== RESPONSIVE MEDIA QUERIES =================== */
-@media (max-width: 768px) {
-  .card,
-  .product-card {
-    width: 48%;
-    padding: 1rem;
+@media screen and (max-width: 768px) {
+  .trending-products {
+    padding: 2rem 1rem;
   }
 
-  .cards,
-  .product-list {
+  .product-section h3 {
+    font-size: 1.4rem;
+    padding: 0 1rem;
+  }
+
+  .cards, .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 1rem;
+    justify-items: center;
+  }
+
+  .card,
+  .product-card {
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .card img,
+  .product-card img {
+    height: 180px;
+    object-fit: contain;
+  }
+
+  .product-card h4 {
+    font-size: 1rem;
+  }
+
+  .product-card p {
+    font-size: 0.9rem;
+  }
+
+  .product-card button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
   }
 
   .modal-content {
     padding: 1rem;
-    width: 95%;
+    max-width: 95%;
   }
 
   .modal-content img {
-    max-height: 150px;
-  }
-
-  .back-button,
-  .checkout-btn,
-  .product-card button,
-  .modal-content button {
-    width: 100%;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .card,
-  .product-card {
-    width: 100%;
-  }
-
-  .modal-content {
-    padding: 0.8rem;
+    max-height: 180px;
   }
 
   .pagination button {
     padding: 0.4rem 0.7rem;
     font-size: 0.9rem;
   }
+
+  .back-button {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .no-products-message {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+}
+.cards, .product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  justify-items: center;
 }
