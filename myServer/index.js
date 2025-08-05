@@ -14,7 +14,7 @@ app.use(cors({
 
 app.use(express.json());
 
-// Import routes with uppercase filenames
+
 const ContactRoutes = require('./routes/Contact');
 const OrderRoutes = require('./routes/Order');
 const PaymentRoutes = require('./routes/Payment');
