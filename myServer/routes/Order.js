@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Order = require('../models/order');
+const Order = require('../models/order'); // ✅ if the file is 'order.js'
+
 
 
 router.get('/', async (req, res) => {
