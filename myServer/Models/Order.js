@@ -1,4 +1,4 @@
-// In models/order.js
+
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
@@ -19,7 +19,7 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-// ✅ This prevents the OverwriteModelError:
+
 const Order = mongoose.models.Order || mongoose.model("Order", orderSchema);
 
 module.exports = Order;

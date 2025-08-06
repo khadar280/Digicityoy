@@ -16,8 +16,8 @@ app.use(express.json());
 
 
 const ContactRoutes = require('./routes/Contact');
-const OrderRoutes = require('./routes/order');
-const PaymentRoutes = require('./routes/payment'); // 
+const orderRoutes = require('./routes/Order');
+const PaymentRoutes = require('./routes/payment');
 const BookingRoutes = require('./routes/booking');
 const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
@@ -26,13 +26,14 @@ const LaptopRoutes = require('./routes/Laptop');
 
 // Use routes
 app.use('/api/contact', ContactRoutes);
-app.use('/api/order', OrderRoutes);
+app.use('/api/order', orderRoutes); // ✅ fixed variable name
 app.use('/api/payment', PaymentRoutes);
 app.use('/api/booking', BookingRoutes);
 app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
 app.use('/api/searchbar', SearchbarRoutes);
 app.use('/api/laptop', LaptopRoutes);
+
 
 // Root route
 app.get('/', (req, res) => {
