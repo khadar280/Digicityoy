@@ -16,7 +16,7 @@ app.use(express.json());
 
 
 const ContactRoutes = require('./routes/Contact');
-const OrderRoutes = require('./routes/Order');
+const OrderRoutes = require('./routes/order');
 const PaymentRoutes = require('./routes/payment'); // ✅ lowercase
 const BookingRoutes = require('./routes/Booking');
 const CheckoutRoutes = require('./routes/Checkout');
