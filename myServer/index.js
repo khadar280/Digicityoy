@@ -16,7 +16,7 @@ app.use(express.json());
 
 
 const ContactRoutes = require('./routes/Contact');
-const orderRoutes = require('./routes/Order');
+const OrderRoutes = require('./routes/order');
 const PaymentRoutes = require('./routes/payment');
 const BookingRoutes = require('./routes/booking');
 const CheckoutRoutes = require('./routes/checkout');
@@ -26,7 +26,7 @@ const LaptopRoutes = require('./routes/Laptop');
 
 // Use routes
 app.use('/api/contact', ContactRoutes);
-app.use('/api/order', orderRoutes); // ✅ fixed variable name
+app.use('/api/order', OrderRoutes); // ✅ fixed variable name
 app.use('/api/payment', PaymentRoutes);
 app.use('/api/booking', BookingRoutes);
 app.use('/api/checkout', CheckoutRoutes);
