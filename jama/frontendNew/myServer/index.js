@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Import routes with uppercase filenames
 const ContactRoutes = require('./routes/Contact');
-const OrderRoutes = require('./routes/order');
+
 const PaymentRoutes = require('./routes/Payment');
 const BookingRoutes = require('./routes/Booking');
 const CheckoutRoutes = require('./routes/Checkout');
@@ -26,7 +26,7 @@ const LaptopRoutes = require('./routes/Laptop');
 
 // Use routes
 app.use('/api/contact', ContactRoutes);
-app.use('/api/order', OrderRoutes);
+
 app.use('/api/payment', PaymentRoutes);
 app.use('/api/booking', BookingRoutes);
 app.use('/api/checkout', CheckoutRoutes);
