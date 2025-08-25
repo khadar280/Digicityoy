@@ -8,10 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // CORS configuration
-app.use(cors({
+pp.use(cors({
   origin: [
-    'https://digicity.fi',
-    'https://en.digicity.fi'
+    'https://digicity.fi',           // backend domain
+    'https://en.digicity.fi',        // backend alternate domain
+    'https://www.digicity.vercel.app' // frontend on Vercel
   ],
   credentials: true
 }));

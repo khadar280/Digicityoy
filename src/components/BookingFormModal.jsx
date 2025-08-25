@@ -12,7 +12,7 @@ const BookingFormModal = ({ service, onClose }) => {
   const [warningMessage, setWarningMessage] = useState("");
 
   // Always use your real domain for production
-  const API_URL = process.env.REACT_APP_API_URL || 'https://digicity.fi';
+const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onrender.com';
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -139,3 +139,4 @@ const BookingFormModal = ({ service, onClose }) => {
 };
 
 export default BookingFormModal;
+Ö
