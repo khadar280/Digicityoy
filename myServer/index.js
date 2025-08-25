@@ -7,23 +7,30 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ✅ Allowed origins (backend domains + frontend domains)
+// ✅ Allowed production origins
 const allowedOrigins = [
-  'https://digicity.fi',                      // main backend domain
-  'https://en.digicity.fi',                   // alternate backend domain
-  'https://www.digicity.vercel.app',          // frontend production (Vercel)
-  'https://digicityoy-m52dhy0lm-khadar280s-projects.vercel.app' // Vercel preview deployment
+  'https://digicity.fi',       // main domain
+  'https://en.digicity.fi',    // alternate domain
+  'https://www.digicity.fi'    // www subdomain
 ];
 
 // ✅ CORS configuration
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // allow server-to-server / Postman requests
+    if (!origin) return callback(null, true); // allow Postman / server-to-server
+
+    // ✅ allow production domains
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
-    } else {
-      return callback(new Error('CORS policy: This origin is not allowed'), false);
     }
+
+    // ✅ allow all vercel.app subdomains (preview deployments)
+    if (/\.vercel\.app$/.test(new URL(origin).hostname)) {
+      return callback(null, true);
+    }
+
+    // ❌ otherwise reject
+    return callback(new Error('CORS policy: Not allowed for origin ' + origin), false);
   },
   credentials: true
 }));
@@ -71,7 +78,10 @@ app.use((err, req, res, next) => {
 });
 
 // ✅ MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => {
     console.log("✅ MongoDB connected");
     app.listen(PORT, () => {
