@@ -3,39 +3,48 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// CORS configuration to allow your frontend domains
 app.use(cors({
-  origin: ['https://digicity.fi', 'https://en.digicity.fi', 'https://api.digicity.fi'],
+  origin: [
+    'https://digicity.fi',
+    'https://en.digicity.fi',
+    'https://api.digicity.fi',
+    'https://your-vercel-frontend.vercel.app' // add your actual Vercel URL here
+  ],
   credentials: true
 }));
 
 app.use(express.json());
 
-
+// Routes
 const ContactRoutes = require('./routes/Contact');
 const OrderRoutes = require('./routes/order');
 const PaymentRoutes = require('./routes/payment');
 const BookingRoutes = require('./routes/booking');
 const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
+const LaptopRoutes = require('./routes/laptop');
 
-const LaptopRoutes = require('./routes/laptop'); 
-// Use routes
 app.use('/api/contact', ContactRoutes);
-app.use('/api/order', OrderRoutes); // ✅ fixed variable name
+app.use('/api/order', OrderRoutes);
 app.use('/api/payment', PaymentRoutes);
 app.use('/api/booking', BookingRoutes);
 app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
-
-
 app.use('/api/laptop', LaptopRoutes);
 
+// Serve frontend static files (optional, if you want to serve frontend from backend too)
+app.use(express.static(path.join(__dirname, '../frontendNew/dist')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontendNew/dist/index.html'));
+});
 
-// Root route
+// Root route (optional if frontend is separate)
 app.get('/', (req, res) => {
   res.send('👋 Welcome to DigiCity API — backend is live!');
 });
