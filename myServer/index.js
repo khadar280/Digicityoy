@@ -22,8 +22,7 @@ const BookingRoutes = require('./routes/booking');
 const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
 
-const LaptopRoutes = require('./routes/Laptop');
-
+const LaptopRoutes = require('./routes/laptop'); 
 // Use routes
 app.use('/api/contact', ContactRoutes);
 app.use('/api/order', OrderRoutes); // ✅ fixed variable name
@@ -31,6 +30,7 @@ app.use('/api/payment', PaymentRoutes);
 app.use('/api/booking', BookingRoutes);
 app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
+
 
 app.use('/api/laptop', LaptopRoutes);
 
