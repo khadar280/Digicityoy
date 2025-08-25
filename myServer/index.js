@@ -21,7 +21,7 @@ const PaymentRoutes = require('./routes/payment');
 const BookingRoutes = require('./routes/booking');
 const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
-const SearchbarRoutes = require('./routes/Searchbar');
+
 const LaptopRoutes = require('./routes/Laptop');
 
 // Use routes
@@ -31,7 +31,7 @@ app.use('/api/payment', PaymentRoutes);
 app.use('/api/booking', BookingRoutes);
 app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
-app.use('/api/searchbar', SearchbarRoutes);
+
 app.use('/api/laptop', LaptopRoutes);
 
 
