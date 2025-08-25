@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import "./BookingFormModal.css";
 import { useTranslation } from "react-i18next";
@@ -10,8 +11,8 @@ const BookingFormModal = ({ service, onClose }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
 
-const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
-
+  // Always use your real domain for production
+  const API_URL = process.env.REACT_APP_API_URL || 'https://digicity.fi';
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,7 +54,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
     };
 
     fetchBookedTimes();
-  }, [form.date, API_URL]);
+  }, [form.date]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,9 +69,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
     try {
       const response = await fetch(`${API_URL}/api/booking`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           customerName: form.name,
           customerEmail: form.email,
@@ -105,59 +104,21 @@ const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
       <div className="modal-box">
         <h2>{t("bookingForm.book")}: {service}</h2>
 
-        {warningMessage && (
-          <div className="warning-banner">{warningMessage}</div>
-        )}
+        {warningMessage && <div className="warning-banner">{warningMessage}</div>}
 
         {showSuccess ? (
           <p className="success-message">{t("bookingForm.successMessage")}</p>
         ) : (
           <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder={t("bookingForm.name")}
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="tel"
-              name="phone"
-              placeholder={t("bookingForm.phone")}
-              value={form.phone}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder={t("bookingForm.email")}
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="date"
-              name="date"
-              value={form.date}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" name="name" placeholder={t("bookingForm.name")} value={form.name} onChange={handleChange} required />
+            <input type="tel" name="phone" placeholder={t("bookingForm.phone")} value={form.phone} onChange={handleChange} required />
+            <input type="email" name="email" placeholder={t("bookingForm.email")} value={form.email} onChange={handleChange} required />
+            <input type="date" name="date" value={form.date} onChange={handleChange} required />
 
-            <select
-              name="time"
-              value={form.time}
-              onChange={handleChange}
-              required
-            >
+            <select name="time" value={form.time} onChange={handleChange} required>
               <option value="">{t("bookingForm.selectTime")}</option>
               {generateTimes().map((time) => (
-                <option
-                  key={time}
-                  value={time}
-                  disabled={bookedTimes.includes(time)}
-                >
+                <option key={time} value={time} disabled={bookedTimes.includes(time)}>
                   {time} {bookedTimes.includes(time) ? "(busy)" : ""}
                 </option>
               ))}
