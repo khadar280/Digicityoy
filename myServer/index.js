@@ -7,26 +7,37 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// CORS configuration
-pp.use(cors({
-  origin: [
-    'https://digicity.fi',           // backend domain
-    'https://en.digicity.fi',        // backend alternate domain
-    'https://www.digicity.vercel.app' // frontend on Vercel
-  ],
+// ✅ Allowed origins (backend domains + frontend domains)
+const allowedOrigins = [
+  'https://digicity.fi',                      // main backend domain
+  'https://en.digicity.fi',                   // alternate backend domain
+  'https://www.digicity.vercel.app',          // frontend production (Vercel)
+  'https://digicityoy-m52dhy0lm-khadar280s-projects.vercel.app' // Vercel preview deployment
+];
+
+// ✅ CORS configuration
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // allow server-to-server / Postman requests
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('CORS policy: This origin is not allowed'), false);
+    }
+  },
   credentials: true
 }));
 
-// Middleware
+// ✅ Middleware
 app.use(express.json());
 
-// Log request origins (helpful for debugging CORS issues)
+// ✅ Debug log to track request origins
 app.use((req, res, next) => {
   console.log('Request Origin:', req.headers.origin);
   next();
 });
 
-// Routes
+// ✅ Routes
 const ContactRoutes = require('./routes/Contact');
 const OrderRoutes = require('./routes/order');
 const PaymentRoutes = require('./routes/payment');
@@ -43,33 +54,30 @@ app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
 app.use('/api/laptop', LaptopRoutes);
 
-// Root route
+// ✅ Root route
 app.get('/', (req, res) => {
   res.send('👋 Welcome to DigiCity API — backend is live!');
 });
 
-// 404 handler
+// ✅ 404 handler
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found!' });
 });
 
-// Global error handler
+// ✅ Global error handler
 app.use((err, req, res, next) => {
-  console.error('❌ Server error:', err);
+  console.error('❌ Server error:', err.message);
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-// Connect to MongoDB and start server
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => {
-  console.log("✅ MongoDB connected");
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
+// ✅ MongoDB connection
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("✅ MongoDB connected");
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB connection error:", err.message);
   });
-})
-.catch((err) => {
-  console.error("❌ MongoDB connection error:", err);
-});
