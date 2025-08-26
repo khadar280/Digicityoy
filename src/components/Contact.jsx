@@ -108,7 +108,7 @@ const Contact = () => {
     e.preventDefault();
 
    
-const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
+const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onrender.com';
     try {
       const res = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
