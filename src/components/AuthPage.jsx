@@ -18,7 +18,7 @@ const AuthPage = () => {
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
 
-  const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-6.onrender.com';
+  const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onrender.com';
 
   const handleAuth = async (e) => {
     e.preventDefault();
