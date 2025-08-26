@@ -5,13 +5,13 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ Enable JSON body parsing
+
 app.use(express.json());
 
 // ✅ Setup CORS
 const allowedOrigins = [
   "https://digicityoy-mw2scad9z-khadar280s-projects.vercel.app", // Vercel frontend
-  "https://digicity.fi", // <-- replace with your real custom domain
+   "https://www.digicity.fi",
 ];
 
 app.use(
