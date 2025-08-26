@@ -70,7 +70,7 @@ const handleSubmit = async (e) => {
       window.location.href = data.url;
     } else {
       alert('Failed to initiate payment session');
-      console.error('❌ Stripe error:', data);
+      console.error(' Stripe error:', data);
     }
   } catch (error) {
     console.error('🚨 Submit error:', error);
