@@ -139,4 +139,3 @@ const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onr
 };
 
 export default BookingFormModal;
-Ö
