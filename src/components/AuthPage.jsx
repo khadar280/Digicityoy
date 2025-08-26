@@ -1,58 +1,69 @@
-import React, { useState, useContext } from 'react';
-import './AuthPage.css';
-import axios from 'axios';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { toast } from 'react-toastify';
-import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
+
+const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onrender.com/api/auth';
 
 const AuthPage = () => {
-  const [activeTab, setActiveTab] = useState('login');
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const { setUser, setToken } = useContext(UserContext);
+  const [activeTab, setActiveTab] = useState('login');
 
+  // Login state
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+
+  // Signup state
   const [signupName, setSignupName] = useState('');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
 
-  const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onrender.com';
-
   const handleAuth = async (e) => {
     e.preventDefault();
 
-    const payload =
-      activeTab === 'login'
-        ? { email: loginEmail, password: loginPassword }
-        : { name: signupName, email: signupEmail, password: signupPassword };
-
-    const endpoint = activeTab === 'login' ? '/api/auth/signin' : '/api/auth/signup';
-
     try {
-      const res = await axios.post(`${API_URL}${endpoint}`, payload);
-
-      // Save to local storage and context
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', JSON.stringify(res.data.user));
-      setUser(res.data.user);
-      setToken(res.data.token);
-
-      toast.success(
+      const body =
         activeTab === 'login'
-          ? t('auth.loginSuccess')
-          : t('auth.signupSuccess')
-      );
+          ? {
+              type: 'signin',
+              email: loginEmail,
+              password: loginPassword,
+            }
+          : {
+              type: 'signup',
+              name: signupName,
+              email: signupEmail,
+              password: signupPassword,
+            };
 
-      navigate('/profile');
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        console.log('✅ Success:', data);
+        alert(
+          activeTab === 'login'
+            ? t('auth.loginSuccess')
+            : t('auth.signupSuccess')
+        );
+        // store token if needed
+        localStorage.setItem('token', data.token);
+      } else {
+        console.error('❌ Auth failed:', data.error);
+        alert(data.error || 'Authentication failed');
+      }
     } catch (err) {
-      toast.error(err.response?.data?.error || t('auth.generalError'));
+      console.error('Network error:', err);
+      alert('Network error, please try again later');
     }
   };
 
   return (
     <div className="auth-container">
+      {/* Tabs */}
       <div className="auth-tabs">
         <button
           className={activeTab === 'login' ? 'active' : ''}
@@ -68,6 +79,7 @@ const AuthPage = () => {
         </button>
       </div>
 
+      {/* Form */}
       <div className="auth-form">
         <form onSubmit={handleAuth} className="auth-form-inner">
           {activeTab === 'signup' && (
@@ -79,6 +91,7 @@ const AuthPage = () => {
               required
             />
           )}
+
           <input
             type="email"
             placeholder={t('auth.email')}
@@ -90,6 +103,7 @@ const AuthPage = () => {
             }
             required
           />
+
           <input
             type="password"
             placeholder={t('auth.password')}
@@ -101,6 +115,7 @@ const AuthPage = () => {
             }
             required
           />
+
           <button type="submit">
             {activeTab === 'login' ? t('auth.login') : t('auth.signup')}
           </button>
