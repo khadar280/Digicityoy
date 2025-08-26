@@ -69,7 +69,7 @@ export const groupedModels = {
     { model: "Samsung A72", screenRepair: 169, batteryReplacement: 89, backRepair: 89, image:aImage },
     { model: "Samsung A71", screenRepair: 169, batteryReplacement: 69, backRepair: 79 , image:aImage},
     { model: "Samsung A70", screenRepair: 199, batteryReplacement: 69, backRepair: 79 ,image:aImage},
-    { model: "Samsung A51 5G", screenRepair: 169, batteryReplacement: 79, backRepair: 79,image:aImage },
+    { model: "Samsung A51 5G", screenRepair: 166, batteryReplacement: 79, backRepair: 79,image:aImage },
     { model: "Samsung A51", screenRepair: 159, batteryReplacement: 59, backRepair: 59 ,image:aImage},
     { model: "Samsung A50", screenRepair: 119, batteryReplacement: 49, backRepair: 49 ,image:aImage},
     { model: "Samsung A40", screenRepair: 109, batteryReplacement: 69, backRepair: 69,image:aImage },
