@@ -106,10 +106,33 @@
       "title": "NOPEAT ÄLYPUHELIMIEN KORJAUKSET",
       "description": "Sertifioidut teknikkomme korjaavat useimmat ongelmat paikan päällä — usein alle tunnissa. Ei ajanvarausta tarvita!"
     },
-    "warranty": {
-      "title": "MIELENRAUHA 12 KK TAKUU",
-      "description": "Kaikilla näytönkorjauksilla on 12 kuukauden takuu, mikä takaa laadun ja mielenrauhan."
-    }
+"warranty": {
+  "title": "TAKUUEHDOT",
+
+  "period": {
+    "screens": "Näytöt: tarvikeosa-näytöt 6kk ja OLED-näytöt 12kk",
+    "batteries": "Akut: 6kk",
+    "other": "Muut työt: 12kk"
+  },
+
+  "includes": {
+    "touch": "Kosketukseen liittyvät ongelmat",
+    "flicker": "Näytön väreily tai muu tekninen ongelma"
+  },
+
+  "excludes": {
+    "drop": "Laite on mennyt rikki, koska puhelin on tippunut tai laitteessa on mekaanisen vaurion jälkiä",
+    "screenFrame": "Näyttöön tai runkoon on tullut vaurio",
+    "water": "Puhelin on kastunut",
+    "thirdParty": "Puhelin on viety kolmannelle osapuolelle",
+    "detached": "Puhelimen näyttö on irronnut",
+    "selfRepair": "Laitteet, joita asiakas on itse yrittänyt korjata",
+    "dataLoss": "Korjauksen seurauksena menetetyistä tiedostoista tai tiedoista – laitteet tulee aina varmuuskopioida ennen korjaukseen tuomista",
+    "software": "Ohjelmistoon liittyviä korjauksia, tai valmistajan ohjelmistopäivityksistä johtuvia osien yhteensopivuusongelmia",
+    "newDamage": "Uudet vahingot, jotka eivät liity alkuperäiseen korjaukseen",
+    "preExisting": "Puhelimessa on huoltoon tullessa jo vaurioita"
+  }
+}
   },
   "contact": {
     "title": "Ota yhteyttä",

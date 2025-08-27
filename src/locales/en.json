@@ -115,9 +115,33 @@
       "description": "Our certified technicians fix most issues on-site — often in under an hour. No appointment needed!"
     },
     "warranty": {
-      "title": "PEACE OF MIND – 12 MONTH WARRANTY",
-      "description": "All screen repairs come with a 12-month warranty, giving you peace of mind and trusted quality."
-    }
+  "title": "WARRANTY TERMS",
+
+  "period": {
+    "screens": "Screens: aftermarket screens 6 months and OLED screens 12 months",
+    "batteries": "Batteries: 6 months",
+    "other": "Other repairs: 12 months"
+  },
+
+  "includes": {
+    "touch": "Touch-related issues",
+    "flicker": "Screen flickering or other technical issues"
+  },
+
+  "excludes": {
+    "drop": "Device damaged due to drop or visible mechanical damage",
+    "screenFrame": "Damage to screen or frame",
+    "water": "Device exposed to water",
+    "thirdParty": "Device repaired by a third party",
+    "detached": "Screen detached from the device",
+    "selfRepair": "Devices that have been self-repaired",
+    "dataLoss": "Loss of files or data as a result of repair – devices must always be backed up before repair",
+    "software": "Software-related issues, or compatibility problems caused by manufacturer software updates",
+    "newDamage": "New damages not related to the original repair",
+    "preExisting": "Device already had damages when brought to service"
+  }
+}
+
   },
   "contact": {
     "title": "Contact Us",
