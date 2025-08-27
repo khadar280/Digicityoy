@@ -15,7 +15,7 @@ const AboutSection = () => {
        
         <div className="about-image-wrapper">
           <img
-            src={sawirImage} alt ="About DigiCity"/> 
+            src={sawirImage} alt ="About us"/> 
         </div>
         <div className="about-text">
           <h2>{t("about.title")}</h2>
