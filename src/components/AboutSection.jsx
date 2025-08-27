@@ -3,7 +3,7 @@
 
 import React from "react";
 import "./AboutSection.css";
-import aboutImage from "../assets/shak.jpg"
+import shakImage from "../assets/shak.png"
 import { useTranslation } from "react-i18next";
 
 const AboutSection = () => {
@@ -15,7 +15,7 @@ const AboutSection = () => {
        
         <div className="about-image-wrapper">
           <img
-            src={aboutImage} alt ="About DigiCity"/> 
+            src={shakImage} alt ="About DigiCity"/> 
         </div>
         <div className="about-text">
           <h2>{t("about.title")}</h2>
