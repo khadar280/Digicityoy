@@ -3,7 +3,7 @@
 
 import React from "react";
 import "./AboutSection.css";
-import sawirImage from "../assets/sawirImage.jpg"
+import sawirImage from "../assets/about.png"
 import { useTranslation } from "react-i18next";
 
 const AboutSection = () => {
