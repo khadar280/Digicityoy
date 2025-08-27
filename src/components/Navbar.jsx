@@ -1,8 +1,3 @@
-
-
-
-
-
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
@@ -15,14 +10,12 @@ import { UserContext } from '../context/UserContext';
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [language, setLanguage] = useState('EN')
-
+  const [language, setLanguage] = useState('EN');
   const [searchQuery, setSearchQuery] = useState('');
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const { cartItems } = useCart();
   const { t, i18n } = useTranslation();
-
   const { user, logout } = useContext(UserContext);
 
   const handleLanguageChange = (e) => {
@@ -30,8 +23,6 @@ const Navbar = () => {
     setLanguage(e.target.value);
     i18n.changeLanguage(newLang);
   };
- 
-  
 
   const handleUserIconClick = () => {
     if (user) {
@@ -50,6 +41,11 @@ const Navbar = () => {
     }
   };
 
+ 
+  const handleLogoClick = () => {
+    navigate(-1); 
+  };
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -62,7 +58,14 @@ const Navbar = () => {
 
   return (
     <header className="navbar">
-      <img src={logo} alt="Logo" className="logo" />
+      
+      <img
+        src={logo}
+        alt="Logo"
+        className="logo"
+        onClick={handleLogoClick}
+        style={{ cursor: "pointer" }}
+      />
 
       <div className="menu-toggle" onClick={toggleMenu}>
         {menuOpen ? <FaTimes /> : <FaBars />}
@@ -123,11 +126,13 @@ const Navbar = () => {
             {user && (
               <>
                 <Link to="/profile" className="dropdown-item">{t("nav.profile")}</Link>
-                {/* <Link to="/settings" className="dropdown-item">{t("nav.settings")}</Link> */}
-                <button className="dropdown-item logout" onClick={() => {
-                  logout();
-                  navigate('/');
-                }}>
+                <button
+                  className="dropdown-item logout"
+                  onClick={() => {
+                    logout();
+                    navigate('/');
+                  }}
+                >
                   {t("nav.logout")}
                 </button>
               </>

@@ -23,8 +23,8 @@
       "loginSuccess": "✅ Kirjautuminen onnistui!",
       "signupSuccess": "✅ Rekisteröinti onnistui!",
       "forgotPassword": "Unohtuiko salasana?",
-      "loginError": "❌ Kirjautumisvirhe",
-      "signupError": "❌ Rekisteröintivirhe",
+      "loginError": " Kirjautumisvirhe",
+      "signupError": " Rekisteröintivirhe",
       "error": "Tapahtui virhe",
       "success": "Toiminto onnistui",
       "forgotTitle": "Unohtuiko salasana?",
@@ -35,7 +35,7 @@
       "changePassword": "Vaihda salasana",
       "passwordMismatch": "Salasanat eivät täsmää.",
       
-      "resetError": "❌ Salasanan vaihto epäonnistui. Yritä uudelleen.",
+      "resetError": " Salasanan vaihto epäonnistui. Yritä uudelleen.",
       "resetPassword": "Palauta salasana",
         "checkEmail": "Tarkista sähköpostisi.",
     "resetSuccess": "Salasana vaihdettu onnistuneesti!",
@@ -47,7 +47,7 @@
       "button": "Vaihda salasana"
     },
     "forgot": {
-      "title": "🔑 Salasanan palautus",
+      "title": " Salasanan palautus",
       "placeholder": "Anna sähköpostisi",
       "button": "Lähetä palautuslinkki",
       "sentMessage": "Tarkista sähköpostisi palautuslinkin saamiseksi."
@@ -126,7 +126,7 @@
   },
   
   "booking": {
-    "title": "Varaa Aika",
+    "title": "Varaa aika",
     "phoneRepair": "Puhelimen korjaus",
     "batteryChange": "Akun vaihto",
     "inspection": "Tarkastus",
@@ -160,7 +160,7 @@
   "repair": {
   "screen": "Näytön korjaus",
   "battery": "Akun vaihto",
-  "back": "Takakannen korjaus",
+  "back": "Takakalasin korjaus",
   "bookBtn": "Varaa korjaus",
   "warranty": "Takuu",
   "time": "Korjauksen kesto",
