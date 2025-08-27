@@ -20,9 +20,9 @@ function Footer() {
         <div className="footer-contact">
           <h4>{t('footer.contactTitle')}</h4>
           <p>{t('footer.email')}: info@digicity.fi</p>
-          <p>{t('footer.phone')}:  Esihenkilö:0453418323 </p>
-            <p>{t('footer.phone')} Asiakaspalvelu kannelmäki:0403614763</p>
-            <p>{t('footer.phone')} Asiakaspalvelu Puhos:0403614760</p>
+          <p>{t('footer.phone')}: Boss:0453418323 </p>
+            <p>{t('footer.phone')}: Customer kannelmäki 0403614763</p>
+            <p>{t('footer.phone')}: Customer Puhos 0403614760</p>
           <p>{t('footer.address')}: Klaneettitie 12 Helsinki 00420</p>
         </div>
 <div className="footer-socials">
