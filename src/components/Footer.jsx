@@ -36,9 +36,7 @@ function Footer() {
 
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} DIGICITY. {t('footer.rights')}</p>
-        <Link to="/warranty" className="footer-link">
-          {t('footer.warranty')}
-        </Link>
+       
       </div>
     </footer>
   );
