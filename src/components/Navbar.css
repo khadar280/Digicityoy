@@ -272,3 +272,25 @@
     transform: translateY(0);
   }
 }
+/* Make language + cart match dropdown style */
+.user-dropdown-menu .lang-select,
+.user-dropdown-menu .cart-link {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Hover effect for consistency */
+.user-dropdown-menu .lang-select:hover,
+.user-dropdown-menu .cart-link:hover {
+  background-color: #fef3ed;
+  color: #ed6226;
+}
