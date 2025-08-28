@@ -18,6 +18,7 @@ const Navbar = () => {
   const { t, i18n } = useTranslation();
   const { user, logout } = useContext(UserContext);
 
+  // === Handlers ===
   const handleLanguageChange = (e) => {
     const newLang = e.target.value.toLowerCase();
     setLanguage(e.target.value);
@@ -41,11 +42,11 @@ const Navbar = () => {
     }
   };
 
- 
   const handleLogoClick = () => {
-    navigate(-1); 
+    navigate(-1);
   };
 
+  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -58,7 +59,7 @@ const Navbar = () => {
 
   return (
     <header className="navbar">
-      
+      {/* Logo */}
       <img
         src={logo}
         alt="Logo"
@@ -67,10 +68,12 @@ const Navbar = () => {
         style={{ cursor: "pointer" }}
       />
 
+      {/* Mobile menu toggle */}
       <div className="menu-toggle" onClick={toggleMenu}>
         {menuOpen ? <FaTimes /> : <FaBars />}
       </div>
 
+      {/* Navigation links */}
       <nav>
         <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
           <li><Link to="/" onClick={() => setMenuOpen(false)}>{t("nav.home")}</Link></li>
@@ -79,6 +82,7 @@ const Navbar = () => {
           <li><Link to="/contact" onClick={() => setMenuOpen(false)}>{t("nav.contact")}</Link></li>
           <li><Link to="/about-us" onClick={() => setMenuOpen(false)}>{t("nav.about")}</Link></li>
 
+          {/* Search bar */}
           <div className="search-bar">
             <input
               type="text"
@@ -92,17 +96,10 @@ const Navbar = () => {
         </ul>
       </nav>
 
+      {/* User controls */}
       <div className="user-controls" ref={dropdownRef}>
-        <select className="lang-select" value={language} onChange={handleLanguageChange}>
-          <option value="EN">EN</option>
-          <option value="FI">FI</option>
-        </select>
-
-        <Link to="/cart" className="cart-link">
-          🛒 {t('nav.cart')} ({cartItems.length})
-        </Link>
-
         <div className="user-menu-wrapper">
+          {/* User icon */}
           <div className="user-info" onClick={handleUserIconClick}>
             {user ? (
               <>
@@ -122,10 +119,31 @@ const Navbar = () => {
             )}
           </div>
 
+          {/* Dropdown menu */}
           <div className={`user-dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
+            
+            {/* === Top row: Cart + Language selector === */}
+            <div className="dropdown-top-row">
+              <Link to="/cart" className="cart-inline">
+                🛒 {t('nav.cart')} ({cartItems.length})
+              </Link>
+
+              <select
+                className="lang-inline"
+                value={language}
+                onChange={handleLanguageChange}
+              >
+                <option value="EN">EN</option>
+                <option value="FI">FI</option>
+              </select>
+            </div>
+
+            {/* === Profile + Logout === */}
             {user && (
               <>
-                <Link to="/profile" className="dropdown-item">{t("nav.profile")}</Link>
+                <Link to="/profile" className="dropdown-item">
+                  {t("nav.profile")}
+                </Link>
                 <button
                   className="dropdown-item logout"
                   onClick={() => {

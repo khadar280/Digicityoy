@@ -294,3 +294,34 @@
   background-color: #fef3ed;
   color: #ed6226;
 }
+/* === Dropdown Top Row (Cart + Language side by side) === */
+.dropdown-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Cart inline style */
+.cart-inline {
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.cart-inline:hover {
+  color: #ed6226;
+}
+
+/* Language inline style */
+.lang-inline {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-weight: 500;
+  font-size: 0.9rem;
+  background: #fff;
+  cursor: pointer;
+}
