@@ -1,18 +1,11 @@
-
-
-
-
-
-
-
-/* === Main Navbar Styles === */
+/* === Navbar === */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 16px 24px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -20,14 +13,14 @@
 
 .logo {
   height: 48px;
-  object-fit: contain;
+  cursor: pointer;
 }
 
-/* === Navigation Links === */
+/* === Nav Links === */
 .nav-links {
   display: flex;
-  gap: 3.5rem;
   align-items: center;
+  gap: 2rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -37,79 +30,59 @@
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
 }
 
 .nav-links li a:hover {
   color: #0d87a5;
 }
 
-/* === Search Bar === */
+/* Search Bar */
 .search-bar {
   display: flex;
   align-items: center;
-  margin-left: 16px;
 }
 
 .search-input {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
+  padding: 6px 10px;
   border-radius: 6px;
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.3s;
+  border: 1px solid #ccc;
 }
 
-.search-input:focus {
-  border-color: #0d87a5;
-}
-
-/* === User Controls === */
+/* === Right Controls === */
 .user-controls {
   display: flex;
   align-items: center;
-  gap: 18px;
-  position: relative;
+  gap: 16px;
 }
 
-/* Language Selector */
+/* Language */
 .lang-select {
   padding: 6px 10px;
   border-radius: 6px;
   border: 2px solid #2c8bbb;
   font-weight: 500;
+  background: #fff;
+  cursor: pointer;
 }
 
-/* Cart Link */
+/* Cart */
 .cart-link {
   font-weight: 500;
-  color: #330303;
   text-decoration: none;
-  transition: all 0.3s ease;
+  color: #330303;
 }
 
 .cart-link:hover {
-  filter: brightness(1.1);
-  transform: translateY(-2px) scale(1.02);
+  color: #ed6226;
 }
 
-/* === User Icon / Avatar === */
+/* User Icon / Avatar */
 .user-info {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-}
-
-.user-icon {
-  font-size: 30px;
-  color: #ff0000;
-  transition: transform 0.2s ease, color 0.3s ease;
-}
-
-.user-icon:hover {
-  filter: brightness(1.1);
-  transform: translateY(-2px) scale(1.02);
 }
 
 .user-avatar {
@@ -121,10 +94,9 @@
 
 .user-name {
   font-weight: 600;
-  font-size: 16px;
 }
 
-/* === User Dropdown Menu === */
+/* Dropdown */
 .user-dropdown-menu {
   position: absolute;
   top: 48px;
@@ -132,7 +104,6 @@
   background: white;
   border-radius: 8px;
   border: 1px solid #ddd;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 160px;
   padding: 8px 0;
   opacity: 0;
@@ -148,23 +119,15 @@
   pointer-events: auto;
 }
 
-/* Dropdown Items */
 .dropdown-item {
-  padding: 14px 18px;
-  font-size: 0.95rem;
+  padding: 12px 16px;
   color: #333;
   text-decoration: none;
-  font-weight: 500;
-  background-color: white;
-  border: none;
-  text-align: left;
-  width: 100%;
-  cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  display: block;
 }
 
 .dropdown-item:hover {
-  background-color: #fef3ed;
+  background: #fef3ed;
   color: #ed6226;
 }
 
@@ -173,11 +136,11 @@
 }
 
 .dropdown-item.logout:hover {
-  background-color: #fbeaea;
+  background: #fbeaea;
   color: #b71c1c;
 }
 
-/* === Mobile Styles === */
+/* === Mobile === */
 .menu-toggle {
   display: none;
   font-size: 24px;
@@ -186,31 +149,19 @@
 }
 
 @media screen and (max-width: 768px) {
-  .navbar {
-    flex-wrap: wrap;
-    padding: 12px 16px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
   .nav-links {
     position: absolute;
     top: 70px;
     left: 0;
     width: 100%;
-    background-color: #fff;
     flex-direction: column;
-    align-items: center;
+    background: #fff;
     gap: 20px;
-    padding: 24px 0;
+    padding: 20px 0;
     transform: translateY(-100%);
     opacity: 0;
     pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-    z-index: 999;
+    transition: all 0.3s;
   }
 
   .nav-links.active {
@@ -219,109 +170,15 @@
     pointer-events: auto;
   }
 
-  .search-bar {
-    width: 100%;
-    justify-content: center;
-    margin: 16px 0;
+  .menu-toggle {
+    display: block;
+  }
+
+  .user-controls {
+    gap: 12px;
   }
 
   .search-input {
     width: 90%;
-    max-width: 400px;
   }
-
-  .user-controls {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    margin-top: 1rem;
-  }
-
-  .user-dropdown-menu {
-    top: 48px;
-    right: 16px;
-    width: 180px;
-  }
-
-  .user-icon {
-    font-size: 28px;
-  }
-
-  .lang-select, .cart-link {
-    font-size: 16px;
-    padding: 8px 12px;
-  }
-
-  .dropdown-item {
-    font-size: 1rem;
-    padding: 16px;
-  }
-}
-.nav-links {
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes slideDownFade {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* Make language + cart match dropdown style */
-.user-dropdown-menu .lang-select,
-.user-dropdown-menu .cart-link {
-  display: block;
-  width: 100%;
-  padding: 12px 16px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  border: none;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-  color: #333;
-  transition: background-color 0.25s ease, color 0.25s ease;
-}
-
-/* Hover effect for consistency */
-.user-dropdown-menu .lang-select:hover,
-.user-dropdown-menu .cart-link:hover {
-  background-color: #fef3ed;
-  color: #ed6226;
-}
-/* === Dropdown Top Row (Cart + Language side by side) === */
-.dropdown-top-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 14px;
-  border-bottom: 1px solid #eee;
-}
-
-/* Cart inline style */
-.cart-inline {
-  font-weight: 500;
-  color: #333;
-  text-decoration: none;
-  transition: color 0.25s ease;
-}
-
-.cart-inline:hover {
-  color: #ed6226;
-}
-
-/* Language inline style */
-.lang-inline {
-  padding: 4px 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-weight: 500;
-  font-size: 0.9rem;
-  background: #fff;
-  cursor: pointer;
 }
