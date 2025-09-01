@@ -33,8 +33,8 @@ const RepairDetailCard = ({ model, prices }) => {
       title: `${model} ${t("repair.screenTitle")}`,
       price: prices.screenRepair,
       description: t("repair.screenDesc"),
-      warranty: "12 months",
-      time: "1-3 Hours"
+      warranty: "Screens: spare part screens 6 months, OLED screens 12 months.\n\nBatteries: 6 months.\n\nOther work: 12 months.\n\nCovered by warranty:\n- Touch-related issues\n- Screen flickering or other technical problems\n\nNot covered by warranty:\n- Device broken due to dropping or mechanical damage\n- Screen or frame damage\n- Liquid damage\n- Device repaired by third party\n- Screen detachment\n- Self-repaired devices\n- Loss of data during repair (backup required)\n- Software-related issues or compatibility from manufacturer updates\n- New damages unrelated to the original repair\n- Device already damaged when brought in",
+      time: "1-2 Hours"
     },
     {
       type: "battery",
@@ -42,8 +42,8 @@ const RepairDetailCard = ({ model, prices }) => {
       title: `${model} ${t("repair.batteryTitle")}`,
       price: prices.batteryReplacement,
       description: t("repair.batteryDesc"),
-      warranty: "12 months",
-      time: "1-3 Hours"
+      warranty: " 6 months",
+      time: "1-2"
     },
     {
       type: "back",
@@ -51,8 +51,8 @@ const RepairDetailCard = ({ model, prices }) => {
       title: `${model} ${t("repair.backTitle")}`,
       price: prices.backRepair,
       description: t("repair.backDesc"),
-      warranty: "12 months",
-      time: "1-3 Hours"
+      warranty: "6 months",
+      time: "1-2 Hours"
     }
   ];
 
