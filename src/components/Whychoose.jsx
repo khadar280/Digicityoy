@@ -1,6 +1,3 @@
-
-
-
 import React from 'react';
 import './Whychoose.css';
 import { useTranslation } from 'react-i18next';
@@ -34,7 +31,8 @@ const Whychoose = () => {
           <div key={index} className="feature">
             <span className="feature-icon">{feature.icon}</span>
             <h3>{feature.title}</h3>
-            <p>{feature.description}</p>
+            {/* whiteSpace: pre-line ensures line breaks in translations work */}
+            <p style={{ whiteSpace: 'pre-line' }}>{feature.description}</p>
           </div>
         ))}
       </div>
@@ -43,4 +41,3 @@ const Whychoose = () => {
 };
 
 export default Whychoose;
-
