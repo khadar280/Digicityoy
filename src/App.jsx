@@ -27,6 +27,9 @@ import SearchResults from './pages/SearchResults';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 
+// ✅ New RepairDetailCard component
+import RepairDetailCard from './components/RepairDetailCard';
+
 import { CartProvider } from './components/CartContext';
 import { UserProvider } from './context/UserContext';
 import { ToastContainer } from 'react-toastify';
@@ -55,12 +58,10 @@ const AppRoutes = () => {
     window.__VERCEL_ANALYTICS_HOOK__?.page();
   }, [location]);
 
-  // Determine if footer should be shown
   const showFooter = !hideFooterPaths.includes(location.pathname);
 
   return (
     <div className="app-container">
-      {/* Vercel Analytics */}
       <Analytics />
 
       <Navbar />
@@ -103,7 +104,7 @@ const AppRoutes = () => {
   );
 };
 
-// Wrap AppRoutes with providers in main App.jsx
+// Wrap AppRoutes with providers
 const App = () => (
   <UserProvider>
     <CartProvider>

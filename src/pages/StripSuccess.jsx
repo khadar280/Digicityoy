@@ -7,7 +7,6 @@ const StripeSuccess = () => {
   const navigate = useNavigate();
   const { model, service, price } = location.state || {};
 
-  // اگر اطلاعات نبود، برگرد به خانه
   useEffect(() => {
     if (!model || !service || !price) {
       navigate("/");
