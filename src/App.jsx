@@ -26,10 +26,6 @@ import ProfilePage from './components/ProfilePage';
 import SearchResults from './pages/SearchResults';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
-
-// ✅ New RepairDetailCard component
-import RepairDetailCard from './components/RepairDetailCard';
-
 import { CartProvider } from './components/CartContext';
 import { UserProvider } from './context/UserContext';
 import { ToastContainer } from 'react-toastify';
@@ -111,7 +107,7 @@ const App = () => (
       <Router>
         <AppRoutes />
       </Router>
-    </CartProvider>
+    </CartProvider>ö
   </UserProvider>
 );
 
