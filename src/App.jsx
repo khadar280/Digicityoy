@@ -1,8 +1,9 @@
+
+
 import React, { useEffect } from 'react';
 import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './i18n';
-
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import TrendingProducts from './components/TrendingProducts';
@@ -21,16 +22,18 @@ import StripeSuccess from './pages/StripSuccess';
 import KlarnaSuccess from './pages/KlarnaSuccess';
 import PaymentForm from './pages/PaymentForm';
 import CartPage from './pages/CartPage';
+import { CartProvider } from './components/CartContext';
 import AboutSection from './components/AboutSection';
 import ProfilePage from './components/ProfilePage';
+
+import { UserProvider } from './context/UserContext';
+import { ToastContainer } from 'react-toastify';
 import SearchResults from './pages/SearchResults';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
-import { CartProvider } from './components/CartContext';
-import { UserProvider } from './context/UserContext';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Paths where footer should be hidden
 const hideFooterPaths = [
   '/checkout',
   '/payment-success/stripe',
@@ -46,21 +49,13 @@ const AppRoutes = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Update page title
+    // Set the document title on route change
     document.title = "Digicity";
-
-    // Notify Vercel Analytics on route change
-    window.__VERCEL_ANALYTICS_HOOK__?.page();
   }, [location]);
-
-  const showFooter = !hideFooterPaths.includes(location.pathname);
-
   return (
     <div className="app-container">
       <Analytics />
-
       <Navbar />
-
       <Routes>
         <Route
           path="/"
@@ -73,41 +68,41 @@ const AppRoutes = () => {
             </>
           }
         />
-        <Route path="/trending-products" element={<TrendingProducts />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/destination" element={<TrendingProducts />} />
         <Route path="/auth" element={<Auth />} />
-        <Route path="/appointments" element={<AppoinmentList />} />
-        <Route path="/iphone/:id" element={<IphoneRepairDetails />} />
-        <Route path="/android/:id" element={<AndroidRepairDetails />} />
-        <Route path="/tablet-laptop/:id" element={<TabletLaptopRepair />} />
+        <Route path="/booking" element={<AppoinmentList />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/about-us" element={<AboutSection />} />
+        <Route path="/iphone-repair-details" element={<IphoneRepairDetails />} />
+        <Route path="/android-repair-details" element={<AndroidRepairDetails />} />
+        <Route path="/tablet-laptop-repair" element={<TabletLaptopRepair />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutForm />} />
         <Route path="/payment-success/stripe" element={<StripeSuccess />} />
         <Route path="/payment-success/klarna" element={<KlarnaSuccess />} />
-        <Route path="/payment" element={<PaymentForm />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/about" element={<AboutSection />} />
+        <Route path="/test-payment" element={<PaymentForm />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/search" element={<SearchResults />} />
-        <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/resetPassword" element={<ResetPassword />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Routes>
-
-      {showFooter && <Footer />}
-
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
+      {!hideFooterPaths.includes(location.pathname) && <Footer />}
     </div>
   );
 };
 
-// Wrap AppRoutes with providers
-const App = () => (
-  <UserProvider>
-    <CartProvider>
-      <Router>
-        <AppRoutes />
-      </Router>
-    </CartProvider>
-  </UserProvider>
-);
+function App() {
+  return (
+    <Router>
+      <UserProvider>
+        <CartProvider>
+          <AppRoutes />
+          <ToastContainer />
+        </CartProvider>
+      </UserProvider>
+    </Router>
+  );
+}
 
 export default App;
