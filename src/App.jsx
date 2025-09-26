@@ -31,7 +31,6 @@ import { UserProvider } from './context/UserContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Routes where footer should be hidden
 const hideFooterPaths = [
   '/checkout',
   '/payment-success/stripe',
@@ -107,7 +106,7 @@ const App = () => (
       <Router>
         <AppRoutes />
       </Router>
-    </CartProvider>ö
+    </CartProvider>
   </UserProvider>
 );
 
