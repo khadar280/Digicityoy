@@ -13,16 +13,16 @@ ${t('whychoose.warranty.period.other')}
 ✅ ${t('whychoose.warranty.includes.touch')}
 ✅ ${t('whychoose.warranty.includes.flicker')}
 
-❌ ${t('whychoose.warranty.excludes.drop')}
-❌ ${t('whychoose.warranty.excludes.screenFrame')}
-❌ ${t('whychoose.warranty.excludes.water')}
-❌ ${t('whychoose.warranty.excludes.thirdParty')}
-❌ ${t('whychoose.warranty.excludes.detached')}
-❌ ${t('whychoose.warranty.excludes.selfRepair')}
-❌ ${t('whychoose.warranty.excludes.dataLoss')}
-❌ ${t('whychoose.warranty.excludes.software')}
-❌ ${t('whychoose.warranty.excludes.newDamage')}
-❌ ${t('whychoose.warranty.excludes.preExisting')}
+${t('whychoose.warranty.excludes.drop')}
+ ${t('whychoose.warranty.excludes.screenFrame')}
+ ${t('whychoose.warranty.excludes.water')}
+${t('whychoose.warranty.excludes.thirdParty')}
+ ${t('whychoose.warranty.excludes.detached')}
+ ${t('whychoose.warranty.excludes.selfRepair')}
+ ${t('whychoose.warranty.excludes.dataLoss')}
+ ${t('whychoose.warranty.excludes.software')}
+ ${t('whychoose.warranty.excludes.newDamage')}
+ ${t('whychoose.warranty.excludes.preExisting')}
 `;
 
   const features = [
