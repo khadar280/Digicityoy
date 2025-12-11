@@ -29,7 +29,7 @@
       "success": "Toiminto onnistui",
       "forgotTitle": "Unohtuiko salasana?",
       "sendResetLink": "Lähetä palautuslinkki",
-      "resetTitle": "🔐 Aseta uusi salasana",
+      "resetTitle": "Aseta uusi salasana",
       "newPassword": "Uusi salasana",
       "confirmPassword": "Vahvista salasana",
       "changePassword": "Vaihda salasana",
@@ -42,7 +42,7 @@
     "resetFailed": "Salasanan vaihto epäonnistui."
     },
     "reset": {
-      "title": "🔐 Aseta uusi salasana",
+      "title": "Aseta uusi salasana",
       "placeholder": "Uusi salasana",
       "button": "Vaihda salasana"
     },

@@ -16,7 +16,7 @@ const StripeSuccess = () => {
   return (
     <div className="success-container">
       <div className="card">
-        <h1>✅ Payment Successful</h1>
+        <h1> Payment Successful</h1>
         <p>Your booking has been confirmed and payment received.</p>
 
         <div className="details">

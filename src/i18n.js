@@ -13,10 +13,10 @@ i18n
       en: { translation: en },
       fi: { translation: fi },
     },
-    lng: savedLang,             // only set language once here
+    lng: savedLang,             
     fallbackLng: 'en',
     interpolation: {
-      escapeValue: false,       // react already escapes
+      escapeValue: false,      
     },
   });
 
