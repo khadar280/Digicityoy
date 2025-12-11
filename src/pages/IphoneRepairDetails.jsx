@@ -15,7 +15,7 @@ export const iphoneModels = [
   { model: "iPhone 16 Plus", screenRepair: 489, batteryReplacement: 149, backRepair: 159, image: iphoneImage },
   { model: "iPhone 16", screenRepair: 469, batteryReplacement: 149, backRepair: 149, image: iphoneImage },
 
- 
+  // FIXED HERE ↓↓↓
   { model: "iPhone 15 Pro Max", screenRepair: "195 / 399", batteryReplacement: 149, backRepair: 149, image: iphoneImage },
   { model: "iPhone 15 Pro", screenRepair: "180 / 389", batteryReplacement: 139, backRepair: 149, image: iphoneImage },
   { model: "iPhone 15 Plus", screenRepair: "139 / 349", batteryReplacement: 129, backRepair: 159, image: iphoneImage },
