@@ -29,23 +29,7 @@ const SearchResults = () => {
         <TrendingProducts searchQuery={searchQuery} isSearchMode />
       </section>
 
-      {/* سرویس ها */}
-      {/* <section className="search-section">
-        <h3>Services</h3>
-        <Services searchQuery={searchQuery} isSearchMode />
-      </section> */}
-
-      {/* آیفون تعمیرات */}
-      {/* <section className="search-section">
-        <h3>iPhone Repairs</h3>
-        <IphoneRepairDetails searchQuery={searchQuery} isSearchMode />
-      </section> */}
-
-      {/* اندروید تعمیرات */}
-      {/* <section className="search-section">
-        <h3>Android Repairs</h3>
-        <AndroidRepairDetails searchQuery={searchQuery} isSearchMode />
-      </section> */}
+    
 
     </div>
   );

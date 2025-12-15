@@ -6,20 +6,26 @@ const RepairDetailCard = ({ model, prices }) => {
     <div className="repair-details">
       <h3>{model}</h3>
 
-      <div className="repair-item">
-        <span>Screen Repair</span>
-        <span>{prices.screenRepair} €</span>
-      </div>
+      {prices.screenRepair && (
+        <div className="repair-item">
+          <span>Screen Repair</span>
+          <span>{prices.screenRepair} €</span>
+        </div>
+      )}
 
-      <div className="repair-item">
-        <span>Battery Replacement</span>
-        <span>{prices.batteryReplacement} €</span>
-      </div>
+      {prices.batteryReplacement && (
+        <div className="repair-item">
+          <span>Battery Replacement</span>
+          <span>{prices.batteryReplacement} €</span>
+        </div>
+      )}
 
-      <div className="repair-item">
-        <span>Back Glass Repair</span>
-        <span>{prices.backRepair} €</span>
-      </div>
+      {prices.backRepair && (
+        <div className="repair-item">
+          <span>Back Glass Repair</span>
+          <span>{prices.backRepair} €</span>
+        </div>
+      )}
 
       {prices.buttonsReplacement && (
         <div className="repair-item">
@@ -48,12 +54,14 @@ const RepairDetailCard = ({ model, prices }) => {
           <span>{prices.BackCamera} €</span>
         </div>
       )}
+
       {prices.FrontCamera && (
         <div className="repair-item">
           <span>Front Camera Repair</span>
           <span>{prices.FrontCamera} €</span>
         </div>
       )}
+
       {prices.CAMERALENS && (
         <div className="repair-item">
           <span>Camera Lens Repair</span>
