@@ -27,7 +27,7 @@ const RepairDetailCard = ({ model, prices }) => {
 
   const services = [
     {
-      type: "screen",
+      type: "Screen",
   
       icon:<IoIosPhonePortrait />,
       title: `${model} ${t("repair.screenTitle")}`,
@@ -37,7 +37,7 @@ const RepairDetailCard = ({ model, prices }) => {
       time: "1-3 Hours"
     },
     {
-      type: "battery",
+      type: "Battery",
       icon: <MdBatteryCharging20 />,
       title: `${model} ${t("repair.batteryTitle")}`,
       price: prices.batteryReplacement,
@@ -46,7 +46,7 @@ const RepairDetailCard = ({ model, prices }) => {
       time: "1-3 Hours"
     },
     {
-      type: "back",
+      type: "Back",
       icon: <IoPhonePortrait />,
       title: `${model} ${t("repair.backTitle")}`,
       price: prices.backRepair,
