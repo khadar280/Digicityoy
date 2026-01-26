@@ -33,7 +33,6 @@ function Footer() {
           </div>
         </div>
       </div>
-<div> khadar</div>
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} DIGICITY. {t('footer.rights')}</p>
        
