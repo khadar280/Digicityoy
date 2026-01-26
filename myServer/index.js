@@ -6,7 +6,6 @@ import dotenv from "dotenv";
 // 🔹 Load env variables
 dotenv.config();
 
-// 🔹 Import routes (MAKE SURE PATHS ARE CORRECT)
 import ContactRoutes from "./routes/contact.js";
 import OrderRoutes from "./routes/order.js";
 import PaymentRoutes from "./routes/payment.js";
@@ -15,7 +14,6 @@ import CheckoutRoutes from "./routes/checkout.js";
 import AuthRoutes from "./routes/auth.js";
 import LaptopRoutes from "./routes/laptop.js";
 
-// 🔹 App init
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -42,7 +40,7 @@ app.use(
 );
 
 // 🔹 Routes
-app.use("/api/contact", ContactRoutes);
+app.use("/api/Contact", ContactRoutes);
 app.use("/api/order", OrderRoutes);
 app.use("/api/payment", PaymentRoutes);
 app.use("/api/booking", BookingRoutes);
@@ -66,7 +64,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Something went wrong!" });
 });
 
-// 🔹 MongoDB connection + server start
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
