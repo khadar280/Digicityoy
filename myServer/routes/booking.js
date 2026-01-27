@@ -1,5 +1,5 @@
 import express from "express";
-import Booking from "../models/Booking.js";
+import Booking from "../models/booking.js";
 
 const router = express.Router();
 
@@ -61,4 +61,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-export default router;
+export default router;§
