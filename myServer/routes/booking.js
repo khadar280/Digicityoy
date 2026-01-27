@@ -12,9 +12,15 @@ router.get("/", async (req, res) => {
       return res.status(400).json({ error: "Date is required" });
     }
 
+    // Find bookings on the requested date
     const bookings = await Booking.find({
       bookingDate: { $regex: `^${date}` },
     });
+
+    if (!bookings.length) {
+      // Optional: return 404 if no bookings for that date
+      return res.status(200).json([]);
+    }
 
     return res.status(200).json(bookings);
   } catch (err) {
@@ -26,13 +32,25 @@ router.get("/", async (req, res) => {
 // ✅ CREATE booking
 router.post("/", async (req, res) => {
   try {
+    const { customerName, customerEmail, phone, service, bookingDate, lang } =
+      req.body;
+
+    if (!customerName || !customerEmail || !phone || !service || !bookingDate) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    const bookingDateObj = new Date(bookingDate);
+    if (isNaN(bookingDateObj)) {
+      return res.status(400).json({ error: "Invalid bookingDate" });
+    }
+
     const booking = new Booking({
-      customerName: req.body.customerName,
-      customerEmail: req.body.customerEmail,
-      phone: req.body.phone,
-      service: req.body.service,
-      bookingDate: req.body.bookingDate,
-      lang: req.body.lang,
+      customerName,
+      customerEmail,
+      phone,
+      service,
+      bookingDate: bookingDateObj,
+      lang,
     });
 
     await booking.save();
@@ -40,7 +58,7 @@ router.post("/", async (req, res) => {
     return res.status(201).json({ success: true });
   } catch (err) {
     console.error("POST /booking error:", err);
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: "Server error" });
   }
 });
 
