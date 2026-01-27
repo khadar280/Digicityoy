@@ -1,19 +1,29 @@
-
 import React, { useState, useEffect } from "react";
 import "./BookingFormModal.css";
 import { useTranslation } from "react-i18next";
 
 const BookingFormModal = ({ service, onClose }) => {
   const { t, i18n } = useTranslation();
-  const [form, setForm] = useState({ name: "", phone: "", email: "", date: "", time: "" });
+
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    date: "",
+    time: "",
+  });
+
   const [loading, setLoading] = useState(false);
   const [bookedTimes, setBookedTimes] = useState([]);
   const [showSuccess, setShowSuccess] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
 
+  const API_URL =
+    process.env.REACT_APP_API_URL || "https://digicityoy-43-1ews.onrender.com";
 
-const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onrender.com';
-
+  // -----------------------------
+  // Handle input changes
+  // -----------------------------
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -30,6 +40,9 @@ const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onr
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  // -----------------------------
+  // Generate time slots
+  // -----------------------------
   const generateTimes = () => {
     const times = [];
     for (let h = 11; h < 20; h++) {
@@ -38,24 +51,53 @@ const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onr
     return times;
   };
 
+  // -----------------------------
+  // Fetch booked times (SAFE 404)
+  // -----------------------------
   useEffect(() => {
     if (!form.date) return;
 
     const fetchBookedTimes = async () => {
       try {
-        const res = await fetch(`${API_URL}/api/booking?date=${form.date}`);
-        if (!res.ok) throw new Error("Failed to fetch booked times");
+        const res = await fetch(
+          `${API_URL}/api/booking?date=${form.date}`
+        );
+
+        // 404 = no bookings (valid case)
+        if (res.status === 404) {
+          setBookedTimes([]);
+          return;
+        }
+
+        if (!res.ok) {
+          throw new Error(`Server error: ${res.status}`);
+        }
 
         const data = await res.json();
-        setBookedTimes(data.map((item) => item.time?.slice(0, 5)));
+
+        setBookedTimes(
+          Array.isArray(data)
+            ? data
+                .map(
+                  (item) =>
+                    item.time?.slice(0, 5) ||
+                    item.bookingDate?.slice(11, 16)
+                )
+                .filter(Boolean)
+            : []
+        );
       } catch (error) {
         console.error("❌ Failed to fetch booked times:", error);
+        setBookedTimes([]);
       }
     };
 
     fetchBookedTimes();
-  }, [form.date]);
+  }, [form.date, API_URL]);
 
+  // -----------------------------
+  // Submit booking
+  // -----------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -89,7 +131,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onr
           onClose();
         }, 10000);
       } else {
-        alert(data.error || t("bookingForm.errorMessage"));
+        alert(data?.error || t("bookingForm.errorMessage"));
       }
     } catch (error) {
       console.error("Booking error:", error);
@@ -99,33 +141,86 @@ const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onr
     }
   };
 
+  // -----------------------------
+  // Render
+  // -----------------------------
   return (
     <div className="modal-overlay">
       <div className="modal-box">
-        <h2>{t("bookingForm.book")}: {service}</h2>
+        <h2>
+          {t("bookingForm.book")}: {service}
+        </h2>
 
-        {warningMessage && <div className="warning-banner">{warningMessage}</div>}
+        {warningMessage && (
+          <div className="warning-banner">{warningMessage}</div>
+        )}
 
         {showSuccess ? (
-          <p className="success-message">{t("bookingForm.successMessage")}</p>
+          <p className="success-message">
+            {t("bookingForm.successMessage")}
+          </p>
         ) : (
           <form onSubmit={handleSubmit}>
-            <input type="text" name="name" placeholder={t("bookingForm.name")} value={form.name} onChange={handleChange} required />
-            <input type="tel" name="phone" placeholder={t("bookingForm.phone")} value={form.phone} onChange={handleChange} required />
-            <input type="email" name="email" placeholder={t("bookingForm.email")} value={form.email} onChange={handleChange} required />
-            <input type="date" name="date" value={form.date} onChange={handleChange} required />
+            <input
+              type="text"
+              name="name"
+              placeholder={t("bookingForm.name")}
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
 
-            <select name="time" value={form.time} onChange={handleChange} required>
-              <option value="">{t("bookingForm.selectTime")}</option>
+            <input
+              type="tel"
+              name="phone"
+              placeholder={t("bookingForm.phone")}
+              value={form.phone}
+              onChange={handleChange}
+              required
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder={t("bookingForm.email")}
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
+
+            <input
+              type="date"
+              name="date"
+              value={form.date}
+              onChange={handleChange}
+              required
+            />
+
+            <select
+              name="time"
+              value={form.time}
+              onChange={handleChange}
+              required
+            >
+              <option value="">
+                {t("bookingForm.selectTime")}
+              </option>
+
               {generateTimes().map((time) => (
-                <option key={time} value={time} disabled={bookedTimes.includes(time)}>
+                <option
+                  key={time}
+                  value={time}
+                  disabled={bookedTimes.includes(time)}
+                >
                   {time} {bookedTimes.includes(time) ? "(busy)" : ""}
                 </option>
               ))}
             </select>
 
             <button type="submit" disabled={loading}>
-              {loading ? t("bookingForm.sending") : t("bookingForm.confirm")}
+              {loading
+                ? t("bookingForm.sending")
+                : t("bookingForm.confirm")}
             </button>
           </form>
         )}
