@@ -17,7 +17,7 @@ const HeroSection = () => {
       </video>
 
       <div className="hero-content">
-        <h1>{t('hero.title')}</h1> {/* ✅ Translated title */}
+        <h1>{t('hero.title')}</h1> 
         <div className="book-now">
           <button onClick={() => navigate('/booking')}>
             {t('hero.bookNow')} {/* ✅ Translated button */}

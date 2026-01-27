@@ -21,9 +21,7 @@ const BookingFormModal = ({ service, onClose }) => {
   const API_URL =
     process.env.REACT_APP_API_URL || "https://digicityoy-43-1ews.onrender.com";
 
-  // -----------------------------
-  // Handle input changes
-  // -----------------------------
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -40,9 +38,7 @@ const BookingFormModal = ({ service, onClose }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  // -----------------------------
-  // Generate time slots
-  // -----------------------------
+
   const generateTimes = () => {
     const times = [];
     for (let h = 11; h < 20; h++) {
@@ -51,9 +47,7 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
-  // -----------------------------
-  // Fetch booked times (SAFE 404)
-  // -----------------------------
+ 
   useEffect(() => {
     if (!form.date) return;
 
@@ -63,7 +57,7 @@ const BookingFormModal = ({ service, onClose }) => {
           `${API_URL}/api/booking?date=${form.date}`
         );
 
-        // 404 = no bookings (valid case)
+       
         if (res.status === 404) {
           setBookedTimes([]);
           return;
@@ -87,17 +81,13 @@ const BookingFormModal = ({ service, onClose }) => {
             : []
         );
       } catch (error) {
-        console.error("❌ Failed to fetch booked times:", error);
+        console.error("Failed to fetch booked times:", error);
         setBookedTimes([]);
       }
     };
 
     fetchBookedTimes();
   }, [form.date, API_URL]);
-
-  // -----------------------------
-  // Submit booking
-  // -----------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -141,9 +131,7 @@ const BookingFormModal = ({ service, onClose }) => {
     }
   };
 
-  // -----------------------------
-  // Render
-  // -----------------------------
+
   return (
     <div className="modal-overlay">
       <div className="modal-box">
