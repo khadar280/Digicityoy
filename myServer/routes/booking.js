@@ -1,23 +1,20 @@
+// server/routes/booking.js
 import express from "express";
-import Booking from "../models/booking.js";
+import Booking from "../models/booking.js"; // lowercase
 
 const router = express.Router();
 
-// 🔹 GET booked times
+// GET booked times by date
 router.get("/", async (req, res) => {
   try {
     const { date } = req.query;
+    if (!date) return res.status(400).json({ error: "Date is required" });
 
-    if (!date) {
-      return res.status(400).json({ error: "Date is required" });
-    }
-
-    // Match bookings for that day (use ISO string YYYY-MM-DD)
+    // Find bookings on that day
     const bookings = await Booking.find({
-      bookingDate: { $regex: `^${date}` }, // Matches YYYY-MM-DD prefix
-    }).sort({ bookingDate: 1 });
+      bookingDate: { $gte: new Date(`${date}T00:00:00.000Z`), $lt: new Date(`${date}T23:59:59.999Z`) },
+    });
 
-    // Always return array, even if empty
     return res.status(200).json(bookings);
   } catch (err) {
     console.error("GET /booking error:", err);
@@ -25,33 +22,21 @@ router.get("/", async (req, res) => {
   }
 });
 
-// 🔹 CREATE booking
+// CREATE a new booking
 router.post("/", async (req, res) => {
   try {
-    const { customerName, customerEmail, phone, service, bookingDate, lang } =
-      req.body;
+    const { customerName, customerEmail, phone, service, bookingDate, lang } = req.body;
 
-    // Validate required fields
-    if (!customerName || !customerEmail || !phone || !service || !bookingDate) {
+    console.log("POST /booking body:", req.body); // debug logging
+
+    if (!customerName || !customerEmail || !phone || !service || !bookingDate)
       return res.status(400).json({ error: "All fields are required" });
-    }
 
-    // Validate bookingDate is a valid date
     const bookingDateObj = new Date(bookingDate);
-    if (isNaN(bookingDateObj.getTime())) {
+    if (isNaN(bookingDateObj.getTime()))
       return res.status(400).json({ error: "Invalid bookingDate" });
-    }
 
-    // Save booking to MongoDB
-    const booking = new Booking({
-      customerName,
-      customerEmail,
-      phone,
-      service,
-      bookingDate: bookingDateObj,
-      lang: lang || "en",
-    });
-
+    const booking = new Booking({ customerName, customerEmail, phone, service, bookingDate: bookingDateObj, lang });
     await booking.save();
 
     return res.status(201).json({ success: true });
@@ -61,4 +46,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-export default router;§
+export default router;

@@ -1,3 +1,4 @@
+// server/index.js
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -45,7 +46,7 @@ app.use(
   })
 );
 
-// 🔹 API Routes (all lowercase to avoid issues)
+// 🔹 Mount API routes BEFORE React static
 app.use("/api/contact", ContactRoutes);
 app.use("/api/order", OrderRoutes);
 app.use("/api/payment", PaymentRoutes);
@@ -63,12 +64,13 @@ app.get("/api", (req, res) => {
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 
+  // Send React app for any non-API route
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
 }
 
-
+// 🔹 404 handler for unknown API routes
 app.use((req, res, next) => {
   if (req.originalUrl.startsWith("/api")) {
     return res.status(404).json({ error: "Route not found!" });
@@ -76,7 +78,7 @@ app.use((req, res, next) => {
   next();
 });
 
-
+// 🔹 Global error handler
 app.use((err, req, res, next) => {
   console.error("❌ Server error:", err.message);
   res.status(500).json({ error: "Something went wrong!" });

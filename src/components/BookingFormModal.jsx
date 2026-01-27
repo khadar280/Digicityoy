@@ -17,6 +17,7 @@ const BookingFormModal = ({ service, onClose }) => {
   const [bookedTimes, setBookedTimes] = useState([]);
   const [showSuccess, setShowSuccess] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
+  const [fetchError, setFetchError] = useState("");
 
   const API_URL =
     process.env.REACT_APP_API_URL || "https://digicityoy-43-1ews.onrender.com";
@@ -53,21 +54,23 @@ const BookingFormModal = ({ service, onClose }) => {
 
     const fetchBookedTimes = async () => {
       try {
+        setFetchError("");
         const res = await fetch(`${API_URL}/api/booking?date=${form.date}`);
 
-        // Always treat empty array as valid result
-        if (!res.ok) {
-          console.warn(`Booking times fetch returned status: ${res.status}`);
+        if (res.status === 404) {
           setBookedTimes([]);
           return;
         }
 
+        if (!res.ok) {
+          throw new Error(`Server error: ${res.status}`);
+        }
+
         const data = await res.json();
 
-        // Extract HH:MM from ISO bookingDate
         const times = Array.isArray(data)
           ? data
-              .map((item) => item.bookingDate?.slice(11, 16))
+              .map((item) => item.bookingDate?.slice(11, 16)) // extract HH:MM from ISO string
               .filter(Boolean)
           : [];
 
@@ -75,11 +78,12 @@ const BookingFormModal = ({ service, onClose }) => {
       } catch (error) {
         console.error("Failed to fetch booked times:", error);
         setBookedTimes([]);
+        setFetchError(t("bookingForm.fetchError") || "Failed to fetch booked times");
       }
     };
 
     fetchBookedTimes();
-  }, [form.date, API_URL]);
+  }, [form.date, API_URL, t]);
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -136,6 +140,7 @@ const BookingFormModal = ({ service, onClose }) => {
         </h2>
 
         {warningMessage && <div className="warning-banner">{warningMessage}</div>}
+        {fetchError && <div className="error-banner">{fetchError}</div>}
 
         {showSuccess ? (
           <p className="success-message">{t("bookingForm.successMessage")}</p>
