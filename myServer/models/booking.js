@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
-const bookingSchema = new mongoose.Schema({
+const BookingSchema = new mongoose.Schema({
   customerName: { type: String, required: true },
   customerEmail: { type: String, required: true },
-  bookingDate: { type: Date, required: true },
+  phone: { type: String, required: true },
   service: { type: String, required: true },
-  phone: { type: String },  // optional but good to have if you want to store phone
-  lang: { type: String }    // optional language field
+  bookingDate: { type: Date, required: true },
+  lang: { type: String, default: "en" },
 });
 
-module.exports = mongoose.model('Booking', bookingSchema);
+export default mongoose.model("Booking", BookingSchema);

@@ -3,7 +3,7 @@ import Booking from "../models/Booking.js";
 
 const router = express.Router();
 
-// ✅ GET booked times
+// 🔹 GET booked times
 router.get("/", async (req, res) => {
   try {
     const { date } = req.query;
@@ -12,16 +12,12 @@ router.get("/", async (req, res) => {
       return res.status(400).json({ error: "Date is required" });
     }
 
-    // Find bookings on the requested date
+    // Match bookings for that day (use ISO string YYYY-MM-DD)
     const bookings = await Booking.find({
-      bookingDate: { $regex: `^${date}` },
-    });
+      bookingDate: { $regex: `^${date}` }, // Matches YYYY-MM-DD prefix
+    }).sort({ bookingDate: 1 });
 
-    if (!bookings.length) {
-      // Optional: return 404 if no bookings for that date
-      return res.status(200).json([]);
-    }
-
+    // Always return array, even if empty
     return res.status(200).json(bookings);
   } catch (err) {
     console.error("GET /booking error:", err);
@@ -29,28 +25,31 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ✅ CREATE booking
+// 🔹 CREATE booking
 router.post("/", async (req, res) => {
   try {
     const { customerName, customerEmail, phone, service, bookingDate, lang } =
       req.body;
 
+    // Validate required fields
     if (!customerName || !customerEmail || !phone || !service || !bookingDate) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
+    // Validate bookingDate is a valid date
     const bookingDateObj = new Date(bookingDate);
-    if (isNaN(bookingDateObj)) {
+    if (isNaN(bookingDateObj.getTime())) {
       return res.status(400).json({ error: "Invalid bookingDate" });
     }
 
+    // Save booking to MongoDB
     const booking = new Booking({
       customerName,
       customerEmail,
       phone,
       service,
       bookingDate: bookingDateObj,
-      lang,
+      lang: lang || "en",
     });
 
     await booking.save();

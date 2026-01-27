@@ -21,7 +21,7 @@ const BookingFormModal = ({ service, onClose }) => {
   const API_URL =
     process.env.REACT_APP_API_URL || "https://digicityoy-43-1ews.onrender.com";
 
-  // Handle input changes
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -38,7 +38,7 @@ const BookingFormModal = ({ service, onClose }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Generate available times
+  // Generate available times from 11:00 to 19:00
   const generateTimes = () => {
     const times = [];
     for (let h = 11; h < 20; h++) {
@@ -47,29 +47,31 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
-  // Fetch booked times whenever date changes
+  // Fetch booked times whenever the date changes
   useEffect(() => {
     if (!form.date) return;
 
     const fetchBookedTimes = async () => {
       try {
         const res = await fetch(`${API_URL}/api/booking?date=${form.date}`);
+
+        // Always treat empty array as valid result
         if (!res.ok) {
-          throw new Error(`Server error: ${res.status}`);
+          console.warn(`Booking times fetch returned status: ${res.status}`);
+          setBookedTimes([]);
+          return;
         }
 
         const data = await res.json();
 
-        setBookedTimes(
-          Array.isArray(data)
-            ? data
-                .map(
-                  (item) =>
-                    item.bookingDate?.slice(11, 16) // extract HH:MM from ISO string
-                )
-                .filter(Boolean)
-            : []
-        );
+        // Extract HH:MM from ISO bookingDate
+        const times = Array.isArray(data)
+          ? data
+              .map((item) => item.bookingDate?.slice(11, 16))
+              .filter(Boolean)
+          : [];
+
+        setBookedTimes(times);
       } catch (error) {
         console.error("Failed to fetch booked times:", error);
         setBookedTimes([]);
@@ -91,9 +93,8 @@ const BookingFormModal = ({ service, onClose }) => {
     setLoading(true);
 
     try {
-      const bookingDateISO = new Date(
-        `${form.date}T${form.time}:00`
-      ).toISOString();
+      // Convert to ISO string for backend
+      const bookingDateISO = new Date(`${form.date}T${form.time}:00`).toISOString();
 
       const response = await fetch(`${API_URL}/api/booking`, {
         method: "POST",
@@ -182,7 +183,6 @@ const BookingFormModal = ({ service, onClose }) => {
               required
             >
               <option value="">{t("bookingForm.selectTime")}</option>
-
               {generateTimes().map((time) => (
                 <option key={time} value={time} disabled={bookedTimes.includes(time)}>
                   {time} {bookedTimes.includes(time) ? "(busy)" : ""}
