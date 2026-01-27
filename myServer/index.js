@@ -68,7 +68,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// 🔹 404 handler for API routes
+
 app.use((req, res, next) => {
   if (req.originalUrl.startsWith("/api")) {
     return res.status(404).json({ error: "Route not found!" });
@@ -76,7 +76,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// 🔹 Global error handler
+
 app.use((err, req, res, next) => {
   console.error("❌ Server error:", err.message);
   res.status(500).json({ error: "Something went wrong!" });
