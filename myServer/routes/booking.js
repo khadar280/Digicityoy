@@ -40,19 +40,34 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ error: "All fields are required" });
   }
 
+  const parsedDate = new Date(bookingDate);
+  if (isNaN(parsedDate)) {
+    return res.status(400).json({ error: "Invalid booking date" });
+  }
+
   try {
+    // 1️⃣ Save booking FIRST
     const newBooking = new Booking({
       customerName,
       customerEmail,
       phone,
-      bookingDate: new Date(bookingDate),
+      bookingDate: parsedDate,
       service,
     });
 
     await newBooking.save();
 
-    // Admin notification
-    await transporter.sendMail({
+    // 2️⃣ Respond immediately
+    res.status(201).json({ success: true });
+
+    // 3️⃣ Send emails in background (cannot crash API)
+    const messages = {
+      fi: { subject: "✅ Varaus vahvistettu", text: `Kiitos varauksestasi, ${customerName}!` },
+      en: { subject: "✅ Booking Confirmed", text: `Thank you for your booking, ${customerName}!` },
+    };
+    const locale = lang === "fi" ? "fi" : "en";
+
+    transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
       subject: "📅 New Booking Request",
@@ -62,34 +77,29 @@ router.post("/", async (req, res) => {
         <p><strong>Email:</strong> ${customerEmail}</p>
         <p><strong>Phone:</strong> ${phone || "-"}</p>
         <p><strong>Service:</strong> ${service}</p>
-        <p><strong>Date:</strong> ${new Date(bookingDate).toLocaleString()}</p>
+        <p><strong>Date:</strong> ${parsedDate.toLocaleString()}</p>
       `,
-    });
+    }).catch(err => console.error("Admin email failed:", err.message));
 
-    // Customer confirmation
-    const messages = {
-      fi: { subject: "✅ Varaus vahvistettu", text: `Kiitos varauksestasi, ${customerName}!` },
-      en: { subject: "✅ Booking Confirmed", text: `Thank you for your booking, ${customerName}!` },
-    };
-    const locale = lang === "fi" ? "fi" : "en";
-
-    await transporter.sendMail({
+    transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: customerEmail,
       subject: messages[locale].subject,
       html: `
         <p>${messages[locale].text}</p>
         <p><strong>Service:</strong> ${service}</p>
-        <p><strong>Date:</strong> ${new Date(bookingDate).toLocaleString()}</p>
+        <p><strong>Date:</strong> ${parsedDate.toLocaleString()}</p>
         <p>— Digicity Team</p>
       `,
-    });
+    }).catch(err => console.error("Customer email failed:", err.message));
 
-    res.status(201).json({ success: true });
   } catch (err) {
     console.error("❌ Booking failed:", err);
-    res.status(500).json({ error: "Server error" });
+    if (!res.headersSent) {
+      res.status(500).json({ error: "Server error" });
+    }
   }
 });
+
 
 export default router;
