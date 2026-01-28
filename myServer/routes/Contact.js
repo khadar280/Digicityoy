@@ -1,23 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const Contact = require('../models/Contact');
+const Contact = require('../models/contact');
 const nodemailer = require('nodemailer');
-// Email setup (Don't reinitialize this in the route again)
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER, // Your Gmail address
-    pass: process.env.EMAIL_PASS, // Your app password
+    user: process.env.EMAIL_USER, 
+    pass: process.env.EMAIL_PASS, 
   },
-  debug: true, // Enable logging of email sending process
+  debug: true, 
 });
 
-// POST: Save contact to MongoDB and send email
+
 router.post('/', async (req, res) => {
   try {
     const { name, email, message } = req.body;
 
-    // Save to MongoDB
+ 
     const newContact = new Contact({ name, email, message });
     await newContact.save();
 

@@ -24,10 +24,10 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// 🔹 Middleware
+
 app.use(express.json());
 
-// 🔹 CORS setup
+
 const allowedOrigins = [
   "https://digicityoy-mw2scad9z-khadar280s-projects.vercel.app",
   "https://www.digicity.fi",
@@ -46,7 +46,7 @@ app.use(
   })
 );
 
-// 🔹 Mount API routes BEFORE React static
+
 app.use("/api/contact", ContactRoutes);
 app.use("/api/order", OrderRoutes);
 app.use("/api/payment", PaymentRoutes);
@@ -55,7 +55,6 @@ app.use("/api/checkout", CheckoutRoutes);
 app.use("/api/auth", AuthRoutes);
 app.use("/api/laptop", LaptopRoutes);
 
-// 🔹 Root route for API health check
 app.get("/api", (req, res) => {
   res.send("👋 Welcome to DigiCity API — backend is live!");
 });
