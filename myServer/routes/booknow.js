@@ -1,6 +1,6 @@
 // server/routes/booking.js
 import express from "express";
-import Booking from "../models/bookingnow.js"; 
+import Booking from "../models/booknow.js"; 
 
 const router = express.Router();
 
