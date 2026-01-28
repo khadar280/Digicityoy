@@ -1,29 +1,28 @@
-const express = require('express');
+import express from "express";
+import Contact from "../models/contact.js";
+import nodemailer from "nodemailer";
+
 const router = express.Router();
-const Contact = require('../models/contact');
-const nodemailer = require('nodemailer');
+
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER, 
-    pass: process.env.EMAIL_PASS, 
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
-  debug: true, 
+  debug: true,
 });
 
-
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { name, email, message } = req.body;
 
- 
     const newContact = new Contact({ name, email, message });
     await newContact.save();
 
-    
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, 
+      to: process.env.EMAIL_USER,
       subject: "New Contact Submission",
       html: `
         <h2>New Contact Submission</h2>
@@ -34,22 +33,15 @@ router.post('/', async (req, res) => {
       `,
     };
 
-    // Actually send the email
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error('Error sending email:', error);
-        return res.status(500).json({ error: 'Failed to send email' });
-      } else {
-        console.log('Email sent: ' + info.response); // Log the success response
-      }
-    });
+    await transporter.sendMail(mailOptions);
 
-    // Send the success response
-    res.status(201).json({ message: 'Contact saved to MongoDB and email sent!' });
+    res.status(201).json({
+      message: "Contact saved to MongoDB and email sent!",
+    });
   } catch (error) {
-    console.error('Error saving contact and sending email:', error);
-    res.status(500).json({ error: 'Server error' });
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
-module.exports = router;
+export default router;

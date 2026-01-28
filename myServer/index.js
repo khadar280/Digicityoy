@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 dotenv.config();
 
 // 🔹 Routes
-import ContactRoutes from "./routes/contact.js";
+import ContactRoutes from "./routes/Contact.js";
 import OrderRoutes from "./routes/order.js";
 import PaymentRoutes from "./routes/payment.js";
 import BooknowRoutes from "./routes/booknow.js";
@@ -59,7 +59,7 @@ app.get("/api", (req, res) => {
   res.send("👋 Welcome to DigiCity API — backend is live!");
 });
 
-// 🔹 Serve React frontend in production
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 
@@ -69,7 +69,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// 🔹 404 handler for unknown API routes
+
 app.use((req, res, next) => {
   if (req.originalUrl.startsWith("/api")) {
     return res.status(404).json({ error: "Route not found!" });
