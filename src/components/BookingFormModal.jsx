@@ -22,7 +22,7 @@ const BookingFormModal = ({ service, onClose }) => {
   const API_URL =
     process.env.REACT_APP_API_URL || "https://digicityoy-43-1ews.onrender.com";
 
-  // Handle form input changes
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -55,7 +55,7 @@ const BookingFormModal = ({ service, onClose }) => {
     const fetchBookedTimes = async () => {
       try {
         setFetchError("");
-        const res = await fetch(`${API_URL}/api/booking?date=${form.date}`);
+        const res = await fetch(`${API_URL}/api/booknow?date=${form.date}`);
 
         if (res.status === 404) {
           setBookedTimes([]);

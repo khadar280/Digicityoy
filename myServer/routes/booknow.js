@@ -1,6 +1,6 @@
 // server/routes/booking.js
 import express from "express";
-import Booking from "../models/booking.js"; // lowercase
+import Booking from "../models/bookingnow.js"; 
 
 const router = express.Router();
 
@@ -10,7 +10,6 @@ router.get("/", async (req, res) => {
     const { date } = req.query;
     if (!date) return res.status(400).json({ error: "Date is required" });
 
-    // Find bookings on that day
     const bookings = await Booking.find({
       bookingDate: { $gte: new Date(`${date}T00:00:00.000Z`), $lt: new Date(`${date}T23:59:59.999Z`) },
     });
@@ -22,12 +21,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-// CREATE a new booking
+
 router.post("/", async (req, res) => {
   try {
     const { customerName, customerEmail, phone, service, bookingDate, lang } = req.body;
 
-    console.log("POST /booking body:", req.body); // debug logging
+    console.log("POST /booking body:", req.body); 
 
     if (!customerName || !customerEmail || !phone || !service || !bookingDate)
       return res.status(400).json({ error: "All fields are required" });
