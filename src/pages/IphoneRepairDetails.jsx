@@ -42,12 +42,12 @@ export const iphoneModels = [
   { model: "iPhone 12 mini", screenRepair: 179, batteryReplacement: 79, backRepair: 189, chargingPort: 89, buttons: 119, housing: 169, backCamera: 139, frontCamera: 119, lens: 69, image: iphoneImage },
   { model: "iPhone 12", screenRepair: 169, batteryReplacement: 79, backRepair: 189, chargingPort: 89, buttons: 119, housing: 169, backCamera:  139, frontCamera: 119, lens:  69, image: iphoneImage },
 
-  // iPhone 11 Series
+
   { model: "iPhone 11 Pro Max", screenRepair: 149, batteryReplacement: 79, backRepair: 179, chargingPort: 79, buttons: 99, housing: 149, backCamera: 79, frontCamera: 79, lens: 59, image: iphoneImage },
   { model: "iPhone 11 Pro", screenRepair: 139, batteryReplacement: 79, backRepair: 169, chargingPort: 79, buttons:  99, housing: 149, backCamera: 79, frontCamera: 79, lens: 59, image: iphoneImage },
   { model: "iPhone 11", screenRepair: 130, batteryReplacement: 79, backRepair: 150, chargingPort: 79, buttons: 99, housing: 149, backCamera: 79, frontCamera:79, lens: 59, image: iphoneImage },
 
-  // iPhone X Series
+  
   { model: "iPhone XS Max", screenRepair: 109, batteryReplacement: 60, backRepair: 119, chargingPort:59, buttons: 49, housing: 99, backCamera: 49, frontCamera: 49, lens: 49, image: iphoneImage },
   { model: "iPhone XS", screenRepair: 99, batteryReplacement: 50, backRepair: 120, chargingPort:59, buttons: 59, housing: 99, backCamera: 49, frontCamera: 49, lens: 49, image: iphoneImage },
   { model: "iPhone XR", screenRepair: 90, batteryReplacement: 55, backRepair: 109, chargingPort: 59, buttons: 59, housing: 99, backCamera: 49, frontCamera: 49, lens: 49, image: iphoneImage },
