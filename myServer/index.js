@@ -6,7 +6,9 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 
+
 dotenv.config();
+
 
 import ContactRoutes from "./routes/contact.js";
 import OrderRoutes from "./routes/order.js";
@@ -16,12 +18,14 @@ import CheckoutRoutes from "./routes/checkout.js";
 import AuthRoutes from "./routes/auth.js";
 import LaptopRoutes from "./routes/laptop.js";
 
+// Fix __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Middleware
 app.use(express.json());
 
 const allowedOrigins = [
@@ -51,11 +55,12 @@ app.use("/api/checkout", CheckoutRoutes);
 app.use("/api/auth", AuthRoutes);
 app.use("/api/laptop", LaptopRoutes);
 
+// Test API route
 app.get("/api", (req, res) => {
   res.send("👋 Welcome to DigiCity API — backend is live!");
 });
 
-// Serve React in production
+// Serve React frontend in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 
@@ -72,7 +77,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Error handler
+// Global error handler
 app.use((err, req, res, next) => {
   console.error("❌ Server error:", err.message);
   res.status(500).json({ error: "Something went wrong!" });
