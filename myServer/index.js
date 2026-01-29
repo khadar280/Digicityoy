@@ -6,7 +6,6 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 
-/
 dotenv.config();
 
 import ContactRoutes from "./routes/contact.js";
@@ -23,9 +22,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-
 app.use(express.json());
-
 
 const allowedOrigins = [
   "https://digicityoy-mw2scad9z-khadar280s-projects.vercel.app",
@@ -45,7 +42,7 @@ app.use(
   })
 );
 
-
+// API routes
 app.use("/api/contact", ContactRoutes);
 app.use("/api/order", OrderRoutes);
 app.use("/api/payment", PaymentRoutes);
@@ -58,17 +55,16 @@ app.get("/api", (req, res) => {
   res.send("👋 Welcome to DigiCity API — backend is live!");
 });
 
-
+// Serve React in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 
-  // Send React app for any non-API route
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
 }
 
-
+// 404 for unknown API routes
 app.use((req, res, next) => {
   if (req.originalUrl.startsWith("/api")) {
     return res.status(404).json({ error: "Route not found!" });
@@ -76,13 +72,13 @@ app.use((req, res, next) => {
   next();
 });
 
-
+// Error handler
 app.use((err, req, res, next) => {
   console.error("❌ Server error:", err.message);
   res.status(500).json({ error: "Something went wrong!" });
 });
 
-// 🔹 Connect to MongoDB and start server
+// Connect to MongoDB and start server
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
