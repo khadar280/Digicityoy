@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
   },
   debug: true,
 });
-
+//waraaaa
 router.post("/", async (req, res) => {
   try {
     const { name, email, message } = req.body;
