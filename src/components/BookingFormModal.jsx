@@ -55,7 +55,7 @@ const BookingFormModal = ({ service, onClose }) => {
     const fetchBookedTimes = async () => {
       try {
         setFetchError("");
-        const res = await fetch(`${API_URL}/api/booknow?date=${form.date}`);
+        const res = await fetch(`${API_URL}/api/booking?date=${form.date}`);
 
         if (res.status === 404) {
           setBookedTimes([]);
@@ -85,7 +85,7 @@ const BookingFormModal = ({ service, onClose }) => {
     fetchBookedTimes();
   }, [form.date, API_URL, t]);
 
-  // Handle form submission
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -97,7 +97,7 @@ const BookingFormModal = ({ service, onClose }) => {
     setLoading(true);
 
     try {
-      // Convert to ISO string for backend
+     
       const bookingDateISO = new Date(`${form.date}T${form.time}:00`).toISOString();
 
       const response = await fetch(`${API_URL}/api/booking`, {
