@@ -21,7 +21,7 @@ const BookingFormModal = ({ service, onClose }) => {
 
   const API_URL =
     process.env.REACT_APP_API_URL || "https://digicityoy-43-1ews.onrender.com";
-
+console.log("API_URL =", API_URL);
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,7 +39,7 @@ const BookingFormModal = ({ service, onClose }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Generate available times from 11:00 to 19:00
+ 
   const generateTimes = () => {
     const times = [];
     for (let h = 11; h < 20; h++) {
