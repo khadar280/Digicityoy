@@ -3,12 +3,11 @@ import Booking from "../models/booking.js";
 
 const router = express.Router();
 
-/**
- * GET /api/bookings?date=YYYY-MM-DD
- */
+/
 router.get("/", async (req, res) => {
   try {
     const { date } = req.query;
+
     if (!date) {
       return res.status(400).json({ error: "Date is required" });
     }
@@ -27,13 +26,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-/**
- * POST /api/bookings
- */
+// POST /api/bookings
 router.post("/", async (req, res) => {
   try {
-    const { customerName, customerEmail, phone, service, bookingDate, lang } =
-      req.body;
+    const {
+      customerName,
+      customerEmail,
+      phone,
+      service,
+      bookingDate,
+      lang,
+    } = req.body;
 
     if (!customerName || !customerEmail || !phone || !service || !bookingDate) {
       return res.status(400).json({ error: "All fields are required" });
