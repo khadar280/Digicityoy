@@ -19,118 +19,118 @@ const BookingFormModal = ({ service, onClose }) => {
   const [warningMessage, setWarningMessage] = useState("");
   const [fetchError, setFetchError] = useState("");
 
-  const API_URL =
-    process.env.REACT_APP_API_URL || "https://digicityoy-43-1ews.onrender.com";
+const API_URL =
+process.env.REACT_APP_API_URL || "https://digicityoy-43-1ews.onrender.com";
 console.log("API_URL =", API_URL);
-  
-  const handleChange = (e) => {
-    const { name, value } = e.target;
 
-    if (name === "date") {
-      const dayOfWeek = new Date(value).getDay();
-      if (dayOfWeek === 0 || dayOfWeek === 6) {
-        setWarningMessage(t("bookingForm.closedWeekend"));
-        return;
-      } else {
-        setWarningMessage("");
-      }
-    }
+const handleChange = (e) => {
+const { name, value } = e.target;
 
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
+if (name === "date") {
+  const dayOfWeek = new Date(value).getDay();
+  if (dayOfWeek === 0 || dayOfWeek === 6) {
+    setWarningMessage(t("bookingForm.closedWeekend"));
+    return;
+  } else {
+    setWarningMessage("");
+  }
+}
 
- 
-  const generateTimes = () => {
-    const times = [];
-    for (let h = 11; h < 20; h++) {
-      times.push(`${h.toString().padStart(2, "0")}:00`);
-    }
-    return times;
-  };
+setForm((prev) => ({ ...prev, [name]: value }));
+};
 
-  // Fetch booked times whenever the date changes
-  useEffect(() => {
-    if (!form.date) return;
 
-    const fetchBookedTimes = async () => {
-      try {
-        setFetchError("");
-        const res = await fetch(`${API_URL}/api/booking?date=${form.date}`);
+const generateTimes = () => {
+const times = [];
+for (let h = 11; h < 20; h++) {
+  times.push(`${h.toString().padStart(2, "0")}:00`);
+}
+return times;
+};
 
-        if (res.status === 404) {
-          setBookedTimes([]);
-          return;
-        }
+// Fetch booked times whenever the date changes
+useEffect(() => {
+if (!form.date) return;
 
-        if (!res.ok) {
-          throw new Error(`Server error: ${res.status}`);
-        }
+const fetchBookedTimes = async () => {
+  try {
+    setFetchError("");
+    const res = await fetch(`${API_URL}/api/?date=${form.date}`);
 
-        const data = await res.json();
-
-        const times = Array.isArray(data)
-          ? data
-              .map((item) => item.bookingDate?.slice(11, 16)) // extract HH:MM from ISO string
-              .filter(Boolean)
-          : [];
-
-        setBookedTimes(times);
-      } catch (error) {
-        console.error("Failed to fetch booked times:", error);
-        setBookedTimes([]);
-        setFetchError(t("bookingForm.fetchError") || "Failed to fetch booked times");
-      }
-    };
-
-    fetchBookedTimes();
-  }, [form.date, API_URL, t]);
-
- 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
-      alert(t("bookingForm.fillAllFields"));
+    if (res.status === 404) {
+      setBookedTimes([]);
       return;
     }
 
-    setLoading(true);
-
-    try {
-     
-      const bookingDateISO = new Date(`${form.date}T${form.time}:00`).toISOString();
-
-      const response = await fetch(`${API_URL}/api/booking`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          customerName: form.name,
-          customerEmail: form.email,
-          phone: form.phone,
-          service,
-          bookingDate: bookingDateISO,
-          lang: i18n.language.split("-")[0],
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setShowSuccess(true);
-        setTimeout(() => {
-          setShowSuccess(false);
-          onClose();
-        }, 10000);
-      } else {
-        alert(data?.error || t("bookingForm.errorMessage"));
-      }
-    } catch (error) {
-      console.error("Booking error:", error);
-      alert(t("bookingForm.errorMessage"));
-    } finally {
-      setLoading(false);
+    if (!res.ok) {
+      throw new Error(`Server error: ${res.status}`);
     }
-  };
+
+    const data = await res.json();
+
+    const times = Array.isArray(data)
+      ? data
+          .map((item) => item.bookingDate?.slice(11, 16)) // extract HH:MM from ISO string
+          .filter(Boolean)
+      : [];
+
+    setBookedTimes(times);
+  } catch (error) {
+    console.error("Failed to fetch booked times:", error);
+    setBookedTimes([]);
+    setFetchError(t("bookingForm.fetchError") || "Failed to fetch booked times");
+  }
+};
+
+fetchBookedTimes();
+}, [form.date, API_URL, t]);
+
+
+const handleSubmit = async (e) => {
+e.preventDefault();
+
+if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
+  alert(t("bookingForm.fillAllFields"));
+  return;
+}
+
+setLoading(true);
+
+try {
+
+  const bookingDateISO = new Date(`${form.date}T${form.time}:00`).toISOString();
+
+  const response = await fetch(`${API_URL}/api/booking`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      customerName: form.name,
+      customerEmail: form.email,
+      phone: form.phone,
+      service,
+      bookingDate: bookingDateISO,
+      lang: i18n.language.split("-")[0],
+    }),
+  });
+
+  const data = await response.json();
+
+  if (response.ok) {
+    setShowSuccess(true);
+    setTimeout(() => {
+      setShowSuccess(false);
+      onClose();
+    }, 10000);
+  } else {
+    alert(data?.error || t("bookingForm.errorMessage"));
+  }
+} catch (error) {
+  console.error("Booking error:", error);
+  alert(t("bookingForm.errorMessage"));
+} finally {
+  setLoading(false);
+}
+};
 
   return (
     <div className="modal-overlay">
