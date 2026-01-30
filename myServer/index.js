@@ -13,7 +13,7 @@ dotenv.config();
 import ContactRoutes from "./routes/contact.js";
 import OrderRoutes from "./routes/order.js";
 import PaymentRoutes from "./routes/payment.js";
-
+import KhadkaRoutes from "./routes/khadka.js";
 import CheckoutRoutes from "./routes/checkout.js";
 import AuthRoutes from "./routes/auth.js";
 import LaptopRoutes from "./routes/laptop.js";
@@ -50,7 +50,7 @@ app.use(
 app.use("/api/contact", ContactRoutes);
 app.use("/api/order", OrderRoutes);
 app.use("/api/payment", PaymentRoutes);
-
+app.use("/api/khadk", KhadkaRoutes);
 app.use("/api/checkout", CheckoutRoutes);
 app.use("/api/auth", AuthRoutes);
 app.use("/api/laptop", LaptopRoutes);

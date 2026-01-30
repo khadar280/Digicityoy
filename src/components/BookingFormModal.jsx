@@ -55,7 +55,7 @@ if (!form.date) return;
 const fetchBookedTimes = async () => {
   try {
     setFetchError("");
-    const res = await fetch(`${API_URL}/api/?date=${form.date}`);
+    const res = await fetch(`${API_URL}/api/khadka?date=${form.date}`);
 
     if (res.status === 404) {
       setBookedTimes([]);
