@@ -32,8 +32,7 @@ const CheckoutRoutes = require('./routes/Checkout');
 const AuthRoutes = require('./routes/auth');
 const SearchbarRoutes = require('./routes/Searchbar');
 const LaptopRoutes = require('./routes/Laptop');
-const BookingRoutes = require('./routes/Booking'); // <--- fixed missing closing parenthesis
-
+const BookingRoutes = require('./routes/Booking');
 app.use('/api/contact', ContactRoutes);
 app.use('/api/order', OrderRoutes);
 app.use('/api/payment', PaymentRoutes);
@@ -43,9 +42,7 @@ app.use('/api/auth', AuthRoutes);
 app.use('/api/searchbar', SearchbarRoutes);
 app.use('/api/laptop', LaptopRoutes);
 
-// -----------------------------
-// Root route
-// -----------------------------
+
 app.get('/', (_req, res) => {
   res.send('👋 Welcome to DigiCity API — backend is live!');
 });
