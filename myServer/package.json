@@ -1,16 +1,16 @@
 {
   "name": "myserver",
   "version": "1.0.0",
+  "description": "Backend server for Digicity bookings",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["express", "mongodb", "booking", "nodemailer"],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
