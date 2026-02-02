@@ -23,8 +23,7 @@ const BookingFormModal = ({ service, onClose }) => {
     process.env.REACT_APP_API_URL ||
     "https://digicityoy-43-1ews.onrender.com";
 
-  // -----------------------------
-  // Handle input changes
+
   // -----------------------------
   const handleChange = (e) => {
     const { name, value } = e.target;
