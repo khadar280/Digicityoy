@@ -21,7 +21,7 @@ const BookingFormModal = ({ service, onClose }) => {
 
   const API_URL =
     process.env.REACT_APP_API_URL ||
-    "https://digicityoy-42-51h1.onrender.com";
+    "https://digicityoy-43-1ews.onrender.com";
 
   // -----------------------------
   // Handle input changes
