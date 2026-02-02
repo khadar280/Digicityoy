@@ -5,7 +5,7 @@ require('dotenv').config();
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log('Connected to MongoDB ');
+    console.log('Connected to MongoDB ✅');
     return Product.insertMany([
       { title: 'Nike Air Max', description: 'Running shoes', price: 120 },
       { title: 'Adidas Ultraboost', description: 'Comfortable shoes', price: 150 },

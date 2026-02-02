@@ -7,6 +7,5 @@ const contactSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-// waraa maxaad haysaa dee maanta
-// waraa maxaad haysaa dee maanta
+// Correct: Use PascalCase for the model
 module.exports = mongoose.model('Contact', contactSchema);

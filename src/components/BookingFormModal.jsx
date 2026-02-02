@@ -21,11 +21,11 @@ const BookingFormModal = ({ service, onClose }) => {
 
   const API_URL =
     process.env.REACT_APP_API_URL ||
-    "https://digicityoy-43-1ews.onrender.com";
+    "https://digicityoy-42-51h1.onrender.com";
 
-  console.log("API_URL =", API_URL);
-
+  // -----------------------------
   // Handle input changes
+  // -----------------------------
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -43,7 +43,9 @@ const BookingFormModal = ({ service, onClose }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  // -----------------------------
   // Generate available times
+  // -----------------------------
   const generateTimes = () => {
     const times = [];
     for (let h = 11; h < 20; h++) {
@@ -52,7 +54,9 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
-  // Fetch booked times when date changes
+  // -----------------------------
+  // Fetch booked times
+  // -----------------------------
   useEffect(() => {
     if (!form.date) return;
 
@@ -61,7 +65,7 @@ const BookingFormModal = ({ service, onClose }) => {
         setFetchError("");
 
         const res = await fetch(
-          `${API_URL}/api/bookings?date=${form.date}`
+          `${API_URL}/api/booking?date=${form.date}`
         );
 
         if (!res.ok) {
@@ -95,7 +99,9 @@ const BookingFormModal = ({ service, onClose }) => {
     fetchBookedTimes();
   }, [form.date, API_URL, t]);
 
+  // -----------------------------
   // Submit booking
+  // -----------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -117,7 +123,7 @@ const BookingFormModal = ({ service, onClose }) => {
         `${form.date}T${form.time}:00`
       ).toISOString();
 
-      const response = await fetch(`${API_URL}/api/bookings`, {
+      const response = await fetch(`${API_URL}/api/booking`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

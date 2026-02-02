@@ -52,7 +52,7 @@
       "button": "Change Password"
     },
     "forgot": {
-      "title": "🔑 Password Recovery",
+      "title": " Password Recovery",
       "placeholder": "Enter your email",
       "button": "Send Reset Link",
       "sentMessage": "Please check your email for the reset link."

@@ -1,7 +1,7 @@
 
 
 
-// ✅ CartPage.jsx – صفحه کامل سبد خرید
+
 import React from 'react';
 import { useCart } from '../components/CartContext';
 import './CartPage.css';

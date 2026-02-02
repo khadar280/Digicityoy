@@ -19,7 +19,7 @@ const TabletLaptopRepair = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();  // Prevent page reload on submit
+  e.preventDefault();  
 
   try {
     const res = await fetch("http://localhost:3000/api/laptop", {
@@ -31,7 +31,7 @@ const TabletLaptopRepair = () => {
     const data = await res.json();
 
     if (res.ok) {
-      setMessage(data.message);  // ✅ Use backend message directly
+      setMessage(data.message);  
       setFormData({
         name: "",
         phone: "",

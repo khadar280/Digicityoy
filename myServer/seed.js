@@ -1,4 +1,4 @@
-
+// seed.js
 const mongoose = require('mongoose');
 const Product = require('./models/product');
 require('dotenv').config();
@@ -19,5 +19,5 @@ mongoose.connect(process.env.MONGO_URI)
     mongoose.disconnect();
   })
   .catch(err => {
-    console.error(':', err);
+    console.error('❌ Error seeding data:', err);
   });

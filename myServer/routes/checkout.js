@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const Order = require("../models/order");
+const Order = require("../models/Order");
 const nodemailer = require("nodemailer");
 
 router.post("/", async (req, res) => {
@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
   }
 
   try {
-   
+    // Create Stripe PaymentIntent
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(total * 100), // Stripe uses cents
       currency: "eur",
@@ -19,13 +19,13 @@ router.post("/", async (req, res) => {
       description: "E-Commerce Order",
     });
 
-  
+    // Save order to DB
     const order = new Order({ items, total, customer });
     await order.save();
 
-   
+    // Send email confirmation (Nodemailer)
     const transporter = nodemailer.createTransport({
-      service: "gmail", 
+      service: "gmail", // or use SMTP config
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,

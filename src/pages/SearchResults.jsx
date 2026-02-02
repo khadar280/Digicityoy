@@ -23,7 +23,6 @@ const SearchResults = () => {
     <div className="search-results-container">
       <h2>🔍 Search Results for: <span style={{ color: "#0d87a5" }}>{searchQuery}</span></h2>
 
-      {/* محصولات */}
       <section className="search-section">
         <h3>Products</h3>
         <TrendingProducts searchQuery={searchQuery} isSearchMode />

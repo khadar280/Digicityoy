@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const dotenv = require('dotenv');
-dotenv.config(); // ← load .env first
-
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-
 const nodemailer = require('nodemailer');
 
 // Email setup

@@ -1,28 +1,30 @@
-import express from "express";
-import Contact from "../models/contact.js";
-import nodemailer from "nodemailer";
-
+const express = require('express');
 const router = express.Router();
-
+const Contact = require('../models/contact');
+const nodemailer = require('nodemailer');
+// Email setup (Don't reinitialize this in the route again)
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.EMAIL_USER, // Your Gmail address
+    pass: process.env.EMAIL_PASS, // Your app password
   },
-  debug: true,
+  debug: true, // Enable logging of email sending process
 });
-//waraaaa
-router.post("/", async (req, res) => {
+
+// POST: Save contact to MongoDB and send email
+router.post('/', async (req, res) => {
   try {
     const { name, email, message } = req.body;
 
+    // Save to MongoDB
     const newContact = new Contact({ name, email, message });
     await newContact.save();
 
+    
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, 
       subject: "New Contact Submission",
       html: `
         <h2>New Contact Submission</h2>
@@ -33,15 +35,22 @@ router.post("/", async (req, res) => {
       `,
     };
 
-    await transporter.sendMail(mailOptions);
-
-    res.status(201).json({
-      message: "Contact saved to MongoDB and email sent!",
+    // Actually send the email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending email:', error);
+        return res.status(500).json({ error: 'Failed to send email' });
+      } else {
+        console.log('Email sent: ' + info.response); // Log the success response
+      }
     });
+
+    // Send the success response
+    res.status(201).json({ message: 'Contact saved to MongoDB and email sent!' });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server error" });
+    console.error('Error saving contact and sending email:', error);
+    res.status(500).json({ error: 'Server error' });
   }
 });
 
-export default router;
+module.exports = router;
