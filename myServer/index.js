@@ -22,9 +22,7 @@ app.use(cors({
 
 app.use(express.json());
 
-// -----------------------------
-// Routes
-// -----------------------------
+
 const ContactRoutes = require('./routes/Contact');
 const OrderRoutes = require('./routes/order');
 const PaymentRoutes = require('./routes/payment');
@@ -32,7 +30,8 @@ const CheckoutRoutes = require('./routes/Checkout');
 const AuthRoutes = require('./routes/auth');
 const SearchbarRoutes = require('./routes/Searchbar');
 const LaptopRoutes = require('./routes/Laptop');
-const BookingRoutes = require('./routes/Booking');
+const BookingRoutes = require('./routes/booking'); // <- FIXED
+const calculateRoute = require("./routes/calculate");
 app.use('/api/contact', ContactRoutes);
 app.use('/api/order', OrderRoutes);
 app.use('/api/payment', PaymentRoutes);
@@ -41,15 +40,15 @@ app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
 app.use('/api/searchbar', SearchbarRoutes);
 app.use('/api/laptop', LaptopRoutes);
+app.use("/api/calculate", calculateRoute);
+
 
 
 app.get('/', (_req, res) => {
   res.send('👋 Welcome to DigiCity API — backend is live!');
 });
 
-// -----------------------------
-// 404 handler
-// -----------------------------
+
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found!' });
 });

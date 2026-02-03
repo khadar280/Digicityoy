@@ -1,9 +1,9 @@
-
-
 import React, { useEffect } from 'react';
 import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './i18n';
+
+// Components
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import TrendingProducts from './components/TrendingProducts';
@@ -14,6 +14,13 @@ import Contact from './components/Contact';
 import Auth from './components/AuthPage';
 import AppoinmentList from './components/AppoinmentList';
 import Services from './components/Services';
+import AboutSection from './components/AboutSection';
+import ProfilePage from './components/ProfilePage';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
+import IphoneConditionCalculator from "./components/IphoneConditionCalculator";
+
+// Pages
 import IphoneRepairDetails from './pages/IphoneRepairDetails';
 import AndroidRepairDetails from './pages/AndroidRepairDetails';
 import TabletLaptopRepair from './pages/TabletLaptopRepair';
@@ -22,15 +29,14 @@ import StripeSuccess from './pages/StripSuccess';
 import KlarnaSuccess from './pages/KlarnaSuccess';
 import PaymentForm from './pages/PaymentForm';
 import CartPage from './pages/CartPage';
-import { CartProvider } from './components/CartContext';
-import AboutSection from './components/AboutSection';
-import ProfilePage from './components/ProfilePage';
-
-import { UserProvider } from './context/UserContext';
-import { ToastContainer } from 'react-toastify';
 import SearchResults from './pages/SearchResults';
-import ForgotPassword from './components/ForgotPassword';
-import ResetPassword from './components/ResetPassword';
+
+// Contexts
+import { CartProvider } from './components/CartContext';
+import { UserProvider } from './context/UserContext';
+
+// Others
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Paths where footer should be hidden
@@ -41,8 +47,9 @@ const hideFooterPaths = [
   '/booking',
   '/cart',
   '/profile',
-  '/resetPassword',
-  '/forgotpassword',
+  '/reset-password',
+  '/forgot-password',
+  '/iphone-condition-calculator',
 ];
 
 const AppRoutes = () => {
@@ -52,11 +59,14 @@ const AppRoutes = () => {
     // Set the document title on route change
     document.title = "Digicity";
   }, [location]);
+
   return (
     <div className="app-container">
       <Analytics />
       <Navbar />
+
       <Routes>
+        {/* Home */}
         <Route
           path="/"
           element={
@@ -68,6 +78,8 @@ const AppRoutes = () => {
             </>
           }
         />
+
+        {/* Pages */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/destination" element={<TrendingProducts />} />
         <Route path="/auth" element={<Auth />} />
@@ -86,7 +98,15 @@ const AppRoutes = () => {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
+
+        {/* ✅ iPhone Condition Calculator */}
+        <Route
+          path="/iphone-condition-calculator"
+          element={<IphoneConditionCalculator />}
+        />
       </Routes>
+
+      {/* Show Footer only if not in hideFooterPaths */}
       {!hideFooterPaths.includes(location.pathname) && <Footer />}
     </div>
   );

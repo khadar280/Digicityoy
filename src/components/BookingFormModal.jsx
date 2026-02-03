@@ -60,7 +60,7 @@ const BookingFormModal = ({ service, onClose }) => {
         setFetchError("");
 
         const res = await fetch(
-          `${API_URL}/api/Booking?date=${form.date}`
+          `${API_URL}/api/booking?date=${form.date}`
         );
 
         if (!res.ok) {
