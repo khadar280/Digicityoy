@@ -68,7 +68,7 @@
   },
 
   "iphoneCalculator": {
-    "title": "Check your iPhone value",
+    "title": " Phone condition",
     "modelLabel": "iPhone model",
     "issuesTitle": "Select all issues that apply",
     "getPrice": "Get price",
