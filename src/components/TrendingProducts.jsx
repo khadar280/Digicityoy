@@ -4,36 +4,18 @@ import './TrendingProducts.css';
 import { useCart } from '../components/CartContext';
 import { useTranslation } from 'react-i18next';
 
-
+// Images
 import coverImg from '../assets/cover.png';
 import batteryImg from '../assets/battry.png';
 import chargerImg from '../assets/charger2.png';
 import screenProtectorImg from '../assets/suoja.png';
-import proImg from '../assets/covers/12promax.jpg';
+import pro6Img from '../assets/covers/iphone.jpg';
 import pro1Img from '../assets/covers/13po.jpg';
 import pro2Img from '../assets/covers/14.jpg';
 import pro3Img from '../assets/covers/14pro.jpg';
 import pro4Img from '../assets/covers/15pro.png';
 import pro5Img from '../assets/covers/15promax.jpg';
-import pro6Img from '../assets/covers/iphone.jpg';
-import pro7Img from '../assets/covers/iphone12.jpg';
-import pro8Img from '../assets/covers/12.png';
-import pro9Img from '../assets/covers/p16.jpg';
-import pro10Img from '../assets/covers/samsung.jpg';
-import pro11Img from '../assets/covers/A15.jpg';
 import pro12Img from '../assets/covers/16pr.jpg';
-import pro13Img from '../assets/covers/i12.jpg';
-import pro14Img from '../assets/covers/14pro.jpg';
-import pro15Img from '../assets/covers/15promax.jpg';
-import pro16Img from '../assets/covers/13pro.jpg';
-import pro17Img from '../assets/covers/14prom.jpg';
-import pro18Img from '../assets/covers/S24u.jpg';
-import pro19Img from '../assets/covers/S24Black.jpg';
-import pro20Img from '../assets/covers/A53.jpg';
-import pro21Img from '../assets/covers/anti.jpg';
-import pro22Img from '../assets/covers/blue.jpg';
-import scr1Img from '../assets/screen/screen.jpg';
-import scr2Img from '../assets/screen/screen2.jpg';
 import lens1Img from '../assets/another/lens.jpg';
 import lens2Img from '../assets/another/lens1.jpg';
 import lens3Img from '../assets/another/lens2.jpg';
@@ -47,6 +29,8 @@ import holderImg from '../assets/another/holder.jpg';
 import holder1Img from '../assets/another/holder1.jpg';
 import charger1Img from '../assets/usb/usb.jpg';
 import charger2Img from '../assets/usb/usb1.jpg';
+import scr1Img from '../assets/screen/screen.jpg';
+import scr2Img from '../assets/screen/screen2.jpg';
 
 function ProductModal({ product, onClose }) {
   const { t } = useTranslation();
@@ -70,9 +54,9 @@ function TrendingProducts() {
   const searchParams = new URLSearchParams(location.search);
   const searchQuery = searchParams.get('q')?.toLowerCase() || '';
 
-  const allProducts = [
+  const categories = [
     { name: 'Phone Covers', img: coverImg },
-    { name: 'Other accessories', img: batteryImg },
+    { name: 'Other Accessories', img: batteryImg },
     { name: 'Chargers', img: chargerImg },
     { name: 'Screen Protectors', img: screenProtectorImg },
   ];
@@ -86,30 +70,11 @@ function TrendingProducts() {
   const productData = {
     'Phone Covers': [
       { id: 1, name: "iPhone 6 Cover", description: "Classic TPU cover for iPhone 6", price: "€15", image: pro6Img },
-      { id: 2, name: "iPhone 6S Cover", description: "Soft silicone case for iPhone 6S", price: "€15", image: pro6Img },
-      { id: 3, name: "iPhone 7 Cover", description: "Protective case for iPhone 7", price: "€15", image: pro6Img },
-      { id: 4, name: "iPhone 8 Cover", description: "Clear case for iPhone 8", price: "€15", image: pro6Img },
-      { id: 5, name: "iPhone X Cover", description: "Transparent cover for iPhone X", price: "€18", image: pro7Img },
-      { id: 6, name: "iPhone XR Cover", description: "TPU case for iPhone XR", price: "€18", image: pro7Img },
-      { id: 7, name: "iPhone 11 Cover", description: "Protective case for iPhone 11", price: "€20", image: pro8Img },
-      { id: 8, name: "iPhone 12 Cover", description: "Clear protective case for iPhone 12", price: "€20", image: pro1Img },
-      { id: 9, name: "iPhone 12 Pro", description: "Premium TPU case for iPhone 12 Pro", price: "€22", image: pro1Img },
-      { id: 10, name: "iPhone 12 Pro Max", description: "Anti-shock case for iPhone 12 Pro Max", price: "€22", image: proImg },
-      { id: 11, name: "iPhone 13", description: "Luxury glitter MagSafe case", price: "€25", image: pro16Img },
-      { id: 12, name: "iPhone 13 Pro", description: "Transparent MagSafe Pro case", price: "€25", image: pro16Img },
-      { id: 13, name: "iPhone 13 Pro Max", description: "Techsuit Glitter case", price: "€25", image: pro1Img },
-      { id: 14, name: "iPhone 14", description: "Vmax triangle case", price: "€28", image: pro2Img },
-      { id: 15, name: "iPhone 14 Pro", description: "Chrome Mag case", price: "€30", image: pro3Img },
-      { id: 16, name: "iPhone 14 Pro Max", description: "Luxury protective case", price: "€30", image: pro14Img },
-      { id: 17, name: "iPhone 15", description: "Vmax triangle case", price: "€32", image: pro4Img },
-      { id: 18, name: "iPhone 15 Pro", description: "Clear MagSafe case", price: "€35", image: pro15Img },
-      { id: 19, name: "iPhone 15 Pro Max", description: "Premium Techsuit case", price: "€35", image: pro5Img },
-      { id: 20, name: "iPhone 16", description: "Rixus TPU case", price: "€40", image: pro12Img },
-      { id: 21, name: "iPhone 16 Pro", description: "Anti-drop MagSafe case", price: "€40", image: pro12Img },
-      { id: 22, name: "iPhone 16 Pro Max", description: "Premium glass case", price: "€45", image: pro12Img },
-      { id: 23, name: "iPhone 17", description: "Latest triangle case", price: "€50", image: pro12Img },
+      { id: 2, name: "iPhone 12 Pro", description: "Premium TPU case for iPhone 12 Pro", price: "€22", image: pro1Img },
+      { id: 3, name: "iPhone 15 Pro", description: "Clear MagSafe case", price: "€35", image: pro4Img },
+      { id: 4, name: "iPhone 17", description: "Latest triangle case", price: "€50", image: pro12Img },
     ],
-    'Other accessories': [
+    'Other Accessories': [
       { id: 1, name: "Camera Lens iPhone 6-8", description: "HD lens for iPhone 6-8", price: "€12", image: lens1Img },
       { id: 2, name: "Camera Lens iPhone X-11", description: "HD lens for iPhone X & 11", price: "€15", image: lens2Img },
       { id: 3, name: "Camera Lens iPhone 12-14", description: "Premium lens for iPhone 12-14", price: "€18", image: lens3Img },
@@ -172,21 +137,21 @@ function TrendingProducts() {
     <section className="trending-products">
       {!searchQuery && !selectedCategory ? (
         <div className="cards">
-          {allProducts.map((item, index) => (
+          {categories.map((item, index) => (
             <div
               className={`card card-${index}`}
               key={index}
               onClick={() => handleCategoryClick(item.name)}
             >
               <img src={item.img} alt={item.name} />
-              <h3>{t(`trending.${item.name}`)}</h3>
+              <h3>{t(`trending.${item.name.replace(/\s/g, '_').toLowerCase()}`)}</h3>
             </div>
           ))}
         </div>
       ) : (
         <div className="product-section">
           {searchQuery && <h3>{t('search_results_for')} "{searchQuery}"</h3>}
-          {selectedCategory && !searchQuery && <h3>{t(`trending.${selectedCategory}`)}</h3>}
+          {selectedCategory && !searchQuery && <h3>{t(`trending.${selectedCategory.replace(/\s/g, '_').toLowerCase()}`)}</h3>}
 
           <div className="product-list">
             {filteredProducts.length > 0 ? (
@@ -197,6 +162,7 @@ function TrendingProducts() {
                   <p>{product.description}</p>
                   <p>{t('trending.price')}: {product.price}</p>
                   <button onClick={() => addToCart(product)}>{t('trending.add_to_cart')}</button>
+                  <button onClick={() => handleViewDetails(product)}>{t('trending.view_details')}</button>
                 </div>
               ))
             ) : (
