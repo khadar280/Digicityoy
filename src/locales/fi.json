@@ -20,8 +20,8 @@
     "email": "Sähköposti",
     "password": "Salasana",
     "name": "Nimi",
-    "loginSuccess": "✅ Kirjautuminen onnistui!",
-    "signupSuccess": "✅ Rekisteröinti onnistui!",
+    "loginSuccess": " Kirjautuminen onnistui!",
+    "signupSuccess": " Rekisteröinti onnistui!",
     "forgotPassword": "Unohditko salasanan?",
     "loginError": "Kirjautuminen epäonnistui",
     "signupError": "Rekisteröinti epäonnistui",
@@ -29,12 +29,12 @@
     "success": "Onnistui",
     "forgotTitle": "Unohditko salasanasi?",
     "sendResetLink": "Lähetä palautuslinkki",
-    "resetTitle": "🔐 Aseta uusi salasana",
+    "resetTitle": "Aseta uusi salasana",
     "newPassword": "Uusi salasana",
     "confirmPassword": "Vahvista salasana",
     "changePassword": "Vaihda salasana",
     "passwordMismatch": "Salasanat eivät täsmää.",
-    "resetError": "❌ Salasanan vaihto epäonnistui.",
+    "resetError": "Salasanan vaihto epäonnistui.",
     "resetPassword": "Palauta salasana",
     "checkEmail": "Tarkista sähköpostisi.",
     "resetSuccess": "Salasana vaihdettu onnistuneesti!",
@@ -49,10 +49,10 @@
 
   "services": {
     "title": "Palvelumme",
-    "intro": "Tarjoamme ammattimaisia korjauspalveluja puhelimille, tableteille ja kannettaville tietokoneille.",
+    "intro": "Tarjoamme ammattimaisia korjauspalveluja puhelimille, tableteille ja kannettaville tietokoneille",
     "iphone": {
       "title": "iPhone-korjaus",
-      "description": "Näytön vaihto, akun vaihto, vesivauriot ja paljon muuta.",
+      "description": "Näytön vaihto, akun vaihto, vesivauriot ja paljon muuta",
       "button": "Valitse laite"
     },
     "android": {

@@ -20,8 +20,8 @@
     "email": "Email",
     "password": "Password",
     "name": "Name",
-    "loginSuccess": "✅ Login successful!",
-    "signupSuccess": "✅ Registration successful!",
+    "loginSuccess": " Login successful!",
+    "signupSuccess": " Registration successful!",
     "forgotPassword": "Forgot your password?",
     "loginError": "Login failed",
     "signupError": "Signup failed",
@@ -29,16 +29,16 @@
     "success": "Success",
     "forgotTitle": "Forgot your password?",
     "sendResetLink": "Send reset link",
-    "resetTitle": "🔐 Set a new password",
+    "resetTitle": " Set a new password",
     "newPassword": "New password",
     "confirmPassword": "Confirm password",
     "changePassword": "Change password",
     "passwordMismatch": "Passwords do not match.",
-    "resetError": "❌ Password reset failed.",
+    "resetError": " Password reset failed.",
     "resetPassword": "Reset password",
     "checkEmail": "Check your email.",
-    "resetSuccess": "Password changed successfully!",
-    "resetFailed": "Password reset failed."
+    "resetSuccess": "Password changed successfully",
+    "resetFailed": "Password reset failed"
   },
 
   "hero": {
