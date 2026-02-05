@@ -19,14 +19,7 @@ const HeroSection = () => {
       <div className="hero-content">
         <h1>{t('hero.title')}</h1>
 
-        {/* ✅ Buttons */}
-        <div className="hero-buttons">
-          <button
-            className="primary-btn"
-            onClick={() => navigate('/booking')}
-          >
-       
-          </button>
+        
 
           <button
             className="secondary-btn"
@@ -35,7 +28,6 @@ const HeroSection = () => {
             📱 {t('hero.checkIphone')}
           </button>
         </div>
-      </div>
     </section>
   );
 };
