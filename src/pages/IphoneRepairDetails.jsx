@@ -12,7 +12,7 @@ import RepairDetailCard from "./RepairDetailCard";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 export const iphoneModels = [
-  
+  // iPhone 16 Series
   { model: "iPhone 16 Pro Max", screenRepair: 600, batteryReplacement: 330, backRepair: 370, chargingPort: 109, buttons: 119, housing: 199, backCamera: 180, frontCamera: 159, lens: 89, image: iphoneImage },
   { model: "iPhone 16 Pro", screenRepair: 550, batteryReplacement: 299, backRepair: 350, chargingPort:  109, buttons: 119, housing: 199, backCamera: 180, frontCamera: 159, lens: 89, image: iphoneImage },
   { model: "iPhone 16 Plus", screenRepair: 550, batteryReplacement: 350, backRepair: 299, chargingPort: 109, buttons: 119, housing:  199, backCamera: 180, frontCamera:159, lens: 89, image: iphoneImage },
@@ -30,13 +30,13 @@ export const iphoneModels = [
   { model: "iPhone 14 Plus", screenRepair: 329, batteryReplacement: 79, backRepair: 239, chargingPort: 109, buttons: 119, housing: 199, backCamera: 159, frontCamera: 139, lens: 79, image: iphoneImage },
   { model: "iPhone 14", screenRepair: 269, batteryReplacement: 79, backRepair: 229, chargingPort:109, buttons:119, housing: 199, backCamera: 159, frontCamera: 139, lens: 79, image: iphoneImage },
 
-  
+  // iPhone 13 Series
   { model: "iPhone 13 Pro Max", screenRepair: 339, batteryReplacement: 79, backRepair: 219, chargingPort: 99, buttons: 119, housing: 239, backCamera: 149, frontCamera: 129, lens: 69, image: iphoneImage },
   { model: "iPhone 13 Pro", screenRepair: 299, batteryReplacement: 79, backRepair: 209, chargingPort: 99, buttons: 119, housing:  239, backCamera: 149, frontCamera: 129, lens: 69, image: iphoneImage },
   { model: "iPhone 13 mini", screenRepair: 199, batteryReplacement: 79, backRepair: 199, chargingPort: 99, buttons: 119, housing: 189, backCamera: 149, frontCamera: 129, lens: 69, image: iphoneImage },
   { model: "iPhone 13", screenRepair: 199, batteryReplacement: 79, backRepair: 199, chargingPort: 99, buttons:  119, housing:  189, backCamera: 149, frontCamera: 129, lens: 69, image: iphoneImage },
 
- 
+  // iPhone 12 Series
   { model: "iPhone 12 Pro Max", screenRepair: 189, batteryReplacement: 79, backRepair: 199, chargingPort: 89, buttons: 119, housing: 169, backCamera: 139, frontCamera: 119, lens: 69, image: iphoneImage },
   { model: "iPhone 12 Pro", screenRepair: 169, batteryReplacement: 79, backRepair: 189, chargingPort: 89, buttons: 119, housing: 169, backCamera:  139, frontCamera: 119, lens: 69, image: iphoneImage },
   { model: "iPhone 12 mini", screenRepair: 179, batteryReplacement: 79, backRepair: 189, chargingPort: 89, buttons: 119, housing: 169, backCamera: 139, frontCamera: 119, lens: 69, image: iphoneImage },
