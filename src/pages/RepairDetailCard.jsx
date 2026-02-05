@@ -1,104 +1,64 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IoIosPhonePortrait } from "react-icons/io";
-import { IoPhonePortrait } from "react-icons/io5";
-import { useCart } from "../components/CartContext";
-import { MdBatteryCharging20 } from "react-icons/md";
+import RepairDetailCard from "./RepairDetailCard";
 import { useTranslation } from "react-i18next";
-import "./RepairDetailCard.css";
+import iphoneImage from "../assets/iphone4.png";
+import seImage from "../assets/iphone3rd.png";
+import sImage from "../assets/iphone8.png";
+import "./IphoneRepairDetails.css";
 
-const RepairDetailCard = ({ model, prices }) => {
+// iPhone Models and their repair prices
+export const iphoneModels = [
+  { model: "iPhone 16 Pro Max", screenRepair: 600, batteryReplacement: 330, backRepair: 370, chargingPort: 109, buttons: 119, housing: 199, backCamera: 180, frontCamera: 159, lens: 89, image: iphoneImage },
+  { model: "iPhone 16 Pro", screenRepair: 550, batteryReplacement: 299, backRepair: 350, chargingPort: 109, buttons: 119, housing: 199, backCamera: 180, frontCamera: 159, lens: 89, image: iphoneImage },
+  { model: "iPhone 16 Plus", screenRepair: 550, batteryReplacement: 350, backRepair: 299, chargingPort: 109, buttons: 119, housing: 199, backCamera: 180, frontCamera: 159, lens: 89, image: iphoneImage },
+  { model: "iPhone 16", screenRepair: 500, batteryReplacement: 299, backRepair: 350, chargingPort: 109, buttons: 119, housing: 199, backCamera: 180, frontCamera: 159, lens: 89, image: iphoneImage },
+
+  { model: "iPhone SE(3rd gen)", screenRepair: 80, batteryReplacement: 55, backRepair: 90, chargingPort: 49, buttons: 49, housing: 89, backCamera: 49, frontCamera: 59, lens: 45, image: seImage },
+  { model: "iPhone SE(2nd gen)", screenRepair: 75, batteryReplacement: 45, backRepair: 90, chargingPort: 59, buttons: 49, housing: 89, backCamera: 49, frontCamera: 49, lens: 49, image: seImage },
+
+  { model: "iPhone 8 Plus", screenRepair: 80, batteryReplacement: 50, backRepair: 90, chargingPort: 59, buttons: 59, housing: 99, backCamera: 49, frontCamera: 49, lens: 49, image: sImage },
+  { model: "iPhone 8", screenRepair: 75, batteryReplacement: 45, backRepair: 90, chargingPort: 49, buttons: 49, housing: 89, backCamera: 49, frontCamera: 49, lens: 45, image: sImage },
+];
+
+const IphoneRepairDetails = () => {
+  const [selectedModel, setSelectedModel] = useState(null);
   const navigate = useNavigate();
-  const { addToCart } = useCart();
   const { t } = useTranslation();
 
-  const services = [
-    {
-      type: "Screen",
-  
-      icon:<IoIosPhonePortrait />,
-      title: `${model} ${t("repair.screenTitle")}`,
-      price: prices.screenRepair,
-      description: t("repair.screenDesc"),
-      warranty: "12 months",
-      time: "1-3 Hours"
-    },
-    {
-      type: "Battery",
-      icon: <MdBatteryCharging20 />,
-      title: `${model} ${t("repair.batteryTitle")}`,
-      price: prices.batteryReplacement,
-      description: t("repair.batteryDesc"),
-      warranty: "12 months",
-      time: "1-3 Hours"
-    },
-    {
-      type: "Back",
-      icon: <IoPhonePortrait />,
-      title: `${model} ${t("repair.backTitle")}`,
-      price: prices.backRepair,
-      description: t("repair.backDesc"),
-      warranty: "12 months",
-      time: "1-3 Hours"
-    }
-  ];
-
-  const [selected, setSelected] = useState(services[0]);
-
-  const handleBook = () => {
-    addToCart({
-      name: selected.title,
-      price: `€${selected.price}`,
-      description: selected.description,
-      image: prices.image
-    });
-    navigate("/cart");
-  };
-
   return (
-    <div className="repair-detail-container">
-      <div className="tab-buttons">
-        {services.map((service) => (
-          <button
-            key={service.type}
-            className={`tab-btn ${selected.type === service.type ? "active" : ""}`}
-            onClick={() => setSelected(service)}
-          >
-            <span>{service.icon}</span> {t(`repair.${service.type}`)}
+    <div className="repair-container">
+      {!selectedModel ? (
+        <>
+          <h2>{t("iphone.title")}</h2>
+          <button className="back-btn" onClick={() => navigate("/")}>
+            ← {t("iphone.back")}
           </button>
-        ))}
-      </div>
 
-      <div className="detail-card">
-        <div className="left">
-          <div className="icon">{selected.icon}</div>
-          <div className="price">€{selected.price}</div>
-          <button className="book-btn" onClick={handleBook}>
-            {t("repair.bookBtn")}
+          <div className="iphone-grid">
+            {iphoneModels.map((iphone, index) => (
+              <div
+                key={index}
+                className="iphone-item"
+                onClick={() => setSelectedModel(iphone)}
+              >
+                <img src={iphone.image} alt={iphone.model} />
+                <p>{iphone.model}</p>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : (
+        <div className="repair-card">
+          <h2>{selectedModel.model} {t("iphone.repairs")}</h2>
+          <button className="back-btn" onClick={() => setSelectedModel(null)}>
+            ← {t("iphone.backToModels")}
           </button>
+          <RepairDetailCard model={selectedModel.model} prices={selectedModel} />
         </div>
-        <div className="right">
-          <h3>{selected.title}</h3>
-          <p>{selected.description}</p>
-          <p><strong>{t("repair.warranty")}:</strong> <span className="highlight">{selected.warranty}</span></p>
-          <p><strong>{t("repair.time")}:</strong> <span className="highlight">{selected.time}</span></p>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
 
-export default RepairDetailCard;
+export default IphoneRepairDetails;
