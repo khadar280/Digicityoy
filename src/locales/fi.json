@@ -68,7 +68,7 @@
   },
 
   "iphoneCalculator": {
-    "title": "Tarkista iPhonen arvo",
+    "title": "",
     "modelLabel": "iPhone-malli",
     "issuesTitle": "Valitse kaikki ongelmat, jotka koskevat laitetta",
     "getPrice": "Hanki hinta",
