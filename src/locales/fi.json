@@ -23,8 +23,8 @@
     "loginSuccess": "✅ Kirjautuminen onnistui!",
     "signupSuccess": "✅ Rekisteröinti onnistui!",
     "forgotPassword": "Unohditko salasanan?",
-    "loginError": "❌ Kirjautuminen epäonnistui",
-    "signupError": "❌ Rekisteröinti epäonnistui",
+    "loginError": "Kirjautuminen epäonnistui",
+    "signupError": "Rekisteröinti epäonnistui",
     "error": "Tapahtui virhe",
     "success": "Onnistui",
     "forgotTitle": "Unohditko salasanasi?",
@@ -44,7 +44,7 @@
   "hero": {
     "title": "Puhelin-, kannettava- ja tablettihuolto",
     "bookNow": "Varaa nyt",
-    "checkIphone": "Tarkista iPhonen kunto"
+    "checkIphone": "Tarkista iPhonen arvo"
   },
 
   "services": {
@@ -64,6 +64,33 @@
       "title": "Tabletti & Kannettava",
       "description": "Näyttö-, ohjelmisto- ja laitekorjaukset.",
       "button": "Ota yhteyttä"
+    }
+  },
+
+  "iphoneCalculator": {
+    "title": "Tarkista iPhonen arvo",
+    "modelLabel": "iPhone-malli",
+    "issuesTitle": "Valitse kaikki viat, jotka koskevat laitetta",
+    "getPrice": "Näytä hinta",
+    "estimatedPrice": "Arvioitu arvo",
+    "currency": "€",
+
+    "issues": {
+      "screenCracked": "Näyttö rikki",
+      "screenScratches": "Näytössä naarmuja",
+      "backGlass": "Takalasi rikki",
+      "bodyHeavy": "Vakava rungon vaurio",
+      "bodyLight": "Kevyet naarmut rungossa",
+      "battery80": "Akun kunto 80–89 %",
+      "batteryLow": "Akun kunto alle 80 %",
+      "cameraIssue": "Kamera ei toimi",
+      "faceIdIssue": "Face ID ei toimi"
+    },
+
+    "messages": {
+      "selectIssues": "Valitse kaikki viat, jotka koskevat laitetta",
+      "priceHidden": "Hinta näytetään valinnan jälkeen",
+      "priceCalculated": "Hinta laskettu onnistuneesti"
     }
   },
 

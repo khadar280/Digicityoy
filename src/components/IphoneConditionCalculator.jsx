@@ -1,8 +1,9 @@
 import { useState } from "react";
-import ConditionOption from "./ConditionOption";
 import "./IphoneConditionCalculator.css";
 
-
+/* ===========================
+   iPhone Models (11 → 17)
+=========================== */
 const IPHONE_MODELS = [
   { label: "iPhone 11", value: "iphone11" },
   { label: "iPhone 11 Pro", value: "iphone11_pro" },
@@ -40,64 +41,73 @@ const IPHONE_MODELS = [
 ];
 
 /* ===========================
-   Base Prices (Auto)
+   Base Prices
 =========================== */
 const BASE_PRICES = {
   iphone11: 250,
   iphone11_pro: 320,
   iphone11_pro_max: 360,
-
   iphone12: 350,
   iphone12_mini: 330,
   iphone12_pro: 420,
   iphone12_pro_max: 470,
-
   iphone13: 450,
   iphone13_mini: 430,
   iphone13_pro: 520,
   iphone13_pro_max: 580,
-
   iphone14: 550,
   iphone14_plus: 580,
   iphone14_pro: 650,
   iphone14_pro_max: 720,
-
   iphone15: 650,
   iphone15_plus: 690,
   iphone15_pro: 780,
   iphone15_pro_max: 850,
-
   iphone16: 750,
   iphone16_plus: 790,
   iphone16_pro: 880,
   iphone16_pro_max: 950,
-
   iphone17: 850,
   iphone17_plus: 890,
   iphone17_pro: 980,
   iphone17_pro_max: 1050
 };
 
-export default function IphoneConditionCalculator() {
-  const [form, setForm] = useState({
-    model: "iphone13",
-    screen: "good",
-    body: "like_new",
-    battery: "above90"
-  });
+/* ===========================
+   Issues (MULTI SELECT)
+=========================== */
+const ISSUES = [
+  { label: "Screen Cracked", value: "screen_cracked", deduct: 120 },
+  { label: "Screen Scratches", value: "screen_scratches", deduct: 40 },
+  { label: "Back Glass Broken", value: "back_glass", deduct: 100 },
+  { label: "Heavy Body Damage", value: "body_heavy", deduct: 100 },
+  { label: "Light Body Scratches", value: "body_light", deduct: 40 },
+  { label: "Battery 80–89%", value: "battery_80", deduct: 50 },
+  { label: "Battery Below 80%", value: "battery_low", deduct: 100 },
+  { label: "Camera Not Working", value: "camera_issue", deduct: 120 },
+  { label: "Face ID Not Working", value: "faceid_issue", deduct: 150 }
+];
 
+export default function IphoneConditionCalculator() {
+  const [model, setModel] = useState("iphone13");
+  const [issues, setIssues] = useState([]);
   const [price, setPrice] = useState(null);
 
+  const toggleIssue = value => {
+    setIssues(prev =>
+      prev.includes(value)
+        ? prev.filter(i => i !== value)
+        : [...prev, value]
+    );
+  };
+
   const calculateFinalPrice = () => {
-    let finalPrice = BASE_PRICES[form.model];
+    let finalPrice = BASE_PRICES[model];
 
-    if (form.screen === "cracked") finalPrice -= 120;
-
-    if (form.body === "light") finalPrice -= 40;
-    if (form.body === "heavy") finalPrice -= 100;
-
-    if (form.battery === "between80_89") finalPrice -= 50;
-    if (form.battery === "below80") finalPrice -= 100;
+    issues.forEach(issue => {
+      const found = ISSUES.find(i => i.value === issue);
+      if (found) finalPrice -= found.deduct;
+    });
 
     setPrice(Math.max(finalPrice, 0));
   };
@@ -106,13 +116,10 @@ export default function IphoneConditionCalculator() {
     <div className="calculator">
       <h1>Check Your iPhone Value</h1>
 
-      {/* Model Selector */}
+      {/* Model */}
       <div className="field">
         <label>iPhone Model</label>
-        <select
-          value={form.model}
-          onChange={e => setForm({ ...form, model: e.target.value })}
-        >
+        <select value={model} onChange={e => setModel(e.target.value)}>
           {IPHONE_MODELS.map(m => (
             <option key={m.value} value={m.value}>
               {m.label}
@@ -121,39 +128,24 @@ export default function IphoneConditionCalculator() {
         </select>
       </div>
 
-      <ConditionOption
-        label="Screen Condition"
-        value={form.screen}
-        onChange={v => setForm({ ...form, screen: v })}
-        options={[
-          { label: "No Cracks", value: "good" },
-          { label: "Cracked", value: "cracked" }
-        ]}
-      />
+      {/* Issues */}
+      <div className="issues">
+        <label>Phone Issues (Select all that apply)</label>
 
-      <ConditionOption
-        label="Body Condition"
-        value={form.body}
-        onChange={v => setForm({ ...form, body: v })}
-        options={[
-          { label: "Like New", value: "like_new" },
-          { label: "Light Scratches", value: "light" },
-          { label: "Heavy Damage", value: "heavy" }
-        ]}
-      />
+        {ISSUES.map(issue => (
+          <div key={issue.value} className="checkbox">
+            <input
+              type="checkbox"
+              checked={issues.includes(issue.value)}
+              onChange={() => toggleIssue(issue.value)}
+            />
+            <span>
+              {issue.label} (-${issue.deduct})
+            </span>
+          </div>
+        ))}
+      </div>
 
-      <ConditionOption
-        label="Battery Health"
-        value={form.battery}
-        onChange={v => setForm({ ...form, battery: v })}
-        options={[
-          { label: "90–100%", value: "above90" },
-          { label: "80–89%", value: "between80_89" },
-          { label: "Below 80%", value: "below80" }
-        ]}
-      />
-
-      {/* Final Step */}
       <button className="price-btn" onClick={calculateFinalPrice}>
         Get My Price
       </button>

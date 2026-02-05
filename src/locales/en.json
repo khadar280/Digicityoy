@@ -10,7 +10,7 @@
     "search": "Search...",
     "profile": "Profile",
     "settings": "Settings",
-    "logout": "Log Out",
+    "logout": "Logout",
     "logoutMessage": "You have been logged out!"
   },
 
@@ -20,120 +20,92 @@
     "email": "Email",
     "password": "Password",
     "name": "Name",
-    "loginSuccess": "✅ Logged in successfully!",
+    "loginSuccess": "✅ Login successful!",
     "signupSuccess": "✅ Registration successful!",
-    "forgotPassword": "Forgot password?",
-    "loginError": "❌ Login failed",
-    "signupError": "❌ Signup failed",
+    "forgotPassword": "Forgot your password?",
+    "loginError": "Login failed",
+    "signupError": "Signup failed",
     "error": "An error occurred",
     "success": "Success",
     "forgotTitle": "Forgot your password?",
-    "sendResetLink": "Send Reset Link",
-    "resetTitle": "🔐 Set a New Password",
-    "newPassword": "New Password",
-    "confirmPassword": "Confirm Password",
-    "changePassword": "Change Password",
+    "sendResetLink": "Send reset link",
+    "resetTitle": "🔐 Set a new password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "changePassword": "Change password",
     "passwordMismatch": "Passwords do not match.",
-    "resetError": "❌ Failed to reset password. Try again later.",
-    "resetPassword": "Reset Password",
-    "checkEmail": "Please check your email.",
-    "resetSuccess": "Password reset successfully!",
+    "resetError": "❌ Password reset failed.",
+    "resetPassword": "Reset password",
+    "checkEmail": "Check your email.",
+    "resetSuccess": "Password changed successfully!",
     "resetFailed": "Password reset failed."
   },
 
-  "reset": {
-    "title": "🔐 Set New Password",
-    "placeholder": "New Password",
-    "button": "Change Password"
-  },
-
-  "forgot": {
-    "title": "Password Recovery",
-    "placeholder": "Enter your email",
-    "button": "Send Reset Link",
-    "sentMessage": "Please check your email for the reset link."
-  },
-
   "hero": {
-    "title": "Phone, Laptop and Tablet Maintenance",
-    "bookNow": "Book Now",
-    "checkIphone": "Check iPhone Condition"
+    "title": "Phone, laptop and tablet repair",
+    "bookNow": "Book now",
+    "checkIphone": "Check iPhone value"
   },
 
   "services": {
     "title": "Our Services",
-    "intro": "We provide expert repair services for iPhones, Android devices, tablets, and laptops with fast turnaround and top quality.",
+    "intro": "We provide professional repair services for phones, tablets and laptops.",
     "iphone": {
       "title": "iPhone Repair",
-      "description": "Screen repair, battery replacement, water damage fix, and more for all iPhone models.",
-      "button": "Select Your Mobile"
+      "description": "Screen replacement, battery replacement, water damage and more.",
+      "button": "Select device"
     },
     "android": {
       "title": "Android Repair",
-      "description": "We fix screens, software, batteries, and components for major Android brands.",
-      "button": "Select Your Mobile"
+      "description": "We repair screens, software and components.",
+      "button": "Select device"
     },
     "tablet": {
-      "title": "Tablet & Laptop Repair",
-      "description": "Display issues, software problems, battery and hardware fixes for all devices.",
-      "button": "Contact Us"
+      "title": "Tablet & Laptop",
+      "description": "Screen, software and hardware repairs.",
+      "button": "Contact us"
     }
   },
 
-  "planning": {
-    "intro": "At DIGICITY, we offer quick and convenient Passport Photography services tailored to your needs.",
-    "cta": "No long waits — just book your appointment and get your photos done affordably and efficiently.",
-    "button": "Book Now"
-  },
+  "iphoneCalculator": {
+    "title": "Check your iPhone value",
+    "modelLabel": "iPhone model",
+    "issuesTitle": "Select all issues that apply",
+    "getPrice": "Get price",
+    "estimatedPrice": "Estimated value",
+    "currency": "$",
 
-  "whychoose": {
-    "heading": "Why choose DIGICITY",
-    "why": {
-      "title": "Why",
-      "description": "Digicity offers fast, reliable repairs for phones, tablets, and computers. Since 2021, we’ve become a trusted name, also providing accessories and refurbished devices."
+    "issues": {
+      "screenCracked": "Screen cracked",
+      "screenScratches": "Screen scratches",
+      "backGlass": "Back glass broken",
+      "bodyHeavy": "Heavy body damage",
+      "bodyLight": "Light body scratches",
+      "battery80": "Battery health 80–89%",
+      "batteryLow": "Battery health below 80%",
+      "cameraIssue": "Camera not working",
+      "faceIdIssue": "Face ID not working"
     },
-    "rapid": {
-      "title": "RAPID SMARTPHONE REPAIRS",
-      "description": "Our certified technicians fix most issues on-site — often in under an hour. No appointment needed!"
-    },
-    "warranty": {
-      "title": "WARRANTY TERMS",
-      "period": {
-        "screens": "Screens: aftermarket screens 6 months and OLED screens 12 months",
-        "batteries": "Batteries: 6 months",
-        "other": "Other repairs: 12 months"
-      },
-      "includes": {
-        "touch": "Touch-related issues",
-        "flicker": "Screen flickering or other technical issues"
-      },
-      "excludes": {
-        "drop": "Device damaged due to drop or visible mechanical damage",
-        "screenFrame": "Damage to screen or frame",
-        "water": "Device exposed to water",
-        "thirdParty": "Device repaired by a third party",
-        "detached": "Screen detached from the device",
-        "selfRepair": "Devices that have been self-repaired",
-        "dataLoss": "Loss of files or data as a result of repair – devices must always be backed up before repair",
-        "software": "Software-related issues, or compatibility problems caused by manufacturer software updates",
-        "newDamage": "New damages not related to the original repair",
-        "preExisting": "Device already had damages when brought to service"
-      }
+
+    "messages": {
+      "selectIssues": "Select all issues that apply",
+      "priceHidden": "Price will be shown after calculation",
+      "priceCalculated": "Price calculated successfully"
     }
   },
 
   "footer": {
-    "visitingHours": "Visiting Hours",
-    "weekdays": "Mon - Fri: 11:00 AM - 20:00 PM",
-    "weekend": "Saturday-Sunday: Closed",
+    "visitingHours": "Opening Hours",
+    "weekdays": "Mon - Fri: 11:00 - 20:00",
+    "weekend": "Saturday - Sunday: Closed",
     "contactTitle": "Contact Us",
     "email": "Email",
     "phone": "Phone",
     "address": "Location",
-    "followUs": "Follow Us",
-    "careersTitle": "Come Work for Us",
-    "careersText": "We’re hiring! Join our growing team and build the future of tech with us.",
-    "contactLink": "Contact Us →",
+    "followUs": "Follow us",
+    "careersTitle": "Careers",
+    "careersText": "We are looking for new talents to join our growing team.",
+    "contactLink": "Contact us →",
     "rights": "All rights reserved."
   }
 }
