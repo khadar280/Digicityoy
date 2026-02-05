@@ -25,7 +25,7 @@ const HeroSection = () => {
             className="primary-btn"
             onClick={() => navigate('/booking')}
           >
-            {t('hero.bookNow')}
+       
           </button>
 
           <button
