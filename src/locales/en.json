@@ -20,8 +20,8 @@
     "email": "Email",
     "password": "Password",
     "name": "Name",
-    "loginSuccess": " Login successful!",
-    "signupSuccess": " Registration successful!",
+    "loginSuccess": "Login successful!",
+    "signupSuccess": "Registration successful!",
     "forgotPassword": "Forgot your password?",
     "loginError": "Login failed",
     "signupError": "Signup failed",
@@ -29,12 +29,12 @@
     "success": "Success",
     "forgotTitle": "Forgot your password?",
     "sendResetLink": "Send reset link",
-    "resetTitle": " Set a new password",
+    "resetTitle": "Set a new password",
     "newPassword": "New password",
     "confirmPassword": "Confirm password",
     "changePassword": "Change password",
     "passwordMismatch": "Passwords do not match.",
-    "resetError": " Password reset failed.",
+    "resetError": "Password reset failed.",
     "resetPassword": "Reset password",
     "checkEmail": "Check your email.",
     "resetSuccess": "Password changed successfully",
@@ -74,7 +74,6 @@
     "getPrice": "Get price",
     "estimatedPrice": "Estimated value",
     "currency": "$",
-
     "issues": {
       "screenCracked": "Screen cracked",
       "screenScratches": "Screen scratches",
@@ -84,13 +83,58 @@
       "battery80": "Battery health 80–89%",
       "batteryLow": "Battery health below 80%",
       "cameraIssue": "Camera not working",
-      "faceIdIssue": "Face ID not working"
+      "faceIdIssue": "Face ID not working",
+      "cameraRepair": "Camera repair",
+      "lensReplacement": "Lens replacement",
+      "housingReplacement": "Housing replacement"
     },
-
     "messages": {
       "selectIssues": "Select all issues that apply",
       "priceHidden": "Price will be shown after calculation",
       "priceCalculated": "Price calculated successfully"
+    }
+  },
+
+  "trending": {
+    "Phone Covers": "Phone Covers",
+    "Other accessories": "Other Accessories",
+    "Chargers": "Chargers",
+    "Screen Protectors": "Screen Protectors",
+    "price": "Price",
+    "add_to_cart": "Add to Cart",
+    "no_products_found": "No products found",
+    "back": "Back",
+    "search_results_for": "Search results for",
+    "products": {
+      "Red iPhone Cover": "Red iPhone Cover",
+      "Clear cover": "Clear Cover",
+      "Mag cover": "Mag Cover",
+      "Mini Phone Holder": "Mini Phone Holder",
+      "Camera Tempered Glass": "Camera Tempered Glass",
+      "lens glasses": "Lens Glasses",
+      "Magnetic Car Holder": "Magnetic Car Holder",
+      "Mini Car Bracket": "Mini Car Bracket",
+      "Kingstom 65GB": "Kingstom USB Drive 65GB",
+      "Techsuit - Phone Holder": "Techsuit Phone Holder",
+      "USB-C Charger": "USB-C Charger",
+      "20W USB-C Power": "20W USB-C Charger",
+      "Tempered Glass": "Tempered Glass",
+      "Rixus iphone privacy glass": "iPhone Privacy Glass",
+      "Case iphone": "iPhone Case",
+      "Case Samsung": "Samsung Case",
+      "Case Samsungs": "Samsung Case"
+    },
+    "buttons": {
+      "calculatePrice": "Calculate Price",
+      "viewDetails": "View Details",
+      "addToCart": "Add to Cart"
+    },
+    "prices": {
+      "cameraRepair": "€30",
+      "lensReplacement": "€20",
+      "housingReplacement": "€50",
+      "screenReplacement": "€40",
+      "batteryReplacement": "€25"
     }
   },
 

@@ -1,13 +1,13 @@
 {
   "nav": {
-    "home": "Etusivu",
+    "home": "Koti",
     "services": "Palvelut",
     "shop": "Kauppa",
     "booking": "Varaus",
-    "contact": "Yhteystiedot",
-    "about": "Tietoa meistä",
+    "contact": "Ota yhteyttä",
+    "about": "Meistä",
     "cart": "Ostoskori",
-    "search": "Hae...",
+    "search": "Haku...",
     "profile": "Profiili",
     "settings": "Asetukset",
     "logout": "Kirjaudu ulos",
@@ -15,14 +15,14 @@
   },
 
   "auth": {
-    "login": "Kirjaudu",
+    "login": "Kirjaudu sisään",
     "signup": "Rekisteröidy",
     "email": "Sähköposti",
     "password": "Salasana",
     "name": "Nimi",
-    "loginSuccess": " Kirjautuminen onnistui!",
-    "signupSuccess": " Rekisteröinti onnistui!",
-    "forgotPassword": "Unohditko salasanan?",
+    "loginSuccess": "Kirjautuminen onnistui!",
+    "signupSuccess": "Rekisteröinti onnistui!",
+    "forgotPassword": "Unohditko salasanasi?",
     "loginError": "Kirjautuminen epäonnistui",
     "signupError": "Rekisteröinti epäonnistui",
     "error": "Tapahtui virhe",
@@ -34,25 +34,25 @@
     "confirmPassword": "Vahvista salasana",
     "changePassword": "Vaihda salasana",
     "passwordMismatch": "Salasanat eivät täsmää.",
-    "resetError": "Salasanan vaihto epäonnistui.",
+    "resetError": "Salasanan palautus epäonnistui.",
     "resetPassword": "Palauta salasana",
     "checkEmail": "Tarkista sähköpostisi.",
-    "resetSuccess": "Salasana vaihdettu onnistuneesti!",
-    "resetFailed": "Salasanan vaihto epäonnistui."
+    "resetSuccess": "Salasana vaihdettu onnistuneesti",
+    "resetFailed": "Salasanan vaihto epäonnistui"
   },
 
   "hero": {
-    "title": "Puhelin-, kannettava- ja tablettihuolto",
+    "title": "Puhelinten, tablettien ja kannettavien korjaus",
     "bookNow": "Varaa nyt",
     "checkIphone": "Tarkista iPhonen arvo"
   },
 
   "services": {
     "title": "Palvelumme",
-    "intro": "Tarjoamme ammattimaisia korjauspalveluja puhelimille, tableteille ja kannettaville tietokoneille",
+    "intro": "Tarjoamme ammattimaisia korjauspalveluja puhelimille, tableteille ja kannettaville tietokoneille.",
     "iphone": {
       "title": "iPhone-korjaus",
-      "description": "Näytön vaihto, akun vaihto, vesivauriot ja paljon muuta",
+      "description": "Näytön vaihto, akun vaihto, vesivahingot ja paljon muuta.",
       "button": "Valitse laite"
     },
     "android": {
@@ -61,8 +61,8 @@
       "button": "Valitse laite"
     },
     "tablet": {
-      "title": "Tabletti & Kannettava",
-      "description": "Näyttö-, ohjelmisto- ja laitekorjaukset.",
+      "title": "Tabletit & Kannettavat",
+      "description": "Näyttö-, ohjelmisto- ja laitteistokorjaukset.",
       "button": "Ota yhteyttä"
     }
   },
@@ -70,41 +70,85 @@
   "iphoneCalculator": {
     "title": "Tarkista iPhonen arvo",
     "modelLabel": "iPhone-malli",
-    "issuesTitle": "Valitse kaikki viat, jotka koskevat laitetta",
-    "getPrice": "Näytä hinta",
+    "issuesTitle": "Valitse kaikki ongelmat, jotka koskevat laitetta",
+    "getPrice": "Hanki hinta",
     "estimatedPrice": "Arvioitu arvo",
     "currency": "€",
-
     "issues": {
-      "screenCracked": "Näyttö rikki",
-      "screenScratches": "Näytössä naarmuja",
+      "screenCracked": "Ruutu haljennut",
+      "screenScratches": "Ruutu naarmuilla",
       "backGlass": "Takalasi rikki",
-      "bodyHeavy": "Vakava rungon vaurio",
-      "bodyLight": "Kevyet naarmut rungossa",
-      "battery80": "Akun kunto 80–89 %",
-      "batteryLow": "Akun kunto alle 80 %",
+      "bodyHeavy": "Vakavat rungon vauriot",
+      "bodyLight": "Kevyet rungon naarmut",
+      "battery80": "Akun kunto 80–89%",
+      "batteryLow": "Akun kunto alle 80%",
       "cameraIssue": "Kamera ei toimi",
-      "faceIdIssue": "Face ID ei toimi"
+      "faceIdIssue": "Face ID ei toimi",
+      "cameraRepair": "Kamerakorjaus",
+      "lensReplacement": "Linssin vaihto",
+      "housingReplacement": "Kuoren vaihto"
     },
-
     "messages": {
-      "selectIssues": "Valitse kaikki viat, jotka koskevat laitetta",
-      "priceHidden": "Hinta näytetään valinnan jälkeen",
+      "selectIssues": "Valitse kaikki ongelmat, jotka koskevat laitetta",
+      "priceHidden": "Hinta näytetään laskennan jälkeen",
       "priceCalculated": "Hinta laskettu onnistuneesti"
+    }
+  },
+
+  "trending": {
+    "Phone Covers": "Puhelinkuoret",
+    "Other accessories": "Muut lisätarvikkeet",
+    "Chargers": "Laturit",
+    "Screen Protectors": "Näytönsuojat",
+    "price": "Hinta",
+    "add_to_cart": "Lisää ostoskoriin",
+    "no_products_found": "Tuotteita ei löytynyt",
+    "back": "Takaisin",
+    "search_results_for": "Hakutulokset haulle",
+    "products": {
+      "Red iPhone Cover": "Punainen iPhone-kuori",
+      "Clear cover": "Läpinäkyvä kuori",
+      "Mag cover": "Mag-kuori",
+      "Mini Phone Holder": "Mini-puhelinteline",
+      "Camera Tempered Glass": "Kameran karkaistu lasi",
+      "lens glasses": "Linssilasit",
+      "Magnetic Car Holder": "Magneettinen autokiinnike",
+      "Mini Car Bracket": "Mini-autoteline",
+      "Kingstom 65GB": "Kingstom USB-muisti 65GB",
+      "Techsuit - Phone Holder": "Techsuit-puhelinteline",
+      "USB-C Charger": "USB-C-laturi",
+      "20W USB-C Power": "20W USB-C-laturi",
+      "Tempered Glass": "Karkaistu lasi",
+      "Rixus iphone privacy glass": "iPhonen yksityisyyslasi",
+      "Case iphone": "iPhone-kuori",
+      "Case Samsung": "Samsung-kuori",
+      "Case Samsungs": "Samsung-kuori"
+    },
+    "buttons": {
+      "calculatePrice": "Laske hinta",
+      "viewDetails": "Katso tiedot",
+      "addToCart": "Lisää ostoskoriin"
+    },
+    "prices": {
+      "cameraRepair": "30€",
+      "lensReplacement": "20€",
+      "housingReplacement": "50€",
+      "screenReplacement": "40€",
+      "batteryReplacement": "25€"
     }
   },
 
   "footer": {
     "visitingHours": "Aukioloajat",
     "weekdays": "Ma - Pe: 11:00 - 20:00",
-    "weekend": "Lauantai-Sunnuntai: Suljettu",
+    "weekend": "La - Su: Suljettu",
     "contactTitle": "Ota yhteyttä",
     "email": "Sähköposti",
     "phone": "Puhelin",
     "address": "Sijainti",
     "followUs": "Seuraa meitä",
-    "careersTitle": "Tule töihin meille",
-    "careersText": "Haemme uusia tekijöitä kasvavaan tiimiimme.",
+    "careersTitle": "Urat",
+    "careersText": "Etsimme uusia lahjakkuuksia kasvavaan tiimiimme.",
     "contactLink": "Ota yhteyttä →",
     "rights": "Kaikki oikeudet pidätetään."
   }
