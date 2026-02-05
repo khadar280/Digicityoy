@@ -13,73 +13,53 @@
     "logout": "Log Out",
     "logoutMessage": "You have been logged out!"
   },
-  
-  
-    "auth": {
-      "login": "Login",
-      "signup": "Sign Up",
-      "email": "Email",
-      "password": "Password",
-      "name": "Name",
-      "loginSuccess": "✅ Logged in successfully!",
-      "signupSuccess": "✅ Registration successful!",
-      "forgotPassword": "Forgot password?",
-      "loginError": "❌ Login failed",
-      "signupError": "❌ Signup failed",
-      "error": "An error occurred",
-      "success": "Success",
-      "forgotTitle": "Forgot your password?",
-      "sendResetLink": "Send Reset Link",
-      "resetTitle": "🔐 Set a New Password",
-      "newPassword": "New Password",
-      "confirmPassword": "Confirm Password",
-      "changePassword": "Change Password",
-      "passwordMismatch": "Passwords do not match.",
- 
-      "resetError": "❌ Failed to reset password. Try again later.",
-     
-       "resetPassword": "Reset Password",
-    
+
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "loginSuccess": "✅ Logged in successfully!",
+    "signupSuccess": "✅ Registration successful!",
+    "forgotPassword": "Forgot password?",
+    "loginError": "❌ Login failed",
+    "signupError": "❌ Signup failed",
+    "error": "An error occurred",
+    "success": "Success",
+    "forgotTitle": "Forgot your password?",
+    "sendResetLink": "Send Reset Link",
+    "resetTitle": "🔐 Set a New Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "changePassword": "Change Password",
+    "passwordMismatch": "Passwords do not match.",
+    "resetError": "❌ Failed to reset password. Try again later.",
+    "resetPassword": "Reset Password",
     "checkEmail": "Please check your email.",
-   
     "resetSuccess": "Password reset successfully!",
     "resetFailed": "Password reset failed."
-      
-    },
-    "reset": {
-      "title": "🔐 Set New Password",
-      "placeholder": "New Password",
-      "button": "Change Password"
-    },
-    "forgot": {
-      "title": " Password Recovery",
-      "placeholder": "Enter your email",
-      "button": "Send Reset Link",
-      "sentMessage": "Please check your email for the reset link."
-    },
-  
-  
-
-  
-
-  "footer": {
-    "visitingHours": "Visiting Hours",
-    "weekdays": "Mon - Fri: 11:00 AM - 20:00 PM",
-    "weekend": "Saturday-Sunday: Closed",
-    "contactTitle": "Contact Us",
-    "email": "Email",
-    "phone": "Phone",
-    "address": "Location",
-    "followUs": "Follow Us",
-    "careersTitle": "Come Work for Us",
-    "careersText": "We’re hiring! Join our growing team and build the future of tech with us.",
-    "contactLink": "Contact Us →",
-    "rights": "All rights reserved."
   },
+
+  "reset": {
+    "title": "🔐 Set New Password",
+    "placeholder": "New Password",
+    "button": "Change Password"
+  },
+
+  "forgot": {
+    "title": "Password Recovery",
+    "placeholder": "Enter your email",
+    "button": "Send Reset Link",
+    "sentMessage": "Please check your email for the reset link."
+  },
+
   "hero": {
     "title": "Phone, Laptop and Tablet Maintenance",
-    "bookNow": "Book Now"
+    "bookNow": "Book Now",
+    "checkIphone": "Check iPhone Condition"
   },
+
   "services": {
     "title": "Our Services",
     "intro": "We provide expert repair services for iPhones, Android devices, tablets, and laptops with fast turnaround and top quality.",
@@ -99,11 +79,13 @@
       "button": "Contact Us"
     }
   },
+
   "planning": {
     "intro": "At DIGICITY, we offer quick and convenient Passport Photography services tailored to your needs.",
     "cta": "No long waits — just book your appointment and get your photos done affordably and efficiently.",
     "button": "Book Now"
   },
+
   "whychoose": {
     "heading": "Why choose DIGICITY",
     "why": {
@@ -115,165 +97,43 @@
       "description": "Our certified technicians fix most issues on-site — often in under an hour. No appointment needed!"
     },
     "warranty": {
-  "title": "WARRANTY TERMS",
-
-  "period": {
-    "screens": "Screens: aftermarket screens 6 months and OLED screens 12 months",
-    "batteries": "Batteries: 6 months",
-    "other": "Other repairs: 12 months"
-  },
-
-  "includes": {
-    "touch": "Touch-related issues",
-    "flicker": "Screen flickering or other technical issues"
-  },
-
-  "excludes": {
-    "drop": "Device damaged due to drop or visible mechanical damage",
-    "screenFrame": "Damage to screen or frame",
-    "water": "Device exposed to water",
-    "thirdParty": "Device repaired by a third party",
-    "detached": "Screen detached from the device",
-    "selfRepair": "Devices that have been self-repaired",
-    "dataLoss": "Loss of files or data as a result of repair – devices must always be backed up before repair",
-    "software": "Software-related issues, or compatibility problems caused by manufacturer software updates",
-    "newDamage": "New damages not related to the original repair",
-    "preExisting": "Device already had damages when brought to service"
-  }
-}
-
-  },
-  "contact": {
-    "title": "Contact Us",
-    "subtitle": "If you have any questions or feedback, feel free to reach out!",
-    "name": "Name",
-    "namePlaceholder": "Enter your name",
-    "email": "Email",
-    "emailPlaceholder": "Enter your email",
-    "message": "Message",
-    "messagePlaceholder": "Type your message",
-    "send": "Send Message",
-    "thankYou": "Thank You!",
-    "response": "Your message has been received. We will get back to you soon."
-  },
-  
-  "booking": {
-    "title": "Book An Appointment",
-    "phoneRepair": "Phone Repair",
-    "batteryChange": "Battery Change",
-    "inspection": "Inspection",
-    "passport": "Passport Photography",
-    "time1": "1 hr",
-    "time2": "1 hr",
-    "time3": "15 min",
-    "time4": "15 min",
-    "price1": "Price Negotiable",
-    "price2": "Price Negotiable",
-    "price3": "20€",
-    "price4": "15€ VAT Included",
-    "bookNow": "Book Now"
-  },
-  "android": {
-    "title": "Samsung Android Repair",
-    "repairs": "Repairs",
-    "backToModels": "Back to models",
-    "series": {
-      "Galaxy S Series": "Galaxy S Series",
-      "Galaxy Note Series": "Galaxy Note Series",
-      "Galaxy A Series": "Galaxy A Series"
+      "title": "WARRANTY TERMS",
+      "period": {
+        "screens": "Screens: aftermarket screens 6 months and OLED screens 12 months",
+        "batteries": "Batteries: 6 months",
+        "other": "Other repairs: 12 months"
+      },
+      "includes": {
+        "touch": "Touch-related issues",
+        "flicker": "Screen flickering or other technical issues"
+      },
+      "excludes": {
+        "drop": "Device damaged due to drop or visible mechanical damage",
+        "screenFrame": "Damage to screen or frame",
+        "water": "Device exposed to water",
+        "thirdParty": "Device repaired by a third party",
+        "detached": "Screen detached from the device",
+        "selfRepair": "Devices that have been self-repaired",
+        "dataLoss": "Loss of files or data as a result of repair – devices must always be backed up before repair",
+        "software": "Software-related issues, or compatibility problems caused by manufacturer software updates",
+        "newDamage": "New damages not related to the original repair",
+        "preExisting": "Device already had damages when brought to service"
+      }
     }
   },
-  "iphone": {
-    "title": "Select Your iPhone Device",
-    "back": "Back",
-    "repairs": "Repairs",
-    "backToModels": "Back to models"
-  },
-  "repair": {
-  "screen": "Screen Repair",
-  "battery": "Battery Replacement",
-  "back": "Back Glass Repair",
-  "bookBtn": "Book Repair",
-  "warranty": "Warranty",
-  "time": "Repair Time",
-  "screenTitle": "Screen Replacement",
-  "batteryTitle": "Battery Replacement",
-  "backTitle": "Back Glass Repair",
-  "screenDesc": "Cracked or shattered screen? We’ll replace it with a top quality display that makes your phone look and feel brand new like it just came out of the box.",
-  "batteryDesc": "Is your battery draining quickly or failing to charge properly? We'll replace it with a brand new battery to keep your device running strong all day.",
-  "backDesc": "Cracked back glass? We’ve got you. Premium parts. Clean finish. Good as new."
-},
-"cart": {
-    "title": "Your Cart",
-    "empty": "Your cart is empty.",
-    "total": "Total",
-    "checkout": "Go to Checkout",
-    "remove": "Remove"
-  },
 
-"product": {
-  "addProductTitle": "Add New Product",
-  "namePlaceholder": "Product Name",
-  "pricePlaceholder": "Price",
-  "imagePlaceholder": "Image URL",
-  "categoryPlaceholder": "Category",
-  "descriptionPlaceholder": "Description",
-  "saveButton": "Save Product",
-  "addSuccess": "Product added successfully!",
-  "addError": "Failed to add product."
-},
-
-"trending": {
-  "price": "Price",
-  "add_to_cart": "Add to Cart",
-  "back": "Back",
-  "search_results_for": "Search results for",
-  "no_products_found": "No products found 🛒",
-  "close": "Close",
-  "Phone Covers": "Phone Covers",
-  "Other accessories": "Other accessories",
-  "Chargers": "Chargers",
-  "Screen Protectors": "Screen Protectors"
-},
-"bookingForm": {
-  "book": "Book",
-  "name": "Your Name",
-  "phone": "Phone Number",
-  "email": "Email Address",
-  "confirm": "Confirm",
-  "close": "Close",
-  "selectTime": "Select Time",
-  "alertFillAll": "Please fill in all fields.",
-  "successMessage": "Your booking was successful!",
-  "errorMessage": "Booking failed. Please try again.",
-  "sending": "Sending...",
-  "unavailable": "(unavailable)",
-  "closedWeekend": "We are closed on Saturdays and Sundays."
-},
-
-  "profile": {
-    "title": "👤 User Profile",
-    "name": "Name",
+  "footer": {
+    "visitingHours": "Visiting Hours",
+    "weekdays": "Mon - Fri: 11:00 AM - 20:00 PM",
+    "weekend": "Saturday-Sunday: Closed",
+    "contactTitle": "Contact Us",
     "email": "Email",
     "phone": "Phone",
-    "memberSince": "Member Since",
-    "loading": "Loading profile..."
-  },
-
-
-
-
-
-  "about": {
-    "title": "About Digicity",
-    "p1": "Digicity was established in 2021 by Abdishakuur Mohamed Nuur, who recognized a clear market demand for professional phone repair services. His passion for mobile repairs began in his teenage years and has since evolved into a high-level professional skillset.",
-    "p2": "At Digicity, we are committed to delivering fast, precise, and reliable repair services for mobile phones, tablets, and laptops. Our experienced team uses high-quality parts and modern equipment to restore your device as quickly as possible.",
-    "p3": "With a focus on quality, transparent pricing, and customer satisfaction, we aim to provide a unique and trustworthy experience.",
-    "list": {
-      "one": "Original spare parts",
-      "two": "Experienced technicians",
-      "three": "Professional support"
-    }
-
+    "address": "Location",
+    "followUs": "Follow Us",
+    "careersTitle": "Come Work for Us",
+    "careersText": "We’re hiring! Join our growing team and build the future of tech with us.",
+    "contactLink": "Contact Us →",
+    "rights": "All rights reserved."
   }
 }

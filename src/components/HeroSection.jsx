@@ -1,13 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; // ✅ Import for i18n
+import { useTranslation } from 'react-i18next';
 import 'font-awesome/css/font-awesome.min.css';
 import './HeroSection.css';
 import videoBg from '../assets/herodigi.mp4';
 
 const HeroSection = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation(); // ✅ translation hook
+  const { t } = useTranslation();
 
   return (
     <section className="hero-section">
@@ -17,10 +17,22 @@ const HeroSection = () => {
       </video>
 
       <div className="hero-content">
-        <h1>{t('hero.title')}</h1> 
-        <div className="book-now">
-          <button onClick={() => navigate('/booking')}>
-            {t('hero.bookNow')} {/* ✅ Translated button */}
+        <h1>{t('hero.title')}</h1>
+
+        {/* ✅ Buttons */}
+        <div className="hero-buttons">
+          <button
+            className="primary-btn"
+            onClick={() => navigate('/booking')}
+          >
+            {t('hero.bookNow')}
+          </button>
+
+          <button
+            className="secondary-btn"
+            onClick={() => navigate('/iphone-condition-calculator')}
+          >
+            📱 {t('hero.checkIphone')}
           </button>
         </div>
       </div>
@@ -29,5 +41,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
-
