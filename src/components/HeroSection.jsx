@@ -25,7 +25,7 @@ const HeroSection = () => {
             className="secondary-btn"
             onClick={() => navigate('/iphone-condition-calculator')}
           >
-            📱 {t('hero.checkIphone')}
+            📱 {t('hero.iphonecondition')}
           </button>
         </div>
     </section>
