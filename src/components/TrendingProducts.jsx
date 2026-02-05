@@ -4,7 +4,7 @@ import './TrendingProducts.css';
 import { useCart } from '../components/CartContext';
 import { useTranslation } from 'react-i18next';
 
-// Images
+
 import coverImg from '../assets/cover.png';
 import batteryImg from '../assets/battry.png';
 import chargerImg from '../assets/charger2.png';
