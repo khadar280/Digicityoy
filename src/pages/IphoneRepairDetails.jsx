@@ -101,5 +101,5 @@ const IphoneRepairDetails = () => {
     </div>
   );
 };
-ssasasasass
+
 export default IphoneRepairDetails;
