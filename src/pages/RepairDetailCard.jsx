@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { IoIosPhonePortrait } from "react-icons/io";
 import { IoPhonePortrait } from "react-icons/io5";
 import { MdBatteryCharging20 } from "react-icons/md";
-import { FaCamera, FaTools, FaHome } from "react-icons/fa";
+import { FaChargingStation, FaCamera, FaMobileAlt } from "react-icons/fa";
 import { useCart } from "../components/CartContext";
 import { useTranslation } from "react-i18next";
 import "./RepairDetailCard.css";
@@ -15,105 +15,103 @@ const RepairDetailCard = ({ model, prices }) => {
 
   const services = [
     {
-      type: "screen",
+      key: "screen",
       icon: <IoIosPhonePortrait />,
       title: `${model} ${t("repair.screenTitle")}`,
       price: prices.screenRepair,
-      description: t("repair.screenDesc"),
+      description: t("repair.screenDesc")
     },
     {
-      type: "battery",
+      key: "battery",
       icon: <MdBatteryCharging20 />,
       title: `${model} ${t("repair.batteryTitle")}`,
       price: prices.batteryReplacement,
-      description: t("repair.batteryDesc"),
+      description: t("repair.batteryDesc")
     },
     {
-      type: "back",
+      key: "back",
       icon: <IoPhonePortrait />,
       title: `${model} ${t("repair.backTitle")}`,
       price: prices.backRepair,
-      description: t("repair.backDesc"),
+      description: t("repair.backDesc")
     },
     {
-      type: "buttons",
-      icon: <FaTools />,
-      title: `${model} ${t("repair.buttonsTitle")}`,
+      key: "chargingPort",
+      icon: <FaChargingStation />,
+      title: `${model} ${t("repair.chargingPort")}`,
+      price: prices.chargingPort,
+      description: t("repair.chargingPortDesc")
+    },
+    {
+      key: "buttons",
+      icon: <FaMobileAlt />,
+      title: `${model} ${t("repair.buttons")}`,
       price: prices.buttons,
-      description: t("repair.buttonsDesc"),
+      description: t("repair.buttonsDesc")
     },
     {
-      type: "housing",
-      icon: <FaHome />,
-      title: `${model} ${t("repair.housingTitle")}`,
+      key: "housing",
+      icon: <IoPhonePortrait />,
+      title: `${model} ${t("repair.housing")}`,
       price: prices.housing,
-      description: t("repair.housingDesc"),
+      description: t("repair.housingDesc")
     },
     {
-      type: "backCamera",
+      key: "backCamera",
       icon: <FaCamera />,
-      title: `${model} ${t("repair.backCameraTitle")}`,
+      title: `${model} ${t("repair.backCamera")}`,
       price: prices.backCamera,
-      description: t("repair.backCameraDesc"),
+      description: t("repair.backCameraDesc")
     },
     {
-      type: "frontCamera",
+      key: "frontCamera",
       icon: <FaCamera />,
-      title: `${model} ${t("repair.frontCameraTitle")}`,
+      title: `${model} ${t("repair.frontCamera")}`,
       price: prices.frontCamera,
-      description: t("repair.frontCameraDesc"),
+      description: t("repair.frontCameraDesc")
     },
     {
-      type: "lens",
+      key: "lens",
       icon: <FaCamera />,
-      title: `${model} ${t("repair.lensTitle")}`,
+      title: `${model} ${t("repair.lens")}`,
       price: prices.lens,
-      description: t("repair.lensDesc"),
+      description: t("repair.lensDesc")
     }
-  ].filter(service => service.price); // 🔥 auto-hide missing ones
+  ].filter(item => item.price);
 
-  const [selected, setSelected] = useState(services[0]);
-
-  const handleBook = () => {
+  const handleBook = (service) => {
     addToCart({
-      name: selected.title,
-      price: `€${selected.price}`,
-      description: selected.description,
-      image: prices.image,
+      name: service.title,
+      price: `€${service.price}`,
+      description: service.description,
+      image: prices.image
     });
     navigate("/cart");
   };
 
   return (
-    <div className="repair-detail-container">
-      <div className="tab-buttons">
-        {services.map(service => (
-          <button
-            key={service.type}
-            className={`tab-btn ${selected.type === service.type ? "active" : ""}`}
-            onClick={() => setSelected(service)}
-          >
-            <span>{service.icon}</span> {t(`repair.${service.type}`)}
-          </button>
-        ))}
-      </div>
+    <div className="repair-list">
+      {services.map((service) => (
+        <div key={service.key} className="repair-item">
+          <div className="repair-icon">{service.icon}</div>
 
-      <div className="detail-card">
-        <div className="left">
-          <div className="icon">{selected.icon}</div>
-          <div className="price">€{selected.price}</div>
-          <button className="book-btn" onClick={handleBook}>
+          <h4 className="repair-title">{service.title}</h4>
+          <p className="repair-desc">{service.description}</p>
+
+          <div className="repair-meta">
+            {t("repair.warranty")}: 12 months · {t("repair.time")}: 1–3h
+          </div>
+
+          <div className="repair-price">€{service.price}</div>
+
+          <button
+            className="book-btn"
+            onClick={() => handleBook(service)}
+          >
             {t("repair.bookBtn")}
           </button>
         </div>
-
-        <div className="right">
-          <h3>{selected.title}</h3>
-          <p>{selected.description}</p>
-          <p><strong>{t("repair.warranty")}:</strong> 12 months</p>
-          <p><strong>{t("repair.time")}:</strong> 1–3 Hours</p>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };
