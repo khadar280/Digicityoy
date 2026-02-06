@@ -71,9 +71,9 @@ const IphoneRepairDetails = () => {
     <div className="repair-container">
       {!selectedModel ? (
         <>
-          <h2>{t("iphone.title")}</h2>
+          <h2>{t("iphone")}</h2>
           <div style={{ textAlign: "left", marginBottom: "1rem" }}></div>
-          <button className="back-btn" onClick={() => navigate("/")}>← {t("iphone.back")}</button>
+          <button className="back-btn" onClick={() => navigate("/")}>← {t("back")}</button>
 
           <div className="iphone-grid">
             {iphoneModels.map((iphone, index) => (
