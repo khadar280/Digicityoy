@@ -1,20 +1,15 @@
-/* ============================= */
-/* RESET & BASE */
-/* ============================= */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background: #f2f2f7; /* iOS background */
+  background: #f2f2f7;
   color: #111;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* ============================= */
-/* CONTAINER */
-/* ============================= */
+/* ================= CONTAINER ================= */
 .repair-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -24,9 +19,6 @@ body {
   align-items: center;
 }
 
-/* ============================= */
-/* HEADERS */
-/* ============================= */
 .repair-container h2 {
   font-size: 20px;
   font-weight: 600;
@@ -34,9 +26,7 @@ body {
   margin-bottom: 14px;
 }
 
-/* ============================= */
-/* BACK BUTTON */
-/* ============================= */
+/* ================= BACK BUTTON ================= */
 .back-btn {
   background: #000;
   color: #fff;
@@ -53,53 +43,49 @@ body {
   transform: scale(0.97);
 }
 
-/* ============================= */
-/* IPHONE GRID (MOBILE FIRST) */
-/* ============================= */
+/* ================= IPHONE LIST (VERTICAL) ================= */
 .iphone-grid {
   width: 100%;
-  max-width: 380px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
-
-/* ============================= */
-/* IPHONE CARD */
-/* ============================= */
-.iphone-item {
-  background: #fff;
-  border-radius: 16px;
-  padding: 14px 10px;
-  text-align: center;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
+  gap: 14px;
   align-items: center;
 }
 
+/* ================= IPHONE ITEM ================= */
+.iphone-item {
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px 16px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 .iphone-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 }
 
 .iphone-item img {
-  width: 70px;
+  width: 60px;
   height: auto;
-  margin-bottom: 8px;
+  flex-shrink: 0;
 }
 
 .iphone-item p {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 1.3;
+  margin: 0;
 }
 
-/* ============================= */
-/* REPAIR CARD */
-/* ============================= */
+/* ================= REPAIR CARD ================= */
 .repair-card {
   width: 100%;
   max-width: 440px;
@@ -110,57 +96,22 @@ body {
   text-align: center;
 }
 
-/* ============================= */
-/* REPAIR LIST */
-/* ============================= */
-.repair-details {
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* ============================= */
-/* SINGLE REPAIR ROW */
-/* ============================= */
-.repair-row {
-  background: #f6f6f6;
-  border-radius: 14px;
-  padding: 14px 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.repair-row span {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.repair-price {
-  font-weight: 600;
-  color: #000;
-}
-
-/* ============================= */
-/* TABLET */
-/* ============================= */
+/* ================= TABLET ================= */
 @media (min-width: 600px) {
   .repair-container h2 {
     font-size: 22px;
   }
 
   .iphone-grid {
-    max-width: 100%;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    max-width: 520px;
   }
 
   .iphone-item img {
-    width: 90px;
+    width: 70px;
   }
 
   .iphone-item p {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .repair-card {
@@ -168,17 +119,14 @@ body {
   }
 }
 
-/* ============================= */
-/* DESKTOP */
-/* ============================= */
+/* ================= DESKTOP ================= */
 @media (min-width: 900px) {
   .repair-container h2 {
     font-size: 26px;
   }
 
-  .repair-details {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+  .iphone-grid {
+    max-width: 620px;
   }
 
   .repair-card {
