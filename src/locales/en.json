@@ -26,19 +26,7 @@
     "loginError": "Login failed",
     "signupError": "Signup failed",
     "error": "An error occurred",
-    "success": "Success",
-    "forgotTitle": "Forgot your password?",
-    "sendResetLink": "Send reset link",
-    "resetTitle": "Set a new password",
-    "newPassword": "New password",
-    "confirmPassword": "Confirm password",
-    "changePassword": "Change password",
-    "passwordMismatch": "Passwords do not match.",
-    "resetError": "Password reset failed.",
-    "resetPassword": "Reset password",
-    "checkEmail": "Check your email.",
-    "resetSuccess": "Password changed successfully",
-    "resetFailed": "Password reset failed"
+    "success": "Success"
   },
 
   "hero": {
@@ -49,31 +37,17 @@
 
   "services": {
     "title": "Our Services",
-    "intro": "We provide professional repair services for phones, tablets and laptops.",
-    "iphone": {
-      "title": "iPhone Repair",
-      "description": "Screen replacement, battery replacement, water damage and more.",
-      "button": "Select device"
-    },
-    "android": {
-      "title": "Android Repair",
-      "description": "We repair screens, software and components.",
-      "button": "Select device"
-    },
-    "tablet": {
-      "title": "Tablet & Laptop",
-      "description": "Screen, software and hardware repairs.",
-      "button": "Contact us"
-    }
+    "intro": "We provide professional repair services for phones, tablets and laptops."
   },
 
   "iphoneCalculator": {
-    "title": " my phone",
+    "title": "Check your phone value",
     "modelLabel": "iPhone model",
     "issuesTitle": "Select all issues that apply",
     "getPrice": "Get price",
     "estimatedPrice": "Estimated value",
-    "currency": "$",
+    "currency": "€",
+
     "issues": {
       "screenCracked": "Screen cracked",
       "screenScratches": "Screen scratches",
@@ -87,11 +61,6 @@
       "cameraRepair": "Camera repair",
       "lensReplacement": "Lens replacement",
       "housingReplacement": "Housing replacement"
-    },
-    "messages": {
-      "selectIssues": "Select all issues that apply",
-      "priceHidden": "Price will be shown after calculation",
-      "priceCalculated": "Price calculated successfully"
     }
   },
 
@@ -100,56 +69,23 @@
     "Other accessories": "Other Accessories",
     "Chargers": "Chargers",
     "Screen Protectors": "Screen Protectors",
+
     "price": "Price",
+    "add": "Add",
+    "view": "View",
     "add_to_cart": "Add to Cart",
-    "no_products_found": "No products found",
     "back": "Back",
-    "search_results_for": "Search results for",
-    "products": {
-      "Red iPhone Cover": "Red iPhone Cover",
-      "Clear cover": "Clear Cover",
-      "Mag cover": "Mag Cover",
-      "Mini Phone Holder": "Mini Phone Holder",
-      "Camera Tempered Glass": "Camera Tempered Glass",
-      "lens glasses": "Lens Glasses",
-      "Magnetic Car Holder": "Magnetic Car Holder",
-      "Mini Car Bracket": "Mini Car Bracket",
-      "Kingstom 65GB": "Kingstom USB Drive 65GB",
-      "Techsuit - Phone Holder": "Techsuit Phone Holder",
-      "USB-C Charger": "USB-C Charger",
-      "20W USB-C Power": "20W USB-C Charger",
-      "Tempered Glass": "Tempered Glass",
-      "Rixus iphone privacy glass": "iPhone Privacy Glass",
-      "Case iphone": "iPhone Case",
-      "Case Samsung": "Samsung Case",
-      "Case Samsungs": "Samsung Case"
-    },
-    "buttons": {
-      "calculatePrice": "Calculate Price",
-      "viewDetails": "View Details",
-      "addToCart": "Add to Cart"
-    },
-    "prices": {
-      "cameraRepair": "€30",
-      "lensReplacement": "€20",
-      "housingReplacement": "€50",
-      "screenReplacement": "€40",
-      "batteryReplacement": "€25"
-    }
+    "close": "Close",
+    "no_products_found": "No products found"
   },
+
+  "search_results_for": "Search results for",
 
   "footer": {
     "visitingHours": "Opening Hours",
     "weekdays": "Mon - Fri: 11:00 - 20:00",
     "weekend": "Saturday - Sunday: Closed",
     "contactTitle": "Contact Us",
-    "email": "Email",
-    "phone": "Phone",
-    "address": "Location",
-    "followUs": "Follow us",
-    "careersTitle": "Careers",
-    "careersText": "We are looking for new talents to join our growing team.",
-    "contactLink": "Contact us →",
     "rights": "All rights reserved."
   }
 }
