@@ -1,6 +1,7 @@
 
 
 
+
 import React from "react";
 import "./AboutSection.css";
 import aboutImage from "../assets/about.png"
@@ -34,4 +35,3 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
-
