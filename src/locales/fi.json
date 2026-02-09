@@ -13,7 +13,6 @@
     "logout": "Kirjaudu ulos",
     "logoutMessage": "Olet kirjautunut ulos!"
   },
-
   "auth": {
     "login": "Kirjaudu sisään",
     "signup": "Rekisteröidy",
@@ -28,18 +27,15 @@
     "error": "Tapahtui virhe",
     "success": "Onnistui"
   },
-
   "hero": {
     "title": "Puhelinten, kannettavien ja tablettien korjaus",
     "bookNow": "Varaa aika",
     "checkIphone": "Tarkista iPhonen arvo"
   },
-
   "services": {
     "title": "Palvelumme",
     "intro": "Tarjoamme ammattitaitoista korjauspalvelua puhelimille, tableteille ja kannettaville tietokoneille."
   },
-
   "booking": {
     "title": "Varaa korjaus",
     "subtitle": "Varaa korjausaika helposti muutamassa vaiheessa",
@@ -55,27 +51,22 @@
     "success": "Varauksesi on vahvistettu!",
     "error": "Varauksen luominen epäonnistui"
   },
-
   "about": {
-  "title": "Tietoa meistä",
-  "intro": "Olemme ammattimainen ja luotettava korjauspalvelu, joka on erikoistunut puhelinten, kannettavien ja tablettien huoltoon.",
-  "experience": "Vuosien kokemuksella tarjoamme nopeaa, tarkkaa ja asiakaslähtöistä palvelua.",
-  "quality": "Käytämme vain laadukkaita ja testattuja varaosia sekä nykyaikaisia työkaluja. Kaikille korjauksille tarjoamme takuun.",
-  
-  "founderTitle": "Yrityksen tarina",
-  "founderText": "Digicity perustettiin vuonna 2021 Abdishakuur Mohamed Nuurin toimesta. Hänen intohimonsa laitteiden korjaamiseen alkoi jo nuorena ja on kasvanut korkealle ammatilliselle tasolle.",
-
-  "missionTitle": "Meidän tehtävämme",
-  "missionText": "Tarjota rehellistä, edullista ja korkealaatuista korjauspalvelua, johon asiakkaat voivat aidosti luottaa.",
-
-  "valuesTitle": "Miksi valita Digicity?",
-  "values": {
-    "one": "Ammattitaitoiset ja kokeneet teknikot",
-    "two": "Läpinäkyvä hinnoittelu ilman piilokuluja",
-    "three": "Nopeat korjaukset ja erinomainen asiakaspalvelu"
-  }
-},
-
+    "title": "Tietoa Digicitystä",
+    "intro": "Olemme ammattimainen ja luotettava korjauspalvelu, joka on erikoistunut puhelinten, kannettavien ja tablettien huoltoon.",
+    "experience": "Vuosien kokemuksella tarjoamme nopeaa, tarkkaa ja asiakaslähtöistä palvelua.",
+    "quality": "Käytämme vain laadukkaita ja testattuja varaosia sekä nykyaikaisia työkaluja. Kaikille korjauksille tarjoamme takuun.",
+    "founderTitle": "Yrityksen tarina",
+    "founderText": "Digicity perustettiin vuonna 2021 Abdishakuur Mohamed Nuurin toimesta. Hänen intohimonsa laitteiden korjaamiseen alkoi jo nuorena ja on kasvanut korkealle ammatilliselle tasolle.",
+    "missionTitle": "Meidän tehtävämme",
+    "missionText": "Tarjota rehellistä, edullista ja korkealaatuista korjauspalvelua, johon asiakkaat voivat aidosti luottaa.",
+    "valuesTitle": "Miksi valita Digicity?",
+    "values": {
+      "one": "Ammattitaitoiset ja kokeneet teknikot",
+      "two": "Läpinäkyvä hinnoittelu ilman piilokuluja",
+      "three": "Nopeat korjaukset ja erinomainen asiakaspalvelu"
+    }
+  },
   "iphoneCalculator": {
     "title": "Tarkista puhelimesi arvo",
     "modelLabel": "iPhone-malli",
@@ -83,7 +74,6 @@
     "getPrice": "Laske hinta",
     "estimatedPrice": "Arvioitu arvo",
     "currency": "€",
-
     "issues": {
       "screenCracked": "Näyttö rikki",
       "screenScratches": "Naarmuja näytössä",
@@ -99,13 +89,11 @@
       "housingReplacement": "Rungon vaihto"
     }
   },
-
   "trending": {
     "Phone Covers": "Puhelinkuoret",
     "Other accessories": "Muut tarvikkeet",
     "Chargers": "Laturit",
     "Screen Protectors": "Näytönsuojat",
-
     "price": "Hinta",
     "add": "Lisää",
     "view": "Näytä",
@@ -114,14 +102,16 @@
     "close": "Sulje",
     "no_products_found": "Tuotteita ei löytynyt"
   },
-
   "search_results_for": "Hakutulokset haulle",
-
   "footer": {
     "visitingHours": "Aukioloajat",
     "weekdays": "Ma - Pe: 11:00 - 20:00",
     "weekend": "Lauantai - Sunnuntai: Suljettu",
     "contactTitle": "Ota yhteyttä",
+    "email": "Sähköposti",
+    "phone": "Puhelin",
+    "address": "Osoite",
+    "followUs": "Seuraa meitä",
     "rights": "Kaikki oikeudet pidätetään."
   }
 }

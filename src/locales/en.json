@@ -13,7 +13,6 @@
     "logout": "Logout",
     "logoutMessage": "You have been logged out!"
   },
-
   "auth": {
     "login": "Login",
     "signup": "Sign Up",
@@ -28,30 +27,46 @@
     "error": "An error occurred",
     "success": "Success"
   },
-
   "hero": {
     "title": "Phone, laptop and tablet repair",
     "bookNow": "Book now",
     "checkIphone": "Check iPhone value"
   },
-
   "services": {
     "title": "Our Services",
     "intro": "We provide professional repair services for phones, tablets and laptops."
   },
-
+  "booking": {
+    "title": "Book a Repair",
+    "subtitle": "Book your repair in a few easy steps",
+    "selectService": "Select Service",
+    "selectDevice": "Select Device",
+    "selectDate": "Select Date",
+    "selectTime": "Select Time",
+    "name": "Your Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "notes": "Additional Notes",
+    "submit": "Confirm Booking",
+    "success": "Your booking is confirmed!",
+    "error": "Failed to create booking"
+  },
   "about": {
     "title": "About Digicity",
-    "p1": "Digicity was established in 2021 by Abdishakuur Mohamed Nuur, who recognized a clear market demand for professional phone repair services. His passion for mobile repairs began in his teenage years and has since evolved into a high-level professional skillset.",
-    "p2": "At Digicity, we are committed to delivering fast, precise, and reliable repair services for mobile phones, tablets, and laptops. Our experienced team uses high-quality parts and modern equipment to restore your device as quickly as possible.",
-    "p3": "With a focus on quality, transparent pricing, and customer satisfaction, we aim to provide a unique and trustworthy experience.",
-    "list": {
-      "one": "Original spare parts",
-      "two": "Experienced technicians",
-      "three": "Professional support"
+    "intro": "We are a professional and reliable repair service specialized in phones, laptops, and tablets.",
+    "experience": "With years of experience, we provide fast, precise, and customer-focused service.",
+    "quality": "We only use high-quality tested parts and modern tools. All repairs come with a warranty.",
+    "founderTitle": "Company Story",
+    "founderText": "Digicity was founded in 2021 by Abdishakuur Mohamed Nuur. His passion for device repair started early and grew into a high-level professional skill set.",
+    "missionTitle": "Our Mission",
+    "missionText": "To provide honest, affordable, and high-quality repair services that customers can genuinely trust.",
+    "valuesTitle": "Why Choose Digicity?",
+    "values": {
+      "one": "Skilled and experienced technicians",
+      "two": "Transparent pricing with no hidden fees",
+      "three": "Fast repairs and excellent customer support"
     }
   },
-
   "iphoneCalculator": {
     "title": "Check your phone value",
     "modelLabel": "iPhone model",
@@ -59,7 +74,6 @@
     "getPrice": "Get price",
     "estimatedPrice": "Estimated value",
     "currency": "€",
-
     "issues": {
       "screenCracked": "Screen cracked",
       "screenScratches": "Screen scratches",
@@ -75,13 +89,11 @@
       "housingReplacement": "Housing replacement"
     }
   },
-
   "trending": {
     "Phone Covers": "Phone Covers",
     "Other accessories": "Other Accessories",
     "Chargers": "Chargers",
     "Screen Protectors": "Screen Protectors",
-
     "price": "Price",
     "add": "Add",
     "view": "View",
@@ -90,14 +102,16 @@
     "close": "Close",
     "no_products_found": "No products found"
   },
-
   "search_results_for": "Search results for",
-
   "footer": {
     "visitingHours": "Opening Hours",
     "weekdays": "Mon - Fri: 11:00 - 20:00",
     "weekend": "Saturday - Sunday: Closed",
     "contactTitle": "Contact Us",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "followUs": "Follow Us",
     "rights": "All rights reserved."
   }
 }

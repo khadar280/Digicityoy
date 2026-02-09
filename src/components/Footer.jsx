@@ -6,14 +6,14 @@ import './Footer.css';
 function Footer() {
   const { t } = useTranslation();
 
-  // Contact info (can be updated directly)
+
   const contactInfo = {
     email: 'info@digicity.fi',
     phone: '0453418323',
     address: 'Klaneettitie 12, Helsinki 00420'
   };
 
-  // Social links
+ 
   const socials = [
     { icon: <FaTiktok />, url: 'https://www.tiktok.com/@digicityoy' },
     { icon: <FaInstagram />, url: 'https://www.instagram.com/digicity21' }
@@ -23,14 +23,14 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
 
-        {/* Opening hours */}
+      
         <div className="footer-hours">
           <h4>{t('footer.visitingHours', 'Opening Hours')}</h4>
           <p>{t('footer.weekdays', 'Mon - Fri: 11:00 - 20:00')}</p>
           <p>{t('footer.weekend', 'Saturday - Sunday: Closed')}</p>
         </div>
 
-        {/* Contact info */}
+        
         <div className="footer-contact">
           <h4>{t('footer.contactTitle', 'Contact Us')}</h4>
           <p>Email: {contactInfo.email}</p>
@@ -56,7 +56,7 @@ function Footer() {
         </div>
       </div>
 
-      {/* Bottom copyright */}
+     
       <div className="footer-bottom">
         <p>
           © {new Date().getFullYear()} DIGICITY. {t('footer.rights', 'All rights reserved.')}
