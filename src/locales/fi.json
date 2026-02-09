@@ -24,26 +24,62 @@
     "signupSuccess": "Rekisteröityminen onnistui!",
     "forgotPassword": "Unohditko salasanan?",
     "loginError": "Kirjautuminen epäonnistui",
-    "signupError": "Rekisteröinti epäonnistui",
+    "signupError": "Rekisteröityminen epäonnistui",
     "error": "Tapahtui virhe",
     "success": "Onnistui"
   },
 
   "hero": {
-    "title": "Puhelin-, tabletti- ja kannettavien korjaus",
-    "bookNow": "Varaa nyt",
+    "title": "Puhelinten, kannettavien ja tablettien korjaus",
+    "bookNow": "Varaa aika",
     "checkIphone": "Tarkista iPhonen arvo"
   },
 
   "services": {
     "title": "Palvelumme",
-    "intro": "Tarjoamme ammattimaisia korjauspalveluita puhelimille, tableteille ja kannettaville."
+    "intro": "Tarjoamme ammattitaitoista korjauspalvelua puhelimille, tableteille ja kannettaville tietokoneille."
   },
+
+  "booking": {
+    "title": "Varaa korjaus",
+    "subtitle": "Varaa korjausaika helposti muutamassa vaiheessa",
+    "selectService": "Valitse palvelu",
+    "selectDevice": "Valitse laite",
+    "selectDate": "Valitse päivämäärä",
+    "selectTime": "Valitse aika",
+    "name": "Nimesi",
+    "email": "Sähköpostiosoite",
+    "phone": "Puhelinnumero",
+    "notes": "Lisätiedot",
+    "submit": "Vahvista varaus",
+    "success": "Varauksesi on vahvistettu!",
+    "error": "Varauksen luominen epäonnistui"
+  },
+
+  "about": {
+  "title": "Tietoa meistä",
+  "intro": "Olemme ammattimainen ja luotettava korjauspalvelu, joka on erikoistunut puhelinten, kannettavien ja tablettien huoltoon.",
+  "experience": "Vuosien kokemuksella tarjoamme nopeaa, tarkkaa ja asiakaslähtöistä palvelua.",
+  "quality": "Käytämme vain laadukkaita ja testattuja varaosia sekä nykyaikaisia työkaluja. Kaikille korjauksille tarjoamme takuun.",
+  
+  "founderTitle": "Yrityksen tarina",
+  "founderText": "Digicity perustettiin vuonna 2021 Abdishakuur Mohamed Nuurin toimesta. Hänen intohimonsa laitteiden korjaamiseen alkoi jo nuorena ja on kasvanut korkealle ammatilliselle tasolle.",
+
+  "missionTitle": "Meidän tehtävämme",
+  "missionText": "Tarjota rehellistä, edullista ja korkealaatuista korjauspalvelua, johon asiakkaat voivat aidosti luottaa.",
+
+  "valuesTitle": "Miksi valita Digicity?",
+  "values": {
+    "one": "Ammattitaitoiset ja kokeneet teknikot",
+    "two": "Läpinäkyvä hinnoittelu ilman piilokuluja",
+    "three": "Nopeat korjaukset ja erinomainen asiakaspalvelu"
+  }
+},
 
   "iphoneCalculator": {
     "title": "Tarkista puhelimesi arvo",
     "modelLabel": "iPhone-malli",
-    "issuesTitle": "Valitse kaikki viat",
+    "issuesTitle": "Valitse kaikki viat, jotka koskevat laitetta",
     "getPrice": "Laske hinta",
     "estimatedPrice": "Arvioitu arvo",
     "currency": "€",
@@ -53,9 +89,9 @@
       "screenScratches": "Naarmuja näytössä",
       "backGlass": "Takalasi rikki",
       "bodyHeavy": "Vakavia runkovaurioita",
-      "bodyLight": "Kevyitä naarmuja rungossa",
-      "battery80": "Akun kunto 80–89%",
-      "batteryLow": "Akun kunto alle 80%",
+      "bodyLight": "Pieniä naarmuja rungossa",
+      "battery80": "Akun kunto 80–89 %",
+      "batteryLow": "Akun kunto alle 80 %",
       "cameraIssue": "Kamera ei toimi",
       "faceIdIssue": "Face ID ei toimi",
       "cameraRepair": "Kameran korjaus",
@@ -65,7 +101,7 @@
   },
 
   "trending": {
-    "Phone Covers": "Puhelimen kuoret",
+    "Phone Covers": "Puhelinkuoret",
     "Other accessories": "Muut tarvikkeet",
     "Chargers": "Laturit",
     "Screen Protectors": "Näytönsuojat",
@@ -73,18 +109,18 @@
     "price": "Hinta",
     "add": "Lisää",
     "view": "Näytä",
-    "add_to_cart": "Lisää koriin",
+    "add_to_cart": "Lisää ostoskoriin",
     "back": "Takaisin",
     "close": "Sulje",
     "no_products_found": "Tuotteita ei löytynyt"
   },
 
-  "search_results_for": "Hakutulokset:",
+  "search_results_for": "Hakutulokset haulle",
 
   "footer": {
     "visitingHours": "Aukioloajat",
     "weekdays": "Ma - Pe: 11:00 - 20:00",
-    "weekend": "La - Su: Suljettu",
+    "weekend": "Lauantai - Sunnuntai: Suljettu",
     "contactTitle": "Ota yhteyttä",
     "rights": "Kaikki oikeudet pidätetään."
   }

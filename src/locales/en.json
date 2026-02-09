@@ -40,6 +40,18 @@
     "intro": "We provide professional repair services for phones, tablets and laptops."
   },
 
+  "about": {
+    "title": "About Digicity",
+    "p1": "Digicity was established in 2021 by Abdishakuur Mohamed Nuur, who recognized a clear market demand for professional phone repair services. His passion for mobile repairs began in his teenage years and has since evolved into a high-level professional skillset.",
+    "p2": "At Digicity, we are committed to delivering fast, precise, and reliable repair services for mobile phones, tablets, and laptops. Our experienced team uses high-quality parts and modern equipment to restore your device as quickly as possible.",
+    "p3": "With a focus on quality, transparent pricing, and customer satisfaction, we aim to provide a unique and trustworthy experience.",
+    "list": {
+      "one": "Original spare parts",
+      "two": "Experienced technicians",
+      "three": "Professional support"
+    }
+  },
+
   "iphoneCalculator": {
     "title": "Check your phone value",
     "modelLabel": "iPhone model",
