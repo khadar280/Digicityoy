@@ -1,10 +1,9 @@
 
 
 
-
 import React from "react";
 import "./AboutSection.css";
-import aboutImage from "../assets/about.png"
+import shakImage from "../assets/shak.jpg"
 import { useTranslation } from "react-i18next";
 
 const AboutSection = () => {
@@ -16,7 +15,7 @@ const AboutSection = () => {
        
         <div className="about-image-wrapper">
           <img
-            src={aboutImage} alt ="About DigiCity"/> 
+            src={shakImage} alt ="About us"/> 
         </div>
         <div className="about-text">
           <h2>{t("about.title")}</h2>
@@ -35,3 +34,4 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
+
