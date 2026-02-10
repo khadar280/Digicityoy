@@ -26,7 +26,7 @@ app.use(express.json());
 const ContactRoutes = require('./routes/Contact');
 const OrderRoutes = require('./routes/order');
 const PaymentRoutes = require('./routes/payment');
-const CheckoutRoutes = require('./routes/Checkout');
+const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
 const SearchbarRoutes = require('./routes/Searchbar');
 const LaptopRoutes = require('./routes/Laptop');
