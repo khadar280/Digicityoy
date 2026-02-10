@@ -168,5 +168,16 @@
     "address": "Osoite",
     "followUs": "Seuraa meitä",
     "rights": "Kaikki oikeudet pidätetään."
-  }
+  },"contact": {
+  "title": "Ota yhteyttä",
+  "subtitle": "Haluamme kuulla sinusta. Lähetä meille viesti alla.",
+  "name": "Nimesi",
+  "email": "Sähköpostiosoite",
+  "message": "Viestisi",
+  "send": "Lähetä viesti",
+  "thankYou": "Kiitos!",
+  "response": "Viestisi on vastaanotettu. Otamme sinuun yhteyttä pian."
 }
+
+}
+

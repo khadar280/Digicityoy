@@ -57,26 +57,32 @@
 
   "repair": {
     "screenTitle": "Screen Replacement",
-    "screenDesc": "Broken or cracked screen? We replace it with a high-quality display.",
+    "screenDesc": "Cracked or broken screen? We replace it with a high-quality screen.",
     "batteryTitle": "Battery Replacement",
-    "batteryDesc": "Battery draining fast or not charging? We replace it with a new one.",
-    "backTitle": "Back Glass Replacement",
-    "backDesc": "Broken back glass? We’ll fix it like new.",
+    "batteryDesc": "Battery drains quickly or won’t charge? We replace it with a new one.",
+    "backTitle": "Back Cover Replacement",
+    "backDesc": "Broken back cover? We repair it like new.",
     "housing": "Housing Replacement",
-    "housingDesc": "Replace damaged housing for a like-new look.",
+    "housingDesc": "Replace damaged housing with a new one.",
     "backCamera": "Back Camera Repair",
-    "backCameraDesc": "Fix your back camera functionality and quality.",
+    "backCameraDesc": "Repair the back camera functionality and quality.",
     "frontCamera": "Front Camera Repair",
-    "frontCameraDesc": "Repair or replace your front camera.",
+    "frontCameraDesc": "Repair or replace the front camera.",
     "lens": "Lens Replacement",
     "lensDesc": "Replace scratched or broken camera lens.",
     "buttons": "Button Repair",
-    "buttonsDesc": "Fix broken or unresponsive buttons.",
+    "buttonsDesc": "Fix broken or non-functional buttons.",
     "chargingPort": "Charging Port Repair",
-    "chargingPortDesc": "Repair charging port issues.",
+    "chargingPortDesc": "Fix charging port issues.",
     "warranty": "Warranty",
     "time": "Repair Time",
     "bookBtn": "Book Repair"
+  },
+
+  "iphone": {
+    "title": "iPhone Repair",
+    "repairs": "Repairs",
+    "backToModels": "Back to Models"
   },
 
   "booking": {
@@ -93,11 +99,10 @@
     "submit": "Confirm Booking",
     "success": "Your booking is confirmed!",
     "error": "Failed to create booking",
-    "alertFillAll": "Please fill all fields.",
+    "alertFillAll": "Please fill in all fields.",
     "sending": "Sending...",
     "confirm": "Confirm",
     "close": "Close",
-    "selectTime": "Select time",
     "unavailable": "(unavailable)",
     "closedWeekend": "We are closed on Saturdays and Sundays."
   },
@@ -163,5 +168,16 @@
     "address": "Address",
     "followUs": "Follow Us",
     "rights": "All rights reserved."
-  }
+  },
+  "contact": {
+  "title": "Contact Us",
+  "subtitle": "We would love to hear from you. Send us a message below.",
+  "name": "Your Name",
+  "email": "Email Address",
+  "message": "Your Message",
+  "send": "Send Message",
+  "thankYou": "Thank you!",
+  "response": "Your message has been received. We will get back to you shortly."
+}
+
 }
