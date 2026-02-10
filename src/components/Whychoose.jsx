@@ -20,7 +20,7 @@ const Whychoose = () => {
 
   return (
     <section className="why-choose">
-      <h2>{t('whychoose.heading')}</h2>
+    
       <div className="features">
         {features.map((feature, index) => (
           <div key={index} className="feature">
