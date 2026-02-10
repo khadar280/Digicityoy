@@ -1,6 +1,7 @@
 
 
 
+
 import React, { useState } from 'react';
 import './AppoinmentList.css';
 import BookingFormModal from "../components/BookingFormModal";
@@ -50,4 +51,3 @@ const Booking = () => {
 };
 
 export default Booking;
-
