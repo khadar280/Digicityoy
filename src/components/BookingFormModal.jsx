@@ -4,34 +4,21 @@ import { useTranslation } from "react-i18next";
 
 const BookingFormModal = ({ service, onClose }) => {
   const { t, i18n } = useTranslation();
-
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    date: "",
-    time: "",
-  });
-
+  const [form, setForm] = useState({ name: "", phone: "", email: "", date: "", time: "" });
   const [loading, setLoading] = useState(false);
   const [bookedTimes, setBookedTimes] = useState([]);
   const [showSuccess, setShowSuccess] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
-  const [fetchError, setFetchError] = useState("");
 
-  const API_URL =
-    process.env.REACT_APP_API_URL ||
-    "https://digicityoy-43-1ews.onrender.com";
-
+const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-   
     if (name === "date") {
-      const day = new Date(value).getDay();
-      if (day === 0 || day === 6) {
+      const dayOfWeek = new Date(value).getDay();
+      if (dayOfWeek === 0 || dayOfWeek === 6) {
         setWarningMessage(t("bookingForm.closedWeekend"));
         return;
       } else {
@@ -42,7 +29,6 @@ const BookingFormModal = ({ service, onClose }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-
   const generateTimes = () => {
     const times = [];
     for (let h = 11; h < 20; h++) {
@@ -51,61 +37,28 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
-
   useEffect(() => {
     if (!form.date) return;
 
     const fetchBookedTimes = async () => {
       try {
-        setFetchError("");
-
-        const res = await fetch(
-          `${API_URL}/api/booking?date=${form.date}`
-        );
-
-        if (!res.ok) {
-          throw new Error(`Server error: ${res.status}`);
-        }
+        const res = await fetch(`${API_URL}/api/booking?date=${form.date}`);
+        if (!res.ok) throw new Error("Failed to fetch booked times");
 
         const data = await res.json();
-
-        const times = Array.isArray(data)
-          ? data
-              .map((item) =>
-                item.bookingDate
-                  ? new Date(item.bookingDate)
-                      .toISOString()
-                      .slice(11, 16)
-                  : null
-              )
-              .filter(Boolean)
-          : [];
-
-        setBookedTimes(times);
+        setBookedTimes(data.map((item) => item.time?.slice(0, 5)));
       } catch (error) {
-        console.error("Failed to fetch booked times:", error);
-        setBookedTimes([]);
-        setFetchError(
-          t("bookingForm.fetchError") || "Failed to fetch booked times"
-        );
+        console.error("❌ Failed to fetch booked times:", error);
       }
     };
 
     fetchBookedTimes();
-  }, [form.date, API_URL, t]);
+  }, [form.date, API_URL]);
 
-
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !form.name ||
-      !form.phone ||
-      !form.email ||
-      !form.date ||
-      !form.time
-    ) {
+    if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
       alert(t("bookingForm.fillAllFields"));
       return;
     }
@@ -113,19 +66,17 @@ const BookingFormModal = ({ service, onClose }) => {
     setLoading(true);
 
     try {
-      const bookingDateISO = new Date(
-        `${form.date}T${form.time}:00`
-      ).toISOString();
-
       const response = await fetch(`${API_URL}/api/booking`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           customerName: form.name,
           customerEmail: form.email,
           phone: form.phone,
           service,
-          bookingDate: bookingDateISO,
+          bookingDate: `${form.date}T${form.time}`,
           lang: i18n.language.split("-")[0],
         }),
       });
@@ -137,9 +88,9 @@ const BookingFormModal = ({ service, onClose }) => {
         setTimeout(() => {
           setShowSuccess(false);
           onClose();
-        }, 5000);
+        }, 10000);
       } else {
-        alert(data?.error || t("bookingForm.errorMessage"));
+        alert(data.error || t("bookingForm.errorMessage"));
       }
     } catch (error) {
       console.error("Booking error:", error);
@@ -152,21 +103,14 @@ const BookingFormModal = ({ service, onClose }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-box">
-        <h2>
-          {t("bookingForm.book")}: {service}
-        </h2>
+        <h2>{t("bookingForm.book")}: {service}</h2>
 
         {warningMessage && (
           <div className="warning-banner">{warningMessage}</div>
         )}
-        {fetchError && (
-          <div className="error-banner">{fetchError}</div>
-        )}
 
         {showSuccess ? (
-          <p className="success-message">
-            {t("bookingForm.successMessage")}
-          </p>
+          <p className="success-message">{t("bookingForm.successMessage")}</p>
         ) : (
           <form onSubmit={handleSubmit}>
             <input
@@ -177,7 +121,6 @@ const BookingFormModal = ({ service, onClose }) => {
               onChange={handleChange}
               required
             />
-
             <input
               type="tel"
               name="phone"
@@ -186,7 +129,6 @@ const BookingFormModal = ({ service, onClose }) => {
               onChange={handleChange}
               required
             />
-
             <input
               type="email"
               name="email"
@@ -195,7 +137,6 @@ const BookingFormModal = ({ service, onClose }) => {
               onChange={handleChange}
               required
             />
-
             <input
               type="date"
               name="date"
@@ -210,10 +151,7 @@ const BookingFormModal = ({ service, onClose }) => {
               onChange={handleChange}
               required
             >
-              <option value="">
-                {t("bookingForm.selectTime")}
-              </option>
-
+              <option value="">{t("bookingForm.selectTime")}</option>
               {generateTimes().map((time) => (
                 <option
                   key={time}
@@ -226,9 +164,7 @@ const BookingFormModal = ({ service, onClose }) => {
             </select>
 
             <button type="submit" disabled={loading}>
-              {loading
-                ? t("bookingForm.sending")
-                : t("bookingForm.confirm")}
+              {loading ? t("bookingForm.sending") : t("bookingForm.confirm")}
             </button>
           </form>
         )}
