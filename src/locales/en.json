@@ -13,6 +13,7 @@
     "logout": "Logout",
     "logoutMessage": "You have been logged out!"
   },
+
   "auth": {
     "login": "Login",
     "signup": "Sign Up",
@@ -27,15 +28,18 @@
     "error": "An error occurred",
     "success": "Success"
   },
+
   "hero": {
     "title": "Phone, laptop and tablet repair",
     "bookNow": "Book now",
     "checkIphone": "Check iPhone value"
   },
+
   "services": {
     "title": "Our Services",
     "intro": "We provide professional repair services for phones, tablets and laptops."
   },
+
   "booking": {
     "title": "Book a Repair",
     "subtitle": "Book your repair in a few easy steps",
@@ -51,6 +55,7 @@
     "success": "Your booking is confirmed!",
     "error": "Failed to create booking"
   },
+
   "about": {
     "title": "About Digicity",
     "intro": "We are a professional and reliable repair service specialized in phones, laptops, and tablets.",
@@ -67,8 +72,9 @@
       "three": "Fast repairs and excellent customer support"
     }
   },
+
   "iphoneCalculator": {
-    "title": "Sell you iphone",
+    "title": "Sell your iPhone",
     "modelLabel": "iPhone model",
     "issuesTitle": "Select all issues that apply",
     "getPrice": "Get price",
@@ -89,6 +95,7 @@
       "housingReplacement": "Housing replacement"
     }
   },
+
   "trending": {
     "Phone Covers": "Phone Covers",
     "Other accessories": "Other Accessories",
@@ -102,7 +109,9 @@
     "close": "Close",
     "no_products_found": "No products found"
   },
+
   "search_results_for": "Search results for",
+
   "footer": {
     "visitingHours": "Opening Hours",
     "weekdays": "Mon - Fri: 11:00 - 20:00",

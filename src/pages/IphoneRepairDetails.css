@@ -119,7 +119,7 @@ body {
   }
 }
 
-/* ================= DESKTOP ================= */
+
 @media (min-width: 900px) {
   .repair-container h2 {
     font-size: 26px;
