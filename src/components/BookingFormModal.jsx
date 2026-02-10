@@ -10,12 +10,12 @@ const BookingFormModal = ({ service, onClose }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
 
-const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
-
+  const API_URL = process.env.REACT_APP_API_URL || "https://digicityoy-43-1ews.onrender.com";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // Warn if weekend
     if (name === "date") {
       const dayOfWeek = new Date(value).getDay();
       if (dayOfWeek === 0 || dayOfWeek === 6) {
@@ -59,7 +59,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
     e.preventDefault();
 
     if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
-      alert(t("bookingForm.fillAllFields"));
+      alert(t("bookingForm.alertFillAll"));
       return;
     }
 
@@ -68,9 +68,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
     try {
       const response = await fetch(`${API_URL}/api/booking`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           customerName: form.name,
           customerEmail: form.email,
@@ -158,7 +156,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'https://en.digicity.fi';
                   value={time}
                   disabled={bookedTimes.includes(time)}
                 >
-                  {time} {bookedTimes.includes(time) ? "(busy)" : ""}
+                  {time} {bookedTimes.includes(time) ? "(varattu)" : ""}
                 </option>
               ))}
             </select>
