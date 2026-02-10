@@ -79,6 +79,12 @@
     "bookBtn": "Varaa korjaus"
   },
 
+  "iphone": {
+    "title": "iPhone-korjaus",
+    "repairs": "Korjaukset",
+    "backToModels": "Takaisin malleihin"
+  },
+
   "booking": {
     "title": "Varaa korjaus",
     "subtitle": "Varaa korjaus muutamassa helpossa vaiheessa",
@@ -97,7 +103,6 @@
     "sending": "Lähetetään...",
     "confirm": "Vahvista",
     "close": "Sulje",
-    "selectTime": "Valitse aika",
     "unavailable": "(ei saatavilla)",
     "closedWeekend": "Olemme suljettu lauantaisin ja sunnuntaisin."
   },
