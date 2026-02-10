@@ -37,7 +37,22 @@
 
   "services": {
     "title": "Our Services",
-    "intro": "We provide professional repair services for phones, tablets and laptops."
+    "intro": "We provide professional repair services for phones, tablets and laptops.",
+    "iphone": {
+      "title": "iPhone Repair",
+      "description": "Screen repair, battery replacement, water damage repair and more for all iPhone models.",
+      "button": "Select Phone"
+    },
+    "android": {
+      "title": "Android Repair",
+      "description": "We repair screens, software, batteries, and components for most Android brands.",
+      "button": "Select Phone"
+    },
+    "tablet": {
+      "title": "Tablet & Laptop Repair",
+      "description": "Screen issues, software problems, battery replacements, and hardware repairs for all devices.",
+      "button": "Contact Us"
+    }
   },
 
   "booking": {
@@ -57,18 +72,16 @@
   },
 
   "about": {
-  "title": "About Digicity",
-  "intro": "Digicity was founded in 2021 by Abdishakuur Mohamed Nuur to meet the growing demand for professional and reliable device repair services.",
-  "experience": "We provide fast, precise, and customer-focused repair services for phones, tablets, and laptops with years of hands-on experience.",
-  "quality": "We use only high-quality, tested spare parts and modern tools to ensure the best possible results.",
-  "valuesTitle": "Why choose Digicity?",
-  "values": {
-    "one": "Original and high-quality spare parts",
-    "two": "Experienced and certified technicians",
-    "three": "Transparent pricing and excellent customer service"
-  }
-},
-
+    "title": "About Digicity",
+    "p1": "Digicity was founded in 2021 by Abdishakuur Mohamed Nuur to meet the growing demand for professional and reliable device repair services.",
+    "p2": "We provide fast, precise, and customer-focused repair services for phones, tablets, and laptops using high-quality spare parts and modern tools.",
+    "p3": "Customer satisfaction, transparent pricing, and high-quality workmanship are the foundation of everything we do.",
+    "list": {
+      "one": "Original and high-quality spare parts",
+      "two": "Experienced and certified technicians",
+      "three": "Transparent pricing and excellent customer service"
+    }
+  },
 
   "iphoneCalculator": {
     "title": "Sell your iPhone",
