@@ -57,21 +57,18 @@
   },
 
   "about": {
-    "title": "About Digicity",
-    "intro": "We are a professional and reliable repair service specialized in phones, laptops, and tablets.",
-    "experience": "With years of experience, we provide fast, precise, and customer-focused service.",
-    "quality": "We only use high-quality tested parts and modern tools. All repairs come with a warranty.",
-    "founderTitle": "Company Story",
-    "founderText": "Digicity was founded in 2021 by Abdishakuur Mohamed Nuur. His passion for device repair started early and grew into a high-level professional skill set.",
-    "missionTitle": "Our Mission",
-    "missionText": "To provide honest, affordable, and high-quality repair services that customers can genuinely trust.",
-    "valuesTitle": "Why Choose Digicity?",
-    "values": {
-      "one": "Skilled and experienced technicians",
-      "two": "Transparent pricing with no hidden fees",
-      "three": "Fast repairs and excellent customer support"
-    }
-  },
+  "title": "About Digicity",
+  "intro": "Digicity was founded in 2021 by Abdishakuur Mohamed Nuur to meet the growing demand for professional and reliable device repair services.",
+  "experience": "We provide fast, precise, and customer-focused repair services for phones, tablets, and laptops with years of hands-on experience.",
+  "quality": "We use only high-quality, tested spare parts and modern tools to ensure the best possible results.",
+  "valuesTitle": "Why choose Digicity?",
+  "values": {
+    "one": "Original and high-quality spare parts",
+    "two": "Experienced and certified technicians",
+    "three": "Transparent pricing and excellent customer service"
+  }
+},
+
 
   "iphoneCalculator": {
     "title": "Sell your iPhone",

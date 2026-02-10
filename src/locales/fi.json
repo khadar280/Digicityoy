@@ -231,21 +231,18 @@
 },
 
 
-
-  "about": {
-    "title": "Tietoa Digicitystä",
-    "p1": "Digicity perustettiin vuonna 2021 Abdishakuur Mohamed Nuurin toimesta, joka tunnisti selkeän tarpeen ammattimaisille puhelinhuoltopalveluille. Hänen intohimonsa korjaamiseen alkoi jo nuorena ja on kehittynyt korkealle ammatilliselle tasolle.",
-    "p2": "Digicity tarjoaa nopeita, tarkkoja ja luotettavia huoltopalveluita puhelimille, tableteille ja kannettaville. Käytämme laadukkaita varaosia ja nykyaikaisia työkaluja palauttaaksemme laitteesi mahdollisimman nopeasti.",
-    "p3": "Panostamme laatuun, läpinäkyvään hinnoitteluun ja asiakastyytyväisyyteen – tavoitteemme on tarjota ainutlaatuinen huoltokokemus.",
-    "list": {
-      "one": "Alkuperäiset varaosat",
-      "two": "Kokenut teknikkotiimi",
-      "three": "Ammattitaitoinen asiakastuki"
-    }
-    
+"about": {
+  "title": "Tietoa Digicitystä",
+  "intro": "Digicity perustettiin vuonna 2021 Abdishakuur Mohamed Nuurin toimesta vastaamaan kasvavaan tarpeeseen ammattimaisille ja luotettaville laitehuoltopalveluille.",
+  "experience": "Tarjoamme nopeita, tarkkoja ja asiakaslähtöisiä huoltopalveluita puhelimille, tableteille ja kannettaville usean vuoden kokemuksella.",
+  "quality": "Käytämme vain korkealaatuisia ja testattuja varaosia sekä moderneja työkaluja varmistaaksemme parhaan lopputuloksen.",
+  "valuesTitle": "Miksi valita Digicity?",
+  "values": {
+    "one": "Alkuperäiset ja laadukkaat varaosat",
+    "two": "Kokenut ja ammattitaitoinen teknikkotiimi",
+    "three": "Rehellinen hinnoittelu ja erinomainen asiakaspalvelu"
   }
-  ,
-
+},
 
     "iphoneCalculator": {
     "title": "Myy puhelimasi",
