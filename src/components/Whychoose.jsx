@@ -1,6 +1,3 @@
-
-
-
 import React from 'react';
 import './Whychoose.css';
 import { useTranslation } from 'react-i18next';
@@ -8,23 +5,11 @@ import { useTranslation } from 'react-i18next';
 const Whychoose = () => {
   const { t } = useTranslation();
 
-  const features = [
-    {
-      icon: '❓',
-      title: t('whychoose.why.title'),
-      description: t('whychoose.why.description'),
-    },
-    {
-      icon: '⚡',
-      title: t('whychoose.rapid.title'),
-      description: t('whychoose.rapid.description'),
-    },
-    {
-      icon: '✅',
-      title: t('whychoose.warranty.title'),
-      description: t('whychoose.warranty.description'),
-    },
-  ];
+  // Fetch the features from i18n JSON files
+  const features = t('whychoose.features', { returnObjects: true });
+
+  // Optional: Use custom icons for each feature
+  const icons = ['🔧', '⚡', '🛡️']; // Repair, Fast, Warranty
 
   return (
     <section className="why-choose">
@@ -32,7 +17,7 @@ const Whychoose = () => {
       <div className="features">
         {features.map((feature, index) => (
           <div key={index} className="feature">
-            <span className="feature-icon">{feature.icon}</span>
+            <span className="feature-icon">{icons[index] || '✅'}</span>
             <h3>{feature.title}</h3>
             <p>{feature.description}</p>
           </div>
