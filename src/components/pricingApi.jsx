@@ -5,15 +5,15 @@ export async function calculatePrice(formData) {
     const res = await fetch(`${API_URL}/calculate`, {
       method: "POST",                    // ✅ correct POST
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)     // ✅ sending JSON body
+      body: JSON.stringify(formData)     
     });
 
     if (!res.ok) throw new Error("Failed to fetch price");
 
-    const data = await res.json();       // ✅ parsing JSON response
-    return data.estimatedPrice;          // ✅ returning estimated price
+    const data = await res.json();      
+    return data.estimatedPrice;         
   } catch (err) {
-    console.error("Pricing API error:", err); // ✅ logs errors
+    console.error("Pricing API error:", err); 
     return null;
   }
 }
