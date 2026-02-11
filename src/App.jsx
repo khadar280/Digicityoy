@@ -7,7 +7,6 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import TrendingProducts from './components/TrendingProducts';
 import PlanningSection from './components/PlanningSection';
-import IphoneConditionCalculator from "./components/IphoneConditionCalculator";
 import Whychoose from './components/Whychoose';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
