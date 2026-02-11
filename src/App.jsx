@@ -3,11 +3,11 @@ import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './i18n';
 
-// Components
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import TrendingProducts from './components/TrendingProducts';
 import PlanningSection from './components/PlanningSection';
+import IphoneConditionCalculator from "./components/IphoneConditionCalculator";
 import Whychoose from './components/Whychoose';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
@@ -18,9 +18,7 @@ import AboutSection from './components/AboutSection';
 import ProfilePage from './components/ProfilePage';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
-import IphoneConditionCalculator from "./components/IphoneConditionCalculator";
 
-// Pages
 import IphoneRepairDetails from './pages/IphoneRepairDetails';
 import AndroidRepairDetails from './pages/AndroidRepairDetails';
 import TabletLaptopRepair from './pages/TabletLaptopRepair';
