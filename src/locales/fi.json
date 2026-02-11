@@ -102,6 +102,12 @@
   "errorMessage": "Jotain meni pieleen. Yritä uudelleen.",
   "closedWeekend": "Olemme suljettu lauantaisin ja sunnuntaisin."
 },
+ "cart": {
+    "title": "Ostoskori",
+    "empty": "Ostoskori on tyhjä",
+    "total": "Yhteensä",
+    "checkout": "Siirry kassalle"
+  },
 
 
   "about": {
