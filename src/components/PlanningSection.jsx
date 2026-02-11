@@ -13,7 +13,7 @@ const PlanningSection = () => {
   return (
     <section className="planning-section">
       <button className="see-more-btn" onClick={() => navigate('/booking')}>
-  {t("planning.bookPassportPhoto")}
+  {t("PassportPhoto")}
 </button>
 
       <div className="planning-image">
