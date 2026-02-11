@@ -196,10 +196,13 @@
   "generalError": "Something went wrong. Please try again."
 },
 
-  
-  "planning": {
-    "bookPassportPhoto": "Book for passport photo"
+ 
+
+  "planningSection": {
+    "buttonText": "Book for passport photo"
   }
+
+
 
 
 

@@ -82,11 +82,10 @@
       "three": "Läpinäkyvä hinnoittelu ja erinomainen asiakaspalvelu"
     }
   },
-  
-  "planning": {
-    "bookPassportPhoto": "Varaa passi-kuva"
-  },
 
+  "planningSection": {
+    "buttonText": "Varaa passikuva"
+  },
   "iphoneCalculator": {
     "title": "Myy puhelimesi",
     "modelLabel": "iPhone-malli",
