@@ -177,7 +177,29 @@
   "send": "Lähetä viesti",
   "thankYou": "Kiitos!",
   "response": "Viestisi on vastaanotettu. Otamme sinuun yhteyttä pian."
+},
+"checkout": {
+  "title": "Kassa",
+  "orderSummary": "Tilauksen yhteenveto",
+  "delivery": "Toimitus",
+  "total": "Yhteensä",
+  "billingInfo": "Laskutustiedot",
+  "fullName": "Koko nimi",
+  "email": "Sähköposti",
+  "phone": "Puhelinnumero",
+  "address": "Osoite",
+  "postCode": "Postinumero",
+  "city": "Kaupunki",
+  "country": "Maa",
+  "deliveryMethod": "Toimitustapa",
+  "standard": "Normaali",
+  "express": "Express",
+  "pickup": "Nouto (Ilmainen)",
+  "confirmPayment": "Vahvista maksu",
+  "paymentError": "Maksun aloitus epäonnistui",
+  "generalError": "Jotain meni pieleen. Yritä uudelleen."
 }
+
 
 }
 
