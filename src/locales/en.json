@@ -85,27 +85,21 @@
     "backToModels": "Back to Models"
   },
 
-  "booking": {
-    "title": "Book a Repair",
-    "subtitle": "Book your repair in a few easy steps",
-    "selectService": "Select Service",
-    "selectDevice": "Select Device",
-    "selectDate": "Select Date",
-    "selectTime": "Select Time",
-    "name": "Your Name",
-    "email": "Email Address",
-    "phone": "Phone Number",
-    "notes": "Additional Notes",
-    "submit": "Confirm Booking",
-    "success": "Your booking is confirmed!",
-    "error": "Failed to create booking",
-    "alertFillAll": "Please fill in all fields.",
-    "sending": "Sending...",
-    "confirm": "Confirm",
-    "close": "Close",
-    "unavailable": "(unavailable)",
-    "closedWeekend": "We are closed on Saturdays and Sundays."
-  },
+  "bookingForm": {
+  "book": "Book Service",
+  "name": "Your Name",
+  "phone": "Phone Number",
+  "email": "Email Address",
+  "selectTime": "Select Time",
+  "confirm": "Confirm Booking",
+  "close": "Close",
+  "sending": "Sending...",
+  "alertFillAll": "Please fill in all fields.",
+  "successMessage": "Your booking has been successfully submitted!",
+  "errorMessage": "Something went wrong. Please try again.",
+  "closedWeekend": "We are closed on Saturdays and Sundays."
+},
+
 
   "about": {
     "title": "About Digicity",

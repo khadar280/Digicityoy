@@ -85,27 +85,21 @@
     "backToModels": "Takaisin malleihin"
   },
 
-  "booking": {
-    "title": "Varaa korjaus",
-    "subtitle": "Varaa korjaus muutamassa helpossa vaiheessa",
-    "selectService": "Valitse palvelu",
-    "selectDevice": "Valitse laite",
-    "selectDate": "Valitse päivämäärä",
-    "selectTime": "Valitse aika",
-    "name": "Nimesi",
-    "email": "Sähköpostiosoite",
-    "phone": "Puhelinnumero",
-    "notes": "Lisätiedot",
-    "submit": "Vahvista varaus",
-    "success": "Varaus onnistui!",
-    "error": "Varausta ei voitu luoda",
-    "alertFillAll": "Täytä kaikki kentät.",
-    "sending": "Lähetetään...",
-    "confirm": "Vahvista",
-    "close": "Sulje",
-    "unavailable": "(ei saatavilla)",
-    "closedWeekend": "Olemme suljettu lauantaisin ja sunnuntaisin."
-  },
+  "bookingForm": {
+  "book": "Varaa palvelu",
+  "name": "Nimesi",
+  "phone": "Puhelinnumero",
+  "email": "Sähköpostiosoite",
+  "selectTime": "Valitse aika",
+  "confirm": "Vahvista varaus",
+  "close": "Sulje",
+  "sending": "Lähetetään...",
+  "alertFillAll": "Täytä kaikki kentät.",
+  "successMessage": "Varaus lähetetty onnistuneesti!",
+  "errorMessage": "Jotain meni pieleen. Yritä uudelleen.",
+  "closedWeekend": "Olemme suljettu lauantaisin ja sunnuntaisin."
+},
+
 
   "about": {
     "title": "Tietoa Digicitystä",
