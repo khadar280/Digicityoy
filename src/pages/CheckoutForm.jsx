@@ -93,7 +93,7 @@ const CheckoutPage = () => {
               <span>{item.price}</span>
             </div>
           ))}
-<h1>gggg</h1>          <hr />
+
           <p>
             {t('checkout.delivery')}:
             <strong> {deliveryFee.toFixed(2)} €</strong>
