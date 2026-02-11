@@ -98,8 +98,7 @@ const AppRoutes = () => {
 
         {/* ✅ iPhone Condition Calculator */}
         <Route
-          path="/iphone-condition-calculator"
-          element={<IphoneConditionCalculator />}
+         
         />
       </Routes>
 
