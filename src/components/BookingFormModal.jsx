@@ -15,7 +15,7 @@ const BookingFormModal = ({ service, onClose }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Warn if weekend
+   
     if (name === "date") {
       const dayOfWeek = new Date(value).getDay();
       if (dayOfWeek === 0 || dayOfWeek === 6) {
@@ -59,7 +59,7 @@ const BookingFormModal = ({ service, onClose }) => {
     e.preventDefault();
 
     if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
-      alert(t("bookingForm.alertFillAll"));
+      alert(t("bookingForm"));
       return;
     }
 

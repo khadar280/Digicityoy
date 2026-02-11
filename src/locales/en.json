@@ -173,6 +173,7 @@
   "thankYou": "Thank you!",
   "response": "Your message has been received. We will get back to you shortly."
 },
+
 "checkout": {
   "title": "Checkout",
   "orderSummary": "Order Summary",
@@ -193,7 +194,11 @@
   "confirmPayment": "Confirm Payment",
   "paymentError": "Failed to initiate payment session",
   "generalError": "Something went wrong. Please try again."
-}
+},
+
+  "planning": {
+    "bookPassportPhoto": "Book for passport photo"
+  }
 
 
 }

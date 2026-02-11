@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
 });
 
-// Hash password before saving
+/
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next(); // Only hash the password if it's been modified
   try {
@@ -16,7 +16,7 @@ userSchema.pre('save', async function (next) {
     this.password = await bcrypt.hash(this.password, salt);
     next();
   } catch (err) {
-    next(err); // Pass the error to the next middleware
+    next(err); 
   }
 });
 

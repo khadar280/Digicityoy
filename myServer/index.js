@@ -30,7 +30,7 @@ const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
 const SearchbarRoutes = require('./routes/Searchbar');
 const LaptopRoutes = require('./routes/Laptop');
-const BookingRoutes = require('./routes/booking'); // <- FIXED
+const BookingRoutes = require('./routes/booking');
 const calculateRoute = require("./routes/calculate");
 app.use('/api/contact', ContactRoutes);
 app.use('/api/order', OrderRoutes);

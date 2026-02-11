@@ -84,7 +84,10 @@
     "repairs": "Korjaukset",
     "backToModels": "Takaisin malleihin"
   },
-
+  
+  "planning": {
+    "bookPassportPhoto": "Varaa passi-kuva"
+  },
   "bookingForm": {
   "book": "Varaa palvelu",
   "name": "Nimesi",
