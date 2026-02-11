@@ -12,10 +12,11 @@ const PlanningSection = () => {
 
   return (
     <section className="planning-section">
-      <button className="see-more-btn" onClick={() => navigate('/booking')}>
-  {t("PassportPhoto")}
-</button>
-
+      <div className="planning-content">
+        <button className="see-more-btn" onClick={() => navigate('/booking')}>
+          {t("Book for passport photo")}
+        </button>
+      </div>
       <div className="planning-image">
         <img src={londonImg} alt="Passport" />
       </div>
