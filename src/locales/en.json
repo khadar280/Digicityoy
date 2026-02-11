@@ -196,17 +196,10 @@
   "generalError": "Something went wrong. Please try again."
 },
 
+  
   "planning": {
     "bookPassportPhoto": "Book for passport photo"
-  },
- 
-  "cart": {
-    "title": "Your Cart",
-    "empty": "Your cart is empty",
-    "total": "Total",
-    "checkout": "Proceed to Checkout"
   }
-
 
 
 

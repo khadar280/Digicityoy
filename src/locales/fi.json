@@ -1,13 +1,13 @@
 {
   "nav": {
-    "home": "Koti",
+    "home": "Etusivu",
     "services": "Palvelut",
     "shop": "Kauppa",
-    "booking": "Varaa",
+    "booking": "Varaa Aika",
     "contact": "Yhteystiedot",
     "about": "Meistä",
     "cart": "Ostoskori",
-    "search": "Haku...",
+    "search": "Hae...",
     "profile": "Profiili",
     "settings": "Asetukset",
     "logout": "Kirjaudu ulos",
@@ -20,143 +20,108 @@
     "email": "Sähköposti",
     "password": "Salasana",
     "name": "Nimi",
-    "loginSuccess": "Kirjautuminen onnistui!",
-    "signupSuccess": "Rekisteröityminen onnistui!",
-    "forgotPassword": "Unohditko salasanasi?",
-    "loginError": "Kirjautuminen epäonnistui",
-    "signupError": "Rekisteröityminen epäonnistui",
+    "loginSuccess": "✅ Kirjautuminen onnistui!",
+    "signupSuccess": " Rekisteröinti onnistui!",
+    "forgotPassword": "Unohtuiko salasana?",
+    "loginError": " Kirjautumisvirhe",
+    "signupError": " Rekisteröintivirhe",
     "error": "Tapahtui virhe",
-    "success": "Onnistui"
+    "success": "Toiminto onnistui"
   },
 
   "hero": {
-    "title": "Puhelin-, kannettava- ja tablettikorjaus",
-    "bookNow": "Varaa nyt",
-    "checkIphone": "Tarkista iPhone-arvo"
+    "title": "Puhelimen, läppärin ja tabletin huolto",
+    "bookNow": "Varaa aika",
+    "checkIphone": "Tarkista iPhonen arvo"
   },
 
   "services": {
     "title": "Palvelumme",
-    "intro": "Tarjoamme ammattimaisia korjauspalveluja puhelimille, tableteille ja kannettaville.",
+    "intro": "Tarjoamme asiantuntevia huoltopalveluita puhelimille, tableteille ja kannettaville.",
     "iphone": {
-      "title": "iPhone-korjaus",
-      "description": "Näytön korjaus, akun vaihto, vesivahinkojen korjaus ja enemmän kaikille iPhone-malleille.",
+      "title": "iPhonen korjaus",
+      "description": "Näytön korjaus, akun vaihto, vesivaurioiden korjaus ja paljon muuta kaikille iPhone-malleille.",
       "button": "Valitse puhelin"
     },
     "android": {
       "title": "Android-korjaus",
-      "description": "Korjaamme näytöt, ohjelmistot, akut ja komponentit useimmille Android-merkeille.",
+      "description": "Korjaamme näytöt, ohjelmistot, akut ja komponentit suurimmilta Android-merkeiltä.",
       "button": "Valitse puhelin"
     },
     "tablet": {
-      "title": "Tabletti- ja kannettavakorjaus",
-      "description": "Näytön ongelmat, ohjelmisto-ongelmat, akun vaihdot ja laitteiston korjaukset kaikille laitteille.",
+      "title": "Tabletti- ja läppärikorjaus",
+      "description": "Näyttöviat, ohjelmisto-ongelmat, akun vaihdot ja laitteistokorjaukset kaikille laitteille.",
       "button": "Ota yhteyttä"
     }
   },
 
-  "repair": {
-    "screenTitle": "Näytön vaihto",
-    "screenDesc": "Rikki tai haljennut näyttö? Vaihdamme sen korkealaatuiseen näyttöön.",
-    "batteryTitle": "Akun vaihto",
-    "batteryDesc": "Akku tyhjenee nopeasti tai ei lataudu? Vaihdamme sen uuteen.",
-    "backTitle": "Takakannen vaihto",
-    "backDesc": "Rikki takakansi? Korjaamme sen kuin uudeksi.",
-    "housing": "Kotelo vaihto",
-    "housingDesc": "Korvaa vahingoittunut kotelo kuin uudeksi.",
-    "backCamera": "Takakameran korjaus",
-    "backCameraDesc": "Korjaa takakameran toiminta ja laatu.",
-    "frontCamera": "Etukameran korjaus",
-    "frontCameraDesc": "Korjaa tai vaihda etukamera.",
-    "lens": "Linssin vaihto",
-    "lensDesc": "Korvaa naarmuuntunut tai rikkoutunut kameran linssi.",
-    "buttons": "Painikkeiden korjaus",
-    "buttonsDesc": "Korjaa rikkoutuneet tai toimimattomat painikkeet.",
-    "chargingPort": "Latausportin korjaus",
-    "chargingPortDesc": "Korjaa latausportin ongelmat.",
-    "warranty": "Takuu",
-    "time": "Korjausaika",
-    "bookBtn": "Varaa korjaus"
+  "booking": {
+    "title": "Varaa Aika",
+    "subtitle": "Varaa huolto muutamassa helpossa vaiheessa",
+    "selectService": "Valitse palvelu",
+    "selectDevice": "Valitse laite",
+    "selectDate": "Valitse päivä",
+    "selectTime": "Valitse aika",
+    "name": "Nimesi",
+    "email": "Sähköpostiosoite",
+    "phone": "Puhelinnumero",
+    "notes": "Lisätiedot",
+    "submit": "Vahvista varaus",
+    "success": "Varaus onnistui!",
+    "error": "Varauksen luonti epäonnistui"
   },
-
-  "iphone": {
-    "title": "iPhone-korjaus",
-    "repairs": "Korjaukset",
-    "backToModels": "Takaisin malleihin"
-  },
-  
-  "planning": {
-    "bookPassportPhoto": "Varaa passikuva"
-  },
-  "bookingForm": {
-  "book": "Varaa palvelu",
-  "name": "Nimesi",
-  "phone": "Puhelinnumero",
-  "email": "Sähköpostiosoite",
-  "selectTime": "Valitse aika",
-  "confirm": "Vahvista varaus",
-  "close": "Sulje",
-  "sending": "Lähetetään...",
-  "alertFillAll": "Täytä kaikki kentät.",
-  "successMessage": "Varaus lähetetty onnistuneesti!",
-  "errorMessage": "Jotain meni pieleen. Yritä uudelleen.",
-  "closedWeekend": "Olemme suljettu lauantaisin ja sunnuntaisin."
-},
- "cart": {
-    "title": "Ostoskori",
-    "empty": "Ostoskori on tyhjä",
-    "total": "Yhteensä",
-    "checkout": "Siirry kassalle"
-  },
-
 
   "about": {
     "title": "Tietoa Digicitystä",
-    "p1": "Digicity perustettiin vuonna 2021 Abdishakuur Mohamed Nuurin toimesta vastaamaan kasvavaan kysyntään ammattimaisista ja luotettavista laitekorjauspalveluista.",
-    "p2": "Tarjoamme nopeita, tarkkoja ja asiakaslähtöisiä korjauspalveluja puhelimille, tableteille ja kannettaville käyttäen korkealaatuisia varaosia ja moderneja työkaluja.",
-    "p3": "Asiakastyytyväisyys, läpinäkyvä hinnoittelu ja korkealaatuinen työnjälki ovat kaiken toimintamme perusta.",
+    "p1": "Digicity perustettiin vuonna 2021 Abdishakuur Mohamed Nuurin toimesta vastaamaan kasvavaan tarpeeseen ammattimaisille ja luotettaville laitehuoltopalveluille.",
+    "p2": "Tarjoamme nopeita, tarkkoja ja asiakaslähtöisiä huoltopalveluita puhelimille, tableteille ja kannettaville käyttäen laadukkaita varaosia ja moderneja työkaluja.",
+    "p3": "Asiakastyytyväisyys, läpinäkyvä hinnoittelu ja korkea laatu ovat toimintamme perusta.",
     "list": {
-      "one": "Alkuperäiset ja korkealaatuiset varaosat",
-      "two": "Kokeneet ja sertifioidut teknikot",
+      "one": "Alkuperäiset ja laadukkaat varaosat",
+      "two": "Kokenut ja sertifioitu teknikkotiimi",
       "three": "Läpinäkyvä hinnoittelu ja erinomainen asiakaspalvelu"
     }
   },
+  
+  "planning": {
+    "bookPassportPhoto": "Varaa passi-kuva"
+  },
 
   "iphoneCalculator": {
-    "title": "Myy iPhonesi",
+    "title": "Myy puhelimesi",
     "modelLabel": "iPhone-malli",
-    "issuesTitle": "Valitse kaikki soveltuvat ongelmat",
-    "getPrice": "Hanki hinta",
+    "issuesTitle": "Valitse kaikki viat, jotka koskevat laitetta",
+    "getPrice": "Laske hinta",
     "estimatedPrice": "Arvioitu arvo",
     "currency": "€",
     "issues": {
-      "screenCracked": "Rikki näyttö",
-      "screenScratches": "Näytön naarmut",
-      "backGlass": "Rikki takalasi",
-      "bodyHeavy": "Vakavia vaurioita",
-      "bodyLight": "Kevyitä naarmuja",
+      "screenCracked": "Näyttö rikki",
+      "screenScratches": "Naarmuja näytössä",
+      "backGlass": "Takalasi rikki",
+      "bodyHeavy": "Vakavia runkovaurioita",
+      "bodyLight": "Pieniä naarmuja rungossa",
       "battery80": "Akun kunto 80–89%",
       "batteryLow": "Akun kunto alle 80%",
       "cameraIssue": "Kamera ei toimi",
       "faceIdIssue": "Face ID ei toimi",
       "cameraRepair": "Kameran korjaus",
       "lensReplacement": "Linssin vaihto",
-      "housingReplacement": "Kotelo vaihto"
+      "housingReplacement": "Rungon vaihto"
     }
   },
 
   "trending": {
-    "Phone Covers": "Puhelinkuoret",
+    "Phone Covers": "Puhelimen kuoret",
     "Other accessories": "Muut tarvikkeet",
     "Chargers": "Laturit",
-    "Screen Protectors": "Näytön suojat",
+    "Screen Protectors": "Näytönsuojat",
     "price": "Hinta",
     "add": "Lisää",
-    "view": "Näytä",
+    "view": "Katso",
     "add_to_cart": "Lisää ostoskoriin",
     "back": "Takaisin",
     "close": "Sulje",
-    "no_products_found": "Tuotteita ei löytynyt"
+    "no_products_found": "Ei tuotteita löytynyt"
   },
 
   "search_results_for": "Hakutulokset haulle",
@@ -171,38 +136,5 @@
     "address": "Osoite",
     "followUs": "Seuraa meitä",
     "rights": "Kaikki oikeudet pidätetään."
-  },"contact": {
-  "title": "Ota yhteyttä",
-  "subtitle": "Haluamme kuulla sinusta. Lähetä meille viesti alla.",
-  "name": "Nimesi",
-  "email": "Sähköpostiosoite",
-  "message": "Viestisi",
-  "send": "Lähetä viesti",
-  "thankYou": "Kiitos!",
-  "response": "Viestisi on vastaanotettu. Otamme sinuun yhteyttä pian."
-},
-"checkout": {
-  "title": "Kassa",
-  "orderSummary": "Tilauksen yhteenveto",
-  "delivery": "Toimitus",
-  "total": "Yhteensä",
-  "billingInfo": "Laskutustiedot",
-  "fullName": "Koko nimi",
-  "email": "Sähköposti",
-  "phone": "Puhelinnumero",
-  "address": "Osoite",
-  "postCode": "Postinumero",
-  "city": "Kaupunki",
-  "country": "Maa",
-  "deliveryMethod": "Toimitustapa",
-  "standard": "Normaali",
-  "express": "Express",
-  "pickup": "Nouto (Ilmainen)",
-  "confirmPayment": "Vahvista maksu",
-  "paymentError": "Maksun aloitus epäonnistui",
-  "generalError": "Jotain meni pieleen. Yritä uudelleen."
+  }
 }
-
-
-}
-
