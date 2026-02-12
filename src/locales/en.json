@@ -86,20 +86,19 @@
   },
 
   "bookingForm": {
-  "book": "Book Service",
-  "name": "Your Name",
-  "phone": "Phone Number",
-  "email": "Email Address",
-  "selectTime": "Select Time",
-  "confirm": "Confirm Booking",
-  "close": "Close",
-  "sending": "Sending...",
-  "alertFillAll": "Please fill in all fields.",
-  "successMessage": "Your booking has been successfully submitted!",
-  "errorMessage": "Something went wrong. Please try again.",
-  "closedWeekend": "We are closed on Saturdays and Sundays."
-},
-
+    "book": "Book Service",
+    "name": "Your Name",
+    "phone": "Phone Number",
+    "email": "Email Address",
+    "selectTime": "Select Time",
+    "confirm": "Confirm Booking",
+    "close": "Close",
+    "sending": "Sending...",
+    "alertFillAll": "Please fill in all fields.",
+    "successMessage": "Your booking has been successfully submitted!",
+    "errorMessage": "Something went wrong. Please try again.",
+    "closedWeekend": "We are closed on Saturdays and Sundays."
+  },
 
   "about": {
     "title": "About Digicity",
@@ -114,11 +113,16 @@
   },
 
   "iphoneCalculator": {
-    "title": "Sell your iPhone",
-    "modelLabel": "iPhone model",
+    "title": "iPhone Price Calculator",
+    "transactionType": "I want to",
+    "sell": "Sell my iPhone",
+    "buy": "Buy an iPhone",
+    "modelLabel": "Select iPhone model",
     "issuesTitle": "Select all issues that apply",
     "getPrice": "Get price",
     "estimatedPrice": "Estimated value",
+    "estimatedSellPrice": "Estimated sell price",
+    "buyPrice": "Buy price",
     "currency": "€",
     "issues": {
       "screenCracked": "Screen cracked",
@@ -163,47 +167,41 @@
     "followUs": "Follow Us",
     "rights": "All rights reserved."
   },
+
   "contact": {
-  "title": "Contact Us",
-  "subtitle": "We would love to hear from you. Send us a message below.",
-  "name": "Your Name",
-  "email": "Email Address",
-  "message": "Your Message",
-  "send": "Send Message",
-  "thankYou": "Thank you!",
-  "response": "Your message has been received. We will get back to you shortly."
-},
+    "title": "Contact Us",
+    "subtitle": "We would love to hear from you. Send us a message below.",
+    "name": "Your Name",
+    "email": "Email Address",
+    "message": "Your Message",
+    "send": "Send Message",
+    "thankYou": "Thank you!",
+    "response": "Your message has been received. We will get back to you shortly."
+  },
 
-"checkout": {
-  "title": "Checkout",
-  "orderSummary": "Order Summary",
-  "delivery": "Delivery",
-  "total": "Total",
-  "billingInfo": "Billing Information",
-  "fullName": "Full Name",
-  "email": "Email",
-  "phone": "Phone Number",
-  "address": "Address",
-  "postCode": "Post Code",
-  "city": "City",
-  "country": "Country",
-  "deliveryMethod": "Delivery Method",
-  "standard": "Standard",
-  "express": "Express",
-  "pickup": "Pickup (Free)",
-  "confirmPayment": "Confirm Payment",
-  "paymentError": "Failed to initiate payment session",
-  "generalError": "Something went wrong. Please try again."
-},
-
- 
+  "checkout": {
+    "title": "Checkout",
+    "orderSummary": "Order Summary",
+    "delivery": "Delivery",
+    "total": "Total",
+    "billingInfo": "Billing Information",
+    "fullName": "Full Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "address": "Address",
+    "postCode": "Post Code",
+    "city": "City",
+    "country": "Country",
+    "deliveryMethod": "Delivery Method",
+    "standard": "Standard",
+    "express": "Express",
+    "pickup": "Pickup (Free)",
+    "confirmPayment": "Confirm Payment",
+    "paymentError": "Failed to initiate payment session",
+    "generalError": "Something went wrong. Please try again."
+  },
 
   "planningSection": {
     "buttonText": "Book for passport photo"
   }
-
-
-
-
-
 }

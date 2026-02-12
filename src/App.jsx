@@ -7,6 +7,8 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import TrendingProducts from './components/TrendingProducts';
 import PlanningSection from './components/PlanningSection';
+import IphoneConditionCalculator from './IphoneConditionCalculator';
+
 import Whychoose from './components/Whychoose';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
@@ -98,7 +100,8 @@ const AppRoutes = () => {
 
         {/* ✅ iPhone Condition Calculator */}
         <Route
-         
+         path="/iphone-condition-calculator" 
+    element={<IphoneConditionCalculator />}
         />
       </Routes>
 

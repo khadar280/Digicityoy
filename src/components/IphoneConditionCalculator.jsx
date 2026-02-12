@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./IphoneConditionCalculator.css";
 
-
 const IPHONE_MODELS = [
   { label: "iPhone 17 Pro Max", value: "iphone17_pro_max" },
   { label: "iPhone 17 Pro", value: "iphone17_pro" },
@@ -39,7 +38,6 @@ const IPHONE_MODELS = [
   { label: "iPhone 11", value: "iphone11" }
 ];
 
-
 const BASE_PRICES = {
   iphone11: 250,
   iphone11_pro: 320,
@@ -64,7 +62,7 @@ const BASE_PRICES = {
   iphone16_plus: 790,
   iphone16_pro: 880,
   iphone16_pro_max: 950,
-  iphone17: 850,
+  iphone17: 600,
   iphone17_plus: 890,
   iphone17_pro: 980,
   iphone17_pro_max: 1050
@@ -84,33 +82,67 @@ const ISSUES = [
 
 export default function IphoneConditionCalculator() {
   const { t } = useTranslation();
+
+  const [transactionType, setTransactionType] = useState("sell");
   const [model, setModel] = useState("iphone13");
   const [issues, setIssues] = useState([]);
   const [price, setPrice] = useState(null);
 
-  const toggleIssue = val => {
-    setIssues(prev =>
-      prev.includes(val) ? prev.filter(i => i !== val) : [...prev, val]
+  const toggleIssue = (val) => {
+    setIssues((prev) =>
+      prev.includes(val)
+        ? prev.filter((i) => i !== val)
+        : [...prev, val]
     );
   };
 
   const calculateFinalPrice = () => {
-    let total = BASE_PRICES[model];
-    issues.forEach(val => {
-      const issue = ISSUES.find(i => i.value === val);
-      if (issue) total -= issue.deduct;
-    });
-    setPrice(Math.max(total, 0));
+    let base = BASE_PRICES[model];
+
+    if (transactionType === "sell") {
+      issues.forEach((val) => {
+        const issue = ISSUES.find((i) => i.value === val);
+        if (issue) base -= issue.deduct;
+      });
+      setPrice(Math.max(base, 0));
+    } else {
+      // 20% markup when selling to customer
+      const sellingPrice = Math.round(base * 1.2);
+      setPrice(sellingPrice);
+    }
   };
 
   return (
     <div className="calculator">
       <h1>{t("iphoneCalculator.title")}</h1>
 
+      {/* BUY / SELL OPTION */}
+      <div className="field">
+        <label>{t("iphoneCalculator.transactionType")}</label>
+        <select
+          value={transactionType}
+          onChange={(e) => {
+            setTransactionType(e.target.value);
+            setIssues([]);
+            setPrice(null);
+          }}
+        >
+          <option value="sell">{t("iphoneCalculator.sell")}</option>
+          <option value="buy">{t("iphoneCalculator.buy")}</option>
+        </select>
+      </div>
+
+      {/* MODEL SELECTION */}
       <div className="field">
         <label>{t("iphoneCalculator.modelLabel")}</label>
-        <select value={model} onChange={e => setModel(e.target.value)}>
-          {IPHONE_MODELS.map(m => (
+        <select
+          value={model}
+          onChange={(e) => {
+            setModel(e.target.value);
+            setPrice(null);
+          }}
+        >
+          {IPHONE_MODELS.map((m) => (
             <option key={m.value} value={m.value}>
               {m.label}
             </option>
@@ -118,31 +150,38 @@ export default function IphoneConditionCalculator() {
         </select>
       </div>
 
-      <div className="issues">
-        <label>{t("iphoneCalculator.issuesTitle")}</label>
+      {/* ISSUES (ONLY FOR SELL MODE) */}
+      {transactionType === "sell" && (
+        <div className="issues">
+          <label>{t("iphoneCalculator.issuesTitle")}</label>
 
-        {ISSUES.map(issue => (
-          <div key={issue.value} className="checkbox">
-            <input
-              type="checkbox"
-              checked={issues.includes(issue.value)}
-              onChange={() => toggleIssue(issue.value)}
-            />
-            <span>
-              {t(`iphoneCalculator.issues.${issue.key}`)} (-${issue.deduct})
-            </span>
-          </div>
-        ))}
-      </div>
+          {ISSUES.map((issue) => (
+            <div key={issue.value} className="checkbox">
+              <input
+                type="checkbox"
+                checked={issues.includes(issue.value)}
+                onChange={() => toggleIssue(issue.value)}
+              />
+              <span>
+                {t(`iphoneCalculator.issues.${issue.key}`)} (-{issue.deduct})
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
 
+      {/* CALCULATE BUTTON */}
       <button className="price-btn" onClick={calculateFinalPrice}>
         {t("iphoneCalculator.getPrice")}
       </button>
 
+      {/* RESULT */}
       {price !== null && (
         <div className="price">
-          {t("iphoneCalculator.estimatedPrice")}:{" "}
-          {t("iphoneCalculator.currency")}
+          {transactionType === "sell"
+            ? t("iphoneCalculator.estimatedSellPrice")
+            : t("iphoneCalculator.buyPrice")}
+          : {t("iphoneCalculator.currency")}
           {price}
         </div>
       )}
