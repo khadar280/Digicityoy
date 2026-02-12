@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import TrendingProducts from './components/TrendingProducts';
 import PlanningSection from './components/PlanningSection';
-import IphoneConditionCalculator from './IphoneConditionCalculator';
+import IphoneConditionCalculator from './components/IphoneConditionCalculator';
 
 import Whychoose from './components/Whychoose';
 import Footer from './components/Footer';
@@ -30,15 +30,12 @@ import PaymentForm from './pages/PaymentForm';
 import CartPage from './pages/CartPage';
 import SearchResults from './pages/SearchResults';
 
-// Contexts
 import { CartProvider } from './components/CartContext';
 import { UserProvider } from './context/UserContext';
 
-// Others
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Paths where footer should be hidden
 const hideFooterPaths = [
   '/checkout',
   '/payment-success/stripe',
@@ -55,7 +52,6 @@ const AppRoutes = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Set the document title on route change
     document.title = "Digicity";
   }, [location]);
 
@@ -65,7 +61,6 @@ const AppRoutes = () => {
       <Navbar />
 
       <Routes>
-        {/* Home */}
         <Route
           path="/"
           element={
@@ -78,7 +73,6 @@ const AppRoutes = () => {
           }
         />
 
-        {/* Pages */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/destination" element={<TrendingProducts />} />
         <Route path="/auth" element={<Auth />} />
@@ -97,15 +91,9 @@ const AppRoutes = () => {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
-
-        {/* ✅ iPhone Condition Calculator */}
-        <Route
-         path="/iphone-condition-calculator" 
-    element={<IphoneConditionCalculator />}
-        />
+        <Route path="/iphone-condition-calculator" element={<IphoneConditionCalculator />} />
       </Routes>
 
-      {/* Show Footer only if not in hideFooterPaths */}
       {!hideFooterPaths.includes(location.pathname) && <Footer />}
     </div>
   );
