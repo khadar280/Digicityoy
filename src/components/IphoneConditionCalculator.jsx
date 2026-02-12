@@ -1,3 +1,4 @@
+// src/components/IphoneConditionCalculator.js
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./IphoneConditionCalculator.css";
@@ -51,7 +52,7 @@ export default function IphoneConditionCalculator() {
   const calculatePrice = () => {
     let total = BASE_PRICES[model];
 
-    // Add storage increment
+    // Storage increment
     if (storage > 128) total += (storage - 128) * 2;
 
     // Battery deduction
@@ -74,12 +75,10 @@ export default function IphoneConditionCalculator() {
 
   return (
     <div className="calculator">
-      <h1>{t("iphoneCalculator.title")}</h1>
+      <h2>{t("iphoneCalculator.title", "iPhone Price Calculator")}</h2>
 
-      {/* Step 1: Model */}
       {step === 1 && (
         <div className="step">
-          <h3>{t("iphoneCalculator.modelStep", "Step 1: Select your iPhone model")}</h3>
           <select
             value={model}
             onChange={(e) => {
@@ -93,77 +92,64 @@ export default function IphoneConditionCalculator() {
               <option key={m.value} value={m.value}>{m.label}</option>
             ))}
           </select>
-          <button onClick={nextStep}>{t("continue", "Continue")}</button>
+          <button onClick={nextStep}>Continue</button>
         </div>
       )}
 
-      {/* Step 2: Storage */}
       {step === 2 && (
         <div className="step">
-          <h3>{t("iphoneCalculator.storageStep", "Step 2: Select Storage")}</h3>
           <select value={storage} onChange={(e) => setStorage(parseInt(e.target.value))}>
             {currentModelObj.storage.map((s) => (
               <option key={s} value={s}>{s} GB</option>
             ))}
           </select>
-          <button onClick={nextStep}>{t("continue", "Continue")}</button>
+          <button onClick={nextStep}>Continue</button>
         </div>
       )}
 
-      {/* Step 3: Battery */}
       {step === 3 && (
         <div className="step">
-          <h3>{t("iphoneCalculator.batteryStep", "Step 3: Battery condition")}</h3>
-          <p>{t("iphoneCalculator.batteryInfo", "Check battery max capacity: Settings → Battery → Battery Health")}</p>
-          {!cannotCheckBattery && (
-            <input type="number" placeholder="%" value={battery} onChange={(e) => setBattery(e.target.value)} />
-          )}
+          <input type="number" placeholder="Battery %" value={battery} onChange={(e) => setBattery(e.target.value)} />
           <label>
             <input type="checkbox" checked={cannotCheckBattery} onChange={() => setCannotCheckBattery(!cannotCheckBattery)} />
-            {t("iphoneCalculator.cannotCheckBattery", "I cannot check")}
+            I cannot check
           </label>
-          <button onClick={nextStep}>{t("continue", "Continue")}</button>
+          <button onClick={nextStep}>Continue</button>
         </div>
       )}
 
-      {/* Step 4: Screen */}
       {step === 4 && (
         <div className="step">
-          <h3>{t("iphoneCalculator.screenStep", "Step 4: Screen condition")}</h3>
           <label>
             <input type="checkbox" checked={screenCracked} onChange={() => setScreenCracked(!screenCracked)} />
-            {t("iphoneCalculator.screenCracked", "Screen cracked")}
+            Screen cracked
           </label>
           <label>
             <input type="checkbox" checked={screenScratches} onChange={() => setScreenScratches(!screenScratches)} />
-            {t("iphoneCalculator.screenScratches", "Screen scratches")}
+            Screen scratches
           </label>
-          <button onClick={nextStep}>{t("continue", "Continue")}</button>
+          <button onClick={nextStep}>Continue</button>
         </div>
       )}
 
-      {/* Step 5: Camera & Face ID */}
       {step === 5 && (
         <div className="step">
-          <h3>{t("iphoneCalculator.cameraStep", "Step 5: Camera & Face ID")}</h3>
           <label>
             <input type="checkbox" checked={!cameraOk} onChange={() => setCameraOk(!cameraOk)} />
-            {t("iphoneCalculator.cameraIssue", "Camera not working")}
+            Camera not working
           </label>
           <label>
             <input type="checkbox" checked={!faceIdOk} onChange={() => setFaceIdOk(!faceIdOk)} />
-            {t("iphoneCalculator.faceIdIssue", "Face ID not working")}
+            Face ID not working
           </label>
-          <button onClick={calculatePrice}>{t("iphoneCalculator.getPrice", "Get Price")}</button>
+          <button onClick={calculatePrice}>Get Price</button>
         </div>
       )}
 
-      {/* Step 6: Result */}
       {step === 6 && price !== null && (
         <div className="step result">
-          <h3>{t("iphoneCalculator.estimatedPrice", "Estimated Price")}</h3>
-          <p>{price} €</p>
-          <button onClick={() => setStep(1)}>{t("startOver", "Start Over")}</button>
+          <p>Estimated Price: {price} €</p>
+          <button onClick={() => setStep(1)}>Start Over</button>
         </div>
       )}
     </div>
