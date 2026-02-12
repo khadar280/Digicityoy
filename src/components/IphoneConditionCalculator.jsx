@@ -52,10 +52,8 @@ export default function IphoneConditionCalculator() {
   const calculatePrice = () => {
     let total = BASE_PRICES[model];
 
-    // Storage increment
     if (storage > 128) total += (storage - 128) * 2;
 
-    // Battery deduction
     if (!cannotCheckBattery && battery) {
       const batteryNum = parseInt(battery);
       if (batteryNum >= 80 && batteryNum <= 89) total -= 50;
@@ -75,10 +73,12 @@ export default function IphoneConditionCalculator() {
 
   return (
     <div className="calculator">
-      <h2>{t("My iphone")}</h2>
+      <h2>{t("iphoneCalculator.title")}</h2>
 
+      {/* Step 1: Select model */}
       {step === 1 && (
         <div className="step">
+          <label>{t("iphoneCalculator.modelLabel")}</label>
           <select
             value={model}
             onChange={(e) => {
@@ -92,64 +92,82 @@ export default function IphoneConditionCalculator() {
               <option key={m.value} value={m.value}>{m.label}</option>
             ))}
           </select>
-          <button onClick={nextStep}>Continue</button>
+          <button className="see-more-btn" onClick={nextStep}>{t("continue", "Continue")}</button>
         </div>
       )}
 
+      {/* Step 2: Storage */}
       {step === 2 && (
         <div className="step">
+          <label>{t("iphoneCalculator.storageStep", "Select Storage")}</label>
           <select value={storage} onChange={(e) => setStorage(parseInt(e.target.value))}>
             {currentModelObj.storage.map((s) => (
               <option key={s} value={s}>{s} GB</option>
             ))}
           </select>
-          <button onClick={nextStep}>Continue</button>
+          <button className="see-more-btn" onClick={nextStep}>{t("continue", "Continue")}</button>
         </div>
       )}
 
+      {/* Step 3: Battery */}
       {step === 3 && (
         <div className="step">
-          <input type="number" placeholder="Battery %" value={battery} onChange={(e) => setBattery(e.target.value)} />
+          <label>{t("iphoneCalculator.batteryStep", "Battery condition")}</label>
+          {!cannotCheckBattery && (
+            <input
+              type="number"
+              placeholder="%"
+              value={battery}
+              onChange={(e) => setBattery(e.target.value)}
+            />
+          )}
           <label>
-            <input type="checkbox" checked={cannotCheckBattery} onChange={() => setCannotCheckBattery(!cannotCheckBattery)} />
-            I cannot check
+            <input
+              type="checkbox"
+              checked={cannotCheckBattery}
+              onChange={() => setCannotCheckBattery(!cannotCheckBattery)}
+            />
+            {t("iphoneCalculator.cannotCheckBattery", "I cannot check")}
           </label>
-          <button onClick={nextStep}>Continue</button>
+          <button className="see-more-btn" onClick={nextStep}>{t("continue", "Continue")}</button>
         </div>
       )}
 
+      {/* Step 4: Screen */}
       {step === 4 && (
         <div className="step">
           <label>
             <input type="checkbox" checked={screenCracked} onChange={() => setScreenCracked(!screenCracked)} />
-            Screen cracked
+            {t("iphoneCalculator.issues.screenCracked")}
           </label>
           <label>
             <input type="checkbox" checked={screenScratches} onChange={() => setScreenScratches(!screenScratches)} />
-            Screen scratches
+            {t("iphoneCalculator.issues.screenScratches")}
           </label>
-          <button onClick={nextStep}>Continue</button>
+          <button className="see-more-btn" onClick={nextStep}>{t("continue", "Continue")}</button>
         </div>
       )}
 
+      {/* Step 5: Camera & Face ID */}
       {step === 5 && (
         <div className="step">
           <label>
             <input type="checkbox" checked={!cameraOk} onChange={() => setCameraOk(!cameraOk)} />
-            Camera not working
+            {t("iphoneCalculator.issues.cameraIssue")}
           </label>
           <label>
             <input type="checkbox" checked={!faceIdOk} onChange={() => setFaceIdOk(!faceIdOk)} />
-            Face ID not working
+            {t("iphoneCalculator.issues.faceIdIssue")}
           </label>
-          <button onClick={calculatePrice}>Get Price</button>
+          <button className="see-more-btn" onClick={calculatePrice}>{t("iphoneCalculator.getPrice")}</button>
         </div>
       )}
 
+      {/* Step 6: Result */}
       {step === 6 && price !== null && (
         <div className="step result">
-          <p>Estimated Price: {price} €</p>
-          <button onClick={() => setStep(1)}>Start Over</button>
+          <p>{t("iphoneCalculator.estimatedPrice")}: {price} {t("iphoneCalculator.currency")}</p>
+          <button className="see-more-btn" onClick={() => setStep(1)}>{t("startOver", "Start Over")}</button>
         </div>
       )}
     </div>
