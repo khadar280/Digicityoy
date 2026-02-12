@@ -4,39 +4,75 @@ import { useTranslation } from "react-i18next";
 import "./IphoneConditionCalculator.css";
 
 const IPHONE_MODELS = [
+  // iPhone 17
   { label: "iPhone 17 Pro Max", value: "iphone17_pro_max", storage: [128, 256, 512, 1024] },
   { label: "iPhone 17 Pro", value: "iphone17_pro", storage: [128, 256, 512] },
   { label: "iPhone 17 Plus", value: "iphone17_plus", storage: [128, 256, 512] },
   { label: "iPhone 17", value: "iphone17", storage: [128, 256] },
+  // iPhone 16
   { label: "iPhone 16 Pro Max", value: "iphone16_pro_max", storage: [128, 256, 512] },
   { label: "iPhone 16 Pro", value: "iphone16_pro", storage: [128, 256, 512] },
   { label: "iPhone 16 Plus", value: "iphone16_plus", storage: [128, 256] },
   { label: "iPhone 16", value: "iphone16", storage: [128, 256] },
+  // iPhone 15
   { label: "iPhone 15 Pro Max", value: "iphone15_pro_max", storage: [128, 256, 512] },
   { label: "iPhone 15 Pro", value: "iphone15_pro", storage: [128, 256, 512] },
   { label: "iPhone 15 Plus", value: "iphone15_plus", storage: [128, 256] },
-  { label: "iPhone 15", value: "iphone15", storage: [128, 256] }
+  { label: "iPhone 15", value: "iphone15", storage: [128, 256] },
+  // iPhone 14
+  { label: "iPhone 14 Pro Max", value: "iphone14_pro_max", storage: [128, 256, 512] },
+  { label: "iPhone 14 Pro", value: "iphone14_pro", storage: [128, 256, 512] },
+  { label: "iPhone 14 Plus", value: "iphone14_plus", storage: [128, 256] },
+  { label: "iPhone 14", value: "iphone14", storage: [128, 256] },
+  // iPhone 13
+  { label: "iPhone 13 Pro Max", value: "iphone13_pro_max", storage: [128, 256, 512] },
+  { label: "iPhone 13 Pro", value: "iphone13_pro", storage: [128, 256, 512] },
+  { label: "iPhone 13 Mini", value: "iphone13_mini", storage: [128, 256] },
+  { label: "iPhone 13", value: "iphone13", storage: [128, 256] },
+  // iPhone 12
+  { label: "iPhone 12 Pro Max", value: "iphone12_pro_max", storage: [128, 256, 512] },
+  { label: "iPhone 12 Pro", value: "iphone12_pro", storage: [128, 256, 512] },
+  { label: "iPhone 12 Mini", value: "iphone12_mini", storage: [128, 256] },
+  { label: "iPhone 12", value: "iphone12", storage: [128, 256] },
+  // iPhone 11
+  { label: "iPhone 11 Pro Max", value: "iphone11_pro_max", storage: [64, 256, 512] },
+  { label: "iPhone 11 Pro", value: "iphone11_pro", storage: [64, 256, 512] },
+  { label: "iPhone 11", value: "iphone11", storage: [64, 128, 256] }
 ];
 
 const BASE_PRICES = {
-  iphone15: 650,
-  iphone15_plus: 690,
-  iphone15_pro: 780,
-  iphone15_pro_max: 850,
-  iphone16: 750,
-  iphone16_plus: 790,
-  iphone16_pro: 880,
-  iphone16_pro_max: 950,
-  iphone17: 600,
-  iphone17_plus: 890,
+  iphone17_pro_max: 1050,
   iphone17_pro: 980,
-  iphone17_pro_max: 1050
+  iphone17_plus: 890,
+  iphone17: 600,
+  iphone16_pro_max: 950,
+  iphone16_pro: 880,
+  iphone16_plus: 790,
+  iphone16: 750,
+  iphone15_pro_max: 850,
+  iphone15_pro: 780,
+  iphone15_plus: 690,
+  iphone15: 650,
+  iphone14_pro_max: 800,
+  iphone14_pro: 750,
+  iphone14_plus: 700,
+  iphone14: 650,
+  iphone13_pro_max: 750,
+  iphone13_pro: 700,
+  iphone13_mini: 650,
+  iphone13: 600,
+  iphone12_pro_max: 700,
+  iphone12_pro: 650,
+  iphone12_mini: 600,
+  iphone12: 550,
+  iphone11_pro_max: 600,
+  iphone11_pro: 550,
+  iphone11: 500
 };
 
 export default function IphoneConditionCalculator() {
   const { t } = useTranslation();
   const [step, setStep] = useState(1);
-
   const [model, setModel] = useState("iphone15");
   const [storage, setStorage] = useState(IPHONE_MODELS[0].storage[0]);
   const [battery, setBattery] = useState("");
@@ -45,10 +81,7 @@ export default function IphoneConditionCalculator() {
   const [price, setPrice] = useState(null);
 
   const nextStep = () => setStep(step + 1);
-
   const currentModelObj = IPHONE_MODELS.find((m) => m.value === model);
-
-  const getSelectedIssues = () => selectedIssues;
 
   const handleIssueChange = (e) => {
     const options = Array.from(e.target.selectedOptions, option => option.value);
@@ -58,17 +91,14 @@ export default function IphoneConditionCalculator() {
   const calculatePrice = () => {
     let total = BASE_PRICES[model];
 
-    // Storage increment
     if (storage > 128) total += (storage - 128) * 2;
 
-    // Battery deduction
     if (!cannotCheckBattery && battery) {
       const batteryNum = parseInt(battery);
       if (batteryNum >= 80 && batteryNum <= 89) total -= 50;
       if (batteryNum < 80) total -= 100;
     }
 
-    // Issue deductions
     selectedIssues.forEach(issue => {
       switch(issue) {
         case "screenCracked": total -= 120; break;
@@ -90,7 +120,6 @@ export default function IphoneConditionCalculator() {
     <div className="calculator">
       <h2>{t("iphoneCalculator.title")}</h2>
 
-      {/* Step 1: Select model */}
       {step === 1 && (
         <div className="step">
           <label>{t("iphoneCalculator.modelLabel")}</label>
@@ -111,7 +140,6 @@ export default function IphoneConditionCalculator() {
         </div>
       )}
 
-      {/* Step 2: Storage */}
       {step === 2 && (
         <div className="step">
           <label>{t("iphoneCalculator.storageStep", "Select Storage")}</label>
@@ -124,7 +152,6 @@ export default function IphoneConditionCalculator() {
         </div>
       )}
 
-      {/* Step 3: Battery */}
       {step === 3 && (
         <div className="step">
           <label>{t("iphoneCalculator.batteryStep", "Battery condition")}</label>
@@ -148,13 +175,12 @@ export default function IphoneConditionCalculator() {
         </div>
       )}
 
-      {/* Step 4: Issues dropdown */}
       {step === 4 && (
         <div className="step">
           <label>{t("iphoneCalculator.issuesTitle")}</label>
           <select
             multiple
-            value={getSelectedIssues()}
+            value={selectedIssues}
             onChange={handleIssueChange}
             style={{ width: "100%", minHeight: "150px" }}
           >
@@ -170,7 +196,6 @@ export default function IphoneConditionCalculator() {
         </div>
       )}
 
-      {/* Step 5: Result */}
       {step === 5 && price !== null && (
         <div className="step result">
           <p>{t("iphoneCalculator.estimatedPrice")}: {price} {t("iphoneCalculator.currency")}</p>

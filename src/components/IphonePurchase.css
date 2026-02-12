@@ -1,0 +1,52 @@
+.purchase {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #fefefe;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.purchase h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.purchase-details {
+  margin-bottom: 25px;
+}
+
+.purchase-details p {
+  font-size: 16px;
+  margin: 8px 0;
+  color: #555;
+}
+
+.buy-btn, .back-btn {
+  padding: 12px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: transform 0.2s, filter 0.3s;
+}
+
+.buy-btn {
+  background: linear-gradient(to right, #4caf50, #087f23);
+  color: white;
+}
+
+.back-btn {
+  background: linear-gradient(to right, #b0d8f1, #0d87a5);
+  color: #090909;
+}
+
+.buy-btn:hover, .back-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px) scale(1.02);
+}
