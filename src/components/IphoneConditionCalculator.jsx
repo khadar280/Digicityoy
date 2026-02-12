@@ -45,6 +45,9 @@ export default function IphoneConditionCalculator() {
   const [screenScratches, setScreenScratches] = useState(false);
   const [cameraOk, setCameraOk] = useState(true);
   const [faceIdOk, setFaceIdOk] = useState(true);
+  const [speakerOk, setSpeakerOk] = useState(true);
+  const [cornerOk, setCornerOk] = useState(true);
+  const [backOk, setBackOk] = useState(true);
   const [price, setPrice] = useState(null);
 
   const nextStep = () => setStep(step + 1);
@@ -52,18 +55,24 @@ export default function IphoneConditionCalculator() {
   const calculatePrice = () => {
     let total = BASE_PRICES[model];
 
+    // Storage increment
     if (storage > 128) total += (storage - 128) * 2;
 
+    // Battery deduction
     if (!cannotCheckBattery && battery) {
       const batteryNum = parseInt(battery);
       if (batteryNum >= 80 && batteryNum <= 89) total -= 50;
       if (batteryNum < 80) total -= 100;
     }
 
+    // Screen & hardware deductions
     if (screenCracked) total -= 120;
     if (screenScratches) total -= 40;
     if (!cameraOk) total -= 120;
     if (!faceIdOk) total -= 150;
+    if (!speakerOk) total -= 50;
+    if (!cornerOk) total -= 80;
+    if (!backOk) total -= 100;
 
     setPrice(Math.max(total, 0));
     nextStep();
@@ -92,27 +101,27 @@ export default function IphoneConditionCalculator() {
               <option key={m.value} value={m.value}>{m.label}</option>
             ))}
           </select>
-          <button className="see-more-btn" onClick={nextStep}>{t("continue", "Continue")}</button>
+          <button className="see-more-btn" onClick={nextStep}>{t("continue")}</button>
         </div>
       )}
 
       {/* Step 2: Storage */}
       {step === 2 && (
         <div className="step">
-          <label>{t("iphoneCalculator.storageStep", "Select Storage")}</label>
+          <label>{t("iphoneCalculator.storageStep", "Valitse tallennustila")}</label>
           <select value={storage} onChange={(e) => setStorage(parseInt(e.target.value))}>
             {currentModelObj.storage.map((s) => (
               <option key={s} value={s}>{s} GB</option>
             ))}
           </select>
-          <button className="see-more-btn" onClick={nextStep}>{t("continue", "Continue")}</button>
+          <button className="see-more-btn" onClick={nextStep}>{t("continue")}</button>
         </div>
       )}
 
       {/* Step 3: Battery */}
       {step === 3 && (
         <div className="step">
-          <label>{t("iphoneCalculator.batteryStep", "Battery condition")}</label>
+          <label>{t("iphoneCalculator.batteryStep", "Akun kunto")}</label>
           {!cannotCheckBattery && (
             <input
               type="number"
@@ -127,13 +136,13 @@ export default function IphoneConditionCalculator() {
               checked={cannotCheckBattery}
               onChange={() => setCannotCheckBattery(!cannotCheckBattery)}
             />
-            {t("iphoneCalculator.cannotCheckBattery", "I cannot check")}
+            {t("iphoneCalculator.cannotCheckBattery", "En voi tarkistaa")}
           </label>
-          <button className="see-more-btn" onClick={nextStep}>{t("continue", "Continue")}</button>
+          <button className="see-more-btn" onClick={nextStep}>{t("continue")}</button>
         </div>
       )}
 
-      {/* Step 4: Screen */}
+      {/* Step 4: Physical issues */}
       {step === 4 && (
         <div className="step">
           <label>
@@ -144,7 +153,19 @@ export default function IphoneConditionCalculator() {
             <input type="checkbox" checked={screenScratches} onChange={() => setScreenScratches(!screenScratches)} />
             {t("iphoneCalculator.issues.screenScratches")}
           </label>
-          <button className="see-more-btn" onClick={nextStep}>{t("continue", "Continue")}</button>
+          <label>
+            <input type="checkbox" checked={!speakerOk} onChange={() => setSpeakerOk(!speakerOk)} />
+            {t("iphoneCalculator.issues.speakerIssue")}
+          </label>
+          <label>
+            <input type="checkbox" checked={!cornerOk} onChange={() => setCornerOk(!cornerOk)} />
+            {t("iphoneCalculator.issues.cornerDamage")}
+          </label>
+          <label>
+            <input type="checkbox" checked={!backOk} onChange={() => setBackOk(!backOk)} />
+            {t("iphoneCalculator.issues.backDamage")}
+          </label>
+          <button className="see-more-btn" onClick={nextStep}>{t("continue")}</button>
         </div>
       )}
 
@@ -167,7 +188,7 @@ export default function IphoneConditionCalculator() {
       {step === 6 && price !== null && (
         <div className="step result">
           <p>{t("iphoneCalculator.estimatedPrice")}: {price} {t("iphoneCalculator.currency")}</p>
-          <button className="see-more-btn" onClick={() => setStep(1)}>{t("startOver", "Start Over")}</button>
+          <button className="see-more-btn" onClick={() => setStep(1)}>{t("startOver", "Aloita alusta")}</button>
         </div>
       )}
     </div>

@@ -139,7 +139,10 @@
       "faceIdIssue": "Face ID ei toimi",
       "cameraRepair": "Kameran korjaus",
       "lensReplacement": "Linssin vaihto",
-      "housingReplacement": "Kotelon vaihto"
+      "housingReplacement": "Kotelon vaihto",
+      "speakerIssue": "Kaiutin ei toimi",
+      "cornerDamage": "Kulmat/iskuvammat",
+      "backDamage": "Takakansi vaurioitunut"
     }
   },
 

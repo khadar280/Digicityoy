@@ -113,16 +113,19 @@
   },
 
   "iphoneCalculator": {
-    "title": "My iphone",
+    "title": "My iPhone",
     "transactionType": "I want to",
     "sell": "Sell my iPhone",
     "buy": "Buy an iPhone",
     "modelLabel": "Select iPhone model",
+    "storageStep": "Select Storage",
+    "batteryStep": "Battery condition",
+    "cannotCheckBattery": "Cannot check",
     "issuesTitle": "Select all issues that apply",
-    "getPrice": "Get price",
-    "estimatedPrice": "Estimated value",
-    "estimatedSellPrice": "Estimated sell price",
-    "buyPrice": "Buy price",
+    "getPrice": "Get Price",
+    "estimatedPrice": "Estimated Value",
+    "estimatedSellPrice": "Estimated Sell Price",
+    "buyPrice": "Buy Price",
     "currency": "€",
     "issues": {
       "screenCracked": "Screen cracked",
@@ -136,9 +139,15 @@
       "faceIdIssue": "Face ID not working",
       "cameraRepair": "Camera repair",
       "lensReplacement": "Lens replacement",
-      "housingReplacement": "Housing replacement"
+      "housingReplacement": "Housing replacement",
+      "speakerIssue": "Speaker not working",
+      "cornerDamage": "Corners/edges damaged",
+      "backDamage": "Back cover damaged"
     }
   },
+
+  "continue": "Continue",
+  "startOver": "Start Over",
 
   "trending": {
     "Phone Covers": "Phone Covers",
