@@ -113,11 +113,14 @@
   },
 
   "iphoneCalculator": {
-    "title": "My iphone",
+    "title": "Oma iPhone",
     "transactionType": "Haluan",
     "sell": "Myydä iPhoneni",
     "buy": "Ostaa iPhonen",
     "modelLabel": "Valitse iPhone-malli",
+    "storageStep": "Valitse tallennustila",
+    "batteryStep": "Akun kunto",
+    "cannotCheckBattery": "En voi tarkistaa",
     "issuesTitle": "Valitse kaikki soveltuvat ongelmat",
     "getPrice": "Hanki hinta",
     "estimatedPrice": "Arvioitu arvo",
@@ -139,6 +142,9 @@
       "housingReplacement": "Kotelon vaihto"
     }
   },
+
+  "continue": "Jatka",
+  "startOver": "Aloita alusta",
 
   "trending": {
     "Phone Covers": "Puhelinkuoret",
