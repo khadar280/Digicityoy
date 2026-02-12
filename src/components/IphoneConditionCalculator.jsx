@@ -3,51 +3,21 @@ import { useTranslation } from "react-i18next";
 import "./IphoneConditionCalculator.css";
 
 const IPHONE_MODELS = [
-  { label: "iPhone 17 Pro Max", value: "iphone17_pro_max" },
-  { label: "iPhone 17 Pro", value: "iphone17_pro" },
-  { label: "iPhone 17 Plus", value: "iphone17_plus" },
-  { label: "iPhone 17", value: "iphone17" },
-  { label: "iPhone 16 Pro Max", value: "iphone16_pro_max" },
-  { label: "iPhone 16 Pro", value: "iphone16_pro" },
-  { label: "iPhone 16 Plus", value: "iphone16_plus" },
-  { label: "iPhone 16", value: "iphone16" },
-  { label: "iPhone 15 Pro Max", value: "iphone15_pro_max" },
-  { label: "iPhone 15 Pro", value: "iphone15_pro" },
-  { label: "iPhone 15 Plus", value: "iphone15_plus" },
-  { label: "iPhone 15", value: "iphone15" },
-  { label: "iPhone 14 Pro Max", value: "iphone14_pro_max" },
-  { label: "iPhone 14 Pro", value: "iphone14_pro" },
-  { label: "iPhone 14 Plus", value: "iphone14_plus" },
-  { label: "iPhone 14", value: "iphone14" },
-  { label: "iPhone 13 Pro Max", value: "iphone13_pro_max" },
-  { label: "iPhone 13 Pro", value: "iphone13_pro" },
-  { label: "iPhone 13 Mini", value: "iphone13_mini" },
-  { label: "iPhone 13", value: "iphone13" },
-  { label: "iPhone 12 Pro Max", value: "iphone12_pro_max" },
-  { label: "iPhone 12 Pro", value: "iphone12_pro" },
-  { label: "iPhone 12 Mini", value: "iphone12_mini" },
-  { label: "iPhone 12", value: "iphone12" },
-  { label: "iPhone 11 Pro Max", value: "iphone11_pro_max" },
-  { label: "iPhone 11 Pro", value: "iphone11_pro" },
-  { label: "iPhone 11", value: "iphone11" }
+  { label: "iPhone 17 Pro Max", value: "iphone17_pro_max", storage: [128, 256, 512, 1024] },
+  { label: "iPhone 17 Pro", value: "iphone17_pro", storage: [128, 256, 512] },
+  { label: "iPhone 17 Plus", value: "iphone17_plus", storage: [128, 256, 512] },
+  { label: "iPhone 17", value: "iphone17", storage: [128, 256] },
+  { label: "iPhone 16 Pro Max", value: "iphone16_pro_max", storage: [128, 256, 512] },
+  { label: "iPhone 16 Pro", value: "iphone16_pro", storage: [128, 256, 512] },
+  { label: "iPhone 16 Plus", value: "iphone16_plus", storage: [128, 256] },
+  { label: "iPhone 16", value: "iphone16", storage: [128, 256] },
+  { label: "iPhone 15 Pro Max", value: "iphone15_pro_max", storage: [128, 256, 512] },
+  { label: "iPhone 15 Pro", value: "iphone15_pro", storage: [128, 256, 512] },
+  { label: "iPhone 15 Plus", value: "iphone15_plus", storage: [128, 256] },
+  { label: "iPhone 15", value: "iphone15", storage: [128, 256] }
 ];
 
 const BASE_PRICES = {
-  iphone11: 250,
-  iphone11_pro: 320,
-  iphone11_pro_max: 360,
-  iphone12: 350,
-  iphone12_mini: 330,
-  iphone12_pro: 420,
-  iphone12_pro_max: 470,
-  iphone13: 450,
-  iphone13_mini: 430,
-  iphone13_pro: 520,
-  iphone13_pro_max: 580,
-  iphone14: 550,
-  iphone14_plus: 580,
-  iphone14_pro: 650,
-  iphone14_pro_max: 720,
   iphone15: 650,
   iphone15_plus: 690,
   iphone15_pro: 780,
@@ -64,26 +34,25 @@ const BASE_PRICES = {
 
 export default function IphoneConditionCalculator() {
   const { t } = useTranslation();
-
   const [step, setStep] = useState(1);
 
-  const [model, setModel] = useState("iphone13");
-  const [battery, setBattery] = useState(""); // battery %
+  const [model, setModel] = useState("iphone15");
+  const [storage, setStorage] = useState(IPHONE_MODELS[0].storage[0]);
+  const [battery, setBattery] = useState("");
   const [cannotCheckBattery, setCannotCheckBattery] = useState(false);
-
   const [screenCracked, setScreenCracked] = useState(false);
   const [screenScratches, setScreenScratches] = useState(false);
   const [cameraOk, setCameraOk] = useState(true);
   const [faceIdOk, setFaceIdOk] = useState(true);
-  const [memoryOk, setMemoryOk] = useState(true); // Example extra question
-
   const [price, setPrice] = useState(null);
 
   const nextStep = () => setStep(step + 1);
-  const prevStep = () => setStep(step - 1);
 
   const calculatePrice = () => {
     let total = BASE_PRICES[model];
+
+    // Add storage increment
+    if (storage > 128) total += (storage - 128) * 2;
 
     // Battery deduction
     if (!cannotCheckBattery && battery) {
@@ -96,11 +65,12 @@ export default function IphoneConditionCalculator() {
     if (screenScratches) total -= 40;
     if (!cameraOk) total -= 120;
     if (!faceIdOk) total -= 150;
-    if (!memoryOk) total -= 50; // Example memory deduction
 
     setPrice(Math.max(total, 0));
     nextStep();
   };
+
+  const currentModelObj = IPHONE_MODELS.find((m) => m.value === model);
 
   return (
     <div className="calculator">
@@ -108,118 +78,92 @@ export default function IphoneConditionCalculator() {
 
       {/* Step 1: Model */}
       {step === 1 && (
-        <div>
-          <h3>Step 1: Select your iPhone model</h3>
-          <select value={model} onChange={(e) => setModel(e.target.value)}>
+        <div className="step">
+          <h3>{t("iphoneCalculator.modelStep", "Step 1: Select your iPhone model")}</h3>
+          <select
+            value={model}
+            onChange={(e) => {
+              const selected = e.target.value;
+              setModel(selected);
+              const firstStorage = IPHONE_MODELS.find(m => m.value === selected).storage[0];
+              setStorage(firstStorage);
+            }}
+          >
             {IPHONE_MODELS.map((m) => (
               <option key={m.value} value={m.value}>{m.label}</option>
             ))}
           </select>
-          <button onClick={nextStep}>Continue</button>
+          <button onClick={nextStep}>{t("continue", "Continue")}</button>
         </div>
       )}
 
-      {/* Step 2: Battery */}
+      {/* Step 2: Storage */}
       {step === 2 && (
-        <div>
-          <h3>Step 2: Battery condition</h3>
-          <p>Check battery max capacity: Settings → Battery → Battery Health</p>
-          {!cannotCheckBattery && (
-            <input
-              type="number"
-              placeholder="%"
-              value={battery}
-              onChange={(e) => setBattery(e.target.value)}
-            />
-          )}
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={cannotCheckBattery}
-                onChange={() => setCannotCheckBattery(!cannotCheckBattery)}
-              />
-              I cannot check
-            </label>
-          </div>
-          <button onClick={prevStep}>Back</button>
-          <button onClick={nextStep}>Continue</button>
+        <div className="step">
+          <h3>{t("iphoneCalculator.storageStep", "Step 2: Select Storage")}</h3>
+          <select value={storage} onChange={(e) => setStorage(parseInt(e.target.value))}>
+            {currentModelObj.storage.map((s) => (
+              <option key={s} value={s}>{s} GB</option>
+            ))}
+          </select>
+          <button onClick={nextStep}>{t("continue", "Continue")}</button>
         </div>
       )}
 
-      {/* Step 3: Screen */}
+      {/* Step 3: Battery */}
       {step === 3 && (
-        <div>
-          <h3>Step 3: Screen condition</h3>
+        <div className="step">
+          <h3>{t("iphoneCalculator.batteryStep", "Step 3: Battery condition")}</h3>
+          <p>{t("iphoneCalculator.batteryInfo", "Check battery max capacity: Settings → Battery → Battery Health")}</p>
+          {!cannotCheckBattery && (
+            <input type="number" placeholder="%" value={battery} onChange={(e) => setBattery(e.target.value)} />
+          )}
           <label>
-            <input
-              type="checkbox"
-              checked={screenCracked}
-              onChange={() => setScreenCracked(!screenCracked)}
-            />
-            Screen cracked
+            <input type="checkbox" checked={cannotCheckBattery} onChange={() => setCannotCheckBattery(!cannotCheckBattery)} />
+            {t("iphoneCalculator.cannotCheckBattery", "I cannot check")}
           </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={screenScratches}
-              onChange={() => setScreenScratches(!screenScratches)}
-            />
-            Screen scratches
-          </label>
-          <button onClick={prevStep}>Back</button>
-          <button onClick={nextStep}>Continue</button>
+          <button onClick={nextStep}>{t("continue", "Continue")}</button>
         </div>
       )}
 
-      {/* Step 4: Camera & Face ID */}
+      {/* Step 4: Screen */}
       {step === 4 && (
-        <div>
-          <h3>Step 4: Camera & Face ID</h3>
+        <div className="step">
+          <h3>{t("iphoneCalculator.screenStep", "Step 4: Screen condition")}</h3>
           <label>
-            <input
-              type="checkbox"
-              checked={!cameraOk}
-              onChange={() => setCameraOk(!cameraOk)}
-            />
-            Camera not working
+            <input type="checkbox" checked={screenCracked} onChange={() => setScreenCracked(!screenCracked)} />
+            {t("iphoneCalculator.screenCracked", "Screen cracked")}
           </label>
           <label>
-            <input
-              type="checkbox"
-              checked={!faceIdOk}
-              onChange={() => setFaceIdOk(!faceIdOk)}
-            />
-            Face ID not working
+            <input type="checkbox" checked={screenScratches} onChange={() => setScreenScratches(!screenScratches)} />
+            {t("iphoneCalculator.screenScratches", "Screen scratches")}
           </label>
-          <button onClick={prevStep}>Back</button>
-          <button onClick={nextStep}>Continue</button>
+          <button onClick={nextStep}>{t("continue", "Continue")}</button>
         </div>
       )}
 
-      {/* Step 5: Memory (example) */}
+      {/* Step 5: Camera & Face ID */}
       {step === 5 && (
-        <div>
-          <h3>Step 5: Memory</h3>
+        <div className="step">
+          <h3>{t("iphoneCalculator.cameraStep", "Step 5: Camera & Face ID")}</h3>
           <label>
-            <input
-              type="checkbox"
-              checked={!memoryOk}
-              onChange={() => setMemoryOk(!memoryOk)}
-            />
-            Memory issue
+            <input type="checkbox" checked={!cameraOk} onChange={() => setCameraOk(!cameraOk)} />
+            {t("iphoneCalculator.cameraIssue", "Camera not working")}
           </label>
-          <button onClick={prevStep}>Back</button>
-          <button onClick={calculatePrice}>Get Price</button>
+          <label>
+            <input type="checkbox" checked={!faceIdOk} onChange={() => setFaceIdOk(!faceIdOk)} />
+            {t("iphoneCalculator.faceIdIssue", "Face ID not working")}
+          </label>
+          <button onClick={calculatePrice}>{t("iphoneCalculator.getPrice", "Get Price")}</button>
         </div>
       )}
 
       {/* Step 6: Result */}
       {step === 6 && price !== null && (
-        <div>
-          <h3>Estimated Price</h3>
+        <div className="step result">
+          <h3>{t("iphoneCalculator.estimatedPrice", "Estimated Price")}</h3>
           <p>{price} €</p>
-          <button onClick={() => setStep(1)}>Start Over</button>
+          <button onClick={() => setStep(1)}>{t("startOver", "Start Over")}</button>
         </div>
       )}
     </div>
