@@ -7,6 +7,8 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import TrendingProducts from './components/TrendingProducts';
 import IphoneConditionCalculator from './components/IphoneConditionCalculator';
+import IphonePurchase from './components/IphonePurchase';
+
 import PlanningSection from './components/PlanningSection';
 import Whychoose from './components/Whychoose';
 import Footer from './components/Footer';
@@ -45,6 +47,8 @@ const hideFooterPaths = [
   '/reset-password',
   '/forgot-password',
   '/iphone-condition-calculator',
+  '/iphone-condition-calculator',
+
 ];
 
 const AppRoutes = () => {
@@ -70,10 +74,15 @@ const AppRoutes = () => {
               <PlanningSection />
               <Whychoose />
               
+          
+
+ 
+
+              
             </>
           }
         />
-
+        <Route path="/buy-iphone" element={<IphonePurchase />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/destination" element={<TrendingProducts />} />
         <Route path="/auth" element={<Auth />} />
