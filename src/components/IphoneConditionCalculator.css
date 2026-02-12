@@ -17,3 +17,89 @@
   filter: brightness(1.1);
   transform: translateY(-2px) scale(1.02);
 }
+/* src/components/IphoneConditionCalculator.css */
+
+.calculator {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.calculator h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.step {
+  margin-bottom: 20px;
+}
+
+.step label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.step select,
+.step input[type="number"],
+.step input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.step select[multiple] {
+  height: 150px;
+  padding: 10px;
+}
+
+.step input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.see-more-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.see-more-btn:hover {
+  background-color: #0056b3;
+}
+
+.result p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Responsive for mobile */
+@media (max-width: 480px) {
+  .calculator {
+    padding: 15px;
+  }
+
+  .see-more-btn {
+    width: 100%;
+  }
+}

@@ -41,16 +41,19 @@ export default function IphoneConditionCalculator() {
   const [storage, setStorage] = useState(IPHONE_MODELS[0].storage[0]);
   const [battery, setBattery] = useState("");
   const [cannotCheckBattery, setCannotCheckBattery] = useState(false);
-  const [screenCracked, setScreenCracked] = useState(false);
-  const [screenScratches, setScreenScratches] = useState(false);
-  const [cameraOk, setCameraOk] = useState(true);
-  const [faceIdOk, setFaceIdOk] = useState(true);
-  const [speakerOk, setSpeakerOk] = useState(true);
-  const [cornerOk, setCornerOk] = useState(true);
-  const [backOk, setBackOk] = useState(true);
+  const [selectedIssues, setSelectedIssues] = useState([]);
   const [price, setPrice] = useState(null);
 
   const nextStep = () => setStep(step + 1);
+
+  const currentModelObj = IPHONE_MODELS.find((m) => m.value === model);
+
+  const getSelectedIssues = () => selectedIssues;
+
+  const handleIssueChange = (e) => {
+    const options = Array.from(e.target.selectedOptions, option => option.value);
+    setSelectedIssues(options);
+  };
 
   const calculatePrice = () => {
     let total = BASE_PRICES[model];
@@ -65,20 +68,23 @@ export default function IphoneConditionCalculator() {
       if (batteryNum < 80) total -= 100;
     }
 
-    // Screen & hardware deductions
-    if (screenCracked) total -= 120;
-    if (screenScratches) total -= 40;
-    if (!cameraOk) total -= 120;
-    if (!faceIdOk) total -= 150;
-    if (!speakerOk) total -= 50;
-    if (!cornerOk) total -= 80;
-    if (!backOk) total -= 100;
+    // Issue deductions
+    selectedIssues.forEach(issue => {
+      switch(issue) {
+        case "screenCracked": total -= 120; break;
+        case "screenScratches": total -= 40; break;
+        case "cameraIssue": total -= 120; break;
+        case "faceIdIssue": total -= 150; break;
+        case "speakerIssue": total -= 50; break;
+        case "cornerDamage": total -= 80; break;
+        case "backDamage": total -= 100; break;
+        default: break;
+      }
+    });
 
     setPrice(Math.max(total, 0));
     nextStep();
   };
-
-  const currentModelObj = IPHONE_MODELS.find((m) => m.value === model);
 
   return (
     <div className="calculator">
@@ -108,7 +114,7 @@ export default function IphoneConditionCalculator() {
       {/* Step 2: Storage */}
       {step === 2 && (
         <div className="step">
-          <label>{t("iphoneCalculator.storageStep", "Valitse tallennustila")}</label>
+          <label>{t("iphoneCalculator.storageStep", "Select Storage")}</label>
           <select value={storage} onChange={(e) => setStorage(parseInt(e.target.value))}>
             {currentModelObj.storage.map((s) => (
               <option key={s} value={s}>{s} GB</option>
@@ -121,7 +127,7 @@ export default function IphoneConditionCalculator() {
       {/* Step 3: Battery */}
       {step === 3 && (
         <div className="step">
-          <label>{t("iphoneCalculator.batteryStep", "Akun kunto")}</label>
+          <label>{t("iphoneCalculator.batteryStep", "Battery condition")}</label>
           {!cannotCheckBattery && (
             <input
               type="number"
@@ -136,59 +142,45 @@ export default function IphoneConditionCalculator() {
               checked={cannotCheckBattery}
               onChange={() => setCannotCheckBattery(!cannotCheckBattery)}
             />
-            {t("iphoneCalculator.cannotCheckBattery", "En voi tarkistaa")}
+            {t("iphoneCalculator.cannotCheckBattery", "Cannot check")}
           </label>
           <button className="see-more-btn" onClick={nextStep}>{t("continue")}</button>
         </div>
       )}
 
-      {/* Step 4: Physical issues */}
+      {/* Step 4: Issues dropdown */}
       {step === 4 && (
         <div className="step">
-          <label>
-            <input type="checkbox" checked={screenCracked} onChange={() => setScreenCracked(!screenCracked)} />
-            {t("iphoneCalculator.issues.screenCracked")}
-          </label>
-          <label>
-            <input type="checkbox" checked={screenScratches} onChange={() => setScreenScratches(!screenScratches)} />
-            {t("iphoneCalculator.issues.screenScratches")}
-          </label>
-          <label>
-            <input type="checkbox" checked={!speakerOk} onChange={() => setSpeakerOk(!speakerOk)} />
-            {t("iphoneCalculator.issues.speakerIssue")}
-          </label>
-          <label>
-            <input type="checkbox" checked={!cornerOk} onChange={() => setCornerOk(!cornerOk)} />
-            {t("iphoneCalculator.issues.cornerDamage")}
-          </label>
-          <label>
-            <input type="checkbox" checked={!backOk} onChange={() => setBackOk(!backOk)} />
-            {t("iphoneCalculator.issues.backDamage")}
-          </label>
-          <button className="see-more-btn" onClick={nextStep}>{t("continue")}</button>
-        </div>
-      )}
-
-      {/* Step 5: Camera & Face ID */}
-      {step === 5 && (
-        <div className="step">
-          <label>
-            <input type="checkbox" checked={!cameraOk} onChange={() => setCameraOk(!cameraOk)} />
-            {t("iphoneCalculator.issues.cameraIssue")}
-          </label>
-          <label>
-            <input type="checkbox" checked={!faceIdOk} onChange={() => setFaceIdOk(!faceIdOk)} />
-            {t("iphoneCalculator.issues.faceIdIssue")}
-          </label>
+          <label>{t("iphoneCalculator.issuesTitle")}</label>
+          <select
+            multiple
+            value={getSelectedIssues()}
+            onChange={handleIssueChange}
+            style={{ width: "100%", minHeight: "150px" }}
+          >
+            <option value="screenCracked">{t("iphoneCalculator.issues.screenCracked")}</option>
+            <option value="screenScratches">{t("iphoneCalculator.issues.screenScratches")}</option>
+            <option value="speakerIssue">{t("iphoneCalculator.issues.speakerIssue")}</option>
+            <option value="cornerDamage">{t("iphoneCalculator.issues.cornerDamage")}</option>
+            <option value="backDamage">{t("iphoneCalculator.issues.backDamage")}</option>
+            <option value="cameraIssue">{t("iphoneCalculator.issues.cameraIssue")}</option>
+            <option value="faceIdIssue">{t("iphoneCalculator.issues.faceIdIssue")}</option>
+          </select>
           <button className="see-more-btn" onClick={calculatePrice}>{t("iphoneCalculator.getPrice")}</button>
         </div>
       )}
 
-      {/* Step 6: Result */}
-      {step === 6 && price !== null && (
+      {/* Step 5: Result */}
+      {step === 5 && price !== null && (
         <div className="step result">
           <p>{t("iphoneCalculator.estimatedPrice")}: {price} {t("iphoneCalculator.currency")}</p>
-          <button className="see-more-btn" onClick={() => setStep(1)}>{t("startOver", "Aloita alusta")}</button>
+          <button className="see-more-btn" onClick={() => {
+            setStep(1);
+            setSelectedIssues([]);
+            setBattery("");
+            setCannotCheckBattery(false);
+            setPrice(null);
+          }}>{t("startOver", "Start Over")}</button>
         </div>
       )}
     </div>
