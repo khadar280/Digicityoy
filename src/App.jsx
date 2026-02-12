@@ -6,9 +6,8 @@ import './i18n';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import TrendingProducts from './components/TrendingProducts';
-import PlanningSection from './components/PlanningSection';
 import IphoneConditionCalculator from './components/IphoneConditionCalculator';
-
+import PlanningSection from './components/PlanningSection';
 import Whychoose from './components/Whychoose';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
@@ -69,6 +68,7 @@ const AppRoutes = () => {
               <Services />
               <PlanningSection />
               <Whychoose />
+               <IphoneConditionCalculator /> 
             </>
           }
         />
@@ -91,7 +91,7 @@ const AppRoutes = () => {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
-        <Route path="/iphone-condition-calculator" element={<IphoneConditionCalculator />} />
+        
       </Routes>
 
       {!hideFooterPaths.includes(location.pathname) && <Footer />}
