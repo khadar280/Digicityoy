@@ -69,7 +69,7 @@ const AppRoutes = () => {
                <IphoneConditionCalculator /> 
               <PlanningSection />
               <Whychoose />
-               <IphoneConditionCalculator /> 
+              
             </>
           }
         />
