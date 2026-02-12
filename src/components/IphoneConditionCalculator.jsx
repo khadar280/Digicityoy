@@ -75,7 +75,7 @@ export default function IphoneConditionCalculator() {
 
   return (
     <div className="calculator">
-      <h2>{t("iphoneCalculator.title", "iPhone Price Calculator")}</h2>
+      <h2>{t("My iphone")}</h2>
 
       {step === 1 && (
         <div className="step">
