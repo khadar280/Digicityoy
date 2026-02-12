@@ -17,68 +17,31 @@ const IPHONE_MODELS = [
   { label: "iPhone 15 Pro Max", value: "iphone15_pro_max", storage: [128, 256, 512] },
   { label: "iPhone 15 Pro", value: "iphone15_pro", storage: [128, 256, 512] },
   { label: "iPhone 15 Plus", value: "iphone15_plus", storage: [128, 256] },
-  { label: "iPhone 15", value: "iphone15", storage: [128, 256] },
-
-  { label: "iPhone 14 Pro Max", value: "iphone14_pro_max", storage: [128, 256, 512] },
-  { label: "iPhone 14 Pro", value: "iphone14_pro", storage: [128, 256, 512] },
-  { label: "iPhone 14 Plus", value: "iphone14_plus", storage: [128, 256] },
-  { label: "iPhone 14", value: "iphone14", storage: [128, 256] },
-
-  { label: "iPhone 13 Pro Max", value: "iphone13_pro_max", storage: [128, 256, 512] },
-  { label: "iPhone 13 Pro", value: "iphone13_pro", storage: [128, 256, 512] },
-  { label: "iPhone 13 Mini", value: "iphone13_mini", storage: [128, 256] },
-  { label: "iPhone 13", value: "iphone13", storage: [128, 256] },
-
-  { label: "iPhone 12 Pro Max", value: "iphone12_pro_max", storage: [128, 256, 512] },
-  { label: "iPhone 12 Pro", value: "iphone12_pro", storage: [128, 256, 512] },
-  { label: "iPhone 12 Mini", value: "iphone12_mini", storage: [128, 256] },
-  { label: "iPhone 12", value: "iphone12", storage: [128, 256] },
-
-  { label: "iPhone 11 Pro Max", value: "iphone11_pro_max", storage: [64, 256, 512] },
-  { label: "iPhone 11 Pro", value: "iphone11_pro", storage: [64, 256, 512] },
-  { label: "iPhone 11", value: "iphone11", storage: [64, 128, 256] }
+  { label: "iPhone 15", value: "iphone15", storage: [128, 256] }
 ];
 
 const BASE_PRICES = {
-  iphone17_pro_max: 511,
-  iphone17_pro: 676,
-  iphone17_plus: 890,
-  iphone17: 600,
+  iphone17_pro_max: 670,
+  iphone17_pro: 620,
+  iphone17_plus: 590,
+  iphone17: 550,
 
-  iphone16_pro_max: 846,
-  iphone16_pro: 670,
-  iphone16_plus: 620,
-  iphone16: 434,
+  iphone16_pro_max: 520,
+  iphone16_pro: 500,
+  iphone16_plus: 460,
+  iphone16: 430,
 
-  iphone15_pro_max: 575,
-  iphone15_pro: 402,
-  iphone15_plus: 350,
-  iphone15: 302,
-
-  iphone14_pro_max: 420,
-  iphone14_pro: 400,
-  iphone14_plus: 350,
-  iphone14: 300,
-
-  iphone13_pro_max: 200,
-  iphone13_pro: 234,
-  iphone13_mini: 200,
-  iphone13: 234,
-
-  iphone12_pro_max: 240,
-  iphone12_pro: 180,
-  iphone12_mini: 120,
-  iphone12: 100,
-
-  iphone11_pro_max: 135,
-  iphone11_pro: 123,
-  iphone11: 80
+  iphone15_pro_max: 450,
+  iphone15_pro: 420,
+  iphone15_plus: 390,
+  iphone15: 350
 };
 
 export default function IphoneConditionCalculator() {
   const { t } = useTranslation();
+
   const [step, setStep] = useState(1);
-  const [model, setModel] = useState("iphone15");
+  const [model, setModel] = useState("iphone17_pro_max");
   const [storage, setStorage] = useState(128);
   const [battery, setBattery] = useState("");
   const [cannotCheckBattery, setCannotCheckBattery] = useState(false);
@@ -88,44 +51,50 @@ export default function IphoneConditionCalculator() {
   const currentModelObj = IPHONE_MODELS.find(m => m.value === model);
 
   const nextStep = () => setStep(prev => prev + 1);
+  const prevStep = () => setStep(prev => prev - 1);
 
-  // ✅ MULTIPLE SELECT FIX
-  const handleIssueChange = (e) => {
-    const values = Array.from(e.target.options)
-      .filter(option => option.selected)
-      .map(option => option.value);
-
-    setSelectedIssues(values);
+  const toggleIssue = (issue) => {
+    if (selectedIssues.includes(issue)) {
+      setSelectedIssues(selectedIssues.filter(i => i !== issue));
+    } else {
+      setSelectedIssues([...selectedIssues, issue]);
+    }
   };
 
-  // ✅ PRICE FIX (NO RANDOM INCREASE)
   const calculatePrice = () => {
-    let total = BASE_PRICES[model] || 0; // safety fallback
+    let total = BASE_PRICES[model] || 0;
 
-    // Battery deduction
+    // Battery deductions
     if (!cannotCheckBattery && battery) {
       const batteryNum = parseInt(battery);
-      if (batteryNum >= 80 && batteryNum <= 89) total -= 50;
-      if (batteryNum < 80) total -= 100;
+      if (batteryNum >= 80 && batteryNum <= 89) total -= 40;
+      if (batteryNum < 80) total -= 80;
     }
 
     // Issue deductions
     selectedIssues.forEach(issue => {
       switch (issue) {
         case "screenCracked": total -= 120; break;
-        case "screenScratches": total -= 40; break;
+        case "screenScratches": total -= 30; break;
+        case "speakerIssue": total -= 40; break;
+        case "cornerDamage": total -= 60; break;
+        case "backDamage": total -= 90; break;
         case "cameraIssue": total -= 120; break;
         case "faceIdIssue": total -= 150; break;
-        case "speakerIssue": total -= 50; break;
-        case "cornerDamage": total -= 80; break;
-        case "backDamage": total -= 100; break;
         default: break;
       }
     });
 
-    // Never below 0
     setPrice(Math.max(total, 0));
     nextStep();
+  };
+
+  const resetCalculator = () => {
+    setStep(1);
+    setBattery("");
+    setCannotCheckBattery(false);
+    setSelectedIssues([]);
+    setPrice(null);
   };
 
   return (
@@ -145,12 +114,13 @@ export default function IphoneConditionCalculator() {
               setStorage(firstStorage);
             }}
           >
-            {IPHONE_MODELS.map((m) => (
+            {IPHONE_MODELS.map(m => (
               <option key={m.value} value={m.value}>
                 {m.label}
               </option>
             ))}
           </select>
+
           <button onClick={nextStep}>{t("continue")}</button>
         </div>
       )}
@@ -158,22 +128,25 @@ export default function IphoneConditionCalculator() {
       {/* STEP 2 - STORAGE */}
       {step === 2 && (
         <div className="step">
-          <label>{t("iphoneCalculator.storageStep", "Select Storage")}</label>
+          <label>{t("iphoneCalculator.storageStep")}</label>
           <select value={storage} onChange={(e) => setStorage(parseInt(e.target.value))}>
-            {currentModelObj.storage.map((s) => (
-              <option key={s} value={s}>
-                {s} GB
-              </option>
+            {currentModelObj.storage.map(s => (
+              <option key={s} value={s}>{s} GB</option>
             ))}
           </select>
-          <button onClick={nextStep}>{t("continue")}</button>
+
+          <div style={{ display: "flex", gap: "10px" }}>
+            <button onClick={prevStep}>Back</button>
+            <button onClick={nextStep}>{t("continue")}</button>
+          </div>
         </div>
       )}
 
       {/* STEP 3 - BATTERY */}
       {step === 3 && (
         <div className="step">
-          <label>{t("iphoneCalculator.batteryStep", "Battery condition")}</label>
+          <label>{t("iphoneCalculator.batteryStep")}</label>
+
           {!cannotCheckBattery && (
             <input
               type="number"
@@ -182,39 +155,55 @@ export default function IphoneConditionCalculator() {
               onChange={(e) => setBattery(e.target.value)}
             />
           )}
+
           <label>
             <input
               type="checkbox"
               checked={cannotCheckBattery}
               onChange={() => setCannotCheckBattery(!cannotCheckBattery)}
             />
-            {t("iphoneCalculator.cannotCheckBattery", "Cannot check")}
+            {t("iphoneCalculator.cannotCheckBattery")}
           </label>
-          <button onClick={nextStep}>{t("continue")}</button>
+
+          <div style={{ display: "flex", gap: "10px" }}>
+            <button onClick={prevStep}>Back</button>
+            <button onClick={nextStep}>{t("continue")}</button>
+          </div>
         </div>
       )}
 
-      {/* STEP 4 - ISSUES (MULTI SELECT WORKING) */}
+      {/* STEP 4 - ISSUES (CHECKBOX FIXED) */}
       {step === 4 && (
         <div className="step">
           <label>{t("iphoneCalculator.issuesTitle")}</label>
-          <select
-            multiple
-            value={selectedIssues}
-            onChange={handleIssueChange}
-            style={{ width: "100%", minHeight: "150px" }}
-          >
-            <option value="screenCracked">{t("iphoneCalculator.issues.screenCracked")}</option>
-            <option value="screenScratches">{t("iphoneCalculator.issues.screenScratches")}</option>
-            <option value="speakerIssue">{t("iphoneCalculator.issues.speakerIssue")}</option>
-            <option value="cornerDamage">{t("iphoneCalculator.issues.cornerDamage")}</option>
-            <option value="backDamage">{t("iphoneCalculator.issues.backDamage")}</option>
-            <option value="cameraIssue">{t("iphoneCalculator.issues.cameraIssue")}</option>
-            <option value="faceIdIssue">{t("iphoneCalculator.issues.faceIdIssue")}</option>
-          </select>
-          <button onClick={calculatePrice}>
-            {t("iphoneCalculator.getPrice")}
-          </button>
+
+          <div className="issues-grid">
+            {[
+              "screenCracked",
+              "screenScratches",
+              "speakerIssue",
+              "cornerDamage",
+              "backDamage",
+              "cameraIssue",
+              "faceIdIssue"
+            ].map(issue => (
+              <label key={issue} className="issue-item">
+                <input
+                  type="checkbox"
+                  checked={selectedIssues.includes(issue)}
+                  onChange={() => toggleIssue(issue)}
+                />
+                {t(`iphoneCalculator.issues.${issue}`)}
+              </label>
+            ))}
+          </div>
+
+          <div style={{ display: "flex", gap: "10px" }}>
+            <button onClick={prevStep}>Back</button>
+            <button onClick={calculatePrice}>
+              {t("iphoneCalculator.getPrice")}
+            </button>
+          </div>
         </div>
       )}
 
@@ -222,19 +211,11 @@ export default function IphoneConditionCalculator() {
       {step === 5 && price !== null && (
         <div className="step result">
           <p>
-            {t("iphoneCalculator.estimatedPrice")}: {price}{" "}
-            {t("iphoneCalculator.currency")}
+            {t("iphoneCalculator.estimatedPrice")}: {price} €
           </p>
-          <button
-            onClick={() => {
-              setStep(1);
-              setSelectedIssues([]);
-              setBattery("");
-              setCannotCheckBattery(false);
-              setPrice(null);
-            }}
-          >
-            {t("startOver", "Start Over")}
+
+          <button onClick={resetCalculator}>
+            {t("startOver")}
           </button>
         </div>
       )}
