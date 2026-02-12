@@ -66,6 +66,7 @@ const AppRoutes = () => {
             <>
               <HeroSection />
               <Services />
+               <IphoneConditionCalculator /> 
               <PlanningSection />
               <Whychoose />
                <IphoneConditionCalculator /> 
