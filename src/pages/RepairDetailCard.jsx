@@ -8,11 +8,15 @@ import { useCart } from "../components/CartContext";
 import { useTranslation } from "react-i18next";
 import "./RepairDetailCard.css";
 
-const RepairDetailCard = ({ model, prices }) => {
+const RepairDetailCard = ({ model, prices, deviceType = "phone" }) => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { t } = useTranslation();
 
+  /* =========================
+     UNIVERSAL REPAIR SERVICES
+     - Only iPhones have buttons/housing/cameras/lens
+  ========================== */
   const services = [
     {
       key: "screen",
@@ -42,49 +46,56 @@ const RepairDetailCard = ({ model, prices }) => {
       price: prices.chargingPort,
       description: t("repair.chargingPortDesc")
     },
-    {
-      key: "buttons",
-      icon: <FaMobileAlt />,
-      title: `${model} ${t("repair.buttons")}`,
-      price: prices.buttons,
-      description: t("repair.buttonsDesc")
-    },
-    {
-      key: "housing",
-      icon: <IoPhonePortrait />,
-      title: `${model} ${t("repair.housing")}`,
-      price: prices.housing,
-      description: t("repair.housingDesc")
-    },
-    {
-      key: "backCamera",
-      icon: <FaCamera />,
-      title: `${model} ${t("repair.backCamera")}`,
-      price: prices.backCamera,
-      description: t("repair.backCameraDesc")
-    },
-    {
-      key: "frontCamera",
-      icon: <FaCamera />,
-      title: `${model} ${t("repair.frontCamera")}`,
-      price: prices.frontCamera,
-      description: t("repair.frontCameraDesc")
-    },
-    {
-      key: "lens",
-      icon: <FaCamera />,
-      title: `${model} ${t("repair.lens")}`,
-      price: prices.lens,
-      description: t("repair.lensDesc")
-    }
-  ].filter(item => item.price);
+
+    // iPhone-only services
+    ...(deviceType === "iphone"
+      ? [
+          {
+            key: "buttons",
+            icon: <FaMobileAlt />,
+            title: `${model} ${t("repair.buttons")}`,
+            price: prices.buttons,
+            description: t("repair.buttonsDesc")
+          },
+          {
+            key: "housing",
+            icon: <IoPhonePortrait />,
+            title: `${model} ${t("repair.housing")}`,
+            price: prices.housing,
+            description: t("repair.housingDesc")
+          },
+          {
+            key: "backCamera",
+            icon: <FaCamera />,
+            title: `${model} ${t("repair.backCamera")}`,
+            price: prices.backCamera,
+            description: t("repair.backCameraDesc")
+          },
+          {
+            key: "frontCamera",
+            icon: <FaCamera />,
+            title: `${model} ${t("repair.frontCamera")}`,
+            price: prices.frontCamera,
+            description: t("repair.frontCameraDesc")
+          },
+          {
+            key: "lens",
+            icon: <FaCamera />,
+            title: `${model} ${t("repair.lens")}`,
+            price: prices.lens,
+            description: t("repair.lensDesc")
+          }
+        ]
+      : [])
+  ].filter(item => item.price); // show only available services
 
   const handleBook = (service) => {
     addToCart({
       name: service.title,
       price: `€${service.price}`,
       description: service.description,
-      image: prices.image
+      image: prices.image,
+      deviceType
     });
     navigate("/cart");
   };
