@@ -48,7 +48,7 @@ const BookingFormModal = ({ service, onClose }) => {
         const data = await res.json();
         setBookedTimes(data.map((item) => item.time?.slice(0, 5)));
       } catch (error) {
-        console.error("❌ Failed to fetch booked times:", error);
+        console.error("Failed to fetch booked times:", error);
       }
     };
 
@@ -168,7 +168,7 @@ const BookingFormModal = ({ service, onClose }) => {
         )}
 
         <button className="close-btn" onClick={onClose}>
-          ✖ {t("bookingForm.close")}
+           {t("bookingForm.close")}
         </button>
       </div>
     </div>

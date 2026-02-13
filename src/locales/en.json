@@ -189,6 +189,27 @@
     "response": "Your message has been received. We will get back to you shortly."
   },
 
+  "booking": {
+  "title": "Book an Appointment",
+  "phoneRepair": "Phone Repair",
+  "batteryChange": "Battery Replacement",
+  "inspection": "Device Inspection",
+  "passport": "Passport Photo",
+
+  "time1": "30–60 min",
+  "time2": "30 min",
+  "time3": "15 min",
+  "time4": "10 min",
+
+  "price1": "From €49",
+  "price2": "From €39",
+  "price3": "€20",
+  "price4": "€15",
+
+  "book": "Book"
+},
+
+
   "checkout": {
     "title": "Checkout",
     "orderSummary": "Order Summary",

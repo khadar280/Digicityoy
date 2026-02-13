@@ -195,6 +195,26 @@
     "thankYou": "Kiitos!",
     "response": "Viestisi on vastaanotettu. Otamme sinuun yhteyttä pian."
   },
+  "booking": {
+  "title": "Varaa aika",
+  "phoneRepair": "Puhelimen korjaus",
+  "batteryChange": "Akun vaihto",
+  "inspection": "Laitetarkastus",
+  "passport": "Passikuvaus",
+
+  "time1": "30–60 min",
+  "time2": "30 min",
+  "time3": "15 min",
+  "time4": "10 min",
+
+  "price1": "Alkaen 49€",
+  "price2": "Alkaen 39€",
+  "price3": "20€",
+  "price4": "15€",
+
+  "book": "Varaa"
+},
+
 
   "checkout": {
     "title": "Kassa",
