@@ -113,7 +113,7 @@ ${t("purchase.total")}: €${price}
             <h3>{t("purchase.total")}: €{price}</h3>
           </div>
 
-          {/* Customer Info Form */}
+          
           <form className="customer-form" onSubmit={handleSubmit}>
             <h3>{t("purchase.customerInfo")}</h3>
             <input name="name" placeholder={t("purchase.name")} value={customer.name} onChange={handleChange} required />
