@@ -136,7 +136,7 @@ export default function IphoneConditionCalculator() {
           </select>
 
           <div style={{ display: "flex", gap: "10px" }}>
-            <button onClick={prevStep}>Back</button>
+          
             <button onClick={nextStep}>{t("continue")}</button>
           </div>
         </div>
@@ -166,7 +166,7 @@ export default function IphoneConditionCalculator() {
           </label>
 
           <div style={{ display: "flex", gap: "10px" }}>
-            <button onClick={prevStep}>Back</button>
+            
             <button onClick={nextStep}>{t("continue")}</button>
           </div>
         </div>
@@ -199,7 +199,7 @@ export default function IphoneConditionCalculator() {
           </div>
 
           <div style={{ display: "flex", gap: "10px" }}>
-            <button onClick={prevStep}>Back</button>
+           
             <button onClick={calculatePrice}>
               {t("iphoneCalculator.getPrice")}
             </button>
