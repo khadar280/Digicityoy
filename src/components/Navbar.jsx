@@ -65,18 +65,18 @@ const Navbar = () => {
       {/* Navigation links */}
       <nav className={`nav-container ${menuOpen ? 'active' : ''}`}>
         <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
-          <li><Link to="/" onClick={() => setMenuOpen(false)}>{t("nav.home") || "Home"}</Link></li>
-          <li><Link to="/destination" onClick={() => setMenuOpen(false)}>{t("nav.shop") || "Shop"}</Link></li>
-          <li><Link to="/buy-iphone" onClick={() => setMenuOpen(false)}>{t("nav.buyIphone") || "Buy iPhone"}</Link></li>
-          <li><Link to="/booking" onClick={() => setMenuOpen(false)}>{t("nav.booking") || "Booking"}</Link></li>
-          <li><Link to="/contact" onClick={() => setMenuOpen(false)}>{t("nav.contact") || "Contact"}</Link></li>
-          <li><Link to="/about-us" onClick={() => setMenuOpen(false)}>{t("nav.about") || "About Us"}</Link></li>
+          <li><Link to="/" onClick={() => setMenuOpen(false)}>{t("nav.home")}</Link></li>
+          <li><Link to="/destination" onClick={() => setMenuOpen(false)}>{t("nav.shop")}</Link></li>
+          <li><Link to="/buy-iphone" onClick={() => setMenuOpen(false)}>{t("nav.buyIphone")}</Link></li>
+          <li><Link to="/booking" onClick={() => setMenuOpen(false)}>{t("nav.booking")}</Link></li>
+          <li><Link to="/contact" onClick={() => setMenuOpen(false)}>{t("nav.contact")}</Link></li>
+          <li><Link to="/about-us" onClick={() => setMenuOpen(false)}>{t("nav.about")}</Link></li>
 
           {/* Search bar */}
           <div className="search-bar">
             <input
               type="text"
-              placeholder={t("nav.search") || "Search..."}
+              placeholder={t("nav.search")}
               className="search-input"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -96,7 +96,7 @@ const Navbar = () => {
 
         {/* Cart link */}
         <Link to="/cart" className="cart-link">
-          {t('nav.cart') || "Cart"} ({cartItems.length})
+          {t('nav.cart')} ({cartItems.length})
         </Link>
 
         {/* User icon and dropdown */}
@@ -118,8 +118,8 @@ const Navbar = () => {
 
           {user && dropdownOpen && (
             <div className="user-dropdown-menu show">
-              <Link to="/profile">{t("nav.profile") || "Profile"}</Link>
-              <button onClick={() => { logout(); navigate('/'); }}>{t("nav.logout") || "Logout"}</button>
+              <Link to="/profile">{t("nav.profile")}</Link>
+              <button onClick={() => { logout(); navigate('/'); }}>{t("nav.logout")}</button>
             </div>
           )}
         </div>
