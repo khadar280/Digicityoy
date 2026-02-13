@@ -30,10 +30,11 @@
   },
 
 "hero": {
-  "title": "Phone, Laptop and Tablet Repair",
-  "bookNow": "Book a repair",
-  "checkIphone": "Check your iPhone value"
+  "title": "Puhelin-, läppäri- ja tablettihuolto",
+  "bookNow": "Varaa huolto",
+  "checkIphone": "Tarkista iPhonesi arvo"
 },
+
 
   "services": {
     "title": "Palvelumme",
