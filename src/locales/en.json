@@ -11,6 +11,7 @@
     "profile": "Profile",
     "settings": "Settings",
     "logout": "Logout",
+    "buyIphone": "Buy iPhone",
     "logoutMessage": "You have logged out!"
   },
   "auth": {
