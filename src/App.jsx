@@ -9,7 +9,7 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import TrendingProducts from './components/TrendingProducts';
 import IphoneConditionCalculator from './components/IphoneConditionCalculator';
-import IphonePurchase from './pages/IphonePurchase'; // make sure this path is correct
+import IphonePurchase from './components/IphonePurchase'; // make sure this path is correct
 import PlanningSection from './components/PlanningSection';
 import Whychoose from './components/Whychoose';
 import Footer from './components/Footer';
