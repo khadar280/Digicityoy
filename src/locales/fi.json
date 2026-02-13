@@ -29,11 +29,11 @@
     "success": "Onnistui"
   },
 
-  "hero": {
-    "title": "Puhelinten, tietokoneiden ja tablettien korjaus",
-    "bookNow": "Varaa nyt",
-    "checkIphone": "Tarkista iPhonen arvo"
-  },
+"hero": {
+  "title": "Phone, Laptop and Tablet Repair",
+  "bookNow": "Book a repair",
+  "checkIphone": "Check your iPhone value"
+},
 
   "services": {
     "title": "Palvelumme",

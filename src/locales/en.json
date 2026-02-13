@@ -29,11 +29,12 @@
     "success": "Success"
   },
 
-  "hero": {
-    "title": "Phone, laptop and tablet repair",
-    "bookNow": "Book now",
-    "checkIphone": "Check iPhone value"
-  },
+ "hero": {
+  "title": "Phone, Laptop and Tablet Repair",
+  "bookNow": "Book a repair",
+  "checkIphone": "Check your iPhone value"
+},
+
 
   "services": {
     "title": "Our Services",
