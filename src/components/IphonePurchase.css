@@ -1,74 +1,112 @@
-.purchase-page {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #fff;
+/* Calculator container */
+.calculator {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 25px;
+  border: 1px solid #ddd;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.purchase-page h2 {
+.calculator h2 {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 25px;
+  color: #333;
 }
 
-.purchase-selectors {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+/* Steps (dropdowns) */
+.step {
+  margin-bottom: 20px;
 }
 
-.selector-group label {
-  font-weight: bold;
-  margin-bottom: 0.3rem;
+.step label {
   display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
 }
 
-.selector-group select {
+.step select,
+.step input[type="number"],
+.step input[type="text"],
+.step textarea {
   width: 100%;
-  padding: 0.5rem;
+  padding: 10px 12px;
+  margin-bottom: 15px;
   border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 1rem;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-.calculate-btn, .buy-btn {
-  width: 100%;
-  padding: 0.75rem;
-  margin-top: 1rem;
-  background: #007bff;
-  color: #fff;
+.step select[multiple] {
+  height: 150px;
+  padding: 10px;
+}
+
+.step input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.1);
+}
+
+/* Buttons: calculate and buy */
+.calculator button,
+.price-btn,
+.buy-btn {
+  background: linear-gradient(to right, #b0d8f1, #0d87a5);
+  color: #090909;
+  padding: 0.75rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 600;
   border: none;
-  border-radius: 6px;
-  font-size: 1rem;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: transform 0.2s ease, filter 0.3s ease;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
 }
 
-.calculate-btn:hover, .buy-btn:hover {
-  background: #0056b3;
+.calculator button:hover,
+.price-btn:hover,
+.buy-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px) scale(1.02);
 }
 
-.purchase-summary {
-  margin-top: 1rem;
-  font-size: 1.2rem;
+/* Result styling */
+.result p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 15px;
   text-align: center;
+  background-color: #e6f7ff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #b3e0ff;
 }
 
-.customer-form {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
+/* Customer form styling */
 .customer-form input,
 .customer-form textarea {
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  width: 100%;
-  resize: none;
+  margin-bottom: 12px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .calculator {
+    padding: 15px;
+  }
+
+  .step select[multiple] {
+    height: 120px;
+  }
+
+  .price-btn,
+  .buy-btn {
+    width: 100%;
+  }
 }

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "./IphonePurchase.css";
+import "./IphonePurchase.css"; // We'll use your calculator CSS
 
 const IPHONE_MODELS = [
   { label: "iPhone 17 Pro Max", value: "iphone17_pro_max", storage: [128, 256, 512, 1024] },
@@ -43,7 +43,7 @@ export default function IphonePurchase() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Read model from query string
+  // Get initial model from query string
   const params = new URLSearchParams(location.search);
   const initialModel = params.get("model") 
     ? IPHONE_MODELS.find(m => m.label === params.get("model"))?.value 
@@ -88,48 +88,56 @@ ${t("purchase.total")}: €${price}
   };
 
   return (
-    <div className="purchase-page">
+    <div className="calculator">
       <h2>{t("purchase.title")}</h2>
 
       {/* Model Dropdown */}
-      <label>{t("purchase.selectModel")}</label>
-      <select
-        value={model}
-        onChange={(e) => {
-          const selected = e.target.value;
-          setModel(selected);
-          setStorage(IPHONE_MODELS.find(m => m.value === selected).storage[0]);
-        }}
-      >
-        {IPHONE_MODELS.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
-      </select>
+      <div className="step">
+        <label>{t("purchase.selectModel")}</label>
+        <select
+          value={model}
+          onChange={(e) => {
+            const selected = e.target.value;
+            setModel(selected);
+            setStorage(IPHONE_MODELS.find(m => m.value === selected).storage[0]);
+          }}
+        >
+          {IPHONE_MODELS.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
+        </select>
+      </div>
 
-      {/* Storage */}
-      <label>{t("purchase.selectStorage")}</label>
-      <select value={storage} onChange={(e) => setStorage(parseInt(e.target.value))}>
-        {currentModel.storage.map(s => <option key={s} value={s}>{s} GB</option>)}
-      </select>
+      {/* Storage Dropdown */}
+      <div className="step">
+        <label>{t("purchase.selectStorage")}</label>
+        <select value={storage} onChange={(e) => setStorage(parseInt(e.target.value))}>
+          {currentModel.storage.map(s => <option key={s} value={s}>{s} GB</option>)}
+        </select>
+      </div>
 
-      {/* Condition */}
-      <label>{t("purchase.selectCondition")}</label>
-      <select value={condition} onChange={(e) => setCondition(e.target.value)}>
-        <option value="excellent">{t("purchase.condition.excellent")}</option>
-        <option value="good">{t("purchase.condition.good")}</option>
-        <option value="fair">{t("purchase.condition.fair")}</option>
-        <option value="poor">{t("purchase.condition.poor")}</option>
-      </select>
+      {/* Condition Dropdown */}
+      <div className="step">
+        <label>{t("purchase.selectCondition")}</label>
+        <select value={condition} onChange={(e) => setCondition(e.target.value)}>
+          <option value="excellent">{t("purchase.condition.excellent")}</option>
+          <option value="good">{t("purchase.condition.good")}</option>
+          <option value="fair">{t("purchase.condition.fair")}</option>
+          <option value="poor">{t("purchase.condition.poor")}</option>
+        </select>
+      </div>
 
-      <button className="calculate-btn" onClick={calculatePrice}>{t("purchase.showPrice")}</button>
+      <button className="price-btn" onClick={calculatePrice}>{t("purchase.showPrice")}</button>
 
       {price && (
-        <form className="customer-form" onSubmit={handleSubmit}>
-          <h3>{t("purchase.customerInfo")}</h3>
-          <input name="name" placeholder={t("purchase.name")} value={customer.name} onChange={handleChange} required />
-          <input name="email" placeholder={t("purchase.email")} type="email" value={customer.email} onChange={handleChange} required />
-          <input name="phone" placeholder={t("purchase.phone")} value={customer.phone} onChange={handleChange} required />
-          <textarea name="address" placeholder={t("purchase.address")} value={customer.address} onChange={handleChange} required />
-          <button type="submit" className="buy-btn">{t("purchase.submitOrder")}</button>
-        </form>
+        <div className="result">
+          <p>{t("purchase.total")}: €{price}</p>
+          <form className="customer-form" onSubmit={handleSubmit}>
+            <input name="name" placeholder={t("purchase.name")} value={customer.name} onChange={handleChange} required />
+            <input name="email" placeholder={t("purchase.email")} type="email" value={customer.email} onChange={handleChange} required />
+            <input name="phone" placeholder={t("purchase.phone")} value={customer.phone} onChange={handleChange} required />
+            <textarea name="address" placeholder={t("purchase.address")} value={customer.address} onChange={handleChange} required />
+            <button type="submit" className="buy-btn">{t("purchase.submitOrder")}</button>
+          </form>
+        </div>
       )}
     </div>
   );
