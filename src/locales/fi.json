@@ -146,6 +146,13 @@
       "backDamage": "Takakansi vaurioitunut"
     }
   },
+  "cart": {
+  "title": "Ostoskori",
+  "empty": "Ostoskorisi on tyhjä",
+  "total": "Yhteensä",
+  "checkout": "Siirry kassalle"
+},
+
 
   "continue": "Jatka",
   "startOver": "Aloita alusta",
