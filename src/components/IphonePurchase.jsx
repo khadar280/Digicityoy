@@ -1,129 +1,130 @@
-// src/pages/IphonePurchase.jsx
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// src/components/Navbar.jsx
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
+import './Navbar.css';
+import logo from '../assets/city.jpg';
+import { useCart } from './CartContext';
 import { useTranslation } from "react-i18next";
-import "./IphonePurchase.css";
+import { UserContext } from '../context/UserContext';
 
+// Full iPhone models list
 const IPHONE_MODELS = [
-  { label: "iPhone 17 Pro Max", value: "iphone17_pro_max", storage: [128, 256, 512, 1024] },
-  { label: "iPhone 17 Pro", value: "iphone17_pro", storage: [128, 256, 512] },
-  { label: "iPhone 16 Pro Max", value: "iphone16_pro_max", storage: [128, 256, 512] },
-  { label: "iPhone 15 Pro Max", value: "iphone15_pro_max", storage: [128, 256, 512] },
-  { label: "iPhone 14", value: "iphone14", storage: [128, 256] },
-  { label: "iPhone 13", value: "iphone13", storage: [128, 256] },
-  { label: "iPhone 12", value: "iphone12", storage: [64, 128, 256] },
-  { label: "iPhone 11", value: "iphone11", storage: [64, 128, 256] }
+  "iPhone 17 Pro Max","iPhone 17 Pro","iPhone 17",
+  "iPhone 16 Pro Max","iPhone 16 Pro","iPhone 16",
+  "iPhone 15 Pro Max","iPhone 15 Pro","iPhone 15",
+  "iPhone 14 Pro Max","iPhone 14 Pro","iPhone 14",
+  "iPhone 13 Pro Max","iPhone 13 Pro","iPhone 13",
+  "iPhone 12 Pro Max","iPhone 12 Pro","iPhone 12",
+  "iPhone 11 Pro Max","iPhone 11 Pro","iPhone 11"
 ];
 
-const BASE_PRICES = {
-  iphone17_pro_max: 950,
-  iphone17_pro: 880,
-  iphone16_pro_max: 850,
-  iphone15_pro_max: 720,
-  iphone14: 470,
-  iphone13: 400,
-  iphone12: 280,
-  iphone11: 250
-};
-
-export default function IphonePurchase() {
-  const { t } = useTranslation();
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [buyDropdownOpen, setBuyDropdownOpen] = useState(false);
+  const [language, setLanguage] = useState('EN');
+  const [searchQuery, setSearchQuery] = useState('');
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
+  const { cartItems } = useCart();
+  const { t, i18n } = useTranslation();
+  const { user, logout } = useContext(UserContext);
 
-  const [model, setModel] = useState("iphone17_pro_max");
-  const [storage, setStorage] = useState(128);
-  const [condition, setCondition] = useState("good");
-  const [price, setPrice] = useState(null);
-  const [customer, setCustomer] = useState({ name: "", email: "", phone: "", address: "" });
-
-  const currentModel = IPHONE_MODELS.find(m => m.value === model);
-
-  const calculatePrice = () => {
-    let total = BASE_PRICES[model] || 0;
-    if (storage === 256) total += 50;
-    if (storage === 512) total += 100;
-    if (storage === 1024) total += 150;
-
-    if (condition === "excellent") total += 100;
-    if (condition === "fair") total -= 120;
-    if (condition === "poor") total -= 200;
-
-    setPrice(total);
+  const handleLanguageChange = (e) => {
+    const newLang = e.target.value.toLowerCase();
+    setLanguage(e.target.value);
+    i18n.changeLanguage(newLang);
   };
 
-  const handleChange = (e) => {
-    setCustomer({ ...customer, [e.target.name]: e.target.value });
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const handleSearchKeyDown = (e) => {
+    if (e.key === 'Enter' && searchQuery.trim() !== '') {
+      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+      setMenuOpen(false);
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!price) return alert(t("purchase.alertCalculatePrice"));
+  const handleLogoClick = () => navigate(-1);
 
-    alert(`
-${t("purchase.orderSubmitted")}!
-
-${t("purchase.name")}: ${customer.name}
-${t("purchase.model")}: ${currentModel.label}
-${t("purchase.storage")}: ${storage} GB
-${t("purchase.condition")}: ${t(`purchase.condition.${condition}`)}
-${t("purchase.total")}: €${price}
-    `);
-  };
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setBuyDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
-    <div className="purchase-page">
-      {/* Back to homepage or previous page */}
-      <button className="back-btn" onClick={() => navigate("/")}>← {t("back")}</button>
+    <header className="navbar">
+      <img src={logo} alt="Logo" className="logo" onClick={handleLogoClick} />
 
-      <h2>{t("purchase.title")}</h2>
+      <nav className={`nav-container ${menuOpen ? 'active' : ''}`}>
+        <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+          <li><button className="buy-btn" onClick={() => setBuyDropdownOpen(!buyDropdownOpen)}>Buy iPhone ▼</button>
+            {buyDropdownOpen && (
+              <ul className="dropdown-menu" ref={dropdownRef}>
+                {IPHONE_MODELS.map(model => (
+                  <li key={model} onClick={() => {
+                    navigate(`/buy-iphone?model=${encodeURIComponent(model)}`);
+                    setBuyDropdownOpen(false);
+                    setMenuOpen(false);
+                  }}>
+                    {model}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
 
-      {/* Model Selection */}
-      <label>{t("purchase.selectModel")}</label>
-      <select
-        value={model}
-        onChange={(e) => {
-          const selected = e.target.value;
-          setModel(selected);
-          setStorage(IPHONE_MODELS.find(m => m.value === selected).storage[0]);
-        }}
-      >
-        {IPHONE_MODELS.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
-      </select>
+          <li><Link to="/" onClick={() => setMenuOpen(false)}>{t("nav.home")}</Link></li>
+          <li><Link to="/destination" onClick={() => setMenuOpen(false)}>{t("nav.shop")}</Link></li>
+          <li><Link to="/booking" onClick={() => setMenuOpen(false)}>{t("nav.booking")}</Link></li>
+          <li><Link to="/contact" onClick={() => setMenuOpen(false)}>{t("nav.contact")}</Link></li>
+          <li><Link to="/about-us" onClick={() => setMenuOpen(false)}>{t("nav.about")}</Link></li>
 
-      {/* Storage Selection */}
-      <label>{t("purchase.selectStorage")}</label>
-      <select value={storage} onChange={(e) => setStorage(parseInt(e.target.value))}>
-        {currentModel.storage.map(s => <option key={s} value={s}>{s} GB</option>)}
-      </select>
-
-      {/* Condition Selection */}
-      <label>{t("purchase.selectCondition")}</label>
-      <select value={condition} onChange={(e) => setCondition(e.target.value)}>
-        <option value="excellent">{t("purchase.condition.excellent")}</option>
-        <option value="good">{t("purchase.condition.good")}</option>
-        <option value="fair">{t("purchase.condition.fair")}</option>
-        <option value="poor">{t("purchase.condition.poor")}</option>
-      </select>
-
-      <button className="calculate-btn" onClick={calculatePrice}>{t("purchase.showPrice")}</button>
-
-      {price && (
-        <>
-          <div className="purchase-summary">
-            <h3>{t("purchase.total")}: €{price}</h3>
+          <div className="search-bar">
+            <input
+              type="text"
+              placeholder={t("nav.search")}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearchKeyDown}
+            />
           </div>
+        </ul>
+      </nav>
 
-          
-          <form className="customer-form" onSubmit={handleSubmit}>
-            <h3>{t("purchase.customerInfo")}</h3>
-            <input name="name" placeholder={t("purchase.name")} value={customer.name} onChange={handleChange} required />
-            <input name="email" placeholder={t("purchase.email")} type="email" value={customer.email} onChange={handleChange} required />
-            <input name="phone" placeholder={t("purchase.phone")} value={customer.phone} onChange={handleChange} required />
-            <textarea name="address" placeholder={t("purchase.address")} value={customer.address} onChange={handleChange} required />
-            <button type="submit" className="buy-btn">{t("purchase.submitOrder")}</button>
-          </form>
-        </>
-      )}
-    </div>
+      <div className="user-controls">
+        <select className="lang-select" value={language} onChange={handleLanguageChange}>
+          <option value="EN">EN</option>
+          <option value="FI">FI</option>
+        </select>
+
+        <Link to="/cart" className="cart-link">
+          {t('nav.cart')} ({cartItems.length})
+        </Link>
+
+        <div className="user-menu-wrapper">
+          <div className="user-info" onClick={() => user ? setBuyDropdownOpen(!buyDropdownOpen) : navigate('/auth')}>
+            {user ? <span>{user.name}</span> : <FaUserCircle size={30} />}
+          </div>
+          {user && buyDropdownOpen && (
+            <div className="user-dropdown-menu show">
+              <Link to="/profile">Profile</Link>
+              <button onClick={() => { logout(); navigate('/'); }}>Logout</button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="menu-toggle" onClick={toggleMenu}>
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </div>
+    </header>
   );
-}
+};
+
+export default Navbar;
