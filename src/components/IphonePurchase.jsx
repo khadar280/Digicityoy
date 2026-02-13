@@ -1,4 +1,7 @@
+// src/pages/IphonePurchase.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./IphonePurchase.css";
 
 const IPHONE_MODELS = [
@@ -24,23 +27,19 @@ const BASE_PRICES = {
 };
 
 export default function IphonePurchase() {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
   const [model, setModel] = useState("iphone17_pro_max");
   const [storage, setStorage] = useState(128);
   const [condition, setCondition] = useState("good");
   const [price, setPrice] = useState(null);
-
-  const [customer, setCustomer] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    address: ""
-  });
+  const [customer, setCustomer] = useState({ name: "", email: "", phone: "", address: "" });
 
   const currentModel = IPHONE_MODELS.find(m => m.value === model);
 
   const calculatePrice = () => {
     let total = BASE_PRICES[model] || 0;
-
     if (storage === 256) total += 50;
     if (storage === 512) total += 100;
     if (storage === 1024) total += 150;
@@ -53,118 +52,75 @@ export default function IphonePurchase() {
   };
 
   const handleChange = (e) => {
-    setCustomer({
-      ...customer,
-      [e.target.name]: e.target.value
-    });
+    setCustomer({ ...customer, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!price) return alert(t("purchase.alertCalculatePrice"));
 
-    if (!price) {
-      alert("Please calculate price first.");
-      return;
-    }
-
-    // Here later you connect backend
     alert(`
-Order Submitted!
+${t("purchase.orderSubmitted")}!
 
-Name: ${customer.name}
-Model: ${currentModel.label}
-Storage: ${storage}GB
-Condition: ${condition}
-Total: €${price}
+${t("purchase.name")}: ${customer.name}
+${t("purchase.model")}: ${currentModel.label}
+${t("purchase.storage")}: ${storage} GB
+${t("purchase.condition")}: ${t(`purchase.condition.${condition}`)}
+${t("purchase.total")}: €${price}
     `);
   };
 
   return (
-    <div className="purchase">
-      <h2>Buy Used iPhone</h2>
+    <div className="purchase-page">
+      {/* Back to homepage or previous page */}
+      <button className="back-btn" onClick={() => navigate("/")}>← {t("back")}</button>
 
-      <label>Select Model</label>
+      <h2>{t("purchase.title")}</h2>
+
+      {/* Model Selection */}
+      <label>{t("purchase.selectModel")}</label>
       <select
         value={model}
         onChange={(e) => {
           const selected = e.target.value;
           setModel(selected);
-          const firstStorage = IPHONE_MODELS.find(m => m.value === selected).storage[0];
-          setStorage(firstStorage);
+          setStorage(IPHONE_MODELS.find(m => m.value === selected).storage[0]);
         }}
       >
-        {IPHONE_MODELS.map(m => (
-          <option key={m.value} value={m.value}>{m.label}</option>
-        ))}
+        {IPHONE_MODELS.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
       </select>
 
-      <label>Select Storage</label>
+      {/* Storage Selection */}
+      <label>{t("purchase.selectStorage")}</label>
       <select value={storage} onChange={(e) => setStorage(parseInt(e.target.value))}>
-        {currentModel.storage.map(s => (
-          <option key={s} value={s}>{s} GB</option>
-        ))}
+        {currentModel.storage.map(s => <option key={s} value={s}>{s} GB</option>)}
       </select>
 
-      <label>Select Condition</label>
+      {/* Condition Selection */}
+      <label>{t("purchase.selectCondition")}</label>
       <select value={condition} onChange={(e) => setCondition(e.target.value)}>
-        <option value="excellent">Excellent (Like New)</option>
-        <option value="good">Good</option>
-        <option value="fair">Fair (Visible Wear)</option>
-        <option value="poor">Poor (Heavy Damage)</option>
+        <option value="excellent">{t("purchase.condition.excellent")}</option>
+        <option value="good">{t("purchase.condition.good")}</option>
+        <option value="fair">{t("purchase.condition.fair")}</option>
+        <option value="poor">{t("purchase.condition.poor")}</option>
       </select>
 
-      <button className="calculate-btn" onClick={calculatePrice}>
-        Show Price
-      </button>
+      <button className="calculate-btn" onClick={calculatePrice}>{t("purchase.showPrice")}</button>
 
       {price && (
         <>
           <div className="purchase-summary">
-            <h3>Total Price: €{price}</h3>
+            <h3>{t("purchase.total")}: €{price}</h3>
           </div>
 
-          {/* CUSTOMER FORM */}
+          {/* Customer Info Form */}
           <form className="customer-form" onSubmit={handleSubmit}>
-            <h3>Customer Information</h3>
-
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={customer.name}
-              onChange={handleChange}
-              required
-            />
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={customer.email}
-              onChange={handleChange}
-              required
-            />
-
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone Number"
-              value={customer.phone}
-              onChange={handleChange}
-              required
-            />
-
-            <textarea
-              name="address"
-              placeholder="Shipping Address"
-              value={customer.address}
-              onChange={handleChange}
-              required
-            />
-
-            <button type="submit" className="buy-btn">
-              Submit Order
-            </button>
+            <h3>{t("purchase.customerInfo")}</h3>
+            <input name="name" placeholder={t("purchase.name")} value={customer.name} onChange={handleChange} required />
+            <input name="email" placeholder={t("purchase.email")} type="email" value={customer.email} onChange={handleChange} required />
+            <input name="phone" placeholder={t("purchase.phone")} value={customer.phone} onChange={handleChange} required />
+            <textarea name="address" placeholder={t("purchase.address")} value={customer.address} onChange={handleChange} required />
+            <button type="submit" className="buy-btn">{t("purchase.submitOrder")}</button>
           </form>
         </>
       )}

@@ -13,7 +13,6 @@
     "logout": "Kirjaudu ulos",
     "logoutMessage": "Olet kirjautunut ulos!"
   },
-
   "auth": {
     "login": "Kirjaudu sisään",
     "signup": "Rekisteröidy",
@@ -28,14 +27,11 @@
     "error": "Tapahtui virhe",
     "success": "Onnistui"
   },
-
-"hero": {
-  "title": "Puhelin, läppäri- ja tablettihuolto",
-  "bookNow": "Varaa huolto",
-  "checkIphone": "Tarkista iPhonesi arvo"
-},
-
-
+  "hero": {
+    "title": "Puhelin, läppäri- ja tablettihuolto",
+    "bookNow": "Varaa huolto",
+    "checkIphone": "Tarkista iPhonesi arvo"
+  },
   "services": {
     "title": "Palvelumme",
     "intro": "Tarjoamme ammattimaisia korjauspalveluita puhelimille, tableteille ja tietokoneille.",
@@ -55,7 +51,6 @@
       "button": "Ota yhteyttä"
     }
   },
-
   "repair": {
     "screenTitle": "Näytön vaihto",
     "screenDesc": "Rikkoutunut näyttö? Vaihdamme sen korkealaatuiseen näyttöön.",
@@ -79,13 +74,11 @@
     "time": "Korjausaika",
     "bookBtn": "Varaa korjaus"
   },
-
   "iphone": {
     "title": "iPhonen korjaus",
     "repairs": "Korjaukset",
     "backToModels": "Takaisin malleihin"
   },
-
   "bookingForm": {
     "book": "Varaa palvelu",
     "name": "Nimesi",
@@ -100,7 +93,6 @@
     "errorMessage": "Jokin meni pieleen. Yritä uudelleen.",
     "closedWeekend": "Olemme kiinni lauantaisin ja sunnuntaisin."
   },
-
   "about": {
     "title": "Tietoa Digicitystä",
     "p1": "Digicity perustettiin vuonna 2021 Abdishakuur Mohamed Nuurin toimesta vastaamaan kasvavaan kysyntään ammattimaisista ja luotettavista laitekorjauspalveluista.",
@@ -112,7 +104,6 @@
       "three": "Läpinäkyvä hinnoittelu ja erinomainen asiakaspalvelu"
     }
   },
-
   "iphoneCalculator": {
     "title": "Oma iPhone",
     "transactionType": "Haluan",
@@ -147,16 +138,13 @@
     }
   },
   "cart": {
-  "title": "Ostoskori",
-  "empty": "Ostoskorisi on tyhjä",
-  "total": "Yhteensä",
-  "checkout": "Siirry kassalle"
-},
-
-
+    "title": "Ostoskori",
+    "empty": "Ostoskorisi on tyhjä",
+    "total": "Yhteensä",
+    "checkout": "Siirry kassalle"
+  },
   "continue": "Jatka",
   "startOver": "Aloita alusta",
-
   "trending": {
     "Phone Covers": "Puhelinkuoret",
     "Other accessories": "Muut tarvikkeet",
@@ -170,9 +158,7 @@
     "close": "Sulje",
     "no_products_found": "Tuotteita ei löytynyt"
   },
-
   "search_results_for": "Hakutulokset haulle",
-
   "footer": {
     "visitingHours": "Aukioloajat",
     "weekdays": "Ma - Pe: 11:00 - 20:00",
@@ -184,7 +170,6 @@
     "followUs": "Seuraa meitä",
     "rights": "Kaikki oikeudet pidätetään."
   },
-
   "contact": {
     "title": "Ota yhteyttä",
     "subtitle": "Haluamme kuulla sinusta. Lähetä viesti alla.",
@@ -196,26 +181,21 @@
     "response": "Viestisi on vastaanotettu. Otamme sinuun yhteyttä pian."
   },
   "booking": {
-  "title": "Varaa aika",
-  "phoneRepair": "Puhelimen korjaus",
-  "batteryChange": "Akun vaihto",
-  "inspection": "Laitetarkastus",
-  "passport": "Passikuvaus",
-
-  "time1": "30–60 min",
-  "time2": "30 min",
-  "time3": "15 min",
-  "time4": "10 min",
-
-  "price1": "Alkaen 49€",
-  "price2": "Alkaen 39€",
-  "price3": "20€",
-  "price4": "15€",
-
-  "book": "Varaa"
-},
-
-
+    "title": "Varaa aika",
+    "phoneRepair": "Puhelimen korjaus",
+    "batteryChange": "Akun vaihto",
+    "inspection": "Laitetarkastus",
+    "passport": "Passikuvaus",
+    "time1": "30–60 min",
+    "time2": "30 min",
+    "time3": "15 min",
+    "time4": "10 min",
+    "price1": "Alkaen 49€",
+    "price2": "Alkaen 39€",
+    "price3": "20€",
+    "price4": "15€",
+    "book": "Varaa"
+  },
   "checkout": {
     "title": "Kassa",
     "orderSummary": "Tilauksen yhteenveto",
@@ -237,8 +217,30 @@
     "paymentError": "Maksusession luominen epäonnistui",
     "generalError": "Jokin meni pieleen. Yritä uudelleen."
   },
-
   "planningSection": {
     "buttonText": "Varaa passikuvaukseen"
-  }
+  },
+  "purchase": {
+    "title": "Osta käytetty iPhone",
+    "selectModel": "Valitse malli",
+    "selectStorage": "Valitse tallennustila",
+    "selectCondition": "Valitse kunto",
+    "showPrice": "Näytä hinta",
+    "customerInfo": "Asiakastiedot",
+    "name": "Koko nimi",
+    "email": "Sähköposti",
+    "phone": "Puhelinnumero",
+    "address": "Toimitusosoite",
+    "submitOrder": "Lähetä tilaus",
+    "total": "Kokonaishinta",
+    "orderSubmitted": "Tilaus lähetetty",
+    "alertCalculatePrice": "Laske hinta ensin.",
+    "condition": {
+      "excellent": "Erinomainen (kuin uusi)",
+      "good": "Hyvä",
+      "fair": "Kohtalainen (näkyvää kulumaa)",
+      "poor": "Huono (vahingot näkyvissä)"
+    }
+  },
+  "back": "Takaisin"
 }

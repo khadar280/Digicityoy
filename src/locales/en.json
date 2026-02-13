@@ -11,9 +11,8 @@
     "profile": "Profile",
     "settings": "Settings",
     "logout": "Logout",
-    "logoutMessage": "You have been logged out!"
+    "logoutMessage": "You have logged out!"
   },
-
   "auth": {
     "login": "Login",
     "signup": "Sign Up",
@@ -21,71 +20,65 @@
     "password": "Password",
     "name": "Name",
     "loginSuccess": "Login successful!",
-    "signupSuccess": "Registration successful!",
+    "signupSuccess": "Signup successful!",
     "forgotPassword": "Forgot your password?",
     "loginError": "Login failed",
     "signupError": "Signup failed",
     "error": "An error occurred",
     "success": "Success"
   },
-
- "hero": {
-  "title": "Phone, Laptop and Tablet Repair",
-  "bookNow": "Book a repair",
-  "checkIphone": "Check your iPhone value"
-},
-
-
+  "hero": {
+    "title": "Phone, Laptop & Tablet Repairs",
+    "bookNow": "Book Repair",
+    "checkIphone": "Check Your iPhone Value"
+  },
   "services": {
     "title": "Our Services",
-    "intro": "We provide professional repair services for phones, tablets and laptops.",
+    "intro": "We provide professional repair services for phones, tablets, and computers.",
     "iphone": {
       "title": "iPhone Repair",
-      "description": "Screen repair, battery replacement, water damage repair and more for all iPhone models.",
+      "description": "Screen repair, battery replacement, water damage repair, and more for all iPhone models.",
       "button": "Select Phone"
     },
     "android": {
       "title": "Android Repair",
-      "description": "We repair screens, software, batteries, and components for most Android brands.",
+      "description": "We repair screens, software, batteries, and components for most Android devices.",
       "button": "Select Phone"
     },
     "tablet": {
-      "title": "Tablet & Laptop Repair",
+      "title": "Tablet & Computer Repair",
       "description": "Screen issues, software problems, battery replacements, and hardware repairs for all devices.",
       "button": "Contact Us"
     }
   },
-
   "repair": {
     "screenTitle": "Screen Replacement",
-    "screenDesc": "Cracked or broken screen? We replace it with a high-quality screen.",
+    "screenDesc": "Broken screen? We replace it with a high-quality screen.",
     "batteryTitle": "Battery Replacement",
-    "batteryDesc": "Battery drains quickly or won’t charge? We replace it with a new one.",
+    "batteryDesc": "Battery drains fast or won't charge? We replace it with a new one.",
     "backTitle": "Back Cover Replacement",
-    "backDesc": "Broken back cover? We repair it like new.",
+    "backDesc": "Broken back cover? We fix it like new.",
     "housing": "Housing Replacement",
-    "housingDesc": "Replace damaged housing with a new one.",
+    "housingDesc": "Replace a damaged housing with a new one.",
     "backCamera": "Back Camera Repair",
-    "backCameraDesc": "Repair the back camera functionality and quality.",
+    "backCameraDesc": "Repair the functionality and quality of your back camera.",
     "frontCamera": "Front Camera Repair",
     "frontCameraDesc": "Repair or replace the front camera.",
     "lens": "Lens Replacement",
-    "lensDesc": "Replace scratched or broken camera lens.",
+    "lensDesc": "Replace scratched or broken lens.",
     "buttons": "Button Repair",
-    "buttonsDesc": "Fix broken or non-functional buttons.",
+    "buttonsDesc": "Repair broken or non-functioning buttons.",
     "chargingPort": "Charging Port Repair",
     "chargingPortDesc": "Fix charging port issues.",
     "warranty": "Warranty",
     "time": "Repair Time",
     "bookBtn": "Book Repair"
   },
-
   "iphone": {
     "title": "iPhone Repair",
     "repairs": "Repairs",
     "backToModels": "Back to Models"
   },
-
   "bookingForm": {
     "book": "Book Service",
     "name": "Your Name",
@@ -95,61 +88,63 @@
     "confirm": "Confirm Booking",
     "close": "Close",
     "sending": "Sending...",
-    "alertFillAll": "Please fill in all fields.",
-    "successMessage": "Your booking has been successfully submitted!",
-    "errorMessage": "Something went wrong. Please try again.",
+    "alertFillAll": "Please fill all fields.",
+    "successMessage": "Booking successful!",
+    "errorMessage": "Something went wrong. Try again.",
     "closedWeekend": "We are closed on Saturdays and Sundays."
   },
-
   "about": {
     "title": "About Digicity",
     "p1": "Digicity was founded in 2021 by Abdishakuur Mohamed Nuur to meet the growing demand for professional and reliable device repair services.",
-    "p2": "We provide fast, precise, and customer-focused repair services for phones, tablets, and laptops using high-quality spare parts and modern tools.",
+    "p2": "We provide fast, precise, and customer-focused repair services for phones, tablets, and computers with high-quality parts and modern tools.",
     "p3": "Customer satisfaction, transparent pricing, and high-quality workmanship are the foundation of everything we do.",
     "list": {
-      "one": "Original and high-quality spare parts",
+      "one": "Original and high-quality replacement parts",
       "two": "Experienced and certified technicians",
       "three": "Transparent pricing and excellent customer service"
     }
   },
-
   "iphoneCalculator": {
     "title": "My iPhone",
     "transactionType": "I want to",
     "sell": "Sell my iPhone",
     "buy": "Buy an iPhone",
-    "modelLabel": "Select iPhone model",
+    "modelLabel": "Select iPhone Model",
     "storageStep": "Select Storage",
-    "batteryStep": "Battery condition",
-    "cannotCheckBattery": "Cannot check",
-    "issuesTitle": "Select all issues that apply",
+    "batteryStep": "Battery Health",
+    "cannotCheckBattery": "Cannot Check",
+    "issuesTitle": "Select all applicable issues",
     "getPrice": "Get Price",
     "estimatedPrice": "Estimated Value",
-    "estimatedSellPrice": "Estimated Sell Price",
-    "buyPrice": "Buy Price",
+    "estimatedSellPrice": "Estimated Selling Price",
+    "buyPrice": "Purchase Price",
     "currency": "€",
     "issues": {
-      "screenCracked": "Screen cracked",
-      "screenScratches": "Screen scratches",
-      "backGlass": "Back glass broken",
-      "bodyHeavy": "Heavy body damage",
-      "bodyLight": "Light body scratches",
-      "battery80": "Battery health 80–89%",
-      "batteryLow": "Battery health below 80%",
-      "cameraIssue": "Camera not working",
-      "faceIdIssue": "Face ID not working",
-      "cameraRepair": "Camera repair",
-      "lensReplacement": "Lens replacement",
-      "housingReplacement": "Housing replacement",
-      "speakerIssue": "Speaker not working",
-      "cornerDamage": "Corners/edges damaged",
-      "backDamage": "Back cover damaged"
+      "screenCracked": "Screen Cracked",
+      "screenScratches": "Screen Scratches",
+      "backGlass": "Back Glass Cracked",
+      "bodyHeavy": "Heavy Body Damage",
+      "bodyLight": "Light Body Scratches",
+      "battery80": "Battery Health 80–89%",
+      "batteryLow": "Battery Health Below 80%",
+      "cameraIssue": "Camera Not Working",
+      "faceIdIssue": "Face ID Not Working",
+      "cameraRepair": "Camera Repair",
+      "lensReplacement": "Lens Replacement",
+      "housingReplacement": "Housing Replacement",
+      "speakerIssue": "Speaker Not Working",
+      "cornerDamage": "Corners/Dents",
+      "backDamage": "Back Cover Damaged"
     }
   },
-
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "checkout": "Proceed to Checkout"
+  },
   "continue": "Continue",
   "startOver": "Start Over",
-
   "trending": {
     "Phone Covers": "Phone Covers",
     "Other accessories": "Other Accessories",
@@ -163,13 +158,11 @@
     "close": "Close",
     "no_products_found": "No products found"
   },
-
   "search_results_for": "Search results for",
-
   "footer": {
     "visitingHours": "Opening Hours",
     "weekdays": "Mon - Fri: 11:00 - 20:00",
-    "weekend": "Saturday - Sunday: Closed",
+    "weekend": "Sat - Sun: Closed",
     "contactTitle": "Contact Us",
     "email": "Email",
     "phone": "Phone",
@@ -177,39 +170,32 @@
     "followUs": "Follow Us",
     "rights": "All rights reserved."
   },
-
   "contact": {
     "title": "Contact Us",
-    "subtitle": "We would love to hear from you. Send us a message below.",
+    "subtitle": "We’d love to hear from you. Send a message below.",
     "name": "Your Name",
     "email": "Email Address",
-    "message": "Your Message",
+    "message": "Message",
     "send": "Send Message",
-    "thankYou": "Thank you!",
-    "response": "Your message has been received. We will get back to you shortly."
+    "thankYou": "Thank You!",
+    "response": "Your message has been received. We will contact you shortly."
   },
-
   "booking": {
-  "title": "Book an Appointment",
-  "phoneRepair": "Phone Repair",
-  "batteryChange": "Battery Replacement",
-  "inspection": "Device Inspection",
-  "passport": "Passport Photo",
-
-  "time1": "30–60 min",
-  "time2": "30 min",
-  "time3": "15 min",
-  "time4": "10 min",
-
-  "price1": "From €49",
-  "price2": "From €39",
-  "price3": "€20",
-  "price4": "€15",
-
-  "book": "Book"
-},
-
-
+    "title": "Book Appointment",
+    "phoneRepair": "Phone Repair",
+    "batteryChange": "Battery Replacement",
+    "inspection": "Device Inspection",
+    "passport": "Passport Photo",
+    "time1": "30–60 min",
+    "time2": "30 min",
+    "time3": "15 min",
+    "time4": "10 min",
+    "price1": "From €49",
+    "price2": "From €39",
+    "price3": "€20",
+    "price4": "€15",
+    "book": "Book"
+  },
   "checkout": {
     "title": "Checkout",
     "orderSummary": "Order Summary",
@@ -218,9 +204,9 @@
     "billingInfo": "Billing Information",
     "fullName": "Full Name",
     "email": "Email",
-    "phone": "Phone Number",
+    "phone": "Phone",
     "address": "Address",
-    "postCode": "Post Code",
+    "postCode": "Postal Code",
     "city": "City",
     "country": "Country",
     "deliveryMethod": "Delivery Method",
@@ -228,11 +214,33 @@
     "express": "Express",
     "pickup": "Pickup (Free)",
     "confirmPayment": "Confirm Payment",
-    "paymentError": "Failed to initiate payment session",
-    "generalError": "Something went wrong. Please try again."
+    "paymentError": "Payment session creation failed",
+    "generalError": "Something went wrong. Try again."
   },
-
   "planningSection": {
-    "buttonText": "Book for passport photo"
-  }
+    "buttonText": "Book Passport Photo"
+  },
+  "purchase": {
+    "title": "Buy Used iPhone",
+    "selectModel": "Select Model",
+    "selectStorage": "Select Storage",
+    "selectCondition": "Select Condition",
+    "showPrice": "Show Price",
+    "customerInfo": "Customer Information",
+    "name": "Full Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "address": "Shipping Address",
+    "submitOrder": "Submit Order",
+    "total": "Total Price",
+    "orderSubmitted": "Order Submitted",
+    "alertCalculatePrice": "Please calculate price first.",
+    "condition": {
+      "excellent": "Excellent (Like New)",
+      "good": "Good",
+      "fair": "Fair (Visible Wear)",
+      "poor": "Poor (Heavy Damage)"
+    }
+  },
+  "back": "Back"
 }
