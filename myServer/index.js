@@ -40,7 +40,7 @@ app.use('/api/searchbar', SearchbarRoutes);
 app.use('/api/laptop', LaptopRoutes);
 app.use('/api/calculate', CalculateRoutes);
 
-/
+
 app.get('/', (_req, res) => {
   res.send('👋 DigiCity API is running successfully!');
 });
