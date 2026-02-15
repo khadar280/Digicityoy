@@ -1,96 +1,48 @@
-/* Modal overlay (dark background) */
+/* Modal overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.5); /* slightly darker for better contrast */
+  background: rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  padding: 1rem; /* ensures spacing on small screens */
+  padding: 1rem;
   overflow-y: auto;
 }
 
 /* Modal box */
 .modal-box {
   background: #fff;
-  padding: 2.5rem 2rem;
-  border-radius: 20px;
-  max-width: 500px; /* wider for comfort */
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  max-width: 500px;
   width: 100%;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   position: relative;
   animation: fadeInScale 0.3s ease-in-out;
 }
 
 /* Modal title */
 .modal-box h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #111;
   text-align: center;
-}
-
-/* Form inside modal */
-.modal-box form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-/* Inputs and selects */
-.modal-box input,
-.modal-box select,
-.modal-box textarea {
-  width: 100%;
-  padding: 0.85rem 1rem;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 1.1rem;
-  font-weight: 500;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  box-sizing: border-box;
-}
-
-/* Input focus style */
-.modal-box input:focus,
-.modal-box select:focus,
-.modal-box textarea:focus {
-  outline: none;
-  border-color: #0d87a5;
-  box-shadow: 0 0 0 3px rgba(13, 135, 165, 0.15);
-}
-
-/* Submit button */
-.modal-box button[type="submit"] {
-  background: linear-gradient(to right, #6dd5fa, #0d87a5);
-  color: #fff;
-  border: none;
-  padding: 0.9rem 1rem;
-  font-size: 1.1rem;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.modal-box button[type="submit"]:hover {
-  filter: brightness(1.1);
-  transform: translateY(-2px) scale(1.02);
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: #ff0000;
 }
 
 /* Close button */
 .close-btn {
-  background: none;
-  border: none;
-  color: #888;
   position: absolute;
   top: 12px;
   right: 16px;
   font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #888;
   cursor: pointer;
   transition: color 0.2s;
 }
@@ -99,63 +51,122 @@
   color: #0d87a5;
 }
 
-/* Success banner */
+/* Form layout */
+.modal-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Inputs & select styling */
+.modal-box input,
+.modal-box select,
+.modal-box textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.modal-box input:focus,
+.modal-box select:focus,
+.modal-box textarea:focus {
+  outline: none;
+  border-color: #0d87a5;
+  box-shadow: 0 0 0 2px rgba(13, 135, 165, 0.2);
+}
+
+/* Submit button */
+.modal-box button[type="submit"] {
+  background: linear-gradient(to right, #b0d8f1, #0d87a5);
+  color: #030303;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-box button[type="submit"]:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.modal-box button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Warning & success banners */
+.warning-banner,
+.success-banner {
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
 .success-banner {
   background: linear-gradient(to right, #d4edda, #c3e6cb);
   color: #155724;
   border: 1px solid #c3e6cb;
-  padding: 1rem;
-  border-radius: 10px;
-  font-size: 1rem;
-  text-align: center;
-  margin-bottom: 1rem;
-  animation: fadeInSlideDown 0.4s ease-in-out;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
 }
 
-/* Warning banner */
 .warning-banner {
   background-color: #fff3cd;
   color: #856404;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-  font-size: 1rem;
   border: 1px solid #ffeeba;
-  text-align: center;
 }
 
-/* Select dropdown options */
+/* Time dropdown / select */
 .modal-box select option:disabled {
   background-color: #eee;
   color: #999;
 }
 
-/* Animations */
-@keyframes fadeInSlideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Card-like input rows (optional for phone/date/time) */
+.input-row {
+  display: flex;
+  gap: 12px;
 }
 
+.input-row input,
+.input-row select {
+  flex: 1;
+}
+
+/* Animations */
 @keyframes fadeInScale {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Responsive adjustments */
+/* Responsive tweaks */
 @media (max-width: 480px) {
   .modal-box {
-    padding: 2rem 1rem;
-    border-radius: 16px;
+    padding: 1.5rem 1rem;
   }
+
   .modal-box h2 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
+
   .modal-box input,
   .modal-box select,
   .modal-box textarea,
   .modal-box button[type="submit"] {
-    font-size: 1rem;
-    padding: 0.75rem;
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .input-row {
+    flex-direction: column;
   }
 }
