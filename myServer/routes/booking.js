@@ -11,12 +11,10 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// ======================
-// GET BOOKINGS
-// ======================
+
 router.get('/', async (req, res) => {
   try {
-    // Optional: filter by date if ?date=YYYY-MM-DD is provided
+
     const { date } = req.query;
     let query = {};
 
