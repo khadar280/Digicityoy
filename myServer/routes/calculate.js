@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const pricing = require("../pricingRules");
-const Quote = require("../models/Quote"); // Optional: MongoDB save
+const Quote = require("../models/calculate"); // Optional: MongoDB save
 
 // POST /api/calculate
 router.post("/", async (req, res) => {
@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 
   if (price < 0) price = 0;
 
-  // Optional: save quote to MongoDB
+ 
   try {
     const quote = new Quote({ model, screen, body, battery, price });
     await quote.save();
