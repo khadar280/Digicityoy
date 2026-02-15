@@ -14,9 +14,9 @@ const BookingFormModal = ({ service, onClose }) => {
   const [bookedTimes, setBookedTimes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [serverError, setServerError] = useState("");
 
-  const API_URL =
-    process.env.REACT_APP_API_URL || "https://digicityoy63.onrender.com";
+  const API_URL = process.env.REACT_APP_API_URL || "https://digicityoy63.onrender.com";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +25,6 @@ const BookingFormModal = ({ service, onClose }) => {
       const dayOfWeek = new Date(value).getDay();
       if (dayOfWeek === 0 || dayOfWeek === 6) {
         setWarningMessage(t("bookingForm.closedWeekend"));
-        return;
       } else {
         setWarningMessage("");
       }
@@ -42,6 +41,7 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
+  // Fetch booked times whenever the date changes
   useEffect(() => {
     if (!form.date) return;
 
@@ -66,13 +66,18 @@ const BookingFormModal = ({ service, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setServerError("");
+
     if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
       alert(t("bookingForm.errorMessage"));
       return;
     }
 
     setLoading(true);
+
     try {
+      const lang = i18n?.language?.split("-")[0] || "en";
+
       const response = await fetch(`${API_URL}/api/booking`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -82,23 +87,25 @@ const BookingFormModal = ({ service, onClose }) => {
           phone: form.phone,
           service,
           bookingDate: `${form.date}T${form.time}`,
-          lang: i18n?.language?.split("-")[0] || "en",
+          lang,
         }),
       });
 
       const data = await response.json();
+
       if (response.ok) {
         setShowSuccess(true);
+        setForm({ name: "", phone: "", email: "", date: "", time: "" });
         setTimeout(() => {
           setShowSuccess(false);
           onClose();
         }, 6000);
       } else {
-        alert(data?.error || t("bookingForm.errorMessage"));
+        setServerError(data?.error || t("bookingForm.errorMessage"));
       }
     } catch (error) {
       console.error("Booking error:", error);
-      alert(t("bookingForm.errorMessage"));
+      setServerError(t("bookingForm.errorMessage"));
     } finally {
       setLoading(false);
     }
@@ -107,15 +114,17 @@ const BookingFormModal = ({ service, onClose }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-box">
-        <button className="close-btn" onClick={onClose}>&times;</button>
+        <button className="close-btn" onClick={onClose}>
+          &times;
+        </button>
 
         <h2>{t("bookingForm.book")}: {service}</h2>
 
         {warningMessage && <div className="warning-banner">{warningMessage}</div>}
+        {serverError && <div className="warning-banner">{serverError}</div>}
+        {showSuccess && <div className="success-banner">{t("bookingForm.successMessage")}</div>}
 
-        {showSuccess ? (
-          <div className="success-banner">{t("bookingForm.successMessage")}</div>
-        ) : (
+        {!showSuccess && (
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -156,11 +165,7 @@ const BookingFormModal = ({ service, onClose }) => {
             >
               <option value="">{t("bookingForm.selectTime")}</option>
               {generateTimes().map((time) => (
-                <option
-                  key={time}
-                  value={time}
-                  disabled={bookedTimes.includes(time)}
-                >
+                <option key={time} value={time} disabled={bookedTimes.includes(time)}>
                   {time} {bookedTimes.includes(time) ? "(varattu)" : ""}
                 </option>
               ))}
