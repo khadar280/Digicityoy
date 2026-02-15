@@ -3,7 +3,6 @@ const router = express.Router();
 const Booking = require('../models/booking');
 const nodemailer = require('nodemailer');
 
-// Email transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -12,25 +11,24 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-
+// ======================
+// GET BOOKINGS
+// ======================
 router.get('/', async (req, res) => {
-  const { date } = req.query;
-
-  if (!date) {
-    return res.status(400).json({ error: 'Date query parameter is required' });
-  }
-
   try {
-    const start = new Date(date);
-    start.setHours(0, 0, 0, 0);
+    // Optional: filter by date if ?date=YYYY-MM-DD is provided
+    const { date } = req.query;
+    let query = {};
 
-    const end = new Date(date);
-    end.setHours(23, 59, 59, 999);
+    if (date) {
+      const start = new Date(date);
+      start.setHours(0, 0, 0, 0);
+      const end = new Date(date);
+      end.setHours(23, 59, 59, 999);
+      query.bookingDate = { $gte: start, $lte: end };
+    }
 
-    const bookings = await Booking.find({
-      bookingDate: { $gte: start, $lte: end },
-    });
-
+    const bookings = await Booking.find(query).sort({ bookingDate: -1 }); // newest first
     res.json(bookings);
   } catch (err) {
     console.error('Error fetching bookings:', err);
@@ -88,7 +86,6 @@ router.post('/', async (req, res) => {
     });
 
     res.status(201).json({ message: 'Booking created successfully!' });
-
   } catch (err) {
     console.error('Error creating booking:', err);
     res.status(500).json({ error: 'Server error' });

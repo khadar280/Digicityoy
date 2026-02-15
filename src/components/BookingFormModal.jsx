@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from "react";
-import "./BookingFormModal.css";
 import { useTranslation } from "react-i18next";
 
-const BookingFormModal = ({ service, onClose }) => {
-  const { t, i18n } = useTranslation();
-  const [form, setForm] = useState({ name: "", phone: "", email: "", date: "", time: "" });
-  const [loading, setLoading] = useState(false);
-  const [bookedTimes, setBookedTimes] = useState([]);
-  const [showSuccess, setShowSuccess] = useState(false);
+const BookingFormModal = ({ service, onClose, i18n }) => {
+  const { t } = useTranslation();
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    date: "",
+    time: "",
+  });
   const [warningMessage, setWarningMessage] = useState("");
+  const [bookedTimes, setBookedTimes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  const API_URL = process.env.REACT_APP_API_URL || "https://digicityoy-43-1ews.onrender.com";
+  const API_URL =
+    process.env.REACT_APP_API_URL || "https://digicityoy-43-1ews.onrender.com";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-   
+    // Weekend check
     if (name === "date") {
       const dayOfWeek = new Date(value).getDay();
       if (dayOfWeek === 0 || dayOfWeek === 6) {
@@ -37,6 +43,7 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
+  // Fetch booked times when date changes
   useEffect(() => {
     if (!form.date) return;
 
@@ -46,7 +53,14 @@ const BookingFormModal = ({ service, onClose }) => {
         if (!res.ok) throw new Error("Failed to fetch booked times");
 
         const data = await res.json();
-        setBookedTimes(data.map((item) => item.time?.slice(0, 5)));
+
+        // Extract HH:MM from bookingDate
+        const booked = data.map((item) => {
+          const date = new Date(item.bookingDate);
+          return date.toISOString().slice(11, 16); // "HH:MM"
+        });
+
+        setBookedTimes(booked);
       } catch (error) {
         console.error("Failed to fetch booked times:", error);
       }
@@ -59,7 +73,7 @@ const BookingFormModal = ({ service, onClose }) => {
     e.preventDefault();
 
     if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
-      alert(t("bookingForm"));
+      alert(t("bookingForm.errorMessage"));
       return;
     }
 
@@ -101,7 +115,9 @@ const BookingFormModal = ({ service, onClose }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-box">
-        <h2>{t("bookingForm.book")}: {service}</h2>
+        <h2>
+          {t("bookingForm.book")}: {service}
+        </h2>
 
         {warningMessage && (
           <div className="warning-banner">{warningMessage}</div>
@@ -168,7 +184,7 @@ const BookingFormModal = ({ service, onClose }) => {
         )}
 
         <button className="close-btn" onClick={onClose}>
-           {t("bookingForm.close")}
+          {t("bookingForm.close")}
         </button>
       </div>
     </div>
