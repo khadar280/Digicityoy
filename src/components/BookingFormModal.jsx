@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-const BookingFormModal = ({ service, onClose, i18n }) => {
-  const { t } = useTranslation();
+const BookingFormModal = ({ service, onClose }) => {
+  const { t, i18n } = useTranslation(); // ✅ get i18n safely
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -54,15 +54,17 @@ const BookingFormModal = ({ service, onClose, i18n }) => {
 
         const data = await res.json();
 
-        // Extract HH:MM from bookingDate
-        const booked = data.map((item) => {
-          const date = new Date(item.bookingDate);
-          return date.toISOString().slice(11, 16); // "HH:MM"
-        });
+        const booked = Array.isArray(data)
+          ? data.map((item) => {
+              const date = new Date(item.bookingDate);
+              return date.toISOString().slice(11, 16); // HH:MM
+            })
+          : [];
 
         setBookedTimes(booked);
       } catch (error) {
         console.error("Failed to fetch booked times:", error);
+        setBookedTimes([]);
       }
     };
 
@@ -89,7 +91,7 @@ const BookingFormModal = ({ service, onClose, i18n }) => {
           phone: form.phone,
           service,
           bookingDate: `${form.date}T${form.time}`,
-          lang: i18n.language.split("-")[0],
+          lang: i18n?.language?.split("-")[0] || "en", // ✅ safe fallback
         }),
       });
 
@@ -102,7 +104,7 @@ const BookingFormModal = ({ service, onClose, i18n }) => {
           onClose();
         }, 10000);
       } else {
-        alert(data.error || t("bookingForm.errorMessage"));
+        alert(data?.error || t("bookingForm.errorMessage"));
       }
     } catch (error) {
       console.error("Booking error:", error);
@@ -119,9 +121,7 @@ const BookingFormModal = ({ service, onClose, i18n }) => {
           {t("bookingForm.book")}: {service}
         </h2>
 
-        {warningMessage && (
-          <div className="warning-banner">{warningMessage}</div>
-        )}
+        {warningMessage && <div className="warning-banner">{warningMessage}</div>}
 
         {showSuccess ? (
           <p className="success-message">{t("bookingForm.successMessage")}</p>
@@ -170,9 +170,9 @@ const BookingFormModal = ({ service, onClose, i18n }) => {
                 <option
                   key={time}
                   value={time}
-                  disabled={bookedTimes.includes(time)}
+                  disabled={bookedTimes?.includes(time)}
                 >
-                  {time} {bookedTimes.includes(time) ? "(varattu)" : ""}
+                  {time} {bookedTimes?.includes(time) ? "(varattu)" : ""}
                 </option>
               ))}
             </select>
