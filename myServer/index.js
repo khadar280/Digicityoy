@@ -26,7 +26,7 @@ const PaymentRoutes = require('./routes/payment');
 const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
 
-const LaptopRoutes = require('./routes/Laptop');
+const LaptopRoutes = require('./routes/laptop');
 const CalculateRoutes = require('./routes/calculate');
 
 app.use('/api/contact', ContactRoutes);
