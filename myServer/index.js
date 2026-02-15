@@ -19,15 +19,14 @@ app.use(cors({
   credentials: true
 }));
 
-
+const BookingRoutes = require('./routes/booking');
 const ContactRoutes = require('./routes/contact');
 const OrderRoutes = require('./routes/order');
 const PaymentRoutes = require('./routes/payment');
 const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
-const SearchbarRoutes = require('./routes/Searchbar');
+
 const LaptopRoutes = require('./routes/Laptop');
-const BookingRoutes = require('./routes/booking');
 const CalculateRoutes = require('./routes/calculate');
 
 app.use('/api/contact', ContactRoutes);
@@ -36,7 +35,7 @@ app.use('/api/payment', PaymentRoutes);
 app.use('/api/booking', BookingRoutes);
 app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
-app.use('/api/searchbar', SearchbarRoutes);
+
 app.use('/api/laptop', LaptopRoutes);
 app.use('/api/calculate', CalculateRoutes);
 
