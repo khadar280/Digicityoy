@@ -12,31 +12,40 @@ import sImage from "../assets/iphone8.png";
 
 // Full list of iPhone models with all repair prices
 export const iphoneModels = [
-  // iPhone 16 Series
-  { model: "iPhone 16 Pro Max", screenRepair: 600, batteryReplacement: 330, backRepair: 370, chargingPort: 109, buttons: 119, housing: 199, backCamera: 180, frontCamera: 159, lens: 89, image: iphoneImage },
-  { model: "iPhone 16 Pro", screenRepair: 550, batteryReplacement: 299, backRepair: 350, chargingPort: 109, buttons: 119, housing: 199, backCamera: 180, frontCamera: 159, lens: 89, image: iphoneImage },
-  { model: "iPhone 16 Plus", screenRepair: 550, batteryReplacement: 350, backRepair: 299, chargingPort: 109, buttons: 119, housing: 199, backCamera: 180, frontCamera: 159, lens: 89, image: iphoneImage },
-  { model: "iPhone 16", screenRepair: 500, batteryReplacement: 299, backRepair: 350, chargingPort: 109, buttons: 119, housing: 199, backCamera: 180, frontCamera: 159, lens: 89, image: iphoneImage },
+// iPhone 11 Series
+{ model: "iPhone 11 Pro Max", screenRepair: 299, batteryReplacement: 79, backRepair: 199, chargingPort: 99, buttons: 109, housing: 189, backCamera: 139, frontCamera: 119, lens: 69, image: iphoneImage },
+{ model: "iPhone 11 Pro", screenRepair: 269, batteryReplacement: 79, backRepair: 189, chargingPort: 99, buttons: 109, housing: 179, backCamera: 139, frontCamera: 119, lens: 69, image: iphoneImage },
+{ model: "iPhone 11", screenRepair: 199, batteryReplacement: 79, backRepair: 179, chargingPort: 99, buttons: 109, housing: 169, backCamera: 139, frontCamera: 119, lens: 69, image: iphoneImage },
 
-  // iPhone 15 Series
-  { model: "iPhone 15 Pro Max", screenRepair: 549, batteryReplacement: 319, backRepair: 149, chargingPort: 109, buttons:119, housing: 199, backCamera: 169, frontCamera: 150, lens: 89, image: iphoneImage },
-  { model: "iPhone 15 Pro", screenRepair: 449, batteryReplacement: 139, backRepair: 339, chargingPort: 109, buttons:119 , housing: 199, backCamera: 169, frontCamera: 149, lens: 89, image: iphoneImage },
-  { model: "iPhone 15 Plus", screenRepair: 469, batteryReplacement: 129, backRepair: 309, chargingPort: 109, buttons: 119, housing: 199, backCamera: 169, frontCamera: 169, lens: 89, image: iphoneImage },
-  { model: "iPhone 15", screenRepair: 449, batteryReplacement: 199, backRepair: 299, chargingPort: 109, buttons: 119, housing: 169, backCamera: 169, frontCamera: 149, lens: 89, image: iphoneImage },
+// iPhone XS / XR Series
+{ model: "iPhone XS Max", screenRepair: 249, batteryReplacement: 79, backRepair: 179, chargingPort: 89, buttons: 99, housing: 169, backCamera: 129, frontCamera: 109, lens: 59, image: iphoneImage },
+{ model: "iPhone XS", screenRepair: 229, batteryReplacement: 79, backRepair: 169, chargingPort: 89, buttons: 99, housing: 159, backCamera: 129, frontCamera: 109, lens: 59, image: iphoneImage },
+{ model: "iPhone XR", screenRepair: 199, batteryReplacement: 79, backRepair: 159, chargingPort: 89, buttons: 99, housing: 149, backCamera: 129, frontCamera: 109, lens: 59, image: iphoneImage },
 
-  // iPhone 14 Series
-  { model: "iPhone 14 Pro Max", screenRepair: 400, batteryReplacement: 79, backRepair: 299, chargingPort: 109, buttons: 119, housing: 249, backCamera: 159, frontCamera: 139, lens: 79, image: iphoneImage },
-  { model: "iPhone 14 Pro", screenRepair: 349, batteryReplacement: 79, backRepair: 249, chargingPort: 109, buttons: 119, housing: 249, backCamera: 159, frontCamera: 139, lens: 79, image: iphoneImage },
-  { model: "iPhone 14 Plus", screenRepair: 329, batteryReplacement: 79, backRepair: 239, chargingPort: 109, buttons: 119, housing: 199, backCamera: 159, frontCamera: 139, lens: 79, image: iphoneImage },
-  { model: "iPhone 14", screenRepair: 269, batteryReplacement: 79, backRepair: 229, chargingPort:109, buttons:119, housing: 199, backCamera: 159, frontCamera: 139, lens: 79, image: iphoneImage },
+// iPhone X
+{ model: "iPhone X", screenRepair: 199, batteryReplacement: 79, backRepair: 149, chargingPort: 89, buttons: 99, housing: 149, backCamera: 119, frontCamera: 109, lens: 59, image: iphoneImage },
 
-  // iPhone 13 Series
-  { model: "iPhone 13 Pro Max", screenRepair: 339, batteryReplacement: 79, backRepair: 219, chargingPort: 99, buttons: 119, housing: 239, backCamera: 149, frontCamera: 129, lens: 69, image: iphoneImage },
-  { model: "iPhone 13 Pro", screenRepair: 299, batteryReplacement: 79, backRepair: 209, chargingPort: 99, buttons: 119, housing: 239, backCamera: 149, frontCamera: 129, lens: 69, image: iphoneImage },
-  { model: "iPhone 13 mini", screenRepair: 199, batteryReplacement: 79, backRepair: 199, chargingPort: 99, buttons: 119, housing: 189, backCamera: 149, frontCamera: 129, lens: 69, image: iphoneImage },
-  { model: "iPhone 13", screenRepair: 199, batteryReplacement: 79, backRepair: 199, chargingPort: 99, buttons: 119, housing: 189, backCamera: 149, frontCamera: 129, lens: 69, image: iphoneImage },
+// iPhone 8 Series
+{ model: "iPhone 8 Plus", screenRepair: 169, batteryReplacement: 69, backRepair: 139, chargingPort: 79, buttons: 89, housing: 139, backCamera: 109, frontCamera: 99, lens: 49, image: iphoneImage },
+{ model: "iPhone 8", screenRepair: 149, batteryReplacement: 69, backRepair: 129, chargingPort: 79, buttons: 89, housing: 129, backCamera: 109, frontCamera: 99, lens: 49, image: iphoneImage },
 
-  // … continue with iPhone 12 → 11 → XS/X → SE/8/7/6 series as you already have
+// iPhone 7 Series
+{ model: "iPhone 7 Plus", screenRepair: 139, batteryReplacement: 69, backRepair: 119, chargingPort: 79, buttons: 89, housing: 119, backCamera: 99, frontCamera: 89, lens: 49, image: iphoneImage },
+{ model: "iPhone 7", screenRepair: 129, batteryReplacement: 69, backRepair: 109, chargingPort: 79, buttons: 89, housing: 109, backCamera: 99, frontCamera: 89, lens: 49, image: iphoneImage },
+
+// iPhone 6S Series
+{ model: "iPhone 6S Plus", screenRepair: 119, batteryReplacement: 59, backRepair: 99, chargingPort: 69, buttons: 79, housing: 99, backCamera: 89, frontCamera: 79, lens: 39, image: iphoneImage },
+{ model: "iPhone 6S", screenRepair: 109, batteryReplacement: 59, backRepair: 89, chargingPort: 69, buttons: 79, housing: 89, backCamera: 89, frontCamera: 79, lens: 39, image: iphoneImage },
+
+// iPhone 6 Series
+{ model: "iPhone 6 Plus", screenRepair: 99, batteryReplacement: 59, backRepair: 79, chargingPort: 69, buttons: 79, housing: 79, backCamera: 79, frontCamera: 69, lens: 39, image: iphoneImage },
+{ model: "iPhone 6", screenRepair: 89, batteryReplacement: 59, backRepair: 79, chargingPort: 69, buttons: 79, housing: 79, backCamera: 79, frontCamera: 69, lens: 39, image: iphoneImage },
+
+// iPhone SE Series
+{ model: "iPhone SE (3rd Gen)", screenRepair: 149, batteryReplacement: 69, backRepair: 119, chargingPort: 79, buttons: 89, housing: 119, backCamera: 109, frontCamera: 99, lens: 49, image: iphoneImage },
+{ model: "iPhone SE (2nd Gen)", screenRepair: 139, batteryReplacement: 69, backRepair: 109, chargingPort: 79, buttons: 89, housing: 109, backCamera: 99, frontCamera: 89, lens: 49, image: iphoneImage },
+{ model: "iPhone SE (1st Gen)", screenRepair: 99, batteryReplacement: 59, backRepair: 79, chargingPort: 69, buttons: 79, housing: 79, backCamera: 79, frontCamera: 69, lens: 39, image: iphoneImage },
+
 ];
 
 const IphoneRepairDetails = () => {

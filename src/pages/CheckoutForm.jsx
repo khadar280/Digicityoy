@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+// src/pages/CheckoutPage.jsx
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../components/CartContext';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import './CheckoutPage.css';
 
 const CheckoutPage = () => {
   const { cartItems } = useCart();
   const { t } = useTranslation();
+  const location = useLocation();
+
+  // Get iPhone model from Navbar query
+  const query = new URLSearchParams(location.search);
+  const iphoneModelFromNav = query.get("iphoneModel") || "";
 
   const [form, setForm] = useState({
     name: '',
@@ -16,13 +23,10 @@ const CheckoutPage = () => {
     city: '',
     country: '',
     deliveryMethod: 'standard',
+    iphoneModel: iphoneModelFromNav,
   });
 
-  const deliveryCosts = {
-    standard: 4.99,
-    express: 19.9,
-    pickup: 0,
-  };
+  const deliveryCosts = { standard: 4.99, express: 19.9, pickup: 0 };
 
   const itemsTotal = cartItems.reduce((total, item) => {
     const numeric = parseFloat(item.price.replace(/[^0-9.]/g, ''));
@@ -32,20 +36,28 @@ const CheckoutPage = () => {
   const deliveryFee = deliveryCosts[form.deliveryMethod] || 0;
   const totalPrice = itemsTotal + deliveryFee;
 
+  // Update iPhone model if query changes
+  useEffect(() => {
+    setForm(prev => ({ ...prev, iphoneModel: iphoneModelFromNav }));
+  }, [iphoneModelFromNav]);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const payload = {
-        items: cartItems.map(item => ({
-          name: item.name,
-          price: item.price.replace(/[^\d.]/g, ''),
-          quantity: item.quantity || 1,
-        })),
+        items: [
+          ...cartItems.map(item => ({
+            name: item.name,
+            price: item.price.replace(/[^\d.]/g, ''),
+            quantity: item.quantity || 1,
+          })),
+          // Include selected iPhone from navbar if not in cart
+          ...(form.iphoneModel ? [{ name: form.iphoneModel, price: "0.00", quantity: 1 }] : []),
+        ],
         total: totalPrice.toFixed(2),
         deliveryMethod: form.deliveryMethod,
         customer: {
@@ -68,12 +80,8 @@ const CheckoutPage = () => {
       });
 
       const data = await response.json();
-
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        alert(t('checkout.paymentError'));
-      }
+      if (data.url) window.location.href = data.url;
+      else alert(t('checkout.paymentError'));
     } catch (error) {
       alert(t('checkout.generalError'));
     }
@@ -82,31 +90,23 @@ const CheckoutPage = () => {
   return (
     <div className="checkout-container">
       <h2>{t('checkout.title')}</h2>
-
       <div className="checkout-content">
         <div className="checkout-summary">
-          <h4>{t('checkout.orderSummary')}</h4>
-
+          {form.iphoneModel && <p><strong>{t('checkout.selectedIphone')}:</strong> {form.iphoneModel}</p>}
           {cartItems.map((item, i) => (
             <div key={i} className="checkout-item">
               <span>{item.name}</span>
               <span>{item.price}</span>
             </div>
           ))}
-
-          <p>
-            {t('checkout.delivery')}:
-            <strong> {deliveryFee.toFixed(2)} €</strong>
-          </p>
-
-          <p className="total">
-            {t('checkout.total')}:
-            <strong> {totalPrice.toFixed(2)} €</strong>
-          </p>
+          <p>{t('checkout.delivery')}: <strong>{deliveryFee.toFixed(2)} €</strong></p>
+          <p className="total">{t('checkout.total')}: <strong>{totalPrice.toFixed(2)} €</strong></p>
         </div>
 
         <form className="checkout-form" onSubmit={handleSubmit}>
-          <h4>{t('checkout.billingInfo')}</h4>
+          {form.iphoneModel && (
+            <input type="text" name="iphoneModel" value={form.iphoneModel} readOnly />
+          )}
 
           <input
             type="text"
@@ -116,7 +116,6 @@ const CheckoutPage = () => {
             onChange={handleChange}
             required
           />
-
           <input
             type="email"
             name="email"
@@ -125,7 +124,6 @@ const CheckoutPage = () => {
             onChange={handleChange}
             required
           />
-
           <input
             type="text"
             name="phone"
@@ -134,7 +132,6 @@ const CheckoutPage = () => {
             onChange={handleChange}
             required
           />
-
           <textarea
             name="address"
             placeholder={t('checkout.address')}
@@ -142,7 +139,6 @@ const CheckoutPage = () => {
             onChange={handleChange}
             required
           ></textarea>
-
           <input
             type="text"
             name="post"
@@ -151,7 +147,6 @@ const CheckoutPage = () => {
             onChange={handleChange}
             required
           />
-
           <input
             type="text"
             name="city"
@@ -160,7 +155,6 @@ const CheckoutPage = () => {
             onChange={handleChange}
             required
           />
-
           <input
             type="text"
             name="country"
@@ -171,43 +165,20 @@ const CheckoutPage = () => {
           />
 
           <h4>{t('checkout.deliveryMethod')}</h4>
+          {['standard','express','pickup'].map((method) => (
+            <label key={method}>
+              <input
+                type="radio"
+                name="deliveryMethod"
+                value={method}
+                checked={form.deliveryMethod === method}
+                onChange={handleChange}
+              />
+              {t(`checkout.${method}`)} {method === 'standard' ? '(4.99 €)' : method === 'express' ? '(19.90 €)' : ''}
+            </label>
+          ))}
 
-          <label>
-            <input
-              type="radio"
-              name="deliveryMethod"
-              value="standard"
-              checked={form.deliveryMethod === 'standard'}
-              onChange={handleChange}
-            />
-            {t('checkout.standard')} (4.99 €)
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="deliveryMethod"
-              value="express"
-              checked={form.deliveryMethod === 'express'}
-              onChange={handleChange}
-            />
-            {t('checkout.express')} (19.90 €)
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="deliveryMethod"
-              value="pickup"
-              checked={form.deliveryMethod === 'pickup'}
-              onChange={handleChange}
-            />
-            {t('checkout.pickup')}
-          </label>
-
-          <button type="submit">
-            {t('checkout.confirmPayment')}
-          </button>
+          <button type="submit">{t('checkout.confirmPayment')}</button>
         </form>
       </div>
     </div>
