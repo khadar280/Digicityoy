@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import "./BookingFormModal.css";
 
 const BookingFormModal = ({ service, onClose }) => {
   const { t, i18n } = useTranslation();
@@ -41,7 +42,6 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
-  // Fetch booked times whenever the date changes
   useEffect(() => {
     if (!form.date) return;
 
@@ -56,7 +56,7 @@ const BookingFormModal = ({ service, onClose }) => {
           : [];
         setBookedTimes(booked);
       } catch (error) {
-        console.error("Failed to fetch booked times:", error);
+        console.error(error);
         setBookedTimes([]);
       }
     };
@@ -66,15 +66,12 @@ const BookingFormModal = ({ service, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setServerError("");
-
     if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
       alert(t("bookingForm.errorMessage"));
       return;
     }
 
     setLoading(true);
-
     try {
       const lang = i18n?.language?.split("-")[0] || "en";
 
@@ -92,7 +89,6 @@ const BookingFormModal = ({ service, onClose }) => {
       });
 
       const data = await response.json();
-
       if (response.ok) {
         setShowSuccess(true);
         setForm({ name: "", phone: "", email: "", date: "", time: "" });
@@ -104,8 +100,8 @@ const BookingFormModal = ({ service, onClose }) => {
         setServerError(data?.error || t("bookingForm.errorMessage"));
       }
     } catch (error) {
-      console.error("Booking error:", error);
       setServerError(t("bookingForm.errorMessage"));
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -114,10 +110,7 @@ const BookingFormModal = ({ service, onClose }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-box">
-        <button className="close-btn" onClick={onClose}>
-          &times;
-        </button>
-
+        <button className="close-btn" onClick={onClose}>&times;</button>
         <h2>{t("bookingForm.book")}: {service}</h2>
 
         {warningMessage && <div className="warning-banner">{warningMessage}</div>}
@@ -125,7 +118,7 @@ const BookingFormModal = ({ service, onClose }) => {
         {showSuccess && <div className="success-banner">{t("bookingForm.successMessage")}</div>}
 
         {!showSuccess && (
-          <form onSubmit={handleSubmit}>
+          <form className="booking-form" onSubmit={handleSubmit}>
             <input
               type="text"
               name="name"
@@ -150,26 +143,33 @@ const BookingFormModal = ({ service, onClose }) => {
               onChange={handleChange}
               required
             />
-            <input
-              type="date"
-              name="date"
-              value={form.date}
-              onChange={handleChange}
-              required
-            />
-            <select
-              name="time"
-              value={form.time}
-              onChange={handleChange}
-              required
-            >
-              <option value="">{t("bookingForm.selectTime")}</option>
-              {generateTimes().map((time) => (
-                <option key={time} value={time} disabled={bookedTimes.includes(time)}>
-                  {time} {bookedTimes.includes(time) ? "(varattu)" : ""}
-                </option>
-              ))}
-            </select>
+
+            <div className="input-row">
+              <input
+                type="date"
+                name="date"
+                value={form.date}
+                onChange={handleChange}
+                required
+              />
+              <select
+                name="time"
+                value={form.time}
+                onChange={handleChange}
+                required
+              >
+                <option value="">{t("bookingForm.selectTime")}</option>
+                {generateTimes().map((time) => (
+                  <option
+                    key={time}
+                    value={time}
+                    disabled={bookedTimes.includes(time)}
+                  >
+                    {time} {bookedTimes.includes(time) ? t("bookingForm.booked") : ""}
+                  </option>
+                ))}
+              </select>
+            </div>
 
             <button type="submit" disabled={loading}>
               {loading ? t("bookingForm.sending") : t("bookingForm.confirm")}
