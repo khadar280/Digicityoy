@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const BookingFormModal = ({ service, onClose }) => {
-  const { t, i18n } = useTranslation(); // ✅ get i18n safely
+  const { t, i18n } = useTranslation();
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -21,7 +21,6 @@ const BookingFormModal = ({ service, onClose }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Weekend check
     if (name === "date") {
       const dayOfWeek = new Date(value).getDay();
       if (dayOfWeek === 0 || dayOfWeek === 6) {
@@ -43,7 +42,6 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
-  // Fetch booked times when date changes
   useEffect(() => {
     if (!form.date) return;
 
@@ -53,14 +51,9 @@ const BookingFormModal = ({ service, onClose }) => {
         if (!res.ok) throw new Error("Failed to fetch booked times");
 
         const data = await res.json();
-
         const booked = Array.isArray(data)
-          ? data.map((item) => {
-              const date = new Date(item.bookingDate);
-              return date.toISOString().slice(11, 16); // HH:MM
-            })
+          ? data.map((item) => new Date(item.bookingDate).toISOString().slice(11, 16))
           : [];
-
         setBookedTimes(booked);
       } catch (error) {
         console.error("Failed to fetch booked times:", error);
@@ -73,14 +66,12 @@ const BookingFormModal = ({ service, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
       alert(t("bookingForm.errorMessage"));
       return;
     }
 
     setLoading(true);
-
     try {
       const response = await fetch(`${API_URL}/api/booking`, {
         method: "POST",
@@ -91,18 +82,17 @@ const BookingFormModal = ({ service, onClose }) => {
           phone: form.phone,
           service,
           bookingDate: `${form.date}T${form.time}`,
-          lang: i18n?.language?.split("-")[0] || "en", // ✅ safe fallback
+          lang: i18n?.language?.split("-")[0] || "en",
         }),
       });
 
       const data = await response.json();
-
       if (response.ok) {
         setShowSuccess(true);
         setTimeout(() => {
           setShowSuccess(false);
           onClose();
-        }, 10000);
+        }, 6000);
       } else {
         alert(data?.error || t("bookingForm.errorMessage"));
       }
@@ -117,14 +107,14 @@ const BookingFormModal = ({ service, onClose }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-box">
-        <h2>
-          {t("bookingForm.book")}: {service}
-        </h2>
+        <button className="close-btn" onClick={onClose}>&times;</button>
+
+        <h2>{t("bookingForm.book")}: {service}</h2>
 
         {warningMessage && <div className="warning-banner">{warningMessage}</div>}
 
         {showSuccess ? (
-          <p className="success-message">{t("bookingForm.successMessage")}</p>
+          <div className="success-banner">{t("bookingForm.successMessage")}</div>
         ) : (
           <form onSubmit={handleSubmit}>
             <input
@@ -158,7 +148,6 @@ const BookingFormModal = ({ service, onClose }) => {
               onChange={handleChange}
               required
             />
-
             <select
               name="time"
               value={form.time}
@@ -170,9 +159,9 @@ const BookingFormModal = ({ service, onClose }) => {
                 <option
                   key={time}
                   value={time}
-                  disabled={bookedTimes?.includes(time)}
+                  disabled={bookedTimes.includes(time)}
                 >
-                  {time} {bookedTimes?.includes(time) ? "(varattu)" : ""}
+                  {time} {bookedTimes.includes(time) ? "(varattu)" : ""}
                 </option>
               ))}
             </select>
@@ -182,10 +171,6 @@ const BookingFormModal = ({ service, onClose }) => {
             </button>
           </form>
         )}
-
-        <button className="close-btn" onClick={onClose}>
-          {t("bookingForm.close")}
-        </button>
       </div>
     </div>
   );
