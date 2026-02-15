@@ -20,7 +20,7 @@ app.use(cors({
 }));
 
 
-const ContactRoutes = require('./routes/Contact');
+const ContactRoutes = require('./routes/contact');
 const OrderRoutes = require('./routes/order');
 const PaymentRoutes = require('./routes/payment');
 const CheckoutRoutes = require('./routes/checkout');
