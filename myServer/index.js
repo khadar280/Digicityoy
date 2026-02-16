@@ -6,6 +6,9 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// ✅ ADD THIS (MISSING)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
   origin: [
@@ -25,7 +28,6 @@ const OrderRoutes = require('./routes/order');
 const PaymentRoutes = require('./routes/payment');
 const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
-
 const LaptopRoutes = require('./routes/laptop');
 const CalculateRoutes = require('./routes/calculate');
 
@@ -35,26 +37,21 @@ app.use('/api/payment', PaymentRoutes);
 app.use('/api/booking', BookingRoutes);
 app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
-
 app.use('/api/laptop', LaptopRoutes);
 app.use('/api/calculate', CalculateRoutes);
-
 
 app.get('/', (_req, res) => {
   res.send('👋 DigiCity API is running successfully!');
 });
 
-
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found!' });
 });
-
 
 app.use((err, req, res, next) => {
   console.error('❌ Server Error:', err);
   res.status(500).json({ error: 'Something went wrong!' });
 });
-
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
