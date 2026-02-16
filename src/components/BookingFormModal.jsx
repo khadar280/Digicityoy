@@ -4,6 +4,7 @@ import "./BookingFormModal.css";
 
 const BookingFormModal = ({ service, onClose }) => {
   const { t, i18n } = useTranslation();
+
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -11,13 +12,15 @@ const BookingFormModal = ({ service, onClose }) => {
     date: "",
     time: "",
   });
+
   const [warningMessage, setWarningMessage] = useState("");
   const [bookedTimes, setBookedTimes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [serverError, setServerError] = useState("");
 
-  const API_URL = process.env.REACT_APP_API_URL || "https://digicityoy63.onrender.com";
+  const API_URL =
+    process.env.REACT_APP_API_URL || "https://digicityoy63.onrender.com";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,7 +55,9 @@ const BookingFormModal = ({ service, onClose }) => {
 
         const data = await res.json();
         const booked = Array.isArray(data)
-          ? data.map((item) => new Date(item.bookingDate).toISOString().slice(11, 16))
+          ? data.map((item) =>
+              new Date(item.bookingDate).toISOString().slice(11, 16)
+            )
           : [];
         setBookedTimes(booked);
       } catch (error) {
@@ -66,12 +71,15 @@ const BookingFormModal = ({ service, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
       alert(t("bookingForm.errorMessage"));
       return;
     }
 
     setLoading(true);
+    setServerError("");
+
     try {
       const lang = i18n?.language?.split("-")[0] || "en";
 
@@ -89,9 +97,11 @@ const BookingFormModal = ({ service, onClose }) => {
       });
 
       const data = await response.json();
+
       if (response.ok) {
         setShowSuccess(true);
         setForm({ name: "", phone: "", email: "", date: "", time: "" });
+
         setTimeout(() => {
           setShowSuccess(false);
           onClose();
@@ -100,80 +110,132 @@ const BookingFormModal = ({ service, onClose }) => {
         setServerError(data?.error || t("bookingForm.errorMessage"));
       }
     } catch (error) {
-      setServerError(t("bookingForm.errorMessage"));
       console.error(error);
+      setServerError(t("bookingForm.errorMessage"));
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay" role="dialog" aria-modal="true">
       <div className="modal-box">
-        <button className="close-btn" onClick={onClose}>&times;</button>
-        <h2>{t("bookingForm.book")}: {service}</h2>
+        <button
+          className="close-btn"
+          onClick={onClose}
+          aria-label="Close booking form"
+        >
+          &times;
+        </button>
 
-        {warningMessage && <div className="warning-banner">{warningMessage}</div>}
-        {serverError && <div className="warning-banner">{serverError}</div>}
-        {showSuccess && <div className="success-banner">{t("bookingForm.successMessage")}</div>}
+        <h2>
+          {t("bookingForm.book")}: {service}
+        </h2>
+
+        {warningMessage && (
+          <div className="warning-banner">{warningMessage}</div>
+        )}
+
+        {serverError && (
+          <div className="warning-banner">{serverError}</div>
+        )}
+
+        {showSuccess && (
+          <div className="success-banner">
+            {t("bookingForm.successMessage")}
+          </div>
+        )}
 
         {!showSuccess && (
-          <form className="booking-form" onSubmit={handleSubmit}>
+          <form className="booking-form" onSubmit={handleSubmit} noValidate>
+
+            {/* Name */}
+            <label htmlFor="name">{t("bookingForm.name")}</label>
             <input
               type="text"
+              id="name"
               name="name"
-              placeholder={t("bookingForm.name")}
+              autoComplete="name"
               value={form.name}
               onChange={handleChange}
               required
             />
+
+            {/* Phone */}
+            <label htmlFor="phone">{t("bookingForm.phone")}</label>
             <input
               type="tel"
+              id="phone"
               name="phone"
-              placeholder={t("bookingForm.phone")}
+              autoComplete="tel"
               value={form.phone}
               onChange={handleChange}
               required
             />
+
+            {/* Email */}
+            <label htmlFor="email">{t("bookingForm.email")}</label>
             <input
               type="email"
+              id="email"
               name="email"
-              placeholder={t("bookingForm.email")}
+              autoComplete="email"
               value={form.email}
               onChange={handleChange}
               required
             />
 
             <div className="input-row">
-              <input
-                type="date"
-                name="date"
-                value={form.date}
-                onChange={handleChange}
-                required
-              />
-              <select
-                name="time"
-                value={form.time}
-                onChange={handleChange}
-                required
-              >
-                <option value="">{t("bookingForm.selectTime")}</option>
-                {generateTimes().map((time) => (
-                  <option
-                    key={time}
-                    value={time}
-                    disabled={bookedTimes.includes(time)}
-                  >
-                    {time} {bookedTimes.includes(time) ? t("bookingForm.booked") : ""}
+
+              {/* Date */}
+              <div className="input-group">
+                <label htmlFor="date">{t("bookingForm.date")}</label>
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  value={form.date}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              {/* Time */}
+              <div className="input-group">
+                <label htmlFor="time">{t("bookingForm.selectTime")}</label>
+                <select
+                  id="time"
+                  name="time"
+                  value={form.time}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">
+                    {t("bookingForm.selectTime")}
                   </option>
-                ))}
-              </select>
+
+                  {generateTimes().map((time) => (
+                    <option
+                      key={time}
+                      value={time}
+                      disabled={bookedTimes.includes(time)}
+                    >
+                      {time}{" "}
+                      {bookedTimes.includes(time)
+                        ? `(${t("bookingForm.booked")})`
+                        : ""}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
 
             <button type="submit" disabled={loading}>
-              {loading ? t("bookingForm.sending") : t("bookingForm.confirm")}
+              {loading
+                ? t("bookingForm.sending")
+                : t("bookingForm.confirm")}
             </button>
+
           </form>
         )}
       </div>
