@@ -17,7 +17,7 @@ const BookingFormModal = ({ service, onClose }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [serverError, setServerError] = useState("");
 
-  const API_URL = process.env.REACT_APP_API_URL || "https://digicityoy-43-1ews.onrender.com/";
+  const API_URL = process.env.REACT_APP_API_URL || "https://digicityoy63.onrender.com";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
