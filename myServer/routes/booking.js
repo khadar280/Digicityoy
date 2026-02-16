@@ -1,22 +1,21 @@
 router.post('/', async (req, res) => {
-  const { customerName, customerEmail, phone, service, bookingDate } = req.body;
-
-  if (!customerName || !customerEmail || !bookingDate || !service) {
-    return res.status(400).json({ error: 'All fields are required' });
-  }
-
   try {
-    const newBooking = new Booking({
-      customerName,
-      customerEmail,
-      phone,
-      service,
-      bookingDate,
-    });
+    const { customerName, customerEmail, phone, service, bookingDate } = req.body;
 
+    if (!customerName || !customerEmail || !bookingDate || !service) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    // Check for duplicate slot before saving
+    const exists = await Booking.findOne({ bookingDate });
+    if (exists) {
+      return res.status(400).json({ error: 'This time slot is already booked' });
+    }
+
+    const newBooking = new Booking({ customerName, customerEmail, phone, service, bookingDate });
     await newBooking.save();
 
-    // Optional: wrap email in try/catch
+    // Email sending wrapped in try/catch
     try {
       await transporter.sendMail({
         from: process.env.EMAIL_USER,
@@ -29,8 +28,9 @@ router.post('/', async (req, res) => {
     }
 
     res.status(201).json({ message: 'Booking created successfully!' });
+
   } catch (err) {
-    console.error('Booking creation failed:', err); // logs full error
+    console.error('Booking creation failed:', err);
     res.status(500).json({ error: 'Something went wrong!', details: err.message });
   }
 });
