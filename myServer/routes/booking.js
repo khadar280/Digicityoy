@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Booking = require('./models/booking'); // ⚠️ lowercase filename
+const Booking = require('../models/booking'); // ⚠️ lowercase filename
 const nodemailer = require('nodemailer');
 
 // Email setup (only once at top)
