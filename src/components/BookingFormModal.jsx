@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "./BookingFormModal.css";
@@ -45,20 +46,27 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
+
   useEffect(() => {
     if (!form.date) return;
 
     const fetchBookedTimes = async () => {
       try {
-        const res = await fetch(`${API_URL}/api/booking?date=${form.date}`);
+        const res = await fetch(`${API_URL}/api/booking`);
         if (!res.ok) throw new Error("Failed to fetch booked times");
 
         const data = await res.json();
-        const booked = Array.isArray(data)
-          ? data.map((item) =>
-              new Date(item.bookingDate).toISOString().slice(11, 16)
-            )
-          : [];
+        if (!Array.isArray(data)) return setBookedTimes([]);
+
+       
+        const booked = data
+          .filter(
+            (item) =>
+              new Date(item.bookingDate).toISOString().slice(0, 10) ===
+              form.date
+          )
+          .map((item) => new Date(item.bookingDate).toISOString().slice(11, 16));
+
         setBookedTimes(booked);
       } catch (error) {
         console.error(error);
@@ -83,6 +91,9 @@ const BookingFormModal = ({ service, onClose }) => {
     try {
       const lang = i18n?.language?.split("-")[0] || "en";
 
+      // Convert date + time to full ISO string
+      const bookingDateISO = new Date(`${form.date}T${form.time}:00`).toISOString();
+
       const response = await fetch(`${API_URL}/api/booking`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -91,7 +102,7 @@ const BookingFormModal = ({ service, onClose }) => {
           customerEmail: form.email,
           phone: form.phone,
           service,
-          bookingDate: `${form.date}T${form.time}`,
+          bookingDate: bookingDateISO,
           lang,
         }),
       });
@@ -120,11 +131,7 @@ const BookingFormModal = ({ service, onClose }) => {
   return (
     <div className="modal-overlay" role="dialog" aria-modal="true">
       <div className="modal-box">
-        <button
-          className="close-btn"
-          onClick={onClose}
-          aria-label="Close booking form"
-        >
+        <button className="close-btn" onClick={onClose} aria-label="Close booking form">
           &times;
         </button>
 
@@ -132,23 +139,12 @@ const BookingFormModal = ({ service, onClose }) => {
           {t("bookingForm.book")}: {service}
         </h2>
 
-        {warningMessage && (
-          <div className="warning-banner">{warningMessage}</div>
-        )}
-
-        {serverError && (
-          <div className="warning-banner">{serverError}</div>
-        )}
-
-        {showSuccess && (
-          <div className="success-banner">
-            {t("bookingForm.successMessage")}
-          </div>
-        )}
+        {warningMessage && <div className="warning-banner">{warningMessage}</div>}
+        {serverError && <div className="warning-banner">{serverError}</div>}
+        {showSuccess && <div className="success-banner">{t("bookingForm.successMessage")}</div>}
 
         {!showSuccess && (
           <form className="booking-form" onSubmit={handleSubmit} noValidate>
-
             {/* Name */}
             <label htmlFor="name">{t("bookingForm.name")}</label>
             <input
@@ -186,7 +182,6 @@ const BookingFormModal = ({ service, onClose }) => {
             />
 
             <div className="input-row">
-
               {/* Date */}
               <div className="input-group">
                 <label htmlFor="date">{t("bookingForm.date")}</label>
@@ -210,20 +205,10 @@ const BookingFormModal = ({ service, onClose }) => {
                   onChange={handleChange}
                   required
                 >
-                  <option value="">
-                    {t("bookingForm.selectTime")}
-                  </option>
-
+                  <option value="">{t("bookingForm.selectTime")}</option>
                   {generateTimes().map((time) => (
-                    <option
-                      key={time}
-                      value={time}
-                      disabled={bookedTimes.includes(time)}
-                    >
-                      {time}{" "}
-                      {bookedTimes.includes(time)
-                        ? `(${t("bookingForm.booked")})`
-                        : ""}
+                    <option key={time} value={time} disabled={bookedTimes.includes(time)}>
+                      {time} {bookedTimes.includes(time) ? `(${t("bookingForm.booked")})` : ""}
                     </option>
                   ))}
                 </select>
@@ -231,11 +216,8 @@ const BookingFormModal = ({ service, onClose }) => {
             </div>
 
             <button type="submit" disabled={loading}>
-              {loading
-                ? t("bookingForm.sending")
-                : t("bookingForm.confirm")}
+              {loading ? t("bookingForm.sending") : t("bookingForm.confirm")}
             </button>
-
           </form>
         )}
       </div>
