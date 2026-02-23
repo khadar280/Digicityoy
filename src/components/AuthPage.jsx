@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onrender.com/api/auth';
+const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-223.onrender.com';
 
 const AuthPage = () => {
   const { t } = useTranslation();
@@ -52,7 +52,7 @@ const AuthPage = () => {
         // store token if needed
         localStorage.setItem('token', data.token);
       } else {
-        console.error('❌ Auth failed:', data.error);
+        console.error(' Auth failed:', data.error);
         alert(data.error || 'Authentication failed');
       }
     } catch (err) {
