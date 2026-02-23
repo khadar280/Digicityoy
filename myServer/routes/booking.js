@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Booking = require('../models/booking'); // ⚠️ lowercase filename
+const Booking = require('../models/booking');
 const nodemailer = require('nodemailer');
 
-
+// Email setup
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -13,14 +13,13 @@ const transporter = nodemailer.createTransport({
   debug: true,
 });
 
-// POST /api/booking
 router.post('/', async (req, res) => {
   try {
     const { customerName, customerEmail, phone, service, bookingDate } = req.body;
 
     // Validate required fields
-    if (!customerName || !customerEmail || !bookingDate || !service || !phone) {
-      return res.status(400).json({ error: 'All fields are required' });
+    if (!customerName || !customerEmail || !bookingDate || !service) {
+      return res.status(400).json({ error: 'All required fields are missing' });
     }
 
     // Convert bookingDate to Date object
@@ -35,7 +34,7 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'This time slot is already booked' });
     }
 
-    // Save booking to MongoDB
+    // Save booking
     const newBooking = new Booking({
       customerName,
       customerEmail,
@@ -45,7 +44,7 @@ router.post('/', async (req, res) => {
     });
     await newBooking.save();
 
-    // Prepare email
+    // Send email (won't break booking if fails)
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
@@ -54,23 +53,18 @@ router.post('/', async (req, res) => {
         <h3>New Booking Received</h3>
         <p><strong>Name:</strong> ${customerName}</p>
         <p><strong>Email:</strong> ${customerEmail}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
         <p><strong>Service:</strong> ${service}</p>
         <p><strong>Date:</strong> ${bookingDateObj.toISOString()}</p>
         <p>📅 Received at: ${new Date().toLocaleString()}</p>
       `,
     };
 
-    // Send email (won't break booking if email fails)
     transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error('Error sending booking email:', error);
-      } else {
-        console.log('Booking email sent:', info.response);
-      }
+      if (error) console.error('Error sending booking email:', error);
+      else console.log('Booking email sent:', info.response);
     });
 
-    // Respond success
     res.status(201).json({ message: 'Booking saved successfully!' });
 
   } catch (error) {
