@@ -13,62 +13,46 @@ const transporter = nodemailer.createTransport({
   debug: true,
 });
 
+// GET all bookings (test endpoint)
+router.get('/', async (req, res) => {
+  const bookings = await Booking.find();
+  res.json(bookings);
+});
+
+// POST booking
 router.post('/', async (req, res) => {
   try {
     const { customerName, customerEmail, phone, service, bookingDate } = req.body;
-
-    // Validate required fields
     if (!customerName || !customerEmail || !bookingDate || !service) {
       return res.status(400).json({ error: 'All required fields are missing' });
     }
-
-    // Convert bookingDate to Date object
     const bookingDateObj = new Date(bookingDate);
     if (isNaN(bookingDateObj.getTime())) {
       return res.status(400).json({ error: 'Invalid bookingDate format' });
     }
 
-    // Check for duplicate slot
     const exists = await Booking.findOne({ bookingDate: bookingDateObj });
-    if (exists) {
-      return res.status(400).json({ error: 'This time slot is already booked' });
-    }
+    if (exists) return res.status(400).json({ error: 'This time slot is already booked' });
 
-    // Save booking
-    const newBooking = new Booking({
-      customerName,
-      customerEmail,
-      phone,
-      service,
-      bookingDate: bookingDateObj,
-    });
+    const newBooking = new Booking({ customerName, customerEmail, phone, service, bookingDate: bookingDateObj });
     await newBooking.save();
 
-    // Send email (won't break booking if fails)
+    // Send email
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
       subject: 'New Booking',
-      html: `
-        <h3>New Booking Received</h3>
-        <p><strong>Name:</strong> ${customerName}</p>
-        <p><strong>Email:</strong> ${customerEmail}</p>
-        <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
-        <p><strong>Service:</strong> ${service}</p>
-        <p><strong>Date:</strong> ${bookingDateObj.toISOString()}</p>
-        <p>📅 Received at: ${new Date().toLocaleString()}</p>
-      `,
+      html: `<p>Name: ${customerName}</p><p>Email: ${customerEmail}</p><p>Phone: ${phone || 'N/A'}</p><p>Service: ${service}</p><p>Date: ${bookingDateObj.toISOString()}</p>`
     };
-
     transporter.sendMail(mailOptions, (error, info) => {
-      if (error) console.error('Error sending booking email:', error);
+      if (error) console.error(error);
       else console.log('Booking email sent:', info.response);
     });
 
     res.status(201).json({ message: 'Booking saved successfully!' });
 
   } catch (error) {
-    console.error('Error creating booking:', error);
+    console.error(error);
     res.status(500).json({ error: 'Server error', details: error.message });
   }
 });
