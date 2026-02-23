@@ -13,19 +13,25 @@ const transporter = nodemailer.createTransport({
   debug: true,
 });
 
-// GET all bookings (test endpoint)
+// GET all bookings (needed for frontend to disable booked times)
 router.get('/', async (req, res) => {
-  const bookings = await Booking.find();
-  res.json(bookings);
+  try {
+    const bookings = await Booking.find();
+    res.json(bookings);
+  } catch (error) {
+    console.error('Error fetching bookings:', error);
+    res.status(500).json({ error: 'Server error', details: error.message });
+  }
 });
 
-// POST booking
+// POST new booking
 router.post('/', async (req, res) => {
   try {
     const { customerName, customerEmail, phone, service, bookingDate } = req.body;
     if (!customerName || !customerEmail || !bookingDate || !service) {
       return res.status(400).json({ error: 'All required fields are missing' });
     }
+
     const bookingDateObj = new Date(bookingDate);
     if (isNaN(bookingDateObj.getTime())) {
       return res.status(400).json({ error: 'Invalid bookingDate format' });
@@ -37,12 +43,12 @@ router.post('/', async (req, res) => {
     const newBooking = new Booking({ customerName, customerEmail, phone, service, bookingDate: bookingDateObj });
     await newBooking.save();
 
-    // Send email
+    // Send email (optional)
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
       subject: 'New Booking',
-      html: `<p>Name: ${customerName}</p><p>Email: ${customerEmail}</p><p>Phone: ${phone || 'N/A'}</p><p>Service: ${service}</p><p>Date: ${bookingDateObj.toISOString()}</p>`
+      html: `<p>Name: ${customerName}</p><p>Email: ${customerEmail}</p><p>Phone: ${phone || 'N/A'}</p><p>Service: ${service}</p><p>Date: ${bookingDateObj.toISOString()}</p>`,
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) console.error(error);
@@ -50,7 +56,6 @@ router.post('/', async (req, res) => {
     });
 
     res.status(201).json({ message: 'Booking saved successfully!' });
-
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Server error', details: error.message });

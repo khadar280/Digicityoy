@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "./BookingFormModal.css";
@@ -26,6 +25,7 @@ const BookingFormModal = ({ service, onClose }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // Weekend warning
     if (name === "date") {
       const dayOfWeek = new Date(value).getDay();
       if (dayOfWeek === 0 || dayOfWeek === 6) {
@@ -38,6 +38,7 @@ const BookingFormModal = ({ service, onClose }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Generate hourly time slots
   const generateTimes = () => {
     const times = [];
     for (let h = 11; h < 20; h++) {
@@ -46,7 +47,7 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
-
+  // Fetch booked times for selected date
   useEffect(() => {
     if (!form.date) return;
 
@@ -58,7 +59,6 @@ const BookingFormModal = ({ service, onClose }) => {
         const data = await res.json();
         if (!Array.isArray(data)) return setBookedTimes([]);
 
-       
         const booked = data
           .filter(
             (item) =>
@@ -77,6 +77,7 @@ const BookingFormModal = ({ service, onClose }) => {
     fetchBookedTimes();
   }, [form.date, API_URL]);
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -91,7 +92,7 @@ const BookingFormModal = ({ service, onClose }) => {
     try {
       const lang = i18n?.language?.split("-")[0] || "en";
 
-      // Convert date + time to full ISO string
+      // Combine date + time into ISO string
       const bookingDateISO = new Date(`${form.date}T${form.time}:00`).toISOString();
 
       const response = await fetch(`${API_URL}/api/booking`, {
@@ -128,10 +129,28 @@ const BookingFormModal = ({ service, onClose }) => {
     }
   };
 
+  // Disable past times for today
+  const isTimeDisabled = (time) => {
+    if (bookedTimes.includes(time)) return true;
+
+    if (form.date === new Date().toISOString().slice(0, 10)) {
+      const [hour, minute] = time.split(":").map(Number);
+      const now = new Date();
+      if (hour < now.getHours() || (hour === now.getHours() && minute <= now.getMinutes())) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   return (
     <div className="modal-overlay" role="dialog" aria-modal="true">
       <div className="modal-box">
-        <button className="close-btn" onClick={onClose} aria-label="Close booking form">
+        <button
+          className="close-btn"
+          onClick={onClose}
+          aria-label="Close booking form"
+        >
           &times;
         </button>
 
@@ -207,7 +226,11 @@ const BookingFormModal = ({ service, onClose }) => {
                 >
                   <option value="">{t("bookingForm.selectTime")}</option>
                   {generateTimes().map((time) => (
-                    <option key={time} value={time} disabled={bookedTimes.includes(time)}>
+                    <option
+                      key={time}
+                      value={time}
+                      disabled={isTimeDisabled(time)}
+                    >
                       {time} {bookedTimes.includes(time) ? `(${t("bookingForm.booked")})` : ""}
                     </option>
                   ))}
