@@ -13,7 +13,6 @@ const transporter = nodemailer.createTransport({
   debug: true, // optional logging
 });
 
-// POST: Create a booking and send email notification
 router.post('/', async (req, res) => {
   try {
     const { customerName, customerEmail, phone, service, bookingDate } = req.body;
@@ -33,7 +32,7 @@ router.post('/', async (req, res) => {
     const newBooking = new Booking({ customerName, customerEmail, phone, service, bookingDate });
     await newBooking.save();
 
-    // Prepare email
+
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
