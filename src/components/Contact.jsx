@@ -86,7 +86,7 @@
 //   );
 // }
 
-// export default Contact;
+
 
 
 
@@ -108,7 +108,7 @@ const Contact = () => {
     e.preventDefault();
 
    
-const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onrender.com';
+const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-223.onrender.com';
     try {
       const res = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
