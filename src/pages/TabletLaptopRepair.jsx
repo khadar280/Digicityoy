@@ -2,16 +2,20 @@ import React, { useState } from "react";
 import "./TabletLaptopRepair.css";
 import tabletImg from "../assets/taplet1.png"; 
 
-const TabletLaptopRepair = () => {
- const [formData, setFormData] = useState({
-  name: "",
-  phone: "",
-  email: "",
-  model: "",
-  lang: navigator.language.startsWith("fi") ? "fi" : "en",  // auto-detect
-});
+// Use environment variable for backend
+const API_URL = process.env.REACT_APP_API_URL || "https://digicityoy-223.onrender.com";
 
-  const [message, setMessage] = useState("");  // confirmation message
+const TabletLaptopRepair = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    model: "",
+    lang: navigator.language.startsWith("fi") ? "fi" : "en", // auto-detect
+  });
+
+  const [message, setMessage] = useState(""); // confirmation message
+  const [loading, setLoading] = useState(false); // optional loading state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,46 +23,50 @@ const TabletLaptopRepair = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();  
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
 
-  try {
-    const res = await fetch("http://localhost:3000/api/laptop", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      setMessage(data.message);  
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        model: "",
-        lang: formData.lang, // retain language
+    try {
+      const res = await fetch(`${API_URL}/api/laptop`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-    } else {
-      setMessage(data.error || "Something went wrong.");
+
+      const data = await res.json();
+      setLoading(false);
+
+      if (res.ok) {
+        setMessage(data.message || (formData.lang === "fi" 
+          ? "Tilaus vastaanotettu!" 
+          : "Request received!"));
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          model: "",
+          lang: formData.lang, // retain selected language
+        });
+      } else {
+        setMessage(data.error || (formData.lang === "fi" 
+          ? "Jokin meni pieleen." 
+          : "Something went wrong."));
+      }
+    } catch (error) {
+      setLoading(false);
+      setMessage(
+        formData.lang === "fi"
+          ? "Virhe palvelimella. Yritä myöhemmin uudelleen."
+          : "Server error. Please try again later."
+      );
     }
-  } catch (error) {
-    setMessage(
-      formData.lang === "fi"
-        ? "Virhe palvelimella. Yritä myöhemmin uudelleen."
-        : "Server error. Please try again later."
-    );
-  }
-};
+  };
 
   return (
     <div className="tablet-repair-container">
       <div className="tablet-repair-box">
-        <img
-          src={tabletImg}
-          alt="Tablet & Laptop Repair"
-          className="tablet-img"
-        />
+        <img src={tabletImg} alt="Tablet & Laptop Repair" className="tablet-img" />
         <h2>
           {formData.lang === "fi"
             ? "Tablettien ja kannettavien korjaus"
@@ -71,12 +79,7 @@ const TabletLaptopRepair = () => {
         </p>
 
         <form className="tablet-form" onSubmit={handleSubmit}>
-          <select
-            name="lang"
-            value={formData.lang}
-            onChange={handleChange}
-            required
-          >
+          <select name="lang" value={formData.lang} onChange={handleChange} required>
             <option value="en">English</option>
             <option value="fi">Suomi</option>
           </select>
@@ -92,9 +95,7 @@ const TabletLaptopRepair = () => {
           <input
             type="tel"
             name="phone"
-            placeholder={
-              formData.lang === "fi" ? "Puhelinnumero" : "Phone Number"
-            }
+            placeholder={formData.lang === "fi" ? "Puhelinnumero" : "Phone Number"}
             value={formData.phone}
             onChange={handleChange}
             required
@@ -110,27 +111,23 @@ const TabletLaptopRepair = () => {
           <input
             type="text"
             name="model"
-            placeholder={
-              formData.lang === "fi"
-                ? "Laitteen malli (valinnainen)"
-                : "Device Model (optional)"
-            }
+            placeholder={formData.lang === "fi" ? "Laitteen malli (valinnainen)" : "Device Model (optional)"}
             value={formData.model}
             onChange={handleChange}
           />
-          <button type="submit">
-            {formData.lang === "fi" ? "Ota yhteyttä" : "Contact Me"}
+          <button type="submit" disabled={loading}>
+            {loading
+              ? formData.lang === "fi"
+                ? "Lähetetään..."
+                : "Submitting..."
+              : formData.lang === "fi"
+              ? "Ota yhteyttä"
+              : "Contact Me"}
           </button>
         </form>
 
         {message && (
-          <p
-            style={{
-              marginTop: "15px",
-              color: "green",
-              fontWeight: "bold",
-            }}
-          >
+          <p style={{ marginTop: "15px", color: "green", fontWeight: "bold" }}>
             {message}
           </p>
         )}
