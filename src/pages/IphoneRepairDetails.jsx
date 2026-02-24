@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 // Images (replace with your actual images)
-import defaultImage from "../assets/iphone.jpg"; // default for newer models
-import seImage from "../assets/iphone3rd.png";  // SE models
-import sImage from "../assets/iphone8.png";     // older models (6,7,8)
+import defaultImage from "../assets/iphone.jpg"; // newer models
+import seImage from "../assets/iphone3rd.png";   // SE models
+import sImage from "../assets/iphone8.png";      // older models (6,7,8)
 
 // iPhone models descending (newest → oldest)
 export const iphoneModels = [
@@ -53,30 +53,28 @@ export const iphoneModels = [
   { model: "iPhone 11 Pro", screenRepair: 269, batteryReplacement: 79, backRepair: 189, chargingPort: 99, buttons: 109, housing: 179, backCamera: 139, frontCamera: 119, lens: 69, image: defaultImage },
   { model: "iPhone 11", screenRepair: 199, batteryReplacement: 79, backRepair: 179, chargingPort: 99, buttons: 109, housing: 169, backCamera: 139, frontCamera: 119, lens: 69, image: defaultImage },
 
-  // ... older series 10 → 6 (you can add X, XR, XS, 8, 7, 6 here like in previous example)
+  // iPhone X / XS / XR
   { model: "iPhone X", screenRepair: 199, batteryReplacement: 79, backRepair: 149, chargingPort: 89, buttons: 99, housing: 149, backCamera: 119, frontCamera: 109, lens: 59, image: defaultImage },
   { model: "iPhone XR", screenRepair: 199, batteryReplacement: 79, backRepair: 159, chargingPort: 89, buttons: 99, housing: 149, backCamera: 129, frontCamera: 109, lens: 59, image: defaultImage },
   { model: "iPhone XS", screenRepair: 229, batteryReplacement: 79, backRepair: 169, chargingPort: 89, buttons: 99, housing: 159, backCamera: 129, frontCamera: 109, lens: 59, image: defaultImage },
   { model: "iPhone XS Max", screenRepair: 249, batteryReplacement: 79, backRepair: 179, chargingPort: 89, buttons: 99, housing: 169, backCamera: 129, frontCamera: 109, lens: 59, image: defaultImage },
 
+  // iPhone 8 → 6
   { model: "iPhone 8 Plus", screenRepair: 169, batteryReplacement: 69, backRepair: 139, chargingPort: 79, buttons: 89, housing: 139, backCamera: 109, frontCamera: 99, lens: 49, image: sImage },
   { model: "iPhone 8", screenRepair: 149, batteryReplacement: 69, backRepair: 129, chargingPort: 79, buttons: 89, housing: 129, backCamera: 109, frontCamera: 99, lens: 49, image: sImage },
-
   { model: "iPhone 7 Plus", screenRepair: 139, batteryReplacement: 69, backRepair: 119, chargingPort: 79, buttons: 89, housing: 119, backCamera: 99, frontCamera: 89, lens: 49, image: sImage },
   { model: "iPhone 7", screenRepair: 129, batteryReplacement: 69, backRepair: 109, chargingPort: 79, buttons: 89, housing: 109, backCamera: 99, frontCamera: 89, lens: 49, image: sImage },
-
   { model: "iPhone 6S Plus", screenRepair: 119, batteryReplacement: 59, backRepair: 99, chargingPort: 69, buttons: 79, housing: 99, backCamera: 89, frontCamera: 79, lens: 39, image: sImage },
   { model: "iPhone 6S", screenRepair: 109, batteryReplacement: 59, backRepair: 89, chargingPort: 69, buttons: 79, housing: 89, backCamera: 89, frontCamera: 79, lens: 39, image: sImage },
   { model: "iPhone 6 Plus", screenRepair: 99, batteryReplacement: 59, backRepair: 79, chargingPort: 69, buttons: 79, housing: 79, backCamera: 79, frontCamera: 69, lens: 39, image: sImage },
   { model: "iPhone 6", screenRepair: 89, batteryReplacement: 59, backRepair: 79, chargingPort: 69, buttons: 79, housing: 79, backCamera: 79, frontCamera: 69, lens: 39, image: sImage },
 
-  // SE Models
+  // SE Series
   { model: "iPhone SE (3rd Gen)", screenRepair: 149, batteryReplacement: 69, backRepair: 119, chargingPort: 79, buttons: 89, housing: 119, backCamera: 109, frontCamera: 99, lens: 49, image: seImage },
   { model: "iPhone SE (2nd Gen)", screenRepair: 139, batteryReplacement: 69, backRepair: 109, chargingPort: 79, buttons: 89, housing: 109, backCamera: 99, frontCamera: 89, lens: 49, image: seImage },
   { model: "iPhone SE (1st Gen)", screenRepair: 99, batteryReplacement: 59, backRepair: 79, chargingPort: 69, buttons: 79, housing: 79, backCamera: 79, frontCamera: 69, lens: 39, image: seImage },
 ];
 
-// React component same as before
 const IphoneRepairDetails = () => {
   const [selectedModel, setSelectedModel] = useState(null);
   const navigate = useNavigate();
