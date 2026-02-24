@@ -233,6 +233,7 @@
     "phone": "Puhelinnumero",
     "address": "Toimitusosoite",
     "submitOrder": "Lähetä tilaus",
+    "submitting": "Lähetetään...",
     "total": "Kokonaishinta",
     "orderSubmitted": "Tilaus lähetetty",
     "alertCalculatePrice": "Laske hinta ensin.",
