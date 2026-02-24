@@ -11,18 +11,11 @@ const HeroSection = () => {
 
   return (
     <section className="hero-section">
-      <video autoPlay muted loop id="hero-video">
-        <source src={shakurdigicity} type="shakurdigicity/" />
-        Your browser does not support the video tag.
-      </video>
+      <img src={shakurdigicity} alt="Shakurdigi City" className="hero-image" />
 
       <div className="hero-content">
         <h1>{t('hero.title')}</h1>
-
-        
-
-          
-        </div>
+      </div>
     </section>
   );
 };
