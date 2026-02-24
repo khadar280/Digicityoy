@@ -141,3 +141,19 @@ text-shadow:0px 2px 8px #f7f4f4;
   color: white;
   text-align: center;
 }
+
+.hero-image {
+  width: 110%;
+  height: 100%;
+  object-fit: cover;
+  animation: panEffect 25s linear infinite alternate;
+}
+
+@keyframes panEffect {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-5%);
+  }
+}
