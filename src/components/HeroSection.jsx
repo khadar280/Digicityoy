@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import 'font-awesome/css/font-awesome.min.css';
 import './HeroSection.css';
-import videoBg from '../assets/herodigi.mp4';
+import shakurdigicity from '../assets/shakurdigicity.jpg';
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const HeroSection = () => {
   return (
     <section className="hero-section">
       <video autoPlay muted loop id="hero-video">
-        <source src={videoBg} type="video/mp4" />
+        <source src={shakurdigicity} type="shakurdigicity/" />
         Your browser does not support the video tag.
       </video>
 
