@@ -1,8 +1,8 @@
 // src/components/IphonePurchase.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "./IphonePurchase.css"; // We'll use your calculator CSS
+import "./IphonePurchase.css"; 
 
 const IPHONE_MODELS = [
   { label: "iPhone 17 Pro Max", value: "iphone17_pro_max", storage: [128, 256, 512, 1024] },
@@ -38,12 +38,14 @@ const BASE_PRICES = {
   iphone11_pro_max: 260, iphone11_pro: 255, iphone11: 250
 };
 
+// Use backend URL from environment variable
+const API_URL = process.env.REACT_APP_API_URL || "https://digicityoy-223.onrender.com";
+
 export default function IphonePurchase() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Get initial model from query string
   const params = new URLSearchParams(location.search);
   const initialModel = params.get("model") 
     ? IPHONE_MODELS.find(m => m.label === params.get("model"))?.value 
@@ -54,6 +56,7 @@ export default function IphonePurchase() {
   const [condition, setCondition] = useState("good");
   const [price, setPrice] = useState(null);
   const [customer, setCustomer] = useState({ name: "", email: "", phone: "", address: "" });
+  const [loading, setLoading] = useState(false);
 
   const currentModel = IPHONE_MODELS.find(m => m.value === model);
 
@@ -72,26 +75,46 @@ export default function IphonePurchase() {
 
   const handleChange = (e) => setCustomer({ ...customer, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!price) return alert(t("purchase.alertCalculatePrice"));
 
-    alert(`
-${t("purchase.orderSubmitted")}!
+    const orderData = {
+      model: currentModel.label,
+      storage,
+      condition,
+      price,
+      customer
+    };
 
-${t("purchase.name")}: ${customer.name}
-${t("purchase.model")}: ${currentModel.label}
-${t("purchase.storage")}: ${storage} GB
-${t("purchase.condition")}: ${t(`purchase.condition.${condition}`)}
-${t("purchase.total")}: €${price}
-    `);
+    try {
+      setLoading(true);
+      const response = await fetch(`${API_URL}/api/order`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderData)
+      });
+
+      const result = await response.json();
+      setLoading(false);
+
+      if (response.ok) {
+        alert(t("purchase.orderSuccess"));
+        navigate("/thank-you");
+      } else {
+        alert(result.message || t("purchase.orderFailed"));
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+      alert(t("purchase.orderFailed"));
+    }
   };
 
   return (
     <div className="calculator">
       <h2>{t("purchase.title")}</h2>
 
-      {/* Model Dropdown */}
       <div className="step">
         <label>{t("purchase.selectModel")}</label>
         <select
@@ -106,7 +129,6 @@ ${t("purchase.total")}: €${price}
         </select>
       </div>
 
-      {/* Storage Dropdown */}
       <div className="step">
         <label>{t("purchase.selectStorage")}</label>
         <select value={storage} onChange={(e) => setStorage(parseInt(e.target.value))}>
@@ -114,7 +136,6 @@ ${t("purchase.total")}: €${price}
         </select>
       </div>
 
-      {/* Condition Dropdown */}
       <div className="step">
         <label>{t("purchase.selectCondition")}</label>
         <select value={condition} onChange={(e) => setCondition(e.target.value)}>
@@ -135,7 +156,9 @@ ${t("purchase.total")}: €${price}
             <input name="email" placeholder={t("purchase.email")} type="email" value={customer.email} onChange={handleChange} required />
             <input name="phone" placeholder={t("purchase.phone")} value={customer.phone} onChange={handleChange} required />
             <textarea name="address" placeholder={t("purchase.address")} value={customer.address} onChange={handleChange} required />
-            <button type="submit" className="buy-btn">{t("purchase.submitOrder")}</button>
+            <button type="submit" className="buy-btn" disabled={loading}>
+              {loading ? t("purchase.submitting") : t("purchase.submitOrder")}
+            </button>
           </form>
         </div>
       )}
