@@ -71,7 +71,7 @@ const CheckoutPage = () => {
         },
       };
 
-      const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-43-1ews.onrender.com';
+      const API_URL = process.env.REACT_APP_API_URL || 'https://digicityoy-223.onrender.com';
 
       const response = await fetch(`${API_URL}/api/payment/create-checkout-session`, {
         method: 'POST',
