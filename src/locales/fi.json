@@ -222,6 +222,7 @@
   "planningSection": {
     "buttonText": "Varaa passikuvaukseen"
   },
+ 
   "purchase": {
     "title": "Osta käytetty iPhone",
     "selectModel": "Valitse malli",
@@ -238,6 +239,8 @@
     "total": "Kokonaishinta",
     "orderSubmitted": "Tilaus lähetetty",
     "alertCalculatePrice": "Laske hinta ensin.",
+    "orderSuccess": "Tilaus onnistui!",
+    "orderFailed": "Tilaus epäonnistui",
     "condition": {
       "excellent": "Erinomainen (kuin uusi)",
       "good": "Hyvä",
@@ -246,4 +249,4 @@
     }
   },
   "back": "Takaisin"
-}
+ }
