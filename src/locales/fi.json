@@ -81,19 +81,20 @@
     "backToModels": "Takaisin malleihin"
   },
   "bookingForm": {
-    "book": "Varaa palvelu",
-    "name": "Nimesi",
-    "phone": "Puhelinnumero",
-    "email": "Sähköpostiosoite",
-    "selectTime": "Valitse aika",
-    "confirm": "Vahvista varaus",
-    "close": "Sulje",
-    "sending": "Lähetetään...",
-    "alertFillAll": "Täytä kaikki kentät.",
-    "successMessage": "Varaus onnistui!",
-    "errorMessage": "Jokin meni pieleen. Yritä uudelleen.",
-    "closedWeekend": "Olemme kiinni lauantaisin ja sunnuntaisin."
-  },
+  "book": "Varaa palvelu",
+  "name": "Nimesi",
+  "phone": "Puhelinnumero",
+  "email": "Sähköpostiosoite",
+  "date": "Päivämäärä",
+  "selectTime": "Valitse aika",
+  "confirm": "Vahvista varaus",
+  "sending": "Lähetetään...",
+  "alertFillAll": "Täytä kaikki kentät.",
+  "successMessage": "Varaus onnistui!",
+  "errorMessage": "Jokin meni pieleen. Yritä uudelleen.",
+  "closedWeekend": "Olemme kiinni lauantaisin ja sunnuntaisin.",
+  "booked": "Varattu"
+},
   "about": {
     "title": "Tietoa Digicitystä",
     "p1": "Digicity perustettiin vuonna 2021 Abdishakuur Mohamed Nuurin toimesta vastaamaan kasvavaan kysyntään ammattimaisista ja luotettavista laitekorjauspalveluista.",

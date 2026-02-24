@@ -1,6 +1,12 @@
+// src/components/BookingFormModal.jsx
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import DatePicker, { registerLocale } from "react-datepicker";
+import fi from "date-fns/locale/fi";
+import "react-datepicker/dist/react-datepicker.css";
 import "./BookingFormModal.css";
+
+registerLocale("fi", fi);
 
 const BookingFormModal = ({ service, onClose }) => {
   const { t, i18n } = useTranslation();
@@ -9,7 +15,7 @@ const BookingFormModal = ({ service, onClose }) => {
     name: "",
     phone: "",
     email: "",
-    date: "",
+    date: null,
     time: "",
   });
 
@@ -23,17 +29,20 @@ const BookingFormModal = ({ service, onClose }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
-    if (name === "date") {
-      const dayOfWeek = new Date(value).getDay();
+  const handleDateChange = (date) => {
+    setForm((prev) => ({ ...prev, date }));
+
+    if (date) {
+      const dayOfWeek = date.getDay();
       if (dayOfWeek === 0 || dayOfWeek === 6) {
         setWarningMessage(t("bookingForm.closedWeekend"));
       } else {
         setWarningMessage("");
       }
     }
-
-    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const generateTimes = () => {
@@ -44,25 +53,19 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
-  // Fetch booked times for the selected date
   useEffect(() => {
     if (!form.date) return;
 
     const fetchBookedTimes = async () => {
       try {
-        const res = await fetch(`${API_URL}/api/booking?date=${form.date}`);
+        const res = await fetch(`${API_URL}/api/booking?date=${form.date.toISOString().split("T")[0]}`);
         if (!res.ok) throw new Error("Failed to fetch booked times");
 
         const data = await res.json();
-        if (!Array.isArray(data)) return setBookedTimes([]);
-
-        const booked = data.map((item) =>
-          new Date(item.bookingDate).toISOString().slice(11, 16)
-        );
-
+        const booked = data.map((item) => new Date(item.bookingDate).toISOString().slice(11, 16));
         setBookedTimes(booked);
       } catch (error) {
-        console.error("Error fetching booked times:", error);
+        console.error(error);
         setBookedTimes([]);
       }
     };
@@ -74,7 +77,7 @@ const BookingFormModal = ({ service, onClose }) => {
     e.preventDefault();
 
     if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
-      alert(t("bookingForm.errorMessage"));
+      alert(t("bookingForm.alertFillAll"));
       return;
     }
 
@@ -82,7 +85,9 @@ const BookingFormModal = ({ service, onClose }) => {
     setServerError("");
 
     try {
-      const bookingDateISO = new Date(`${form.date}T${form.time}:00`).toISOString();
+      const bookingDateISO = new Date(
+        `${form.date.toISOString().split("T")[0]}T${form.time}:00`
+      ).toISOString();
 
       const res = await fetch(`${API_URL}/api/booking`, {
         method: "POST",
@@ -101,7 +106,7 @@ const BookingFormModal = ({ service, onClose }) => {
 
       if (res.ok) {
         setShowSuccess(true);
-        setForm({ name: "", phone: "", email: "", date: "", time: "" });
+        setForm({ name: "", phone: "", email: "", date: null, time: "" });
         setTimeout(() => {
           setShowSuccess(false);
           onClose();
@@ -144,7 +149,15 @@ const BookingFormModal = ({ service, onClose }) => {
             <div className="input-row">
               <div className="input-group">
                 <label htmlFor="date">{t("bookingForm.date")}</label>
-                <input type="date" id="date" name="date" value={form.date} onChange={handleChange} required />
+                <DatePicker
+                  selected={form.date}
+                  onChange={handleDateChange}
+                  dateFormat="dd.MM.yyyy"
+                  locale={i18n.language === "fi" ? "fi" : undefined}
+                  placeholderText={t("bookingForm.date")}
+                  minDate={new Date()}
+                  required
+                />
               </div>
 
               <div className="input-group">
