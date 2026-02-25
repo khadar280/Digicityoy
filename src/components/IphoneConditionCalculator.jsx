@@ -5,31 +5,30 @@ import "./IphoneConditionCalculator.css";
 
 
 const IPHONE_MODELS = [
-  // 17 Series
+
   { label: "iPhone 17 Pro Max", value: "iphone17_pro_max", storage: [128, 256, 512, 1024] },
   { label: "iPhone 17 Pro", value: "iphone17_pro", storage: [128, 256, 512] },
   { label: "iPhone 17  Air", value: "iphone17_air", storage: [128, 256, 512] },
   { label: "iPhone 17", value: "iphone17", storage: [128, 256] },
 
-  // 16 Series
+
   { label: "iPhone 16 Pro Max", value: "iphone16_pro_max", storage: [128, 256, 512] },
   { label: "iPhone 16 Pro", value: "iphone16_pro", storage: [128, 256, 512] },
   { label: "iPhone 16 Plus", value: "iphone16_plus", storage: [128, 256] },
   { label: "iPhone 16", value: "iphone16", storage: [128, 256] },
 
-  // 15 Series
+
   { label: "iPhone 15 Pro Max", value: "iphone15_pro_max", storage: [128, 256, 512] },
   { label: "iPhone 15 Pro", value: "iphone15_pro", storage: [128, 256, 512] },
   { label: "iPhone 15 Plus", value: "iphone15_plus", storage: [128, 256] },
   { label: "iPhone 15", value: "iphone15", storage: [128, 256] },
 
-  // 14 Series
+
   { label: "iPhone 14 Pro Max", value: "iphone14_pro_max", storage: [128, 256, 512] },
   { label: "iPhone 14 Pro", value: "iphone14_pro", storage: [128, 256, 512] },
   { label: "iPhone 14 Plus", value: "iphone14_plus", storage: [128, 256] },
   { label: "iPhone 14", value: "iphone14", storage: [128, 256] },
 
-  // 13 Series
   { label: "iPhone 13 Pro Max", value: "iphone13_pro_max", storage: [128, 256, 512] },
   { label: "iPhone 13 Pro", value: "iphone13_pro", storage: [128, 256, 512] },
   { label: "iPhone 13", value: "iphone13", storage: [128, 256] },

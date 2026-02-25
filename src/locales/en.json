@@ -181,20 +181,21 @@
     "thankYou": "Thank You!",
     "response": "Your message has been received. We will contact you shortly."
   },
-  "bookingForm": {
-  "book": "Book Service",
-  "name": "Your Name",
-  "phone": "Phone Number",
-  "email": "Email",
-  "date": "Date",
-  "selectTime": "Select Time",
-  "confirm": "Confirm Booking",
-  "sending": "Sending...",
-  "alertFillAll": "Fill all fields.",
-  "successMessage": "Booking successful!",
-  "errorMessage": "Something went wrong. Try again.",
-  "closedWeekend": "We are closed on Saturdays and Sundays.",
-  "booked": "Booked"
+  "booking": {
+  "title": "Book Appointment",
+  "phoneRepair": "Phone Repair",
+  "batteryChange": "Battery Replacement",
+  "inspection": "Device Inspection",
+  "passport": "Passport Photo",
+  "time1": "30–60 min",
+  "time2": "30 min",
+  "time3": "15 min",
+  "time4": "10 min",
+  "price1": "From €49",
+  "price2": "From €39",
+  "price3": "€20",
+  "price4": "€15",
+  "book": "Book"
 },
   "checkout": {
     "title": "Checkout",
