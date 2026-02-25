@@ -32,7 +32,7 @@ const OrderRoutes = require('./routes/order');
 const PaymentRoutes = require('./routes/payment');
 const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
-const LaptopRoutes = require('./routes/laptop');
+const laptoprequestRoutes = require('./routes/laptoprequest');
 const CalculateRoutes = require('./routes/calculate');
 
 app.use('/api/booking', BookingRoutes);
@@ -41,7 +41,7 @@ app.use('/api/order', OrderRoutes);
 app.use('/api/payment', PaymentRoutes);
 app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
-app.use('/api/laptop', LaptopRoutes);
+app.use('/api/laptoprequest.js', laptoprequestRoutes);
 app.use('/api/calculate', CalculateRoutes);
 
 /* ========================

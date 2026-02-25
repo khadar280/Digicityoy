@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const LaptopRequest = require('../models/laptopRequest'); // <- new model
+const LaptopRequest = require('../models/laptoprequest.js'); // <- new model
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
