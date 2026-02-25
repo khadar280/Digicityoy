@@ -3,14 +3,12 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./IphoneConditionCalculator.css";
 
-/* =========================
-   IPHONE MODELS 17 → 11
-========================= */
+
 const IPHONE_MODELS = [
   // 17 Series
   { label: "iPhone 17 Pro Max", value: "iphone17_pro_max", storage: [128, 256, 512, 1024] },
   { label: "iPhone 17 Pro", value: "iphone17_pro", storage: [128, 256, 512] },
-  { label: "iPhone 17 Plus", value: "iphone17_plus", storage: [128, 256, 512] },
+  { label: "iPhone 17 Plus", value: "iphone17_air", storage: [128, 256, 512] },
   { label: "iPhone 17", value: "iphone17", storage: [128, 256] },
 
   // 16 Series
@@ -49,9 +47,7 @@ const IPHONE_MODELS = [
   { label: "iPhone 11", value: "iphone11", storage: [64, 128, 256] }
 ];
 
-/* =========================
-   BASE PRICES
-========================= */
+
 const BASE_PRICES = {
   iphone17_pro_max: 670,
   iphone17_pro: 620,
