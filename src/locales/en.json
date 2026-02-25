@@ -187,15 +187,21 @@
   "batteryChange": "Battery Replacement",
   "inspection": "Device Inspection",
   "passport": "Passport Photo",
+
+  "bookPhoneRepair": "Book phone repair appointment",
+  "bookBatteryChange": "Book battery replacement",
+  "bookInspection": "Book device inspection",
+  "bookPassport": "Book passport photo appointment",
+
   "time1": "30–60 min",
   "time2": "30 min",
   "time3": "15 min",
   "time4": "10 min",
+
   "price1": "From €49",
   "price2": "From €39",
   "price3": "€20",
-  "price4": "€15",
-  "book": "Book"
+  "price4": "€15"
 },
   "checkout": {
     "title": "Checkout",
