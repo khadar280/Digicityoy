@@ -8,7 +8,7 @@ const IPHONE_MODELS = [
   // 17 Series
   { label: "iPhone 17 Pro Max", value: "iphone17_pro_max", storage: [128, 256, 512, 1024] },
   { label: "iPhone 17 Pro", value: "iphone17_pro", storage: [128, 256, 512] },
-  { label: "iPhone 17 Plus", value: "iphone17_air", storage: [128, 256, 512] },
+  { label: "iPhone 17  Air", value: "iphone17_air", storage: [128, 256, 512] },
   { label: "iPhone 17", value: "iphone17", storage: [128, 256] },
 
   // 16 Series
