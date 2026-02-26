@@ -5,40 +5,28 @@ const cors = require('cors');
 
 const app = express();
 
-/* ========================
-   CORS CONFIG (FIXED)
-======================== */
-
 const allowedOrigins = [
   'https://digicity.fi',
   'https://www.digicity.fi',
   'https://en.digicity.fi',
   'https://api.digicity.fi',
-  'http://localhost:3000'
+  'http://localhost:3000',
+  'https://digicityoy-drnfa5dus-khadar280s-projects.vercel.app' // Add your Vercel frontend
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (Postman, mobile apps, etc.)
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error('Not allowed by CORS'));
-    }
+    if (!origin) return callback(null, true); // allow Postman / server-to-server
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error('Not allowed by CORS'));
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization'],
   credentials: true
 }));
 
-// 🔥 IMPORTANT: Handle preflight requests
+// Handle preflight
 app.options('*', cors());
-
-/* ========================
-   BODY PARSER
-======================== */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
