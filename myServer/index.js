@@ -39,7 +39,7 @@ const OrderRoutes = require('./routes/order');
 const PaymentRoutes = require('./routes/payment');
 const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
-const laptoprequestRoutes = require('./routes/laptoprequest');
+const TabletsRoutes = require('./routes/tablets');
 const CalculateRoutes = require('./routes/calculate');
 
 app.use('/api/booking', BookingRoutes);
@@ -48,34 +48,27 @@ app.use('/api/order', OrderRoutes);
 app.use('/api/payment', PaymentRoutes);
 app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
-app.use('/api/laptoprequest', laptoprequestRoutes);
+app.use('/api/tablets', TabletsRoutes);
+
 app.use('/api/calculate', CalculateRoutes);
 
-/* ========================
-   ROOT ROUTE
-======================== */
+
 app.get('/', (_req, res) => {
   res.send('👋 DigiCity API is running successfully!');
 });
 
-/* ========================
-   404 HANDLER
-======================== */
+
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found!' });
 });
 
-/* ========================
-   GLOBAL ERROR HANDLER
-======================== */
+
 app.use((err, req, res, next) => {
   console.error('❌ Server Error:', err);
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-/* ========================
-   DATABASE CONNECTION
-======================== */
+
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('✅ MongoDB connected successfully');
@@ -84,9 +77,7 @@ mongoose.connect(process.env.MONGO_URI)
     console.error('❌ MongoDB connection error:', err);
   });
 
-/* ========================
-   START SERVER
-======================== */
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, '0.0.0.0', () => {

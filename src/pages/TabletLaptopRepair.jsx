@@ -28,7 +28,7 @@ const TabletLaptopRepair = () => {
     setMessage("");
 
     try {
-      const res = await fetch(`${API_URL}/api/laptoprequest`, {
+      const res = await fetch(`${API_URL}/api/tablets`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

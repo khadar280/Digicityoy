@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const LaptopRequest = require('../models/laptoprequest');
+const LaptopRequest = require('../models/tablets');
 const nodemailer = require('nodemailer');
 
-/* ========================
-   MAIL TRANSPORTER
-======================== */
+
 
 let transporter = null;
 
@@ -18,16 +16,14 @@ if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
     },
   });
 } else {
-  console.warn("⚠️ EMAIL_USER or EMAIL_PASS not set. Emails will not be sent.");
+  console.warn(" EMAIL_USER or EMAIL_PASS not set. Emails will not be sent.");
 }
 
-/* ========================
-   POST ROUTE
-======================== */
+
 
 router.post('/', async (req, res) => {
   try {
-    console.log("✅ Laptop repair request route hit");
+    console.log(" Laptop repair request route hit");
 
     const { name, phone, email, model, lang } = req.body;
 
@@ -41,7 +37,7 @@ router.post('/', async (req, res) => {
     await newRequest.save();
     console.log("💾 Saved to database");
 
-    // Only attempt to send email if transporter exists
+  
     if (transporter) {
       try {
         await transporter.sendMail({
@@ -61,7 +57,7 @@ router.post('/', async (req, res) => {
         console.log("📧 Email sent successfully");
       } catch (mailErr) {
         console.error("⚠️ Failed to send email:", mailErr);
-        // Do NOT crash the API for email failure
+       
       }
     }
 
