@@ -8,5 +8,5 @@ const laptopRequestSchema = new mongoose.Schema({
   lang: { type: String, enum: ["en", "fi"], default: "en" },
 }, { timestamps: true });
 
-
-module.exports = mongoose.model("LaptopRequest", laptopRequestSchema, "laptop");
+// Explicitly use the existing collection "laptoprequests"
+module.exports = mongoose.model("LaptopRequest", laptopRequestSchema, "laptoprequests");
