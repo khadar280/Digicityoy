@@ -18,10 +18,17 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true); // allow server-to-server / Postman
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error('Not allowed by CORS'));
+  },
   credentials: true,
   methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization']
 }));
+
+// Handle preflight requests
 app.options('*', cors());
 
 /* ========================
@@ -69,14 +76,17 @@ app.use((req, res) => {
    GLOBAL ERROR HANDLER
 ======================== */
 app.use((err, req, res, next) => {
-  console.error('❌ Server Error:', err);
+  console.error('❌ Server Error:', err.message || err);
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
 /* ========================
    DATABASE CONNECTION
 ======================== */
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => console.log('✅ MongoDB connected successfully'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
