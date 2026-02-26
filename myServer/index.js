@@ -46,9 +46,10 @@ const OrderRoutes = require('./routes/order');
 const PaymentRoutes = require('./routes/payment');
 const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
-const TabletsRoutes = require('./routes/tablets');
+const TabletsRoutes = require('./routes/tablets'); // relative path
 const CalculateRoutes = require('./routes/calculate');
 
+// Use relative paths only — do NOT put full URLs here
 app.use('/api/booking', BookingRoutes);
 app.use('/api/contact', ContactRoutes);
 app.use('/api/order', OrderRoutes);
@@ -57,7 +58,6 @@ app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
 app.use('/api/tablets', TabletsRoutes);
 app.use('/api/calculate', CalculateRoutes);
-
 /* ========================
    ROOT ROUTE
 ======================== */
