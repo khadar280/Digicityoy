@@ -41,7 +41,7 @@ app.use('/api/order', OrderRoutes);
 app.use('/api/payment', PaymentRoutes);
 app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
-app.use('/api/laptoprequest.js', laptoprequestRoutes);
+app.use('/api/laptoprequest', laptoprequestRoutes);
 app.use('/api/calculate', CalculateRoutes);
 
 /* ========================
