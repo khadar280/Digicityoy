@@ -183,6 +183,7 @@
     "response": "Viestisi on vastaanotettu. Otamme sinuun yhteyttä pian."
   },
 "booking": {
+  "title": "Varaa aika",
   "phoneRepair": "Varaa aika puhelimen korjaukseen",
   "batteryChange": "Varaa aika akun vaihtoon",
   "inspection": "Varaa aika tarkastukseen",
