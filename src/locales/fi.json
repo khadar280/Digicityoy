@@ -194,9 +194,9 @@
   "price1": "Alkaen 49 €",
   "price2": "Alkaen 29 €",
   "price3": "Ilmainen",
-  "price4": "15 €"
+  "price4": "15 €",
+  "bookNow": "Varaa nyt"
 },
-
   "checkout": {
     "title": "Kassa",
     "orderSummary": "Tilauksen yhteenveto",
