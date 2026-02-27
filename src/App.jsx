@@ -66,7 +66,7 @@ const AppRoutes = () => {
   return (
     <div className="app-container">
       <Analytics />
-      {/* Navbar will appear on all pages */}
+     
       <Navbar />
 
       <Routes>
@@ -83,10 +83,10 @@ const AppRoutes = () => {
           }
         />
 
-        {/* iPhone purchase page */}
+    
         <Route path="/buy-iphone" element={<IphonePurchase />} />
 
-        {/* Contact & general pages */}
+      
         <Route path="/contact" element={<Contact />} />
         <Route path="/destination" element={<TrendingProducts />} />
         <Route path="/auth" element={<Auth />} />
@@ -94,26 +94,25 @@ const AppRoutes = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/about-us" element={<AboutSection />} />
 
-        {/* Repair pages */}
+   
         <Route path="/iphone-repair-details" element={<IphoneRepairDetails />} />
         <Route path="/android-repair-details" element={<AndroidRepairDetails />} />
         <Route path="/tablet-laptop-repair" element={<TabletLaptopRepair />} />
 
-        {/* Cart & Checkout */}
+     
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutForm />} />
         <Route path="/payment-success/stripe" element={<StripeSuccess />} />
         <Route path="/payment-success/klarna" element={<KlarnaSuccess />} />
         <Route path="/test-payment" element={<PaymentForm />} />
 
-        {/* User pages */}
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Routes>
 
-      {/* Footer hidden for specific paths */}
+   
       {!hideFooterPaths.includes(location.pathname) && <Footer />}
     </div>
   );

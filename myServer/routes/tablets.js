@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Tablets = require('../models/tablets'); // Updated model name
+const Tablets = require('../models/tablets');
 const nodemailer = require('nodemailer');
 
-/* ========================
-   MAIL TRANSPORTER
-======================== */
+
 let transporter = null;
 
 if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
@@ -20,16 +18,14 @@ if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
   console.warn("⚠️ EMAIL_USER or EMAIL_PASS not set. Emails will not be sent.");
 }
 
-/* ========================
-   POST ROUTE: /api/tablets
-======================== */
+
 router.post('/', async (req, res) => {
   try {
     console.log("✅ /api/tablets route hit");
 
     const { name, phone, email, model, lang } = req.body;
 
-    // Basic validation
+
     if (!name || !phone || !email) {
       return res.status(400).json({ error: "Name, phone and email are required." });
     }
@@ -48,7 +44,7 @@ router.post('/', async (req, res) => {
     await newRequest.save();
     console.log("💾 Saved to database");
 
-    // Send email if transporter is set
+ 
     if (transporter) {
       try {
         await transporter.sendMail({
@@ -67,7 +63,7 @@ router.post('/', async (req, res) => {
         });
         console.log("📧 Email sent successfully");
       } catch (mailErr) {
-        console.error("⚠️ Failed to send email:", mailErr);
+        console.error(" Failed to send email:", mailErr);
       }
     }
 
@@ -75,7 +71,7 @@ router.post('/', async (req, res) => {
       message: selectedLang === "fi" ? "Tilaus vastaanotettu!" : "Request received!",
     });
   } catch (error) {
-    console.error("❌ Tablet request error:", error);
+    console.error(" Tablet request error:", error);
     return res.status(500).json({ error: "Server error. Please try again later." });
   }
 });

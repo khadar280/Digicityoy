@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
   debug: true,
 });
 
-// GET all bookings (needed for frontend to disable booked times)
+
 router.get('/', async (req, res) => {
   try {
     const bookings = await Booking.find();
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST new booking
+
 router.post('/', async (req, res) => {
   try {
     const { customerName, customerEmail, phone, service, bookingDate } = req.body;
