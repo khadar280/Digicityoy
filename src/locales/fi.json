@@ -182,28 +182,22 @@
     "thankYou": "Kiitos!",
     "response": "Viestisi on vastaanotettu. Otamme sinuun yhteyttä pian."
   },
-"booking": {
-  "title": "Varaa aika",
-  "phoneRepair": "Puhelimen korjaus",
-  "batteryChange": "Akun vaihto",
-  "inspection": "Laitetarkastus",
-  "passport": "Passikuvaus",
 
-  "bookPhoneRepair": "Varaa aika puhelimen korjaukseen",
-  "bookBatteryChange": "Varaa aika akun vaihtoon",
-  "bookInspection": "Varaa aika laitetarkastukseen",
-  "bookPassport": "Varaa aika passikuvaukseen",
+  "booking": {
+    "phoneRepair": "Varaa aika puhelimen korjaukseen",
+    "batteryChange": "Varaa aika akun vaihtoon",
+    "inspection": "Varaa tarkastusaika",
+    "passport": "Varaa aika passikuvaukseen",
+    "time1": "30 minuuttia",
+    "time2": "20 minuuttia",
+    "time3": "15 minuuttia",
+    "time4": "10 minuuttia",
+    "price1": "Alkaen 49€",
+    "price2": "Alkaen 29€",
+    "price3": "Ilmainen",
+    "price4": "15€"
+  },
 
-  "time1": "30–60 min",
-  "time2": "30 min",
-  "time3": "15 min",
-  "time4": "10 min",
-
-  "price1": "Alkaen 49€",
-  "price2": "Alkaen 39€",
-  "price3": "20€",
-  "price4": "15€"
-},
   "checkout": {
     "title": "Kassa",
     "orderSummary": "Tilauksen yhteenveto",
