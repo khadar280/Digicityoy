@@ -6,27 +6,33 @@ const cors = require('cors');
 const app = express();
 
 /* =============================
-   CORS CONFIGURATION
+   CORS CONFIGURATION (FIXED)
 ============================= */
-
-const allowedOrigins = [
-  'https://digicity.fi',
-  'https://www.digicity.fi',
-  'https://en.digicity.fi',
-  'https://api.digicity.fi',
-  'http://localhost:3000',
-  'https://digicityoy-drnfa5dus-khadar280s-projects.vercel.app'
-];
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // Allow non-browser requests
-    if (allowedOrigins.includes(origin)) return callback(null, true);
+
+    // Allow requests with no origin (mobile apps, Postman, server-to-server)
+    if (!origin) return callback(null, true);
+
+    // Allow localhost
+    if (origin === 'http://localhost:3000') {
+      return callback(null, true);
+    }
+
+    // Allow all Vercel preview deployments
+    if (origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+
+    // Allow all digicity.fi domains
+    if (origin.includes('digicity.fi')) {
+      return callback(null, true);
+    }
+
     return callback(new Error('Not allowed by CORS'));
   },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  credentials: true
 }));
 
 /* =============================
