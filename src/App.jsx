@@ -10,7 +10,7 @@ import HeroSection from './components/HeroSection';
 import TrendingProducts from './components/TrendingProducts';
 import IphoneConditionCalculator from './components/IphoneConditionCalculator';
 import IphonePurchase from './components/IphonePurchase'; // make sure this path is correct
-import PlanningSection from './components/PlanningSection';
+
 import Whychoose from './components/Whychoose';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
@@ -77,7 +77,7 @@ const AppRoutes = () => {
               <HeroSection />
               <Services />
               <IphoneConditionCalculator /> 
-              <PlanningSection />
+            
               <Whychoose />
             </>
           }
