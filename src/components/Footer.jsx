@@ -6,14 +6,6 @@ import './Footer.css';
 function Footer() {
   const { t } = useTranslation();
 
-
-  const contactInfo = {
-    email: 'info@digicity.fi',
-    phone: '0453418323',
-    address: 'Klaneettitie 12, Helsinki 00420'
-  };
-
- 
   const socials = [
     { icon: <FaTiktok />, url: 'https://www.tiktok.com/@digicityoy' },
     { icon: <FaInstagram />, url: 'https://www.instagram.com/digicity21' }
@@ -23,24 +15,24 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
 
-      
+        {/* Opening Hours */}
         <div className="footer-hours">
-          <h4>{t('footer.visitingHours', 'Opening Hours')}</h4>
-          <p>{t('footer.weekdays', 'Mon - Fri: 11:00 - 20:00')}</p>
-          <p>{t('footer.weekend', 'Saturday - Sunday: Closed')}</p>
+          <h4>{t('footer.visitingHours')}</h4>
+          <p>{t('footer.weekdays')}</p>
+          <p>{t('footer.weekend')}</p>
         </div>
 
-        
+        {/* Contact Section */}
         <div className="footer-contact">
-          <h4>{t('footer.contactTitle', 'Contact Us')}</h4>
-          <p>Email: {contactInfo.email}</p>
-          <p>Phone: {contactInfo.phone}</p>
-          <p>Address: {contactInfo.address}</p>
+          <h4>{t('footer.contactTitle')}</h4>
+          <p>{t('footer.email')}: {t('footer.emailValue')}</p>
+          <p>{t('footer.phone')}: {t('footer.phoneValue')}</p>
+          <p>{t('footer.address')}: {t('footer.addressValue')}</p>
         </div>
 
-        {/* Social icons */}
+        {/* Social Media */}
         <div className="footer-socials">
-          <h4>{t('footer.followUs', 'Follow Us')}</h4>
+          <h4>{t('footer.followUs')}</h4>
           <div className="social-icons">
             {socials.map((social, index) => (
               <a
@@ -54,12 +46,13 @@ function Footer() {
             ))}
           </div>
         </div>
+
       </div>
 
-     
+      {/* Bottom */}
       <div className="footer-bottom">
         <p>
-          © {new Date().getFullYear()} DIGICITY. {t('footer.rights', 'All rights reserved.')}
+          © {new Date().getFullYear()} DIGICITY. {t('footer.rights')}
         </p>
       </div>
     </footer>

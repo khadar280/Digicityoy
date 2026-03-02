@@ -169,6 +169,9 @@
   "email": "Sähköposti",
   "phone": "Puhelin",
   "address": "Osoite",
+  "emailValue": "info@digicity.fi",
+  "phoneValue": "0453418323",
+  "addressValue": "Klaneettitie 12, Helsinki 00420",
   "followUs": "Seuraa meitä",
   "rights": "Kaikki oikeudet pidätetään."
 },
