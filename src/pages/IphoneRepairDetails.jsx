@@ -11,9 +11,9 @@ import iphoneImage from "../assets/iphone4.png"; // your existing image
 // Full iPhone models list 17 → 6
 export const iphoneModels = [
   // iPhone 17 Series
-  { model: "iPhone 17 Pro Max", screenRepair: 489, batteryReplacement: 139, backRepair: 309, chargingPort: 159, buttons: 169, housing: 289, backCamera: 219, frontCamera: 179, lens: 129, image: iphoneImage },
+  { model: "iPhone 17 Pro Max", screenRepair: 600, batteryReplacement: 139, backRepair: 300, chargingPort: 159, buttons: 169, housing: 289, backCamera: 350, frontCamera: 179, lens: 60, image: iphoneImage },
   { model: "iPhone 17 Pro", screenRepair: 469, batteryReplacement: 139, backRepair: 299, chargingPort: 159, buttons: 169, housing: 279, backCamera: 209, frontCamera: 179, lens: 129, image: iphoneImage },
-  { model: "iPhone 17 Plus", screenRepair: 419, batteryReplacement: 139, backRepair: 269, chargingPort: 159, buttons: 169, housing: 259, backCamera: 199, frontCamera: 169, lens: 109, image: iphoneImage },
+  { model: "iPhone 17 Air", screenRepair: 419, batteryReplacement: 139, backRepair: 269, chargingPort: 159, buttons: 169, housing: 259, backCamera: 199, frontCamera: 169, lens: 109, image: iphoneImage },
   { model: "iPhone 17", screenRepair: 399, batteryReplacement: 139, backRepair: 259, chargingPort: 159, buttons: 169, housing: 249, backCamera: 189, frontCamera: 159, lens: 109, image: iphoneImage },
 
   // iPhone 16 Series
