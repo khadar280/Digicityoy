@@ -162,16 +162,16 @@
   },
   "search_results_for": "Hakutulokset haulle",
   "footer": {
-    "visitingHours": "Aukioloajat",
-    "weekdays": "Ma - Pe: 11:00 - 20:00",
-    "weekend": "La - Su: Suljettu",
-    "contactTitle": "Ota yhteyttä",
-    "email": "Sähköposti",
-    "phone": "Puhelin",
-    "address": "Osoite",
-    "followUs": "Seuraa meitä",
-    "rights": "Kaikki oikeudet pidätetään."
-  },
+  "visitingHours": "Aukioloajat",
+  "weekdays": "Ma - Pe: 11:00 - 20:00",
+  "weekend": "La - Su: Suljettu",
+  "contactTitle": "Ota yhteyttä",
+  "email": "Sähköposti",
+  "phone": "Puhelin",
+  "address": "Osoite",
+  "followUs": "Seuraa meitä",
+  "rights": "Kaikki oikeudet pidätetään."
+},
   "contact": {
     "title": "Ota yhteyttä",
     "subtitle": "Haluamme kuulla sinusta. Lähetä viesti alla.",
@@ -222,6 +222,7 @@
   "planningSection": {
     "buttonText": "Varaa passikuvaukseen"
   },
+  
  
   "purchase": {
     "title": "Osta käytetty iPhone",
