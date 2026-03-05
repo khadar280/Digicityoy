@@ -58,10 +58,68 @@ export const groupedModels = {
     { model: "Samsung Note 4", screenRepair: 149, batteryReplacement: 69, backRepair: 69, image: note4Image }
   ],
   "Galaxy A Series": [
-    { model: "Samsung A80", screenRepair: 159, batteryReplacement: 89, backRepair: 89, image: a80Image },
-    { model: "Samsung A20", screenRepair: 129, batteryReplacement: 59, backRepair: 59, image: a20Image },
-    { model: "Samsung A3 2015", screenRepair: 99, batteryReplacement: 49, backRepair: 49, image: a3Image },
-    { model: "Samsung A7 2018", screenRepair: 119, batteryReplacement: 60, backRepair: 60, image: a7Image }
+  { model: "Samsung A3 2015", screenRepair: 99, batteryReplacement: 49, backRepair: 49 },
+  { model: "Samsung A5 2015", screenRepair: 109, batteryReplacement: 49, backRepair: 49 },
+  { model: "Samsung A7 2015", screenRepair: 119, batteryReplacement: 59, backRepair: 59 },
+
+  { model: "Samsung A3 2016", screenRepair: 109, batteryReplacement: 49, backRepair: 49 },
+  { model: "Samsung A5 2016", screenRepair: 119, batteryReplacement: 59, backRepair: 59 },
+  { model: "Samsung A7 2016", screenRepair: 129, batteryReplacement: 59, backRepair: 59 },
+
+  { model: "Samsung A3 2017", screenRepair: 109, batteryReplacement: 49, backRepair: 49 },
+  { model: "Samsung A5 2017", screenRepair: 129, batteryReplacement: 59, backRepair: 59 },
+  { model: "Samsung A7 2017", screenRepair: 139, batteryReplacement: 59, backRepair: 59 },
+
+  { model: "Samsung A6", screenRepair: 119, batteryReplacement: 59, backRepair: 59 },
+  { model: "Samsung A6 Plus", screenRepair: 129, batteryReplacement: 59, backRepair: 59 },
+
+  { model: "Samsung A7 2018", screenRepair: 119, batteryReplacement: 60, backRepair: 60 },
+  { model: "Samsung A8 2018", screenRepair: 149, batteryReplacement: 69, backRepair: 69 },
+  { model: "Samsung A8 Plus 2018", screenRepair: 159, batteryReplacement: 69, backRepair: 69 },
+
+  { model: "Samsung A10", screenRepair: 99, batteryReplacement: 49, backRepair: 49 },
+  { model: "Samsung A10s", screenRepair: 99, batteryReplacement: 49, backRepair: 49 },
+  { model: "Samsung A11", screenRepair: 109, batteryReplacement: 49, backRepair: 49 },
+  { model: "Samsung A12", screenRepair: 119, batteryReplacement: 59, backRepair: 59 },
+  { model: "Samsung A13", screenRepair: 119, batteryReplacement: 59, backRepair: 59 },
+  { model: "Samsung A14", screenRepair: 129, batteryReplacement: 59, backRepair: 59 },
+
+  { model: "Samsung A20", screenRepair: 129, batteryReplacement: 59, backRepair: 59 },
+  { model: "Samsung A20e", screenRepair: 119, batteryReplacement: 59, backRepair: 59 },
+  { model: "Samsung A21", screenRepair: 129, batteryReplacement: 59, backRepair: 59 },
+  { model: "Samsung A21s", screenRepair: 129, batteryReplacement: 59, backRepair: 59 },
+  { model: "Samsung A22", screenRepair: 139, batteryReplacement: 69, backRepair: 69 },
+  { model: "Samsung A22 5G", screenRepair: 139, batteryReplacement: 69, backRepair: 69 },
+  { model: "Samsung A23", screenRepair: 149, batteryReplacement: 69, backRepair: 69 },
+  { model: "Samsung A23 5G", screenRepair: 149, batteryReplacement: 69, backRepair: 69 },
+  { model: "Samsung A24", screenRepair: 159, batteryReplacement: 69, backRepair: 69 },
+
+  { model: "Samsung A30", screenRepair: 129, batteryReplacement: 59, backRepair: 59 },
+  { model: "Samsung A30s", screenRepair: 129, batteryReplacement: 59, backRepair: 59 },
+  { model: "Samsung A31", screenRepair: 139, batteryReplacement: 69, backRepair: 69 },
+  { model: "Samsung A32", screenRepair: 149, batteryReplacement: 69, backRepair: 69 },
+  { model: "Samsung A32 5G", screenRepair: 149, batteryReplacement: 69, backRepair: 69 },
+  { model: "Samsung A33 5G", screenRepair: 159, batteryReplacement: 69, backRepair: 69 },
+  { model: "Samsung A34 5G", screenRepair: 169, batteryReplacement: 79, backRepair: 79 },
+
+  { model: "Samsung A40", screenRepair: 129, batteryReplacement: 59, backRepair: 59 },
+  { model: "Samsung A41", screenRepair: 139, batteryReplacement: 69, backRepair: 69 },
+  { model: "Samsung A42 5G", screenRepair: 159, batteryReplacement: 69, backRepair: 69 },
+
+  { model: "Samsung A50", screenRepair: 139, batteryReplacement: 69, backRepair: 69 },
+  { model: "Samsung A51", screenRepair: 149, batteryReplacement: 69, backRepair: 69 },
+  { model: "Samsung A52", screenRepair: 169, batteryReplacement: 79, backRepair: 79 },
+  { model: "Samsung A52 5G", screenRepair: 169, batteryReplacement: 79, backRepair: 79 },
+  { model: "Samsung A52s 5G", screenRepair: 169, batteryReplacement: 79, backRepair: 79 },
+  { model: "Samsung A53 5G", screenRepair: 179, batteryReplacement: 79, backRepair: 79 },
+  { model: "Samsung A54 5G", screenRepair: 189, batteryReplacement: 89, backRepair: 89 },
+
+  { model: "Samsung A70", screenRepair: 159, batteryReplacement: 79, backRepair: 79 },
+  { model: "Samsung A71", screenRepair: 169, batteryReplacement: 79, backRepair: 79 },
+  { model: "Samsung A72", screenRepair: 179, batteryReplacement: 89, backRepair: 89 },
+  { model: "Samsung A73 5G", screenRepair: 199, batteryReplacement: 89, backRepair: 89 },
+
+  { model: "Samsung A80", screenRepair: 159, batteryReplacement: 89, backRepair: 89 }
   ]
 };
 

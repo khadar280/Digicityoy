@@ -42,9 +42,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-/* =============================
-   ROUTES
-============================= */
+
 
 const BookingRoutes = require('./routes/booking');
 const ContactRoutes = require('./routes/contact');
@@ -64,42 +62,32 @@ app.use('/api/auth', AuthRoutes);
 app.use('/api/tablets', TabletsRoutes);
 app.use('/api/calculate', CalculateRoutes);
 
-/* =============================
-   ROOT ROUTE
-============================= */
+
 
 app.get('/', (_req, res) => {
   res.send('👋 DigiCity API is running successfully!');
 });
 
-/* =============================
-   404 HANDLER
-============================= */
+
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found!' });
 });
 
-/* =============================
-   GLOBAL ERROR HANDLER
-============================= */
+
 
 app.use((err, req, res, next) => {
-  console.error('❌ Server Error:', err.message || err);
+  console.error(' Server Error:', err.message || err);
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-/* =============================
-   DATABASE CONNECTION
-============================= */
+
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ MongoDB connected successfully'))
-  .catch(err => console.error('❌ MongoDB connection error:', err));
+  .catch(err => console.error(' MongoDB connection error:', err));
 
-/* =============================
-   START SERVER
-============================= */
+
 
 const PORT = process.env.PORT || 3000;
 
