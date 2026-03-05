@@ -1,4 +1,4 @@
-// src/components/BookingFormModal.jsx
+
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import DatePicker, { registerLocale } from "react-datepicker";
@@ -58,7 +58,7 @@ const BookingFormModal = ({ service, onClose }) => {
 
     const fetchBookedTimes = async () => {
       try {
-        const res = await fetch(`${API_URL}/api/booking?date=${form.date.toISOString().split("T")[0]}`);
+        const res = await fetch(`${API_URL}/api/?date=${form.date.toISOString().split("T")[0]}`);
         if (!res.ok) throw new Error("Failed to fetch booked times");
 
         const data = await res.json();

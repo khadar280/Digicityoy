@@ -13,10 +13,7 @@ import note20UltraImage from "../assets/note20u.png";
 import note20Image from "../assets/note20.png";
 import note8Image from "../assets/note8.png";
 import note4Image from "../assets/note4.png";
-import a80Image from "../assets/a80.png";
-import a20Image from "../assets/a20.png";
-import a3Image from "../assets/a3.png";
-import a7Image from "../assets/a7.png";
+
 
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
