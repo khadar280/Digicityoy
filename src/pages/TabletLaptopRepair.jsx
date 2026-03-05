@@ -2,7 +2,47 @@ import React, { useState } from "react";
 import "./TabletLaptopRepair.css";
 import tabletImg from "../assets/taplet1.png"; 
 
-// Use environment variable for backend
+
+export const tabletRepairs = {
+
+  "Apple iPad Series": [
+    { model: "iPad 6 (2018)", screenRepair: 149, batteryReplacement: 89, backRepair: 99 },
+    { model: "iPad 7 (2019)", screenRepair: 159, batteryReplacement: 89, backRepair: 99 },
+    { model: "iPad 8 (2020)", screenRepair: 169, batteryReplacement: 89, backRepair: 109 },
+    { model: "iPad 9 (2021)", screenRepair: 179, batteryReplacement: 99, backRepair: 119 },
+    { model: "iPad 10 (2022)", screenRepair: 219, batteryReplacement: 109, backRepair: 129 }
+  ],
+
+  "iPad Air Series": [
+    { model: "iPad Air 3", screenRepair: 219, batteryReplacement: 109, backRepair: 129 },
+    { model: "iPad Air 4", screenRepair: 249, batteryReplacement: 119, backRepair: 139 },
+    { model: "iPad Air 5", screenRepair: 259, batteryReplacement: 129, backRepair: 149 }
+  ],
+
+  "iPad Pro Series": [
+    { model: "iPad Pro 11 (2018)", screenRepair: 349, batteryReplacement: 149, backRepair: 179 },
+    { model: "iPad Pro 11 (2020)", screenRepair: 369, batteryReplacement: 149, backRepair: 179 },
+    { model: "iPad Pro 11 (2022)", screenRepair: 389, batteryReplacement: 159, backRepair: 189 },
+
+    { model: "iPad Pro 12.9 (2018)", screenRepair: 399, batteryReplacement: 159, backRepair: 199 },
+    { model: "iPad Pro 12.9 (2020)", screenRepair: 429, batteryReplacement: 169, backRepair: 219 },
+    { model: "iPad Pro 12.9 (2022)", screenRepair: 459, batteryReplacement: 179, backRepair: 239 }
+  ],
+
+  "Samsung Galaxy Tab Series": [
+    { model: "Galaxy Tab A7", screenRepair: 159, batteryReplacement: 79, backRepair: 79 },
+    { model: "Galaxy Tab A8", screenRepair: 169, batteryReplacement: 79, backRepair: 79 },
+    { model: "Galaxy Tab S6", screenRepair: 219, batteryReplacement: 109, backRepair: 119 },
+    { model: "Galaxy Tab S7", screenRepair: 249, batteryReplacement: 119, backRepair: 129 },
+    { model: "Galaxy Tab S8", screenRepair: 279, batteryReplacement: 129, backRepair: 139 }
+  ],
+
+  "Lenovo Tablet Series": [
+    { model: "Lenovo Tab M10", screenRepair: 139, batteryReplacement: 69, backRepair: 69 },
+    { model: "Lenovo Tab P11", screenRepair: 179, batteryReplacement: 79, backRepair: 79 },
+    { model: "Lenovo Tab P12", screenRepair: 199, batteryReplacement: 89, backRepair: 89 }
+  ]
+};
 const API_URL = process.env.REACT_APP_API_URL || "https://digicityoy-223.onrender.com";
 
 const TabletLaptopRepair = () => {
@@ -46,7 +86,7 @@ const TabletLaptopRepair = () => {
           phone: "",
           email: "",
           model: "",
-          lang: formData.lang, // retain selected language
+          lang: formData.lang, 
         });
       } else {
         setMessage(data.error || (formData.lang === "fi" 
