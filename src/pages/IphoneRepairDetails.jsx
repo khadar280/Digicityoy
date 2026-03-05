@@ -14,7 +14,7 @@ export const iphoneModels = [
   { model: "iPhone 17 Pro Max", screenRepair: 600, batteryReplacement: 139, backRepair: 300, chargingPort: 159, buttons: 169, housing: 289, backCamera: 350, frontCamera: 179, lens: 60, image: iphoneImage },
   { model: "iPhone 17 Pro", screenRepair: 469, batteryReplacement: 139, backRepair: 300, chargingPort: 159, buttons: 169, housing: 279, backCamera: 209, frontCamera: 179, lens: 129, image: iphoneImage },
   { model: "iPhone 17 Air", screenRepair: 650, batteryReplacement: 150, backRepair: 269, chargingPort: 159, buttons: 169, housing: 259, backCamera: 199, frontCamera: 169, lens: 109, image: iphoneImage },
-  { model: "iPhone 17", screenRepair: 399, batteryReplacement: 139, backRepair: 259, chargingPort: 159, buttons: 169, housing: 249, backCamera: 189, frontCamera: 159, lens: 109, image: iphoneImage },
+  { model: "iPhone 17", screenRepair: 650, batteryReplacement: 149, backRepair: 299, chargingPort: 159, buttons: 169, housing: 249, backCamera: 189, frontCamera: 159, lens: 109, image: iphoneImage },
 
   // iPhone 16 Series
   { model: "iPhone 16 Pro Max", screenRepair: 459, batteryReplacement: 129, backRepair: 289, chargingPort: 149, buttons: 159, housing: 269, backCamera: 199, frontCamera: 169, lens: 119, image: iphoneImage },
