@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
-const laptopRequestSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  phone: { type: String, required: true },
-  email: { type: String, required: true },
-  model: { type: String, default: "N/A" },
-  lang: { type: String, enum: ["en", "fi"], default: "en" },
+const bookingSchema = new mongoose.Schema({
+  customerName: { type: String, required: true },
+  customerEmail: { type: String, required: true },
+  phone: { type: String },
+  service: { type: String, required: true },
+  bookingDate: { type: Date, required: true },
 }, { timestamps: true });
 
-module.exports = mongoose.model("LaptopRequest", laptopRequestSchema);
+module.exports = mongoose.model("Booking", bookingSchema);

@@ -1,4 +1,4 @@
-// src/components/Navbar.jsx
+
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
@@ -19,23 +19,22 @@ const Navbar = () => {
   const { t, i18n } = useTranslation();
   const { user, logout } = useContext(UserContext);
 
-  // Handle language switch
   const handleLanguageChange = (e) => {
     const newLang = e.target.value.toLowerCase();
     setLanguage(e.target.value);
     i18n.changeLanguage(newLang);
   };
 
-  // Toggle user dropdown or navigate to auth
+
   const handleUserIconClick = () => {
     if (user) setDropdownOpen(!dropdownOpen);
     else navigate('/auth');
   };
 
-  // Toggle mobile menu
+
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  // Search enter key
+
   const handleSearchKeyDown = (e) => {
     if (e.key === 'Enter' && searchQuery.trim() !== '') {
       navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
@@ -43,10 +42,10 @@ const Navbar = () => {
     }
   };
 
-  // Logo click goes back
+ 
   const handleLogoClick = () => navigate(-1);
 
-  // Close dropdown if click outside
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -59,10 +58,10 @@ const Navbar = () => {
 
   return (
     <header className="navbar">
-      {/* Logo */}
+
       <img src={logo} alt="Logo" className="logo" onClick={handleLogoClick} />
 
-      {/* Navigation links */}
+    
       <nav className={`nav-container ${menuOpen ? 'active' : ''}`}>
         <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
           <li><Link to="/" onClick={() => setMenuOpen(false)}>{t("nav.home")}</Link></li>
@@ -72,7 +71,7 @@ const Navbar = () => {
           <li><Link to="/contact" onClick={() => setMenuOpen(false)}>{t("nav.contact")}</Link></li>
           <li><Link to="/about-us" onClick={() => setMenuOpen(false)}>{t("nav.about")}</Link></li>
 
-          {/* Search bar */}
+       
           <div className="search-bar">
             <input
               type="text"
@@ -86,20 +85,20 @@ const Navbar = () => {
         </ul>
       </nav>
 
-      {/* User controls */}
+  
       <div className="user-controls" ref={dropdownRef}>
-        {/* Language switch */}
+       
         <select className="lang-select" value={language} onChange={handleLanguageChange}>
           <option value="EN">EN</option>
           <option value="FI">FI</option>
         </select>
 
-        {/* Cart link */}
+       
         <Link to="/cart" className="cart-link">
           {t('nav.cart')} ({cartItems.length})
         </Link>
 
-        {/* User icon and dropdown */}
+        
         <div className="user-menu-wrapper">
           <div className="user-info" onClick={handleUserIconClick}>
             {user ? (
