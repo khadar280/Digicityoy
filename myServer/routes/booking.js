@@ -4,7 +4,6 @@ const Booking = require("../models/booking");
 const nodemailer = require("nodemailer");
 
 /* EMAIL */
-
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -14,7 +13,6 @@ const transporter = nodemailer.createTransport({
 });
 
 /* GET BOOKINGS */
-
 router.get("/", async (req, res) => {
   try {
     const { date } = req.query;
@@ -34,123 +32,76 @@ router.get("/", async (req, res) => {
     res.json(bookings);
   } catch (error) {
     console.error("GET BOOKINGS ERROR:", error);
-
-    res.status(500).json({
-      error: "Server error",
-      details: error.message,
-    });
+    res.status(500).json({ error: "Server error", details: error.message });
   }
 });
 
 /* CREATE BOOKING */
-
 router.post("/", async (req, res) => {
   try {
-    const {
-      customerName,
-      customerEmail,
-      phone,
-      service,
-      bookingDate,
-    } = req.body;
+    const { customerName, customerEmail, phone, service, bookingDate } = req.body;
 
     if (!customerName || !customerEmail || !service || !bookingDate) {
-      return res.status(400).json({
-        error: "Missing required fields",
-      });
+      return res.status(400).json({ error: "Missing required fields" });
     }
 
     const bookingDateObj = new Date(bookingDate);
 
     if (isNaN(bookingDateObj)) {
-      return res.status(400).json({
-        error: "Invalid date format",
-      });
+      return res.status(400).json({ error: "Invalid date format" });
     }
 
     /* WEEKEND BLOCK */
-
     const day = bookingDateObj.getDay();
-
     if (day === 0 || day === 6) {
-      return res.status(400).json({
-        error: "Bookings are closed on weekends",
-      });
+      return res.status(400).json({ error: "Bookings are closed on weekends" });
     }
 
     /* BUSINESS HOURS */
-
     const hour = bookingDateObj.getHours();
-
     if (hour < 11 || hour >= 20) {
-      return res.status(400).json({
-        error: "Booking outside business hours",
-      });
+      return res.status(400).json({ error: "Booking outside business hours" });
     }
 
     /* SLOT CHECK */
-
     const start = new Date(bookingDateObj);
     const end = new Date(bookingDateObj);
     end.setMinutes(end.getMinutes() + 59);
 
-    const exists = await Booking.findOne({
-      bookingDate: { $gte: start, $lt: end },
-    });
-
+    const exists = await Booking.findOne({ bookingDate: { $gte: start, $lt: end } });
     if (exists) {
-      return res.status(400).json({
-        error: "This time slot is already booked",
-      });
+      return res.status(400).json({ error: "This time slot is already booked" });
     }
 
-    const newBooking = new Booking({
-      customerName,
-      customerEmail,
-      phone,
-      service,
-      bookingDate: bookingDateObj,
-    });
-
+    /* SAVE BOOKING */
+    const newBooking = new Booking({ customerName, customerEmail, phone, service, bookingDate: bookingDateObj });
     await newBooking.save();
 
-    /* EMAIL */
+    /* SEND RESPONSE IMMEDIATELY */
+    res.status(201).json({ message: "Booking saved", booking: newBooking });
 
-    try {
-      await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER,
-        subject: "New Booking Received",
-        html: `
+    /* SEND EMAIL ASYNC (non-blocking) */
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      subject: "New Booking Received",
+      html: `
         <h3>New Booking</h3>
-
         <p><b>Name:</b> ${customerName}</p>
         <p><b>Email:</b> ${customerEmail}</p>
         <p><b>Phone:</b> ${phone || "N/A"}</p>
         <p><b>Service:</b> ${service}</p>
-        <p><b>Date:</b> ${bookingDateObj.toLocaleString("fi-FI", {
-          dateStyle: "medium",
-          timeStyle: "short",
-        })}</p>
-        `,
-      });
+        <p><b>Date:</b> ${bookingDateObj.toLocaleString("fi-FI", { dateStyle: "medium", timeStyle: "short" })}</p>
+      `,
+    };
 
-      console.log("Booking email sent");
-    } catch (emailError) {
-      console.error("EMAIL ERROR:", emailError);
-    }
+    transporter.sendMail(mailOptions)
+      .then(() => console.log("Booking email sent"))
+      .catch((err) => console.error("Email failed:", err.message));
 
-    res.status(201).json({
-      message: "Booking saved",
-      booking: newBooking,
-    });
   } catch (error) {
     console.error("BOOKING ERROR:", error);
-
-    res.status(500).json({
-      error: "Server error",
-      details: error.message,
-    });
+    res.status(500).json({ error: "Server error", details: error.message });
   }
 });
 
