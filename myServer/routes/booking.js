@@ -41,6 +41,7 @@ router.post("/", async (req, res) => {
   try {
     const { customerName, customerEmail, phone, service, bookingDate } = req.body;
 
+    /* VALIDATION */
     if (!customerName || !customerEmail || !service || !bookingDate) {
       return res.status(400).json({ error: "Missing required fields" });
     }
@@ -68,20 +69,39 @@ router.post("/", async (req, res) => {
     const end = new Date(bookingDateObj);
     end.setMinutes(end.getMinutes() + 59);
 
-    const exists = await Booking.findOne({ bookingDate: { $gte: start, $lt: end } });
+    const exists = await Booking.findOne({
+      bookingDate: { $gte: start, $lt: end },
+    });
+
     if (exists) {
       return res.status(400).json({ error: "This time slot is already booked" });
     }
 
     /* SAVE BOOKING */
-    const newBooking = new Booking({ customerName, customerEmail, phone, service, bookingDate: bookingDateObj });
+    const newBooking = new Booking({
+      customerName,
+      customerEmail,
+      phone,
+      service,
+      bookingDate: bookingDateObj,
+    });
+
     await newBooking.save();
 
-    /* SEND RESPONSE IMMEDIATELY */
-    res.status(201).json({ message: "Booking saved", booking: newBooking });
+    /* RESPOND FAST */
+    res.status(201).json({
+      message: "Booking saved",
+      booking: newBooking,
+    });
 
-    /* SEND EMAIL ASYNC (non-blocking) */
-    const mailOptions = {
+    /* FORMAT DATE */
+    const formattedDate = bookingDateObj.toLocaleString("fi-FI", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
+
+    /* ADMIN EMAIL */
+    const adminMail = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
       subject: "New Booking Received",
@@ -91,13 +111,37 @@ router.post("/", async (req, res) => {
         <p><b>Email:</b> ${customerEmail}</p>
         <p><b>Phone:</b> ${phone || "N/A"}</p>
         <p><b>Service:</b> ${service}</p>
-        <p><b>Date:</b> ${bookingDateObj.toLocaleString("fi-FI", { dateStyle: "medium", timeStyle: "short" })}</p>
+        <p><b>Date:</b> ${formattedDate}</p>
       `,
     };
 
-    transporter.sendMail(mailOptions)
-      .then(() => console.log("Booking email sent"))
-      .catch((err) => console.error("Email failed:", err.message));
+    /* CUSTOMER EMAIL */
+    const customerMail = {
+      from: process.env.EMAIL_USER,
+      to: customerEmail,
+      subject: "Booking Confirmation",
+      html: `
+        <h2>Booking Confirmed ✅</h2>
+        <p>Hi ${customerName},</p>
+        <p>Thank you for your booking. Here are your details:</p>
+
+        <p><b>Service:</b> ${service}</p>
+        <p><b>Date:</b> ${formattedDate}</p>
+
+        <p>If you need to change or cancel, please contact us.</p>
+
+        <br/>
+        <p>Best regards,<br/>Your Company</p>
+      `,
+    };
+
+    /* SEND EMAILS IN PARALLEL */
+    Promise.all([
+      transporter.sendMail(adminMail),
+      transporter.sendMail(customerMail),
+    ])
+      .then(() => console.log("Emails sent successfully"))
+      .catch((err) => console.error("Email error:", err.message));
 
   } catch (error) {
     console.error("BOOKING ERROR:", error);
