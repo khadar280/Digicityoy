@@ -43,25 +43,25 @@ router.post("/", async (req, res) => {
 
     /* VALIDATION */
     if (!customerName || !customerEmail || !service || !bookingDate) {
-      return res.status(400).json({ error: "Missing required fields" });
+      return res.status(400).json({ error: "Pakollisia kenttiä puuttuu" });
     }
 
     const bookingDateObj = new Date(bookingDate);
 
     if (isNaN(bookingDateObj)) {
-      return res.status(400).json({ error: "Invalid date format" });
+      return res.status(400).json({ error: "Virheellinen päivämäärä" });
     }
 
     /* WEEKEND BLOCK */
     const day = bookingDateObj.getDay();
     if (day === 0 || day === 6) {
-      return res.status(400).json({ error: "Bookings are closed on weekends" });
+      return res.status(400).json({ error: "Varaukset eivät ole mahdollisia viikonloppuna" });
     }
 
     /* BUSINESS HOURS */
     const hour = bookingDateObj.getHours();
     if (hour < 11 || hour >= 20) {
-      return res.status(400).json({ error: "Booking outside business hours" });
+      return res.status(400).json({ error: "Varaus ei ole aukioloaikana" });
     }
 
     /* SLOT CHECK */
@@ -74,7 +74,7 @@ router.post("/", async (req, res) => {
     });
 
     if (exists) {
-      return res.status(400).json({ error: "This time slot is already booked" });
+      return res.status(400).json({ error: "Tämä aika on jo varattu" });
     }
 
     /* SAVE BOOKING */
@@ -90,11 +90,11 @@ router.post("/", async (req, res) => {
 
     /* RESPOND FAST */
     res.status(201).json({
-      message: "Booking saved",
+      message: "Varaus tallennettu",
       booking: newBooking,
     });
 
-    /* FORMAT DATE */
+    /* FORMAT DATE (Finnish) */
     const formattedDate = bookingDateObj.toLocaleString("fi-FI", {
       dateStyle: "medium",
       timeStyle: "short",
@@ -104,14 +104,14 @@ router.post("/", async (req, res) => {
     const adminMail = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
-      subject: "New Booking Received",
+      subject: "Uusi varaus vastaanotettu",
       html: `
-        <h3>New Booking</h3>
-        <p><b>Name:</b> ${customerName}</p>
-        <p><b>Email:</b> ${customerEmail}</p>
-        <p><b>Phone:</b> ${phone || "N/A"}</p>
-        <p><b>Service:</b> ${service}</p>
-        <p><b>Date:</b> ${formattedDate}</p>
+        <h3>Uusi varaus</h3>
+        <p><b>Nimi:</b> ${customerName}</p>
+        <p><b>Sähköposti:</b> ${customerEmail}</p>
+        <p><b>Puhelin:</b> ${phone || "Ei annettu"}</p>
+        <p><b>Palvelu:</b> ${service}</p>
+        <p><b>Aika:</b> ${formattedDate}</p>
       `,
     };
 
@@ -119,33 +119,34 @@ router.post("/", async (req, res) => {
     const customerMail = {
       from: process.env.EMAIL_USER,
       to: customerEmail,
-      subject: "Booking Confirmation",
+      subject: "Varausvahvistus",
       html: `
-        <h2>Booking Confirmed ✅</h2>
-        <p>Hi ${customerName},</p>
-        <p>Thank you for your booking. Here are your details:</p>
+        <h2>Varaus vahvistettu ✅</h2>
+        <p>Hei ${customerName},</p>
+        <p>Kiitos varauksestasi! Varaus on nyt vahvistettu.</p>
 
-        <p><b>Service:</b> ${service}</p>
-        <p><b>Date:</b> ${formattedDate}</p>
+        <h3>Varauksen tiedot:</h3>
+        <p><b>Palvelu:</b> ${service}</p>
+        <p><b>Aika:</b> ${formattedDate}</p>
 
-        <p>If you need to change or cancel, please contact us.</p>
+        <p>Jos haluat muuttaa tai peruuttaa varauksen, ota meihin yhteyttä.</p>
 
         <br/>
-        <p>Best regards,<br/>Your Company</p>
+        <p>Ystävällisin terveisin,<br/>Yrityksesi</p>
       `,
     };
 
-    /* SEND EMAILS IN PARALLEL */
+    /* SEND EMAILS (NON-BLOCKING) */
     Promise.all([
       transporter.sendMail(adminMail),
       transporter.sendMail(customerMail),
     ])
-      .then(() => console.log("Emails sent successfully"))
-      .catch((err) => console.error("Email error:", err.message));
+      .then(() => console.log("Sähköpostit lähetetty"))
+      .catch((err) => console.error("Sähköposti virhe:", err.message));
 
   } catch (error) {
     console.error("BOOKING ERROR:", error);
-    res.status(500).json({ error: "Server error", details: error.message });
+    res.status(500).json({ error: "Palvelinvirhe", details: error.message });
   }
 });
 
