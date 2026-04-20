@@ -132,7 +132,7 @@ router.post("/", async (req, res) => {
         <p>Jos haluat muuttaa tai peruuttaa varauksen, ota meihin yhteyttä.</p>
 
         <br/>
-        <p>Ystävällisin terveisin,<br/>Yrityksesi</p>
+        <p>Ystävällisin terveisin,<br/> Digicity</p>
       `,
     };
 
