@@ -41,7 +41,6 @@ router.post("/", async (req, res) => {
   try {
     const { customerName, customerEmail, phone, service, bookingDate } = req.body;
 
-    /* VALIDATION */
     if (!customerName || !customerEmail || !service || !bookingDate) {
       return res.status(400).json({ error: "Pakollisia kenttiä puuttuu" });
     }
@@ -114,27 +113,25 @@ router.post("/", async (req, res) => {
         <p><b>Aika:</b> ${formattedDate}</p>
       `,
     };
+const customerMail = {
+  from: process.env.EMAIL_USER,
+  to: customerEmail,
+  subject: "Varausvahvistus",
+  html: `
+    <h2>Varaus vahvistettu ✅</h2>
+    <p>Hei ${customerName},</p>
+    <p>Kiitos varauksestasi! Varaus on nyt vahvistettu.</p>
 
-    /* CUSTOMER EMAIL */
-    const customerMail = {
-      from: process.env.EMAIL_USER,
-      to: customerEmail,
-      subject: "Varausvahvistus",
-      html: `
-        <h2>Varaus vahvistettu ✅</h2>
-        <p>Hei ${customerName},</p>
-        <p>Kiitos varauksestasi! Varaus on nyt vahvistettu.</p>
+    <h3>Varauksen tiedot:</h3>
+    <p><b>Palvelu:</b> ${service}</p>
+    <p><b>Aika:</b> ${formattedDate}</p>
 
-        <h3>Varauksen tiedot:</h3>
-        <p><b>Palvelu:</b> ${service}</p>
-        <p><b>Aika:</b> ${formattedDate}</p>
+    <p>Jos haluat muuttaa tai peruuttaa varauksen, ota meihin yhteyttä.</p>
 
-        <p>Jos haluat muuttaa tai peruuttaa varauksen, ota meihin yhteyttä.</p>
-
-        <br/>
-        <p>Ystävällisin terveisin,<br/> Digicity</p>
-      `,
-    };
+    <br/>
+    <p>Ystävällisin terveisin,<br/><b>Digicity</b></p>
+  `,
+};
 
     /* SEND EMAILS (NON-BLOCKING) */
     Promise.all([
