@@ -8,11 +8,19 @@ import { useCart } from "../components/CartContext";
 import { useTranslation } from "react-i18next";
 import "./RepairDetailCard.css";
 
-/* ✅ PRICE FORMATTER (FIX) */
+/* ✅ FIXED PRICE FORMATTER */
 const formatPrice = (price) => {
-  if (typeof price === "object") {
-    return `€${price.min}–${price.max}`;
+  // Array format → [250, 500]
+  if (Array.isArray(price)) {
+    return `€${price[0]} – €${price[1]}`;
   }
+
+  // Object format → { min: 250, max: 500 }
+  if (typeof price === "object" && price !== null) {
+    return `€${price.min} – €${price.max}`;
+  }
+
+  // Single price
   return `€${price}`;
 };
 
@@ -90,12 +98,14 @@ const RepairDetailCard = ({ model, prices, deviceType = "phone" }) => {
           },
         ]
       : []),
-  ].filter(item => item.price !== undefined && item.price !== null);
+  ].filter((item) => item.price !== undefined && item.price !== null);
 
+  /* ✅ IMPROVED CART HANDLER */
   const handleBook = (service) => {
     addToCart({
       name: service.title,
-      price: formatPrice(service.price), // ✅ FIX HERE
+      price: service.price, // raw price (array/object/number)
+      displayPrice: formatPrice(service.price), // formatted for UI
       description: service.description,
       image: prices.image,
       deviceType,
@@ -117,7 +127,7 @@ const RepairDetailCard = ({ model, prices, deviceType = "phone" }) => {
             {t("repair.warranty")}: 12 months · {t("repair.time")}: 1–3h
           </div>
 
-          {/* ✅ FIXED PRICE DISPLAY */}
+          {/* ✅ PRICE DISPLAY */}
           <div className="repair-price">
             {formatPrice(service.price)}
           </div>
