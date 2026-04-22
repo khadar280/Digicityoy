@@ -1,80 +1,147 @@
-import React, { useState } from "react";
-import "./IphoneRepairDetails.css";
-import RepairDetailCard from "./RepairDetailCard";
-
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { IoIosPhonePortrait } from "react-icons/io";
+import { IoPhonePortrait } from "react-icons/io5";
+import { MdBatteryCharging20 } from "react-icons/md";
+import { FaChargingStation, FaCamera, FaMobileAlt } from "react-icons/fa";
+import { useCart } from "../components/CartContext";
 import { useTranslation } from "react-i18next";
+import "./RepairDetailCard.css";
 
-import iphoneImage from "../assets/iphone4.png";
+/* ✅ FIXED PRICE FORMATTER */
+const formatPrice = (price) => {
+  // Array format → [250, 500]
+  if (Array.isArray(price)) {
+    return `€${price[0]} – €${price[1]}`;
+  }
 
-export const iphoneModels = [
-  { model: "iPhone 15", screenRepair: [90, 220], batteryReplacement: 109, backRepair: 130, chargingPort: 139, buttons: 149, housing: 219, backCamera: 169, frontCamera: 139, lens: 99, image: iphoneImage },
-  // keep your full list...
-];
+  // Object format → { min: 250, max: 500 }
+  if (typeof price === "object" && price !== null) {
+    return `€${price.min} – €${price.max}`;
+  }
 
-const IphoneRepairDetails = () => {
-  const [selectedModel, setSelectedModel] = useState(null);
-  const [selectedService, setSelectedService] = useState(null); // ✅ NEW
+  // Single price
+  return `€${price}`;
+};
+
+const RepairDetailCard = ({ model, prices, deviceType = "phone" }) => {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const { t } = useTranslation();
 
-  // ✅ HANDLE BOOK CLICK
+  const services = [
+    {
+      key: "screen",
+      icon: <IoIosPhonePortrait />,
+      title: `${model} ${t("repair.screenTitle")}`,
+      price: prices.screenRepair,
+      description: t("repair.screenDesc"),
+    },
+    {
+      key: "battery",
+      icon: <MdBatteryCharging20 />,
+      title: `${model} ${t("repair.batteryTitle")}`,
+      price: prices.batteryReplacement,
+      description: t("repair.batteryDesc"),
+    },
+    {
+      key: "back",
+      icon: <IoPhonePortrait />,
+      title: `${model} ${t("repair.backTitle")}`,
+      price: prices.backRepair,
+      description: t("repair.backDesc"),
+    },
+    {
+      key: "chargingPort",
+      icon: <FaChargingStation />,
+      title: `${model} ${t("repair.chargingPort")}`,
+      price: prices.chargingPort,
+      description: t("repair.chargingPortDesc"),
+    },
+
+    ...(deviceType === "iphone"
+      ? [
+          {
+            key: "buttons",
+            icon: <FaMobileAlt />,
+            title: `${model} ${t("repair.buttons")}`,
+            price: prices.buttons,
+            description: t("repair.buttonsDesc"),
+          },
+          {
+            key: "housing",
+            icon: <IoPhonePortrait />,
+            title: `${model} ${t("repair.housing")}`,
+            price: prices.housing,
+            description: t("repair.housingDesc"),
+          },
+          {
+            key: "backCamera",
+            icon: <FaCamera />,
+            title: `${model} ${t("repair.backCamera")}`,
+            price: prices.backCamera,
+            description: t("repair.backCameraDesc"),
+          },
+          {
+            key: "frontCamera",
+            icon: <FaCamera />,
+            title: `${model} ${t("repair.frontCamera")}`,
+            price: prices.frontCamera,
+            description: t("repair.frontCameraDesc"),
+          },
+          {
+            key: "lens",
+            icon: <FaCamera />,
+            title: `${model} ${t("repair.lens")}`,
+            price: prices.lens,
+            description: t("repair.lensDesc"),
+          },
+        ]
+      : []),
+  ].filter((item) => item.price !== undefined && item.price !== null);
+
+  /* ✅ IMPROVED CART HANDLER */
   const handleBook = (service) => {
-    setSelectedService(service);
+    addToCart({
+      name: service.title,
+      price: service.price, // raw price (array/object/number)
+      displayPrice: formatPrice(service.price), // formatted for UI
+      description: service.description,
+      image: prices.image,
+      deviceType,
+    });
+
+    navigate("/cart");
   };
 
   return (
-    <div className="repair-container">
-      {!selectedModel ? (
-        <>
-          <h2>{t("iphone.title")}</h2>
+    <div className="repair-list">
+      {services.map((service) => (
+        <div key={service.key} className="repair-item">
+          <div className="repair-icon">{service.icon}</div>
 
-          <button className="back-btn" onClick={() => navigate("/")}>
-            ← {t("back")}
-          </button>
+          <h4 className="repair-title">{service.title}</h4>
+          <p className="repair-desc">{service.description}</p>
 
-          <div className="iphone-grid">
-            {iphoneModels.map((iphone, index) => (
-              <div
-                key={index}
-                className="iphone-item"
-                onClick={() => setSelectedModel(iphone)}
-              >
-                <img src={iphone.image} alt={iphone.model} />
-                <p>{iphone.model}</p>
-              </div>
-            ))}
+          <div className="repair-meta">
+            {t("repair.warranty")}: 12 months · {t("repair.time")}: 1–3h
           </div>
-        </>
-      ) : (
-        <div className="repair-card">
-          <h2>{selectedModel.model} {t("iphone.repairs")}</h2>
+
+          {/* ✅ PRICE DISPLAY */}
+          <div className="repair-price">
+            {formatPrice(service.price)}
+          </div>
 
           <button
-            className="back-btn"
-            onClick={() => setSelectedModel(null)}
+            className="book-btn"
+            onClick={() => handleBook(service)}
           >
-            ← {t("iphone.backToModels")}
+            {t("repair.bookBtn")}
           </button>
-
-          <RepairDetailCard
-            model={selectedModel.model}
-            prices={selectedModel}
-            deviceType="iphone"
-            onBook={handleBook} // ✅ IMPORTANT
-          />
         </div>
-      )}
-
-      {/* ✅ MODAL RENDER */}
-      {selectedService && (
-        <BookingFormModal
-          service={selectedService.title} // or service.key
-          onClose={() => setSelectedService(null)}
-        />
-      )}
+      ))}
     </div>
   );
 };
 
-export default IphoneRepairDetails;
+export default RepairDetailCard;
