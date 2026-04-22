@@ -41,19 +41,24 @@ const BookingFormModal = ({ service, onClose }) => {
 
     const day = date.getDay();
 
+    // weekend block
     if (day === 0 || day === 6) {
       setWarningMessage(t("bookingForm.closedWeekend"));
       return;
     }
 
     setWarningMessage("");
-    setForm((prev) => ({ ...prev, date, time: "" }));
+    setForm((prev) => ({
+      ...prev,
+      date,
+      time: "",
+    }));
   };
 
   const generateTimes = () => {
     const times = [];
-
     const today = new Date();
+
     const isToday =
       form.date &&
       today.toDateString() === form.date.toDateString();
@@ -69,6 +74,7 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
+  // fetch booked times
   useEffect(() => {
     if (!form.date) return;
 
@@ -109,7 +115,13 @@ const BookingFormModal = ({ service, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!form.name || !form.phone || !form.email || !form.date || !form.time) {
+    if (
+      !form.name ||
+      !form.phone ||
+      !form.email ||
+      !form.date ||
+      !form.time
+    ) {
       alert(t("bookingForm.alertFillAll"));
       return;
     }
@@ -126,7 +138,6 @@ const BookingFormModal = ({ service, onClose }) => {
       const res = await fetch(`${API_URL}/api/booking`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-
         body: JSON.stringify({
           customerName: form.name,
           customerEmail: form.email,
@@ -153,7 +164,7 @@ const BookingFormModal = ({ service, onClose }) => {
         setTimeout(() => {
           setShowSuccess(false);
           onClose();
-        }, 5000);
+        }, 3000);
       } else {
         setServerError(data?.error || t("bookingForm.errorMessage"));
       }
@@ -166,10 +177,10 @@ const BookingFormModal = ({ service, onClose }) => {
   };
 
   return (
-    <div className="modal-overlay" role="dialog" aria-modal="true">
+    <div className="modal-overlay">
       <div className="modal-box">
         <button className="close-btn" onClick={onClose}>
-          &times;
+          ×
         </button>
 
         <h2>
@@ -202,10 +213,10 @@ const BookingFormModal = ({ service, onClose }) => {
             />
 
             <label>{t("bookingForm.phone")}</label>
+            {/* FIXED INPUT (NO BROKEN REGEX) */}
             <input
               type="tel"
               name="phone"
-              pattern="[0-9+\s()-]{6,20}"
               value={form.phone}
               onChange={handleChange}
               required
@@ -229,7 +240,6 @@ const BookingFormModal = ({ service, onClose }) => {
                   onChange={handleDateChange}
                   dateFormat="dd.MM.yyyy"
                   locale={i18n.language === "fi" ? "fi" : undefined}
-                  placeholderText={t("bookingForm.date")}
                   minDate={new Date()}
                   filterDate={(date) => {
                     const day = date.getDay();
