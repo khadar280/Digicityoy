@@ -85,27 +85,20 @@ const AppRoutes = () => {
 
     
         <Route path="/buy-iphone" element={<IphonePurchase />} />
-
-      
         <Route path="/contact" element={<Contact />} />
         <Route path="/destination" element={<TrendingProducts />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/booking" element={<AppoinmentList />} />
         <Route path="/services" element={<Services />} />
         <Route path="/about-us" element={<AboutSection />} />
-
-   
         <Route path="/iphone-repair-details" element={<IphoneRepairDetails />} />
         <Route path="/android-repair-details" element={<AndroidRepairDetails />} />
         <Route path="/tablet-laptop-repair" element={<TabletLaptopRepair />} />
-
-     
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutForm />} />
         <Route path="/payment-success/stripe" element={<StripeSuccess />} />
         <Route path="/payment-success/klarna" element={<KlarnaSuccess />} />
         <Route path="/test-payment" element={<PaymentForm />} />
-
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

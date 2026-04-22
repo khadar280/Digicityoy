@@ -6,8 +6,19 @@ import { FaChargingStation, FaCamera, FaMobileAlt } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import "./RepairDetailCard.css";
 
-const RepairDetailCard = ({ model, prices, deviceType = "phone", onBook }) => {
+const RepairDetailCard = ({
+  model,
+  prices = {},
+  deviceType = "phone",
+  onBook,
+}) => {
   const { t } = useTranslation();
+
+  const formatPrice = (price) => {
+    if (!price && price !== 0) return null;
+    if (Array.isArray(price)) return `€${price[0]} - €${price[1]}`;
+    return `€${price}`;
+  };
 
   const services = [
     {
@@ -87,13 +98,23 @@ const RepairDetailCard = ({ model, prices, deviceType = "phone", onBook }) => {
           </div>
 
           <div className="repair-price">
-            €{service.price}
+            {formatPrice(service.price)}
           </div>
 
-          {/* 🔥 CONNECTED BUTTON */}
+          {/* ✅ FIXED BOOK BUTTON */}
           <button
             className="book-btn"
-            onClick={() => onBook && onBook(service)}
+            onClick={() => {
+              if (!onBook) return;
+
+              onBook({
+                key: service.key,
+                title: service.title,
+                price: Array.isArray(service.price)
+                  ? service.price[0]
+                  : service.price,
+              });
+            }}
           >
             {t("repair.bookBtn")}
           </button>
