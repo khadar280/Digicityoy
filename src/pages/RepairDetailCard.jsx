@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./IphoneRepairDetails.css";
 import RepairDetailCard from "./RepairDetailCard";
-import BookingFormModal from "./BookingFormModal"; // ✅ ADD THIS
+
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
