@@ -1,23 +1,29 @@
 import { useState } from "react";
 import RepairOrderForm from "../components/RepairOrderForm";
+import { FaTools } from "react-icons/fa";
+import "./Repair.css";
 
-export default function Repairs() {
+export default function Repair() {
   const [openForm, setOpenForm] = useState(false);
 
   return (
-    <div>
-      <h1>Repair at Home</h1>
+    <div className="repair-page">
 
-      {/* ONLY BUTTON */}
-      <button onClick={() => setOpenForm(true)}>
+      <h1 className="repair-title">Home Repair Service</h1>
+
+      {/* MODERN BUTTON */}
+      <button
+        className="home-repair-btn"
+        onClick={() => setOpenForm(true)}
+      >
+        <FaTools className="btn-icon" />
         Book Home Repair
       </button>
 
-      {/* FORM POPUP */}
-       {/* FORM POPUP */}
+      {/* POPUP FORM */}
       {openForm && (
         <RepairOrderForm
-          repair={null}   // no fixed repair type
+          repair={null}
           onClose={() => setOpenForm(false)}
         />
       )}
