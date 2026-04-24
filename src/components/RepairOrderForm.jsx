@@ -1,10 +1,7 @@
 import { useState } from "react";
 import "./RepairOrderForm.css";
-import { useTranslation } from "react-i18next";
 
-export default function RepairAtHome({ onClose }) {
-  const { t } = useTranslation();
-
+export default function RepairAtHome({ repair, onClose }) {
   const HOME_FEE = 50;
 
   const [loading, setLoading] = useState(false);
@@ -25,10 +22,12 @@ export default function RepairAtHome({ onClose }) {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const totalPrice = form.service === "home" ? HOME_FEE : 0;
+  const totalPrice =
+    (repair?.price || 0) + (form.service === "home" ? HOME_FEE : 0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setLoading(true);
 
     const API_URL =
@@ -37,6 +36,8 @@ export default function RepairAtHome({ onClose }) {
 
     const orderData = {
       type: "home_repair",
+      repair: repair?.name || "General Repair",
+      basePrice: repair?.price || 0,
       total: totalPrice,
       ...form,
     };
@@ -51,14 +52,14 @@ export default function RepairAtHome({ onClose }) {
       });
 
       if (res.ok) {
-        alert(t("repair.success"));
+        alert("Home repair request sent ✅");
         onClose?.();
       } else {
-        alert(t("repair.error"));
+        alert("Failed to send request ❌");
       }
     } catch (error) {
-      console.error(error);
-      alert(t("repair.serverError"));
+      console.error("Error:", error);
+      alert("Server error ❌");
     } finally {
       setLoading(false);
     }
@@ -67,78 +68,56 @@ export default function RepairAtHome({ onClose }) {
   return (
     <div className="overlay">
       <div className="modal">
-        <h2>{t("repair.title")}</h2>
+        <h2>Home Repair Booking</h2>
 
-        <form onSubmit={handleSubmit} className="form">
+        {repair && (
+          <p>
+            <strong>{repair.name}</strong> — €{repair.price}
+          </p>
+        )}
 
-          <input
-            name="name"
-            placeholder={t("repair.name")}
-            required
-            onChange={handleChange}
-          />
+        <form onSubmit={handleSubmit}>
 
-          <input
-            name="phone"
-            type="tel"
-            placeholder={t("repair.phone")}
-            required
-            onChange={handleChange}
-          />
+          {/* Device type */}
+          <select name="device" onChange={handleChange} required>
+            <option value="iPhone">iPhone</option>
+            <option value="Android">Android</option>
+            <option value="Tablet">Tablet</option>
+            <option value="Laptop">Laptop</option>
+          </select>
 
-          <input
-            name="email"
-            type="email"
-            placeholder={t("repair.email")}
-            onChange={handleChange}
-          />
+          <input name="name" placeholder="Full Name" required onChange={handleChange} />
+          <input name="phone" placeholder="Phone Number" required onChange={handleChange} />
+          <input name="email" placeholder="Email" onChange={handleChange} />
 
+          {/* Customer issue description */}
           <textarea
             name="issue"
-            placeholder={t("repair.issue")}
+            placeholder="Describe your issue (e.g. screen broken, not charging...)"
             required
             onChange={handleChange}
           />
 
-          <input
-            name="address"
-            placeholder={t("repair.address")}
-            required
-            onChange={handleChange}
-          />
+          <input name="address" placeholder="Street Address" required onChange={handleChange} />
+          <input name="postcode" placeholder="Post Code" required onChange={handleChange} />
+          <input name="city" placeholder="City" required onChange={handleChange} />
 
-          <input
-            name="postcode"
-            placeholder={t("repair.postcode")}
-            required
-            onChange={handleChange}
-          />
+          <select name="service" onChange={handleChange}>
+            <option value="home">Home Visit (+€50)</option>
+            <option value="shop">Bring to Shop (Free)</option>
+          </select>
 
-          <input
-            name="city"
-            placeholder={t("repair.city")}
-            required
-            onChange={handleChange}
-          />
+          <hr />
 
-          <div className="button-group">
-            <button
-              type="submit"
-              className="submit-btn"
-              disabled={loading}
-            >
-              {loading ? t("repair.sending") : t("repair.submit")}
-            </button>
+          <p>Home Service Fee: €{form.service === "home" ? 50 : 0}</p>
+          <h3>Total: €{totalPrice}</h3>
 
-            <button
-              type="button"
-              className="cancel-btn"
-              onClick={onClose}
-            >
-              {t("repair.cancel")}
-            </button>
-          </div>
+          <button type="submit" disabled={loading}>
+            {loading ? "Sending..." : "Confirm Home Repair"}
+          </button>
         </form>
+
+        <button onClick={onClose}>Cancel</button>
       </div>
     </div>
   );
