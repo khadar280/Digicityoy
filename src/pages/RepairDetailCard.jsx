@@ -17,7 +17,10 @@ const formatPrice = (price) => {
 };
 
 const RepairDetailCard = ({ model, prices, deviceType = "phone", onBook }) => {
-  const { t } = useTranslation();
+  const { t: translate } = useTranslation();
+
+  // 🔥 SAFE fallback so app won't crash if i18n breaks
+  const t = typeof translate === "function" ? translate : (key) => key;
 
   const services = [
     {
@@ -99,34 +102,26 @@ const RepairDetailCard = ({ model, prices, deviceType = "phone", onBook }) => {
           <div className="repair-price">
             {formatPrice(service.price)}
           </div>
-          <button
-  className="book-btn"
-  onClick={() => {
-    console.log("BUTTON CLICKED");
-    onBook({
-      service: service.key,
-      title: service.title,
-      price: formatPrice(service.price),
-      model,
-      deviceType
-    });
-  }}
-></button>
 
+          {/* ✅ SINGLE CLEAN BUTTON */}
           <button
-  className="book-btn"
-  onClick={() =>
-    onBook({
-      service: service.key,
-      title: service.title,
-      price: service.price,
-      model,
-      deviceType
-    })
-  }
->
-  {t("repair.bookBtn")}
-</button>
+            className="book-btn"
+            onClick={() => {
+              console.log("BUTTON CLICKED");
+
+              if (onBook) {
+                onBook({
+                  service: service.key,
+                  title: service.title,
+                  price: formatPrice(service.price),
+                  model,
+                  deviceType,
+                });
+              }
+            }}
+          >
+            {t("repair.bookBtn")}
+          </button>
         </div>
       ))}
     </div>
