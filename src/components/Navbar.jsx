@@ -72,8 +72,8 @@ const Navbar = () => {
           <li><Link to="/about-us" onClick={() => setMenuOpen(false)}>{t("nav.about")}</Link></li>
           
 
-   <li>
-  <Link to="/home-repair" onClick={() => setMenuOpen(false)}>
+       <li>
+  <Link to="/repair-at-home" onClick={() => setMenuOpen(false)}>
     {t("nav.repairAtHome")}
   </Link>
 </li>
