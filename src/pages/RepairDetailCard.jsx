@@ -99,6 +99,19 @@ const RepairDetailCard = ({ model, prices, deviceType = "phone", onBook }) => {
           <div className="repair-price">
             {formatPrice(service.price)}
           </div>
+          <button
+  className="book-btn"
+  onClick={() => {
+    console.log("BUTTON CLICKED");
+    onBook({
+      service: service.key,
+      title: service.title,
+      price: formatPrice(service.price),
+      model,
+      deviceType
+    });
+  }}
+></button>
 
           <button
   className="book-btn"
