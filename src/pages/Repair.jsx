@@ -1,33 +1,23 @@
 import { useState } from "react";
-import RepairOrderForm from "../components/RepairOrderForm";
+import RepairAtHome from "../components/RepairAtHome";
 
 export default function Repairs() {
-  const [selectedRepair, setSelectedRepair] = useState(null);
-
-  const repairs = [
-    { name: "iPhone Screen", price: 80 },
-    { name: "Battery Replacement", price: 50 },
-  ];
+  const [openForm, setOpenForm] = useState(false);
 
   return (
     <div>
-      <h1>Repairs</h1>
+      <h1>Repair at Home</h1>
 
-      {repairs.map((r, index) => (
-        <div key={index}>
-          <h3>{r.name}</h3>
-          <p>€{r.price}</p>
+      {/* ONLY BUTTON */}
+      <button onClick={() => setOpenForm(true)}>
+        Book Home Repair
+      </button>
 
-          <button onClick={() => setSelectedRepair(r)}>
-            Order Home Repair
-          </button>
-        </div>
-      ))}
-
-      {selectedRepair && (
-        <RepairOrderForm
-          repair={selectedRepair}
-          onClose={() => setSelectedRepair(null)}
+      {/* FORM POPUP */}
+      {openForm && (
+        <RepairAtHome
+          repair={null}   // no fixed repair type
+          onClose={() => setOpenForm(false)}
         />
       )}
     </div>
