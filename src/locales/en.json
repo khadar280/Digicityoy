@@ -12,6 +12,7 @@
     "settings": "Settings",
     "logout": "Logout",
     "buyIphone": "Buy iPhone",
+     "repairAtHome": "At Home",
     "logoutMessage": "You have logged out!"
   },
   "auth": {

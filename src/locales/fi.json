@@ -12,6 +12,7 @@
     "profile": "Profiili",
     "settings": "Asetukset",
     "logout": "Kirjaudu ulos",
+    "repairAtHome": "Kotikorjaus",
     "logoutMessage": "Olet kirjautunut ulos!"
   },
   "auth": {
