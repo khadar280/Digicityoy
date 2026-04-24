@@ -1,43 +1,68 @@
-/* Overlay */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,0.6);
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
-/* Modal */
 .modal {
   background: #fff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
   padding: 20px;
-  border-radius: 12px;
-  width: 320px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  animation: pop 0.2s ease-in-out;
 }
 
-/* Inputs */
+@keyframes pop {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Inputs + textarea */
 .modal input,
-.modal select {
+.modal select,
+.modal textarea {
   width: 100%;
+  padding: 12px 14px;
   margin-top: 10px;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+/* Focus effect */
+.modal input:focus,
+.modal select:focus,
+.modal textarea:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+}
+
+/* Fix textarea height */
+.modal textarea {
+  min-height: 100px;
+  resize: none;
 }
 
 /* Buttons */
 .modal button {
   width: 100%;
+  padding: 12px;
   margin-top: 12px;
-  padding: 10px;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .modal button[type="submit"] {
@@ -45,7 +70,20 @@
   color: white;
 }
 
+.modal button[type="submit"]:hover {
+  opacity: 0.85;
+}
 
 .modal button:last-child {
   background: #eee;
+}
+
+/* Text */
+.modal h2 {
+  margin-bottom: 10px;
+}
+
+.modal p {
+  font-size: 14px;
+  margin-bottom: 10px;
 }

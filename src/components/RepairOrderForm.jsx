@@ -76,46 +76,28 @@ export default function RepairAtHome({ repair, onClose }) {
           </p>
         )}
 
-        <form onSubmit={handleSubmit}>
+        <input name="name" placeholder="Full Name" required onChange={handleChange} />
 
-          {/* Device type */}
-          <select name="device" onChange={handleChange} required>
-            <option value="iPhone">iPhone</option>
-            <option value="Android">Android</option>
-            <option value="Tablet">Tablet</option>
-            <option value="Laptop">Laptop</option>
-          </select>
+                    <input
+                    name="phone"
+                    type="tel"
+                    placeholder="Phone Number"
+                    required
+                    onChange={handleChange}
+                    />
 
-          <input name="name" placeholder="Full Name" required onChange={handleChange} />
-          <input name="phone" placeholder="Phone Number" required onChange={handleChange} />
-          <input name="email" placeholder="Email" onChange={handleChange} />
+                    <input name="email" type="email" placeholder="Email" onChange={handleChange} />
 
-          {/* Customer issue description */}
-          <textarea
-            name="issue"
-            placeholder="Describe your issue (e.g. screen broken, not charging...)"
-            required
-            onChange={handleChange}
-          />
+                    <textarea
+                    name="issue"
+                    placeholder="Describe your issue (e.g. screen broken, not charging...)"
+                    required
+                    onChange={handleChange}
+                    />
 
-          <input name="address" placeholder="Street Address" required onChange={handleChange} />
-          <input name="postcode" placeholder="Post Code" required onChange={handleChange} />
-          <input name="city" placeholder="City" required onChange={handleChange} />
-
-          <select name="service" onChange={handleChange}>
-            <option value="home">Home Visit (+€50)</option>
-            <option value="shop">Bring to Shop (Free)</option>
-          </select>
-
-          <hr />
-
-          <p>Home Service Fee: €{form.service === "home" ? 50 : 0}</p>
-          <h3>Total: €{totalPrice}</h3>
-
-          <button type="submit" disabled={loading}>
-            {loading ? "Sending..." : "Confirm Home Repair"}
-          </button>
-        </form>
+                    <input name="address" placeholder="Street Address" required onChange={handleChange} />
+                    <input name="postcode" placeholder="Post Code" required onChange={handleChange} />
+                    <input name="city" placeholder="City" required onChange={handleChange} />
 
         <button onClick={onClose}>Cancel</button>
       </div>
