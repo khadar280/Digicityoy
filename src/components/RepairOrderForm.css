@@ -40,13 +40,12 @@
   cursor: pointer;
 }
 
-/* Primary button */
 .modal button[type="submit"] {
   background: black;
   color: white;
 }
 
-/* Cancel button */
+
 .modal button:last-child {
   background: #eee;
 }
