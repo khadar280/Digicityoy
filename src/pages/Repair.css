@@ -1,42 +1,58 @@
+/* PAGE WRAPPER */
 .repair-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7fb;
+  padding: 20px;
   text-align: center;
-  padding: 60px 20px;
 }
 
+/* TITLE */
 .repair-title {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
   margin-bottom: 20px;
+  color: #111;
 }
 
-/* BUTTON */
+/* MAIN BUTTON */
 .home-repair-btn {
-  background: linear-gradient(135deg, #000, #333);
-  color: white;
-  padding: 14px 26px;
-  border: none;
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 10px;
 
-  transition: 0.3s ease;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  background: linear-gradient(135deg, #111, #333);
+  color: white;
+
+  border: none;
+  padding: 14px 22px;
+  border-radius: 12px;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.home-repair-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
-}
-
-.home-repair-btn:active {
-  transform: scale(0.97);
-}
-
+/* ICON */
 .btn-icon {
   font-size: 18px;
+}
+
+/* HOVER EFFECT */
+.home-repair-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #000, #222);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+}
+
+/* CLICK EFFECT */
+.home-repair-btn:active {
+  transform: scale(0.98);
 }

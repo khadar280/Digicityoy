@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./RepairOrderForm.css";
+import { useTranslation } from "react-i18next";
 
 export default function RepairAtHome() {
   const HOME_FEE = 50;
+  const { t } = useTranslation();
 
   const [loading, setLoading] = useState(false);
 
@@ -48,7 +50,7 @@ export default function RepairAtHome() {
       });
 
       if (res.ok) {
-        alert("Request sent successfully ✅");
+        alert(t("repair.success"));
         setForm({
           name: "",
           phone: "",
@@ -61,11 +63,11 @@ export default function RepairAtHome() {
           issue: "",
         });
       } else {
-        alert("Failed to send request ❌");
+        alert(t("repair.error"));
       }
     } catch (err) {
       console.error(err);
-      alert("Server error ❌");
+      alert(t("repair.serverError"));
     } finally {
       setLoading(false);
     }
@@ -74,16 +76,35 @@ export default function RepairAtHome() {
   return (
     <div className="repair-page">
       <div className="repair-container">
-        <h2>Home Repair Booking</h2>
+
+        <h2>{t("repair.title")}</h2>
 
         <form onSubmit={handleSubmit} className="repair-form">
 
-          <input name="name" placeholder="Full Name" required onChange={handleChange} />
-          <input name="phone" type="tel" placeholder="Phone Number" required onChange={handleChange} />
-          <input name="email" type="email" placeholder="Email" onChange={handleChange} />
+          <input
+            name="name"
+            placeholder={t("repair.fullName")}
+            required
+            onChange={handleChange}
+          />
+
+          <input
+            name="phone"
+            type="tel"
+            placeholder={t("repair.phone")}
+            required
+            onChange={handleChange}
+          />
+
+          <input
+            name="email"
+            type="email"
+            placeholder={t("repair.email")}
+            onChange={handleChange}
+          />
 
           <select name="device" onChange={handleChange} required>
-            <option value="">Select Device</option>
+            <option value="">{t("repair.selectDevice")}</option>
             <option value="iPhone">iPhone</option>
             <option value="Android">Android</option>
             <option value="Tablet">Tablet</option>
@@ -92,27 +113,50 @@ export default function RepairAtHome() {
 
           <textarea
             name="issue"
-            placeholder="Describe your issue (screen broken, not charging...)"
+            placeholder={t("repair.issue")}
             required
             onChange={handleChange}
           />
 
-          <input name="address" placeholder="Street Address" required onChange={handleChange} />
-          <input name="postcode" placeholder="Post Code" required onChange={handleChange} />
-          <input name="city" placeholder="City" required onChange={handleChange} />
+          <input
+            name="address"
+            placeholder={t("repair.address")}
+            required
+            onChange={handleChange}
+          />
+
+          <input
+            name="postcode"
+            placeholder={t("repair.postcode")}
+            required
+            onChange={handleChange}
+          />
+
+          <input
+            name="city"
+            placeholder={t("repair.city")}
+            required
+            onChange={handleChange}
+          />
 
           <select name="service" onChange={handleChange}>
-            <option value="home">Home Visit (+€50)</option>
-            <option value="shop">Bring to Shop (Free)</option>
+            <option value="home">
+              {t("repair.homeVisit")} (+€50)
+            </option>
+            <option value="shop">
+              {t("repair.shop")}
+            </option>
           </select>
 
           <div className="price-box">
-            <p>Service Fee: €{totalPrice}</p>
+            <p>
+              {t("repair.fee")}: €{totalPrice}
+            </p>
           </div>
 
           <div className="button-group">
             <button type="submit" className="submit-btn" disabled={loading}>
-              {loading ? "Sending..." : "Submit Request"}
+              {loading ? t("repair.sending") : t("repair.submit")}
             </button>
           </div>
 
