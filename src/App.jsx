@@ -21,13 +21,10 @@ import AboutSection from './components/AboutSection';
 import ProfilePage from './components/ProfilePage';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
-
-// Repair pages
 import IphoneRepairDetails from './pages/IphoneRepairDetails';
 import AndroidRepairDetails from './pages/AndroidRepairDetails';
 import TabletLaptopRepair from './pages/TabletLaptopRepair';
-
-// Payment/Cart pages
+ import Repair from './pages/Repair';
 import CheckoutForm from './pages/CheckoutForm';
 import StripeSuccess from './pages/StripSuccess';
 import KlarnaSuccess from './pages/KlarnaSuccess';
@@ -35,15 +32,14 @@ import PaymentForm from './pages/PaymentForm';
 import CartPage from './pages/CartPage';
 import SearchResults from './pages/SearchResults';
 
-// Context
+
 import { CartProvider } from './components/CartContext';
 import { UserProvider } from './context/UserContext';
 
-// Toast notifications
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Paths where Footer should be hidden
 const hideFooterPaths = [
   '/checkout',
   '/payment-success/stripe',
@@ -87,6 +83,7 @@ const AppRoutes = () => {
         <Route path="/buy-iphone" element={<IphonePurchase />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/destination" element={<TrendingProducts />} />
+      <Route path="/repair-at-home" element={<Repair />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/booking" element={<AppoinmentList />} />
         <Route path="/services" element={<Services />} />

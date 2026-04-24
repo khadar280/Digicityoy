@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function RepairOrderForm({ repair, onClose }) {
+export default function RepairAtHome({ repair, onClose }) {
   const HOME_FEE = 50;
 
   const [form, setForm] = useState({
@@ -85,22 +85,3 @@ export default function RepairOrderForm({ repair, onClose }) {
     </div>
   );
 }
-
-const overlay = {
-  position: "fixed",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100%",
-  background: "rgba(0,0,0,0.5)",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
-
-const modal = {
-  background: "#fff",
-  padding: "20px",
-  borderRadius: "10px",
-  width: "320px",
-};
