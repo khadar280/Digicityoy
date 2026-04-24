@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import logo from "./logo.png"; // adjust path if needed
+import logo from "../assets/logo.png";
 
 export default function Navbar({ menuOpen, setMenuOpen, handleLogoClick }) {
   const { t } = useTranslation();
