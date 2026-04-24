@@ -1,32 +1,22 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { IoIosPhonePortrait } from "react-icons/io";
 import { IoPhonePortrait } from "react-icons/io5";
 import { MdBatteryCharging20 } from "react-icons/md";
 import { FaChargingStation, FaCamera, FaMobileAlt } from "react-icons/fa";
-import { useCart } from "../components/CartContext";
 import { useTranslation } from "react-i18next";
 import "./RepairDetailCard.css";
 
-/* ✅ FIXED PRICE FORMATTER */
 const formatPrice = (price) => {
-  // Array format → [250, 500]
   if (Array.isArray(price)) {
     return `€${price[0]} – €${price[1]}`;
   }
-
-  // Object format → { min: 250, max: 500 }
   if (typeof price === "object" && price !== null) {
     return `€${price.min} – €${price.max}`;
   }
-
-  // Single price
   return `€${price}`;
 };
 
-const RepairDetailCard = ({ model, prices, deviceType = "phone" }) => {
-  const navigate = useNavigate();
-  const { addToCart } = useCart();
+const RepairDetailCard = ({ model, prices, deviceType = "phone", onBook }) => {
   const { t } = useTranslation();
 
   const services = [
@@ -89,30 +79,9 @@ const RepairDetailCard = ({ model, prices, deviceType = "phone" }) => {
             price: prices.frontCamera,
             description: t("repair.frontCameraDesc"),
           },
-          {
-            key: "lens",
-            icon: <FaCamera />,
-            title: `${model} ${t("repair.lens")}`,
-            price: prices.lens,
-            description: t("repair.lensDesc"),
-          },
         ]
       : []),
   ].filter((item) => item.price !== undefined && item.price !== null);
-
-  /* ✅ IMPROVED CART HANDLER */
-  const handleBook = (service) => {
-    addToCart({
-      name: service.title,
-      price: service.price, // raw price (array/object/number)
-      displayPrice: formatPrice(service.price), // formatted for UI
-      description: service.description,
-      image: prices.image,
-      deviceType,
-    });
-
-    navigate("/cart");
-  };
 
   return (
     <div className="repair-list">
@@ -120,24 +89,31 @@ const RepairDetailCard = ({ model, prices, deviceType = "phone" }) => {
         <div key={service.key} className="repair-item">
           <div className="repair-icon">{service.icon}</div>
 
-          <h4 className="repair-title">{service.title}</h4>
-          <p className="repair-desc">{service.description}</p>
+          <h4>{service.title}</h4>
+          <p>{service.description}</p>
 
           <div className="repair-meta">
             {t("repair.warranty")}: 12 months · {t("repair.time")}: 1–3h
           </div>
 
-          {/* ✅ PRICE DISPLAY */}
           <div className="repair-price">
             {formatPrice(service.price)}
           </div>
 
           <button
-            className="book-btn"
-            onClick={() => handleBook(service)}
-          >
-            {t("repair.bookBtn")}
-          </button>
+  className="book-btn"
+  onClick={() =>
+    onBook({
+      service: service.key,
+      title: service.title,
+      price: service.price,
+      model,
+      deviceType
+    })
+  }
+>
+  {t("repair.bookBtn")}
+</button>
         </div>
       ))}
     </div>

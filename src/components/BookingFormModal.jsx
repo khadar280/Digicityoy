@@ -220,7 +220,7 @@ const BookingFormModal = ({ service, onClose }) => {
               value={form.phone}
               onChange={handleChange}
               required
-            />
+          />
 
             <label>{t("bookingForm.email")}</label>
             <input
