@@ -1,0 +1,101 @@
+/* PAGE WRAPPER */
+.repair-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* FORM CONTAINER */
+.repair-container {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* TITLE */
+.repair-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #111;
+}
+
+/* FORM */
+.repair-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* INPUTS */
+.repair-form input,
+.repair-form select,
+.repair-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s ease;
+  background: #fff;
+}
+
+/* FOCUS EFFECT */
+.repair-form input:focus,
+.repair-form select:focus,
+.repair-form textarea:focus {
+  border-color: #111;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+/* TEXTAREA */
+.repair-form textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+/* PRICE BOX */
+.price-box {
+  background: #f1f5f9;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* BUTTON GROUP */
+.button-group {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* SUBMIT BUTTON */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: #333;
+}
+
+.submit-btn:disabled {
+  background: #777;
+  cursor: not-allowed;
+}
