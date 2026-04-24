@@ -1,133 +1,69 @@
 import { useState } from "react";
-import "./RepairOrderForm.css";
 import { useTranslation } from "react-i18next";
+import "./RepairOrderForm.css";
 
-export default function RepairAtHome() {
-  const HOME_FEE = 50;
+export default function RepairOrderForm({ onClose }) {
   const { t } = useTranslation();
-
-  const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
     name: "",
     phone: "",
     email: "",
+    device: "",
+    issue: "",
     address: "",
     postcode: "",
     city: "",
-    service: "home",
-    device: "",
-    issue: "",
   });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const totalPrice = form.service === "home" ? HOME_FEE : 0;
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-
-    const API_URL =
-      process.env.REACT_APP_API_URL ||
-      "https://digicityoy-223.onrender.com";
-
-    const orderData = {
-      type: "home_repair",
-      total: totalPrice,
-      ...form,
-    };
-
-    try {
-      const res = await fetch(`${API_URL}/api/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData),
-      });
-
-      if (res.ok) {
-        alert(t("repair.success"));
-        setForm({
-          name: "",
-          phone: "",
-          email: "",
-          address: "",
-          postcode: "",
-          city: "",
-          service: "home",
-          device: "",
-          issue: "",
-        });
-      } else {
-        alert(t("repair.error"));
-      }
-    } catch (err) {
-      console.error(err);
-      alert(t("repair.serverError"));
-    } finally {
-      setLoading(false);
-    }
+    console.log(form);
+    alert("Sent!");
+    onClose?.();
   };
-return (
-  <div className="repair-form">
 
-    <input
-      name="name"
-      placeholder={t("Full Name")}
-      onChange={handleChange}
-    />
+  return (
+    <div className="overlay">
+      <div className="modal">
 
-    <input
-      name="phone"
-      placeholder={t("Phone Number")}
-      onChange={handleChange}
-    />
+        <h2>{t("Submit Request")}</h2>
 
-    <input
-      name="email"
-      placeholder={t("Email")}
-      onChange={handleChange}
-    />
+        <form onSubmit={handleSubmit}>
 
-    <select name="device" onChange={handleChange}>
-      <option value="">{t("Select Device")}</option>
-      <option value="iPhone">iPhone</option>
-      <option value="Android">Android</option>
-      <option value="Tablet">Tablet</option>
-      <option value="Laptop">Laptop</option>
-    </select>
+          <input name="name" placeholder={t("Full Name")} onChange={handleChange} />
+          <input name="phone" placeholder={t("Phone Number")} onChange={handleChange} />
+          <input name="email" placeholder={t("Email")} onChange={handleChange} />
 
-    <textarea
-      name="issue"
-      placeholder={t("Describe your issue")}
-      onChange={handleChange}
-    />
+          <select name="device" onChange={handleChange}>
+            <option value="">{t("Select Device")}</option>
+            <option value="iPhone">iPhone</option>
+            <option value="Android">Android</option>
+            <option value="Tablet">Tablet</option>
+            <option value="Laptop">Laptop</option>
+          </select>
 
-    <input
-      name="address"
-      placeholder={t("Address")}
-      onChange={handleChange}
-    />
+          <textarea name="issue" placeholder={t("Describe your issue")} onChange={handleChange} />
 
-    <input
-      name="postcode"
-      placeholder={t("Post Code")}
-      onChange={handleChange}
-    />
+          <input name="address" placeholder={t("Address")} onChange={handleChange} />
+          <input name="postcode" placeholder={t("Post Code")} onChange={handleChange} />
+          <input name="city" placeholder={t("City")} onChange={handleChange} />
 
-    <input
-      name="city"
-      placeholder={t("City")}
-      onChange={handleChange}
-    />
+          <button type="submit">
+            {t("Submit Request")}
+          </button>
 
-    <button type="submit">
-      {t("Submit Request")}
-    </button>
+        </form>
 
-  </div>
-);
+        <button onClick={onClose}>
+          Cancel
+        </button>
+
+      </div>
+    </div>
+  );
+}
