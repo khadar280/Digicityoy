@@ -1,5 +1,5 @@
 import { useState } from "react";
-import RepairAtHome from "../components/RepairAtHome";
+import RepairOrderForm from "../components/RepairOrderForm";
 
 export default function Repairs() {
   const [openForm, setOpenForm] = useState(false);
@@ -16,7 +16,7 @@ export default function Repairs() {
       {/* FORM POPUP */}
        {/* FORM POPUP */}
       {openForm && (
-        <RepairAtHome
+        <RepairOrderForm
           repair={null}   // no fixed repair type
           onClose={() => setOpenForm(false)}
         />
