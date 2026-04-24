@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./RepairOrderForm.css";
+import { useTranslation } from 'react-i18next';
 
 export default function RepairAtHome({ repair, onClose }) {
   const HOME_FEE = 50;
-
   const [loading, setLoading] = useState(false);
-
+   const { t } = useTranslation(); 
   const [form, setForm] = useState({
     name: "",
     phone: "",

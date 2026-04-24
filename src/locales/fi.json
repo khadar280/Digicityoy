@@ -226,6 +226,19 @@
   "planningSection": {
     "buttonText": "Varaa passikuvaukseen"
   },
+  "homeRepair": {
+  "title": "Kotikorjaus varaus",
+  "fullName": "Koko nimi",
+  "phone": "Puhelinnumero",
+  "email": "Sähköposti",
+  "issue": "Kuvaile ongelma",
+  "address": "Osoite",
+  "postcode": "Postinumero",
+  "city": "Kaupunki",
+  "submit": "Lähetä pyyntö",
+  "cancel": "Peruuta",
+  "sending": "Lähetetään..."
+},
   
  
   "purchase": {

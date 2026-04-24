@@ -225,6 +225,19 @@
   "planningSection": {
     "buttonText": "Book Passport Photo"
   },
+  "homeRepair": {
+  "title": "Home Repair Booking",
+  "fullName": "Full Name",
+  "phone": "Phone Number",
+  "email": "Email",
+  "issue": "Describe your issue",
+  "address": "Street Address",
+  "postcode": "Post Code",
+  "city": "City",
+  "submit": "Submit Request",
+  "cancel": "Cancel",
+  "sending": "Sending..."
+},
   "purchase": {
     "title": "Buy Used iPhone",
     "selectModel": "Select Model",
