@@ -24,7 +24,7 @@ import ResetPassword from './components/ResetPassword';
 import IphoneRepairDetails from './pages/IphoneRepairDetails';
 import AndroidRepairDetails from './pages/AndroidRepairDetails';
 import TabletLaptopRepair from './pages/TabletLaptopRepair';
- import Repair from './pages/Repair';
+ import Repair from './pages/Repairs';
 import CheckoutForm from './pages/CheckoutForm';
 import StripeSuccess from './pages/StripSuccess';
 import KlarnaSuccess from './pages/KlarnaSuccess';
