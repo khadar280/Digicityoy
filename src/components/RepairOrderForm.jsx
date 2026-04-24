@@ -72,96 +72,62 @@ export default function RepairAtHome() {
       setLoading(false);
     }
   };
+return (
+  <div className="repair-form">
 
-  return (
-    <div className="repair-page">
-      <div className="repair-container">
+    <input
+      name="name"
+      placeholder={t("Full Name")}
+      onChange={handleChange}
+    />
 
-        <h2>{t("repair.title")}</h2>
+    <input
+      name="phone"
+      placeholder={t("Phone Number")}
+      onChange={handleChange}
+    />
 
-        <form onSubmit={handleSubmit} className="repair-form">
+    <input
+      name="email"
+      placeholder={t("Email")}
+      onChange={handleChange}
+    />
 
-          <input
-            name="name"
-            placeholder={t("repair.fullName")}
-            required
-            onChange={handleChange}
-          />
+    <select name="device" onChange={handleChange}>
+      <option value="">{t("Select Device")}</option>
+      <option value="iPhone">iPhone</option>
+      <option value="Android">Android</option>
+      <option value="Tablet">Tablet</option>
+      <option value="Laptop">Laptop</option>
+    </select>
 
-          <input
-            name="phone"
-            type="tel"
-            placeholder={t("repair.phone")}
-            required
-            onChange={handleChange}
-          />
+    <textarea
+      name="issue"
+      placeholder={t("Describe your issue")}
+      onChange={handleChange}
+    />
 
-          <input
-            name="email"
-            type="email"
-            placeholder={t("repair.email")}
-            onChange={handleChange}
-          />
+    <input
+      name="address"
+      placeholder={t("Address")}
+      onChange={handleChange}
+    />
 
-          <select name="device" onChange={handleChange} required>
-            <option value="">{t("repair.selectDevice")}</option>
-            <option value="iPhone">iPhone</option>
-            <option value="Android">Android</option>
-            <option value="Tablet">Tablet</option>
-            <option value="Laptop">Laptop</option>
-          </select>
+    <input
+      name="postcode"
+      placeholder={t("Post Code")}
+      onChange={handleChange}
+    />
 
-          <textarea
-            name="issue"
-            placeholder={t("repair.issue")}
-            required
-            onChange={handleChange}
-          />
+    <input
+      name="city"
+      placeholder={t("City")}
+      onChange={handleChange}
+    />
 
-          <input
-            name="address"
-            placeholder={t("repair.address")}
-            required
-            onChange={handleChange}
-          />
+    <button type="submit">
+      {t("Submit Request")}
+    </button>
 
-          <input
-            name="postcode"
-            placeholder={t("repair.postcode")}
-            required
-            onChange={handleChange}
-          />
-
-          <input
-            name="city"
-            placeholder={t("repair.city")}
-            required
-            onChange={handleChange}
-          />
-
-          <select name="service" onChange={handleChange}>
-            <option value="home">
-              {t("repair.homeVisit")} (+€50)
-            </option>
-            <option value="shop">
-              {t("repair.shop")}
-            </option>
-          </select>
-
-          <div className="price-box">
-            <p>
-              {t("repair.fee")}: €{totalPrice}
-            </p>
-          </div>
-
-          <div className="button-group">
-            <button type="submit" className="submit-btn" disabled={loading}>
-              {loading ? t("repair.sending") : t("repair.submit")}
-            </button>
-          </div>
-
-        </form>
-      </div>
-    </div>
-  );
-}
+  </div>
+);
