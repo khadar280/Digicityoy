@@ -1,129 +1,102 @@
-import React from "react";
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IoIosPhonePortrait } from "react-icons/io";
 import { IoPhonePortrait } from "react-icons/io5";
+import { useCart } from "../components/CartContext";
 import { MdBatteryCharging20 } from "react-icons/md";
-import { FaChargingStation, FaCamera, FaMobileAlt } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import "./RepairDetailCard.css";
 
-const formatPrice = (price) => {
-  if (Array.isArray(price)) {
-    return `€${price[0]} – €${price[1]}`;
-  }
-  if (typeof price === "object" && price !== null) {
-    return `€${price.min} – €${price.max}`;
-  }
-  return `€${price}`;
-};
-
-const RepairDetailCard = ({ model, prices, deviceType = "phone", onBook }) => {
-  const { t: translate } = useTranslation();
-
-  // 🔥 SAFE fallback so app won't crash if i18n breaks
-  const t = typeof translate === "function" ? translate : (key) => key;
+const RepairDetailCard = ({ model, prices }) => {
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
+  const { t } = useTranslation();
 
   const services = [
     {
-      key: "screen",
-      icon: <IoIosPhonePortrait />,
+      type: "screen",
+  
+      icon:<IoIosPhonePortrait />,
       title: `${model} ${t("repair.screenTitle")}`,
       price: prices.screenRepair,
       description: t("repair.screenDesc"),
+      warranty: "12 months",
+      time: "1-3 Hours"
     },
     {
-      key: "battery",
+      type: "battery",
       icon: <MdBatteryCharging20 />,
       title: `${model} ${t("repair.batteryTitle")}`,
       price: prices.batteryReplacement,
       description: t("repair.batteryDesc"),
+      warranty: "12 months",
+      time: "1-3 Hours"
     },
     {
-      key: "back",
+      type: "back",
       icon: <IoPhonePortrait />,
       title: `${model} ${t("repair.backTitle")}`,
       price: prices.backRepair,
       description: t("repair.backDesc"),
-    },
-    {
-      key: "chargingPort",
-      icon: <FaChargingStation />,
-      title: `${model} ${t("repair.chargingPort")}`,
-      price: prices.chargingPort,
-      description: t("repair.chargingPortDesc"),
-    },
+      warranty: "12 months",
+      time: "1-3 Hours"
+    }
+  ];
 
-    ...(deviceType === "iphone"
-      ? [
-          {
-            key: "buttons",
-            icon: <FaMobileAlt />,
-            title: `${model} ${t("repair.buttons")}`,
-            price: prices.buttons,
-            description: t("repair.buttonsDesc"),
-          },
-          {
-            key: "housing",
-            icon: <IoPhonePortrait />,
-            title: `${model} ${t("repair.housing")}`,
-            price: prices.housing,
-            description: t("repair.housingDesc"),
-          },
-          {
-            key: "backCamera",
-            icon: <FaCamera />,
-            title: `${model} ${t("repair.backCamera")}`,
-            price: prices.backCamera,
-            description: t("repair.backCameraDesc"),
-          },
-          {
-            key: "frontCamera",
-            icon: <FaCamera />,
-            title: `${model} ${t("repair.frontCamera")}`,
-            price: prices.frontCamera,
-            description: t("repair.frontCameraDesc"),
-          },
-        ]
-      : []),
-  ].filter((item) => item.price !== undefined && item.price !== null);
+  const [selected, setSelected] = useState(services[0]);
+
+  const handleBook = () => {
+    addToCart({
+      name: selected.title,
+      price: `€${selected.price}`,
+      description: selected.description,
+      image: prices.image
+    });
+    navigate("/cart");
+  };
 
   return (
-    <div className="repair-list">
-      {services.map((service) => (
-        <div key={service.key} className="repair-item">
-          <div className="repair-icon">{service.icon}</div>
-
-          <h4>{service.title}</h4>
-          <p>{service.description}</p>
-
-          <div className="repair-meta">
-            {t("repair.warranty")}: 12 months · {t("repair.time")}: 1–3h
-          </div>
-
-          <div className="repair-price">
-            {formatPrice(service.price)}
-          </div>
-
-          {/* ✅ SINGLE CLEAN BUTTON */}
+    <div className="repair-detail-container">
+      <div className="tab-buttons">
+        {services.map((service) => (
           <button
-            className="book-btn"
-            onClick={() => {
-              console.log("BUTTON CLICKED");
-
-              if (onBook) {
-                onBook({
-                  service: service.key,
-                  title: service.title,
-                  price: formatPrice(service.price),
-                  model,
-                  deviceType,
-                });
-              }
-            }}
+            key={service.type}
+            className={`tab-btn ${selected.type === service.type ? "active" : ""}`}
+            onClick={() => setSelected(service)}
           >
+            <span>{service.icon}</span> {t(`repair.${service.type}`)}
+          </button>
+        ))}
+      </div>
+
+      <div className="detail-card">
+        <div className="left">
+          <div className="icon">{selected.icon}</div>
+          <div className="price">€{selected.price}</div>
+          <button className="book-btn" onClick={handleBook}>
             {t("repair.bookBtn")}
           </button>
         </div>
-      ))}
+        <div className="right">
+          <h3>{selected.title}</h3>
+          <p>{selected.description}</p>
+          <p><strong>{t("repair.warranty")}:</strong> <span className="highlight">{selected.warranty}</span></p>
+          <p><strong>{t("repair.time")}:</strong> <span className="highlight">{selected.time}</span></p>
+        </div>
+      </div>
     </div>
   );
 };
