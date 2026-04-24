@@ -1,114 +1,21 @@
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
+.repair-page {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 20px;
+  padding: 40px 20px;
 }
 
-.modal {
-  background: #fff;
+.repair-container {
   width: 100%;
-  max-width: 420px;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-  animation: pop 0.2s ease-in-out;
+  max-width: 500px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-@keyframes pop {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-/* Inputs + textarea */
-.modal input,
-.modal select,
-.modal textarea {
-  width: 100%;
-  padding: 12px 14px;
-  margin-top: 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 14px;
-  outline: none;
-  transition: 0.2s;
-}
-
-/* Focus effect */
-.modal input:focus,
-.modal select:focus,
-.modal textarea:focus {
-  border-color: #000;
-  box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
-}
-
-/* Fix textarea height */
-.modal textarea {
-  min-height: 100px;
-  resize: none;
-}
-
-/* Buttons */
-.modal button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 12px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.modal button[type="submit"] {
-  background: black;
-  color: white;
-}
-
-.modal button[type="submit"]:hover {
-  opacity: 0.85;
-}
-
-.modal button:last-child {
-  background: #eee;
-}
-
-/* Text */
-.modal h2 {
-  margin-bottom: 10px;
-}
-
-.modal p {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.repair-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  z-index: 999;
-}
-
-.repair-modal {
-  background: #fff;
-  width: 100%;
-  max-width: 420px;
-  border-radius: 14px;
-  padding: 20px;
-}
-
-.repair-modal h2 {
-  margin-bottom: 15px;
+.repair-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .repair-form {
@@ -117,49 +24,40 @@
   gap: 12px;
 }
 
-.row {
-  display: flex;
-  gap: 10px;
-}
-
-input, select, textarea {
-  width: 100%;
+.repair-form input,
+.repair-form select,
+.repair-form textarea {
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid #ddd;
-  outline: none;
   font-size: 14px;
 }
 
-textarea {
-  min-height: 100px;
+.repair-form textarea {
+  min-height: 90px;
   resize: none;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: black;
+.price-box {
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.button-group {
+  margin-top: 10px;
 }
 
 .submit-btn {
+  width: 100%;
+  padding: 12px;
   background: black;
   color: white;
-  padding: 12px;
-  border-radius: 10px;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
 }
 
 .submit-btn:hover {
-  opacity: 0.9;
-}
-
-.cancel-btn {
-  background: #eee;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
+  background: #333;
 }
