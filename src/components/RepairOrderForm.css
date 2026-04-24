@@ -87,3 +87,79 @@
   font-size: 14px;
   margin-bottom: 10px;
 }
+
+.repair-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 999;
+}
+
+.repair-modal {
+  background: #fff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.repair-modal h2 {
+  margin-bottom: 15px;
+}
+
+.repair-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: black;
+}
+
+.submit-btn {
+  background: black;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+
+.cancel-btn {
+  background: #eee;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
