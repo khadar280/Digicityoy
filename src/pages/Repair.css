@@ -1,0 +1,42 @@
+.repair-page {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.repair-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* BUTTON */
+.home-repair-btn {
+  background: linear-gradient(135deg, #000, #333);
+  color: white;
+  padding: 14px 26px;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  transition: 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.home-repair-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+.home-repair-btn:active {
+  transform: scale(0.97);
+}
+
+.btn-icon {
+  font-size: 18px;
+}
