@@ -55,12 +55,13 @@ export default function RepairOrderForm({ onClose }) {
           />
 
           <select name="device" onChange={handleChange}>
-            <option value="">{t("homeRepair.selectDevice")}</option>
-            <option value="iPhone">iPhone</option>
-            <option value="Android">Android</option>
-            <option value="Tablet">Tablet</option>
-            <option value="Laptop">Laptop</option>
-          </select>
+  <option value="">{t("homeRepair.selectDevice")}</option>
+
+  <option value="iPhone">{t("homeRepair.devices.iphone")}</option>
+  <option value="Android">{t("homeRepair.devices.android")}</option>
+  <option value="Tablet">{t("homeRepair.devices.tablet")}</option>
+  <option value="Laptop">{t("homeRepair.devices.laptop")}</option>
+</select>
 
           <textarea
             name="issue"
