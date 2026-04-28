@@ -81,21 +81,22 @@
     "repairs": "Korjaukset",
     "backToModels": "Takaisin malleihin"
   },
-  "bookingForm": {
-  "book": "Varaa palvelu",
-  "name": "Nimesi",
-  "phone": "Puhelinnumero",
-  "email": "Sähköpostiosoite",
-  "date": "Päivämäärä",
-  "selectTime": "Valitse aika",
-  "confirm": "Vahvista varaus",
-  "sending": "Lähetetään...",
-  "alertFillAll": "Täytä kaikki kentät.",
-  "successMessage": "Varaus onnistui!",
-  "errorMessage": "Jokin meni pieleen. Yritä uudelleen.",
-  "closedWeekend": "Olemme kiinni lauantaisin ja sunnuntaisin.",
-  "booked": "Varattu"
-},
+"booking": {
+    "title": "Varaa aika",
+    "phoneRepair": "Puhelimen korjaus",
+    "batteryChange": "Akun vaihto",
+    "inspection": "Laitteen tarkastus",
+    "passport": "Passikuvaus",
+    "time1": "30–60 minuuttia",
+    "time2": "30 minuuttia",
+    "time3": "15 minuuttia",
+    "time4": "10 minuuttia",
+    "price1": "Alkaen 49 €",
+    "price2": "Alkaen 29 €",
+    "price3": "Ilmainen",
+    "price4": "15 €",
+    "bookNow": "Varaa nyt"
+  },
   "about": {
     "title": "Tietoa Digicitystä",
     "p1": "Digicity perustettiin vuonna 2021 Abdishakuur Mohamed Nuurin toimesta vastaamaan kasvavaan kysyntään ammattimaisista ja luotettavista laitekorjauspalveluista.",
@@ -186,22 +187,7 @@
     "thankYou": "Kiitos!",
     "response": "Viestisi on vastaanotettu. Otamme sinuun yhteyttä pian."
   },
-"booking": {
-  "title": "Varaa aika",
-  "phoneRepair": "Varaa aika puhelimen korjaukseen",
-  "batteryChange": "Varaa aika akun vaihtoon",
-  "inspection": "Varaa aika tarkastukseen",
-  "passport": "Varaa aika passikuvaukseen",
-  "time1": "30–60 minuuttia",
-  "time2": "30 minuuttia",
-  "time3": "15 minuuttia",
-  "time4": "10 minuuttia",
-  "price1": "Alkaen 49 €",
-  "price2": "Alkaen 29 €",
-  "price3": "Ilmainen",
-  "price4": "15 €",
-  "bookNow": "Varaa nyt"
-},
+
   "checkout": {
     "title": "Kassa",
     "orderSummary": "Tilauksen yhteenveto",
