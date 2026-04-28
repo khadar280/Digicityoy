@@ -9,7 +9,6 @@ export default function Repair() {
   return (
     <div className="repair-page">
 
-      <h1 className="repair-title">Home Repair Service</h1>
 
       {/* MODERN BUTTON */}
       <button
