@@ -17,7 +17,7 @@ export default function Repair() {
         onClick={() => setOpenForm(true)}
       >
         <FaTools className="btn-icon" />
-        Book Home Repair
+     
       </button>
 
       {/* POPUP FORM */}
