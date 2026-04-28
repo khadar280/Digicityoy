@@ -23,7 +23,7 @@ export default function RepairOrderForm({ onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
-    alert("Sent!");
+    alert(t("homeRepair.sending"));
     onClose?.();
   };
 
@@ -31,36 +31,69 @@ export default function RepairOrderForm({ onClose }) {
     <div className="overlay">
       <div className="modal">
 
-        <h2>{t("Submit Request")}</h2>
+        {/* TITLE */}
+        <h2>{t("homeRepair.title")}</h2>
 
         <form onSubmit={handleSubmit}>
 
-          <input name="name" placeholder={t("Full Name")} onChange={handleChange} />
-          <input name="phone" placeholder={t("Phone Number")} onChange={handleChange} />
-          <input name="email" placeholder={t("Email")} onChange={handleChange} />
+          <input
+            name="name"
+            placeholder={t("homeRepair.fullName")}
+            onChange={handleChange}
+          />
+
+          <input
+            name="phone"
+            placeholder={t("homeRepair.phone")}
+            onChange={handleChange}
+          />
+
+          <input
+            name="email"
+            placeholder={t("homeRepair.email")}
+            onChange={handleChange}
+          />
 
           <select name="device" onChange={handleChange}>
-            <option value="">{t("Select Device")}</option>
+            <option value="">{t("homeRepair.selectDevice")}</option>
             <option value="iPhone">iPhone</option>
             <option value="Android">Android</option>
             <option value="Tablet">Tablet</option>
             <option value="Laptop">Laptop</option>
           </select>
 
-          <textarea name="issue" placeholder={t("Describe your issue")} onChange={handleChange} />
+          <textarea
+            name="issue"
+            placeholder={t("homeRepair.issue")}
+            onChange={handleChange}
+          />
 
-          <input name="address" placeholder={t("Address")} onChange={handleChange} />
-          <input name="postcode" placeholder={t("Post Code")} onChange={handleChange} />
-          <input name="city" placeholder={t("City")} onChange={handleChange} />
+          <input
+            name="address"
+            placeholder={t("homeRepair.address")}
+            onChange={handleChange}
+          />
+
+          <input
+            name="postcode"
+            placeholder={t("homeRepair.postcode")}
+            onChange={handleChange}
+          />
+
+          <input
+            name="city"
+            placeholder={t("homeRepair.city")}
+            onChange={handleChange}
+          />
 
           <button type="submit">
-            {t("Submit Request")}
+            {t("homeRepair.submit")}
           </button>
 
         </form>
 
         <button onClick={onClose}>
-          Cancel
+          {t("homeRepair.cancel")}
         </button>
 
       </div>

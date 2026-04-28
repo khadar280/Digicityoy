@@ -184,6 +184,7 @@
   "followUs": "Follow Us",
   "rights": "All rights reserved."
 },
+
   "contact": {
     "title": "Contact Us",
     "subtitle": "We’d love to hear from you. Send a message below.",
@@ -210,6 +211,7 @@
   "price4": "€15",
   "book": "Book Now"
 },
+
   "checkout": {
     "title": "Checkout",
     "orderSummary": "Order Summary",
