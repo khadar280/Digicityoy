@@ -41,7 +41,6 @@ const BookingFormModal = ({ service, onClose }) => {
 
     const day = date.getDay();
 
-    // weekend block
     if (day === 0 || day === 6) {
       setWarningMessage(t("bookingForm.closedWeekend"));
       return;
@@ -74,7 +73,6 @@ const BookingFormModal = ({ service, onClose }) => {
     return times;
   };
 
-  // fetch booked times
   useEffect(() => {
     if (!form.date) return;
 
@@ -90,8 +88,6 @@ const BookingFormModal = ({ service, onClose }) => {
           }`,
           { signal: controller.signal }
         );
-
-        if (!res.ok) throw new Error("Failed fetch");
 
         const data = await res.json();
 
@@ -142,7 +138,7 @@ const BookingFormModal = ({ service, onClose }) => {
           customerName: form.name,
           customerEmail: form.email,
           phone: form.phone,
-          service,
+          service: service, // keep key
           bookingDate: bookingDate.toISOString(),
           lang: i18n.language.split("-")[0] || "en",
         }),
@@ -183,8 +179,9 @@ const BookingFormModal = ({ service, onClose }) => {
           ×
         </button>
 
+        {/* ✅ FIXED HERE */}
         <h2>
-          {t("bookingForm.book")}: {service}
+          {t("bookingForm.book")}: {t(service)}
         </h2>
 
         {warningMessage && (
@@ -213,14 +210,13 @@ const BookingFormModal = ({ service, onClose }) => {
             />
 
             <label>{t("bookingForm.phone")}</label>
-            {/* FIXED INPUT (NO BROKEN REGEX) */}
             <input
               type="tel"
               name="phone"
               value={form.phone}
               onChange={handleChange}
               required
-          />
+            />
 
             <label>{t("bookingForm.email")}</label>
             <input
@@ -234,28 +230,21 @@ const BookingFormModal = ({ service, onClose }) => {
             <div className="input-row">
               <div className="input-group">
                 <label>{t("bookingForm.date")}</label>
-
                 <DatePicker
                   selected={form.date}
                   onChange={handleDateChange}
                   dateFormat="dd.MM.yyyy"
                   locale={i18n.language === "fi" ? "fi" : undefined}
                   minDate={new Date()}
-                  filterDate={(date) => {
-                    const day = date.getDay();
-                    return day !== 0 && day !== 6;
-                  }}
                 />
               </div>
 
               <div className="input-group">
                 <label>{t("bookingForm.selectTime")}</label>
-
                 <select
                   name="time"
                   value={form.time}
                   onChange={handleChange}
-                  disabled={!form.date || timesLoading}
                   required
                 >
                   <option value="">
