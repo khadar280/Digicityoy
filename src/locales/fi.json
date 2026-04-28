@@ -3,7 +3,7 @@
     "home": "Koti",
     "services": "Palvelut",
     "shop": "Kauppa",
-     "buyIphone": "Osta iPhone",
+    "buyIphone": "Osta iPhone",
     "booking": "Varaus",
     "contact": "Yhteystiedot",
     "about": "Meistä",
@@ -15,6 +15,28 @@
     "repairAtHome": "Kotikorjaus",
     "logoutMessage": "Olet kirjautunut ulos!"
   },
+
+  "booking": {
+    "title": "Varaa aika",
+    "passport": "Passikuvaus"
+  },
+
+  "bookingForm": {
+    "book": "Varaa palvelu",
+    "name": "Nimi",
+    "phone": "Puhelinnumero",
+    "email": "Sähköposti",
+    "date": "Valitse päivämäärä",
+    "selectTime": "Valitse aika",
+    "confirm": "Vahvista varaus",
+    "sending": "Lähetetään...",
+    "alertFillAll": "Täytä kaikki kentät.",
+    "successMessage": "Varaus onnistui!",
+    "errorMessage": "Jokin meni pieleen. Yritä uudelleen.",
+    "closedWeekend": "Olemme kiinni lauantaisin ja sunnuntaisin.",
+    "booked": "Varattu"
+  },
+
   "auth": {
     "login": "Kirjaudu sisään",
     "signup": "Rekisteröidy",
@@ -29,11 +51,13 @@
     "error": "Tapahtui virhe",
     "success": "Onnistui"
   },
+
   "hero": {
     "title": "Puhelin, läppäri- ja tablettihuolto",
     "bookNow": "Varaa nyt",
     "checkIphone": "Tarkista iPhonesi arvo"
   },
+
   "services": {
     "title": "Palvelumme",
     "intro": "Tarjoamme ammattimaisia korjauspalveluita puhelimille, tableteille ja tietokoneille.",
@@ -53,130 +77,7 @@
       "button": "Ota yhteyttä"
     }
   },
-  "repair": {
-    "screenTitle": "Näytön vaihto",
-    "screenDesc": "Rikkoutunut näyttö? Vaihdamme sen korkealaatuiseen näyttöön.",
-    "batteryTitle": "Akun vaihto",
-    "batteryDesc": "Akku tyhjenee nopeasti tai ei lataudu? Vaihdamme sen uuteen.",
-    "backTitle": "Takakannen vaihto",
-    "backDesc": "Rikkoutunut takakansi? Korjaamme sen kuin uudeksi.",
-    "housing": "Kotelon vaihto",
-    "housingDesc": "Vaihda vaurioitunut kotelo uuteen.",
-    "backCamera": "Takakameran korjaus",
-    "backCameraDesc": "Korjaa takakameran toimivuus ja laatu.",
-    "frontCamera": "Etukameran korjaus",
-    "frontCameraDesc": "Korjaa tai vaihda etukamera.",
-    "lens": "Linssin vaihto",
-    "lensDesc": "Vaihda naarmuuntunut tai rikki linssi.",
-    "buttons": "Painikkeiden korjaus",
-    "buttonsDesc": "Korjaa rikkoutuneet tai toimimattomat painikkeet.",
-    "chargingPort": "Latausportin korjaus",
-    "chargingPortDesc": "Korjaa latausportin ongelmat.",
-    "warranty": "Takuu",
-    "time": "Korjausaika",
-    "bookBtn": "Varaa korjaus"
-  },
-  "iphone": {
-    "title": "iPhonen korjaus",
-    "repairs": "Korjaukset",
-    "backToModels": "Takaisin malleihin"
-  },
-"booking": {
-    "title": "Varaa aika",
-    "phoneRepair": "Puhelimen korjaus",
-    "batteryChange": "Akun vaihto",
-    "inspection": "Laitteen tarkastus",
-    "passport": "Passikuvaus",
-    "time1": "30–60 minuuttia",
-    "time2": "30 minuuttia",
-    "time3": "15 minuuttia",
-    "time4": "10 minuuttia",
-    "price1": "Alkaen 49 €",
-    "price2": "Alkaen 29 €",
-    "price3": "Ilmainen",
-    "price4": "15 €",
-    "bookNow": "Varaa nyt"
-  },
-  "about": {
-    "title": "Tietoa Digicitystä",
-    "p1": "Digicity perustettiin vuonna 2021 Abdishakuur Mohamed Nuurin toimesta vastaamaan kasvavaan kysyntään ammattimaisista ja luotettavista laitekorjauspalveluista.",
-    "p2": "Tarjoamme nopeita, tarkkoja ja asiakaskeskeisiä korjauspalveluita puhelimille, tableteille ja tietokoneille korkealaatuisilla varaosilla ja moderneilla työkaluilla.",
-    "p3": "Asiakastyytyväisyys, läpinäkyvä hinnoittelu ja korkealaatuinen työnjälki ovat kaiken toimintamme perusta.",
-    "list": {
-      "one": "Alkuperäiset ja korkealaatuiset varaosat",
-      "two": "Kokeneet ja sertifioidut teknikot",
-      "three": "Läpinäkyvä hinnoittelu ja erinomainen asiakaspalvelu"
-    }
-  },
-  "iphoneCalculator": {
-    "title": "Myy iPhonesi",
-    "transactionType": "Haluan",
-    "sell": "Myydä iPhoneni",
-    "buy": "Ostaa iPhonen",
-    "modelLabel": "Valitse iPhone-malli",
-    "storageStep": "Valitse tallennustila",
-    "batteryStep": "Akun kunto",
-    "cannotCheckBattery": "En voi tarkistaa",
-    "issuesTitle": "Valitse kaikki soveltuvat ongelmat",
-    "getPrice": "Hanki hinta",
-    "estimatedPrice": "Arvioitu arvo",
-    "estimatedSellPrice": "Arvioitu myyntihinta",
-    "buyPrice": "Osto hinta",
-    "currency": "€",
-    "issues": {
-      "screenCracked": "Näyttö rikki",
-      "screenScratches": "Näytössä naarmuja",
-      "backGlass": "Takalasi rikki",
-      "bodyHeavy": "Vakavia runkovaurioita",
-      "bodyLight": "Pieniä naarmuja rungossa",
-      "battery80": "Akun kunto 80–89 %",
-      "batteryLow": "Akun kunto alle 80 %",
-      "cameraIssue": "Kamera ei toimi",
-      "faceIdIssue": "Face ID ei toimi",
-      "cameraRepair": "Kameran korjaus",
-      "lensReplacement": "Linssin vaihto",
-      "housingReplacement": "Kotelon vaihto",
-      "speakerIssue": "Kaiutin ei toimi",
-      "cornerDamage": "Kulmat/iskuvammat",
-      "backDamage": "Takakansi vaurioitunut"
-    }
-  },
-  "cart": {
-    "title": "Ostoskori",
-    "empty": "Ostoskorisi on tyhjä",
-    "total": "Yhteensä",
-    "checkout": "Siirry kassalle"
-  },
-  "continue": "Jatka",
-  "startOver": "Aloita alusta",
-  "trending": {
-    "Phone Covers": "Puhelinkuoret",
-    "Other accessories": "Muut tarvikkeet",
-    "Chargers": "Laturit",
-    "Screen Protectors": "Näytön suojat",
-    "price": "Hinta",
-    "add": "Lisää",
-    "view": "Näytä",
-    "add_to_cart": "Lisää ostoskoriin",
-    "back": "Takaisin",
-    "close": "Sulje",
-    "no_products_found": "Tuotteita ei löytynyt"
-  },
-  "search_results_for": "Hakutulokset haulle",
-  "footer": {
-  "visitingHours": "Aukioloajat",
-  "weekdays": "Ma - Pe: 11:00 - 20:00",
-  "weekend": "La - Su: Suljettu",
-  "contactTitle": "Ota yhteyttä",
-  "email": "Sähköposti",
-  "phone": "Puhelin",
-  "address": "Osoite",
-  "emailValue": "info@digicity.fi",
-  "phoneValue": "0453418323",
-  "addressValue": "Klaneettitie 12, Helsinki 00420",
-  "followUs": "Seuraa meitä",
-  "rights": "Kaikki oikeudet pidätetään."
-},
+
   "contact": {
     "title": "Ota yhteyttä",
     "subtitle": "Haluamme kuulla sinusta. Lähetä viesti alla.",
@@ -186,6 +87,21 @@
     "send": "Lähetä viesti",
     "thankYou": "Kiitos!",
     "response": "Viestisi on vastaanotettu. Otamme sinuun yhteyttä pian."
+  },
+
+  "footer": {
+    "visitingHours": "Aukioloajat",
+    "weekdays": "Ma - Pe: 11:00 - 20:00",
+    "weekend": "La - Su: Suljettu",
+    "contactTitle": "Ota yhteyttä",
+    "email": "Sähköposti",
+    "phone": "Puhelin",
+    "address": "Osoite",
+    "emailValue": "info@digicity.fi",
+    "phoneValue": "0453418323",
+    "addressValue": "Klaneettitie 12, Helsinki 00420",
+    "followUs": "Seuraa meitä",
+    "rights": "Kaikki oikeudet pidätetään."
   },
 
   "checkout": {
@@ -209,48 +125,6 @@
     "paymentError": "Maksusession luominen epäonnistui",
     "generalError": "Jokin meni pieleen. Yritä uudelleen."
   },
-  "planningSection": {
-    "buttonText": "Varaa passikuvaukseen"
-  },
-  "homeRepair": {
-  "title": "Kotikorjaus varaus",
-  "fullName": "Koko nimi",
-  "phone": "Puhelinnumero",
-  "email": "Sähköposti",
-  "issue": "Kuvaile ongelma",
-  "address": "Osoite",
-  "postcode": "Postinumero",
-  "city": "Kaupunki",
-  "submit": "Lähetä pyyntö",
-  "cancel": "Peruuta",
-  "sending": "Lähetetään..."
-},
-  
- 
-  "purchase": {
-    "title": "Osta käytetty iPhone",
-    "selectModel": "Valitse malli",
-    "selectStorage": "Valitse tallennustila",
-    "selectCondition": "Valitse kunto",
-    "showPrice": "Näytä hinta",
-    "customerInfo": "Asiakastiedot",
-    "name": "Koko nimi",
-    "email": "Sähköposti",
-    "phone": "Puhelinnumero",
-    "address": "Toimitusosoite",
-    "submitOrder": "Lähetä tilaus",
-    "submitting": "Lähetetään...",
-    "total": "Kokonaishinta",
-    "orderSubmitted": "Tilaus lähetetty",
-    "alertCalculatePrice": "Laske hinta ensin.",
-    "orderSuccess": "Tilaus onnistui!",
-    "orderFailed": "Tilaus epäonnistui",
-    "condition": {
-      "excellent": "Erinomainen (kuin uusi)",
-      "good": "Hyvä",
-      "fair": "Kohtalainen (näkyvää kulumaa)",
-      "poor": "Huono (vahingot näkyvissä)"
-    }
-  },
+
   "back": "Takaisin"
- }
+}
