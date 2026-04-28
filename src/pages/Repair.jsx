@@ -11,14 +11,13 @@ export default function Repair() {
 
 
       {/* MODERN BUTTON */}
-      <button
+<button
   className="home-repair-btn"
   onClick={() => setOpenForm(true)}
 >
   <FaTools className="btn-icon" />
-  <span>Home Repair</span>
+  <span>{t("homeRepair.button")}</span>
 </button>
-
       {/* POPUP FORM */}
       {openForm && (
         <RepairOrderForm
