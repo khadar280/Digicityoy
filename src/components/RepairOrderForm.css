@@ -1,0 +1,145 @@
+/* ===== Overlay ===== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+/* ===== Modal ===== */
+.modal {
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: modalFade 0.25s ease;
+}
+
+/* ===== Title ===== */
+.modal h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* ===== Form Layout ===== */
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== Inputs / Select / Textarea ===== */
+.modal input,
+.modal select,
+.modal textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  font-family: inherit;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+/* Focus state */
+.modal input:focus,
+.modal select:focus,
+.modal textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Placeholder */
+.modal input::placeholder,
+.modal textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* ===== Textarea ===== */
+.modal textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ===== Submit Button ===== */
+.modal button[type="submit"] {
+  margin-top: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+.modal button[type="submit"]:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* Active */
+.modal button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+/* ===== Cancel Button (outside form) ===== */
+.modal > button {
+  margin-top: 12px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover cancel */
+.modal > button:hover {
+  background: #f1f5f9;
+}
+
+/* ===== Animation ===== */
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .modal {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .modal h2 {
+    font-size: 18px;
+  }
+}
