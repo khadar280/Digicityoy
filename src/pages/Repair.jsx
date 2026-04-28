@@ -12,12 +12,12 @@ export default function Repair() {
 
       {/* MODERN BUTTON */}
       <button
-        className="home-repair-btn"
-        onClick={() => setOpenForm(true)}
-      >
-        <FaTools className="btn-icon" />
-     
-      </button>
+  className="home-repair-btn"
+  onClick={() => setOpenForm(true)}
+>
+  <FaTools className="btn-icon" />
+  <span>Home Repair</span>
+</button>
 
       {/* POPUP FORM */}
       {openForm && (

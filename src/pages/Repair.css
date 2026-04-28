@@ -1,0 +1,45 @@
+/* ===== Home Repair Button ===== */
+.home-repair-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+
+  transition: all 0.2s ease;
+}
+
+/* Icon */
+.home-repair-btn .btn-icon {
+  font-size: 16px;
+}
+
+/* Hover effect */
+.home-repair-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
+}
+
+/* Active click */
+.home-repair-btn:active {
+  transform: scale(0.97);
+}
+
+/* Mobile full width */
+@media (max-width: 600px) {
+  .home-repair-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
