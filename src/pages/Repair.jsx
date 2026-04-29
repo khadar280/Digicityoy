@@ -9,15 +9,16 @@ export default function Repair() {
   return (
     <div className="repair-page">
 
+      <h1 className="repair-title">Home Repair Service</h1>
 
       {/* MODERN BUTTON */}
       <button
-  className="home-repair-btn"
-  onClick={() => setOpenForm(true)}
->
-  <FaTools className="btn-icon" />
-  <span>Home Repair</span>
-</button>
+        className="home-repair-btn"
+        onClick={() => setOpenForm(true)}
+      >
+        <FaTools className="btn-icon" />
+        Book Home Repair
+      </button>
 
       {/* POPUP FORM */}
       {openForm && (
