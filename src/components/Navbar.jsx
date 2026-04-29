@@ -70,12 +70,18 @@ const Navbar = () => {
           <li><Link to="/booking" onClick={() => setMenuOpen(false)}>{t("nav.booking")}</Link></li>
           <li><Link to="/contact" onClick={() => setMenuOpen(false)}>{t("nav.contact")}</Link></li>
           <li><Link to="/about-us" onClick={() => setMenuOpen(false)}>{t("nav.about")}</Link></li>
-      <li>
-  <Link to="/repair-at-home" onClick={() => setMenuOpen(false)}>
+    <li>
+  <button
+    className="repair-btn"
+    onClick={() => {
+      onOpenRepair();
+      setMenuOpen(false);
+    }}
+  >
     {t("nav.repairAtHome")}
-  </Link>
+  </button>
 </li>
-
+  
 
        
           <div className="search-bar">
