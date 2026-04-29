@@ -1,32 +1,32 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import RepairOrderForm from "../components/RepairOrderForm";
 import { FaTools } from "react-icons/fa";
 import "./Repair.css";
 
 export default function Repair() {
+  const { t } = useTranslation();
   const [openForm, setOpenForm] = useState(false);
 
   return (
     <div className="repair-page">
 
-      <h1 className="repair-title">Home Repair Service</h1>
+      <h1 className="repair-title">
+        {t("homeRepair.title")}
+      </h1>
 
-      {/* MODERN BUTTON */}
       <button
         className="home-repair-btn"
         onClick={() => setOpenForm(true)}
       >
         <FaTools className="btn-icon" />
-        Book Home Repair
+        {t("homeRepair.bookNow")}
       </button>
 
-      {/* POPUP FORM */}
       {openForm && (
-        <RepairOrderForm
-          repair={null}
-          onClose={() => setOpenForm(false)}
-        />
+        <RepairOrderForm onClose={() => setOpenForm(false)} />
       )}
+
     </div>
   );
 }
