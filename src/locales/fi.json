@@ -135,6 +135,22 @@
       "laptop": "Kannettava tietokone"
     }
   },
+  "booking": {
+  "title": "Varaa aika",
+  "phoneRepair": "Puhelin korjaus",
+  "batteryChange": "Akun vaihto",
+  "inspection": "Laitteen tarkastus",
+  "passport": "Passikuva aika",
+  "time1": "30–60 min",
+  "time2": "30 min",
+  "time3": "15 min",
+  "time4": "10 min",
+  "price1": "Alkaen 49€",
+  "price2": "Alkaen 39€",
+  "price3": "20€",
+  "price4": "15€",
+  "book": "Varaa nyt"
+},
 
   "purchase": {
     "title": "Osta käytetty iPhone",
