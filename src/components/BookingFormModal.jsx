@@ -179,7 +179,7 @@ const BookingFormModal = ({ service, onClose }) => {
           ×
         </button>
 
-        {/* ✅ FIXED HERE */}
+        
         <h2>
           {t("bookingForm.book")}: {t(service)}
         </h2>
