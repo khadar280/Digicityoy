@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaUserCircle, FaBars, FaTimes, FaTools } from "react-icons/fa";
+import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
 import './Navbar.css';
 import logo from '../assets/city.jpg';
 import { useCart } from './CartContext';
 import { useTranslation } from "react-i18next";
 import { UserContext } from '../context/UserContext';
 
-const Navbar = ({ onOpenRepair }) => {
+const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [language, setLanguage] = useState('EN');
@@ -20,20 +20,20 @@ const Navbar = ({ onOpenRepair }) => {
   const { t, i18n } = useTranslation();
   const { user, logout } = useContext(UserContext);
 
-  // 🌍 Language
+  // 🌍 Language switch
   const handleLanguageChange = (e) => {
     const newLang = e.target.value.toLowerCase();
     setLanguage(e.target.value);
     i18n.changeLanguage(newLang);
   };
 
-  // 👤 User click
+  // 👤 User menu
   const handleUserIconClick = () => {
     if (user) setDropdownOpen(!dropdownOpen);
     else navigate('/auth');
   };
 
-  // 📱 Menu toggle
+  // 📱 Mobile menu
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   // 🔍 Search
@@ -47,7 +47,7 @@ const Navbar = ({ onOpenRepair }) => {
   // 🏠 Logo click
   const handleLogoClick = () => navigate('/');
 
-  // ❌ Close dropdown on outside click
+  // ❌ Close dropdown outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -62,32 +62,23 @@ const Navbar = ({ onOpenRepair }) => {
     <header className="navbar">
 
       {/* LOGO */}
-      <img src={logo} alt="Logo" className="logo" onClick={handleLogoClick} />
+      <img
+        src={logo}
+        alt="Logo"
+        className="logo"
+        onClick={handleLogoClick}
+      />
 
-      {/* NAV */}
+      {/* NAV LINKS */}
       <nav className={`nav-container ${menuOpen ? 'active' : ''}`}>
         <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
-          
+
           <li><Link to="/" onClick={() => setMenuOpen(false)}>{t("nav.home")}</Link></li>
           <li><Link to="/destination" onClick={() => setMenuOpen(false)}>{t("nav.shop")}</Link></li>
           <li><Link to="/buy-iphone" onClick={() => setMenuOpen(false)}>{t("nav.buyIphone")}</Link></li>
           <li><Link to="/booking" onClick={() => setMenuOpen(false)}>{t("nav.booking")}</Link></li>
           <li><Link to="/contact" onClick={() => setMenuOpen(false)}>{t("nav.contact")}</Link></li>
           <li><Link to="/about-us" onClick={() => setMenuOpen(false)}>{t("nav.about")}</Link></li>
-
-          {/* 🔥 HOME REPAIR BUTTON */}
-          <li>
-            <button
-              className="repair-btn"
-              onClick={() => {
-                if (onOpenRepair) onOpenRepair();
-                setMenuOpen(false);
-              }}
-            >
-              <FaTools className="btn-icon" />
-              {t("nav.repairAtHome")}
-            </button>
-          </li>
 
           {/* SEARCH */}
           <div className="search-bar">
@@ -100,13 +91,14 @@ const Navbar = ({ onOpenRepair }) => {
               onKeyDown={handleSearchKeyDown}
             />
           </div>
+
         </ul>
       </nav>
 
       {/* RIGHT SIDE */}
       <div className="user-controls" ref={dropdownRef}>
 
-        {/* 🌍 Language */}
+        {/* LANGUAGE */}
         <select
           className="lang-select"
           value={language}
@@ -116,13 +108,14 @@ const Navbar = ({ onOpenRepair }) => {
           <option value="FI">FI</option>
         </select>
 
-        {/* 🛒 Cart */}
+        {/* CART */}
         <Link to="/cart" className="cart-link">
           {t('nav.cart')} ({cartItems.length})
         </Link>
 
-        {/* 👤 User */}
+        {/* USER */}
         <div className="user-menu-wrapper">
+
           <div className="user-info" onClick={handleUserIconClick}>
             {user ? (
               <>
@@ -146,10 +139,11 @@ const Navbar = ({ onOpenRepair }) => {
               </button>
             </div>
           )}
+
         </div>
       </div>
 
-      {/* 📱 MOBILE MENU */}
+      {/* MOBILE MENU */}
       <div className="menu-toggle" onClick={toggleMenu}>
         {menuOpen ? <FaTimes /> : <FaBars />}
       </div>
