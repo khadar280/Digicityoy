@@ -24,7 +24,7 @@ import ResetPassword from './components/ResetPassword';
 import IphoneRepairDetails from './pages/IphoneRepairDetails';
 import AndroidRepairDetails from './pages/AndroidRepairDetails';
 import TabletLaptopRepair from './pages/TabletLaptopRepair';
-
+import Repair from './pages/Repair';
 import CheckoutForm from './pages/CheckoutForm';
 import StripeSuccess from './pages/StripSuccess';
 import KlarnaSuccess from './pages/KlarnaSuccess';
@@ -83,7 +83,7 @@ const AppRoutes = () => {
         <Route path="/buy-iphone" element={<IphonePurchase />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/destination" element={<TrendingProducts />} />
-     
+      <Route path="/repair-at-home" element={<Repair />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/booking" element={<AppoinmentList />} />
         <Route path="/services" element={<Services />} />
