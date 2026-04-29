@@ -51,7 +51,6 @@ const hideFooterPaths = [
 
 const AppRoutes = () => {
   const location = useLocation();
-  const [openRepair, setOpenRepair] = useState(false);
 
   useEffect(() => {
     document.title = "Digicity";
@@ -59,35 +58,28 @@ const AppRoutes = () => {
 
   return (
     <>
-      {/* NAVBAR */}
-      <Navbar onOpenRepair={() => setOpenRepair(true)} />
+      <Navbar />
 
-      {/* MODAL */}
-      {openRepair && (
-        <RepairOrderForm onClose={() => setOpenRepair(false)} />
-      )}
-
-      {/* ROUTES */}
       <div className="app-container">
         <Analytics />
 
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <HeroSection />
-                <Services />
-                <IphoneConditionCalculator />
-                <Whychoose />
-              </>
-            }
-          />
+          <Route path="/" element={
+            <>
+              <HeroSection />
+              <Services />
+              <IphoneConditionCalculator />
+              <Whychoose />
+            </>
+          } />
 
           <Route path="/buy-iphone" element={<IphonePurchase />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/destination" element={<TrendingProducts />} />
+
+          {/* HOME REPAIR PAGE */}
           <Route path="/repair-at-home" element={<Repair />} />
+
           <Route path="/auth" element={<Auth />} />
           <Route path="/booking" element={<AppoinmentList />} />
           <Route path="/services" element={<Services />} />
@@ -106,7 +98,6 @@ const AppRoutes = () => {
           <Route path="/reset-password/:token" element={<ResetPassword />} />
         </Routes>
 
-        {/* FOOTER */}
         {!hideFooterPaths.includes(location.pathname) && <Footer />}
       </div>
     </>
