@@ -20,7 +20,7 @@ export default function Repair() {
         onClick={() => setOpenForm(true)}
       >
         <FaTools className="btn-icon" />
-        {t("homeRepair.bookNow")}
+   
       </button>
 
       {openForm && (
