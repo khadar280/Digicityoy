@@ -10,7 +10,6 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  debug: true,
 });
 
 // 🔧 POST repair request
@@ -28,7 +27,7 @@ router.post("/", async (req, res) => {
     } = req.body;
 
     // 💾 Save to MongoDB
-    const newRepair = new Repair({
+    const newRepair = await Repair.create({
       name,
       phone,
       email,
@@ -38,8 +37,6 @@ router.post("/", async (req, res) => {
       postcode,
       city,
     });
-
-    await newRepair.save();
 
     // 📧 Email content
     const mailOptions = {
@@ -60,23 +57,18 @@ router.post("/", async (req, res) => {
       `,
     };
 
-    // 📤 Send email
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error("Email error:", error);
-        return res.status(500).json({ error: "Failed to send email" });
-      } else {
-        console.log("Email sent:", info.response);
-      }
-    });
+    // 📤 Send email (IMPORTANT FIX)
+    await transporter.sendMail(mailOptions);
 
-    res.status(201).json({
-      message: "Repair saved and email sent!",
+    console.log("Email sent successfully");
+
+    return res.status(201).json({
+      message: "Repair saved and email sent!"
     });
 
   } catch (error) {
     console.error("Server error:", error);
-    res.status(500).json({ error: "Server error" });
+    return res.status(500).json({ error: "Server error" });
   }
 });
 
