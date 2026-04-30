@@ -49,7 +49,7 @@ export default function RepairOrderForm({ onClose }) {
       setLoading(false);
 
       if (res.ok) {
-        alert("Request sent!");
+       alert(t("homeRepair.requestSent"));
         onClose?.();
 
         // reset form
