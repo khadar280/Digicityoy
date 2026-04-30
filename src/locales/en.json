@@ -236,19 +236,28 @@
   "planningSection": {
     "buttonText": "Book Passport Photo"
   },
+ 
   "homeRepair": {
-  "title": "Home Repair Booking",
-  "fullName": "Full Name",
-  "phone": "Phone Number",
-  "email": "Email",
-  "issue": "Describe your issue",
-  "address": "Street Address",
-  "postcode": "Post Code",
-  "city": "City",
-  "submit": "Submit Request",
-  "cancel": "Cancel",
-  "sending": "Sending..."
-},
+    "title": "Book a Home Repair",
+    "fullName": "Full Name",
+    "phone": "Phone Number",
+    "email": "Email",
+    "selectDevice": "Select Device",
+    "issue": "Describe the Issue",
+    "address": "Street Address",
+    "postcode": "Postal Code",
+    "city": "City",
+    "submit": "Submit Request",
+    "cancel": "Cancel",
+    "sending": "Sending...",
+    "devices": {
+      "iphone": "iPhone",
+      "android": "Android Phone",
+      "tablet": "Tablet",
+      "laptop": "Laptop"
+    }
+  },
+
   "purchase": {
     "title": "Buy Used iPhone",
     "selectModel": "Select Model",
