@@ -116,25 +116,26 @@
   },
 
   "homeRepair": {
-    "title": "Varaa kotikorjaus",
-    "fullName": "Koko nimi",
-    "phone": "Puhelinnumero",
-    "email": "Sähköposti",
-    "selectDevice": "Valitse laite",
-    "issue": "Kuvaile ongelma",
-    "address": "Osoite",
-    "postcode": "Postinumero",
-    "city": "Kaupunki",
-    "submit": "Lähetä pyyntö",
-    "cancel": "Peruuta",
-    "sending": "Lähetetään...",
-    "devices": {
-      "iphone": "iPhone",
-      "android": "Android-puhelin",
-      "tablet": "Tabletti",
-      "laptop": "Kannettava tietokone"
-    }
-  },
+  "title": "Varaa kotikorjaus",
+  "fullName": "Koko nimi",
+  "phone": "Puhelinnumero",
+  "email": "Sähköposti",
+  "selectDevice": "Valitse laite",
+  "issue": "Kuvaile ongelma",
+  "address": "Osoite",
+  "postcode": "Postinumero",
+  "city": "Kaupunki",
+  "submit": "Lähetä pyyntö",
+  "cancel": "Peruuta",
+  "sending": "Lähetetään...",
+  "requestSent": "Pyyntö lähetetty onnistuneesti!",
+  "devices": {
+    "iphone": "iPhone",
+    "android": "Android-puhelin",
+    "tablet": "Tabletti",
+    "laptop": "Kannettava tietokone"
+  }
+},
   "booking": {
   "title": "Varaa aika",
   "phoneRepair": "Puhelin korjaus",

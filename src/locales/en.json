@@ -238,25 +238,26 @@
   },
  
   "homeRepair": {
-    "title": "Book a Home Repair",
-    "fullName": "Full Name",
-    "phone": "Phone Number",
-    "email": "Email",
-    "selectDevice": "Select Device",
-    "issue": "Describe the Issue",
-    "address": "Street Address",
-    "postcode": "Postal Code",
-    "city": "City",
-    "submit": "Submit Request",
-    "cancel": "Cancel",
-    "sending": "Sending...",
-    "devices": {
-      "iphone": "iPhone",
-      "android": "Android Phone",
-      "tablet": "Tablet",
-      "laptop": "Laptop"
-    }
-  },
+  "title": "Book home repair",
+  "fullName": "Full name",
+  "phone": "Phone number",
+  "email": "Email",
+  "selectDevice": "Select device",
+  "issue": "Describe your issue",
+  "address": "Address",
+  "postcode": "Postal code",
+  "city": "City",
+  "submit": "Submit request",
+  "cancel": "Cancel",
+  "sending": "Sending...",
+  "requestSent": "Request sent successfully!",
+  "devices": {
+    "iphone": "iPhone",
+    "android": "Android phone",
+    "tablet": "Tablet",
+    "laptop": "Laptop"
+  }
+},
 
   "purchase": {
     "title": "Buy Used iPhone",
