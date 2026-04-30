@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Repair = require("../models/homerepair");
+const Repair = require("../models/repair");
 const nodemailer = require("nodemailer");
 
 // 📧 Email setup
@@ -10,9 +10,10 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  debug: true,
 });
 
-// 🔧 CREATE REPAIR REQUEST
+// 🔧 POST repair request
 router.post("/", async (req, res) => {
   try {
     const {
@@ -26,8 +27,8 @@ router.post("/", async (req, res) => {
       city,
     } = req.body;
 
-    // Save to MongoDB
-    const newRepair = await Repair.create({
+    // 💾 Save to MongoDB
+    const newRepair = new Repair({
       name,
       phone,
       email,
@@ -38,7 +39,9 @@ router.post("/", async (req, res) => {
       city,
     });
 
-    // Email content
+    await newRepair.save();
+
+    // 📧 Email content
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
@@ -57,18 +60,23 @@ router.post("/", async (req, res) => {
       `,
     };
 
-    // Send email
-    await transporter.sendMail(mailOptions);
-    console.log("✅ Email sent successfully");
+    // 📤 Send email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Email error:", error);
+        return res.status(500).json({ error: "Failed to send email" });
+      } else {
+        console.log("Email sent:", info.response);
+      }
+    });
 
-    // Response
-    return res.status(201).json({
-      message: "Repair saved and email sent!"
+    res.status(201).json({
+      message: "Repair saved and email sent!",
     });
 
   } catch (error) {
-    console.error("❌ Server error:", error);
-    return res.status(500).json({ error: "Server error" });
+    console.error("Server error:", error);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
