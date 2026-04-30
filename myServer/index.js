@@ -5,17 +5,15 @@ const cors = require('cors');
 
 const app = express();
 
-/* =============================
-   CORS CONFIGURATION (FIXED)
-============================= */
+
 
 app.use(cors({
   origin: function (origin, callback) {
 
-    // Allow requests with no origin (mobile apps, Postman, server-to-server)
+  
     if (!origin) return callback(null, true);
 
-    // Allow localhost
+
     if (origin === 'http://localhost:3000') {
       return callback(null, true);
     }
@@ -25,7 +23,7 @@ app.use(cors({
       return callback(null, true);
     }
 
-    // Allow all digicity.fi domains
+   
     if (origin.includes('digicity.fi')) {
       return callback(null, true);
     }
@@ -52,6 +50,9 @@ const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
 const TabletsRoutes = require('./routes/tablets');
 const CalculateRoutes = require('./routes/calculate');
+const homeRepairRoutes = require('./routes/homeRepair');
+
+
 
 app.use('/api/booking', BookingRoutes);
 app.use('/api/contact', ContactRoutes);
@@ -61,6 +62,7 @@ app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
 app.use('/api/tablets', TabletsRoutes);
 app.use('/api/calculate', CalculateRoutes);
+app.use('/api/repair', homeRepairRoutes);
 
 
 
