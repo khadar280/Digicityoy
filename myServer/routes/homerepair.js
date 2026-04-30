@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Repair = require("../models/repair");
+const Repair = require("../models/homerepair");
 const nodemailer = require("nodemailer");
 
 // 📧 Email setup

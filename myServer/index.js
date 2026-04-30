@@ -50,7 +50,8 @@ const CheckoutRoutes = require('./routes/checkout');
 const AuthRoutes = require('./routes/auth');
 const TabletsRoutes = require('./routes/tablets');
 const CalculateRoutes = require('./routes/calculate');
-const homeRepairRoutes = require('./routes/homeRepair');
+const homeRepairRoutes = require('./routes/homerepair');
+
 
 
 
