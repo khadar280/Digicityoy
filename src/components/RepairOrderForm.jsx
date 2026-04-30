@@ -35,7 +35,7 @@ export default function RepairOrderForm({ onClose }) {
     setLoading(true);
 
     try {
-      const res = await fetch(`${API_URL}/api/repair`, {
+      const res = await fetch(`${API_URL}/api/homerepair`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

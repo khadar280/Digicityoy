@@ -62,7 +62,7 @@ app.use('/api/checkout', CheckoutRoutes);
 app.use('/api/auth', AuthRoutes);
 app.use('/api/tablets', TabletsRoutes);
 app.use('/api/calculate', CalculateRoutes);
-app.use('/api/repair', homeRepairRoutes);
+app.use('/api/homerepair', homeRepairRoutes);
 
 
 
