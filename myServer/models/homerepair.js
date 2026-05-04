@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const repairSchema = new mongoose.Schema({
-  name: String,
-  phone: String,
+  name: { type: String, required: true },
+  phone: { type: String, required: true },
   email: String,
-  device: String,
-  issue: String,
+  device: { type: String, required: true },
+  issue: { type: String, required: true },
   address: String,
   postcode: String,
   city: String,

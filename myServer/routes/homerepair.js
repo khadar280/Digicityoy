@@ -12,9 +12,20 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// 🔍 Verify email config (helps debugging)
+transporter.verify((err) => {
+  if (err) {
+    console.error("❌ Email config error:", err.message);
+  } else {
+    console.log("✅ Email server ready");
+  }
+});
+
 // 🔧 POST repair request
 router.post("/", async (req, res) => {
   try {
+    console.log("📥 BODY:", req.body);
+
     const {
       name,
       phone,
@@ -25,6 +36,13 @@ router.post("/", async (req, res) => {
       postcode,
       city,
     } = req.body;
+
+    // ✅ Validation
+    if (!name || !phone || !device || !issue) {
+      return res.status(400).json({
+        error: "Missing required fields",
+      });
+    }
 
     // 💾 Save to MongoDB
     const newRepair = await Repair.create({
@@ -47,28 +65,35 @@ router.post("/", async (req, res) => {
         <h2>New Repair Request</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Email:</strong> ${email || "-"}</p>
         <p><strong>Device:</strong> ${device}</p>
         <p><strong>Issue:</strong> ${issue}</p>
-        <p><strong>Address:</strong> ${address}</p>
-        <p><strong>Postcode:</strong> ${postcode}</p>
-        <p><strong>City:</strong> ${city}</p>
+        <p><strong>Address:</strong> ${address || "-"}</p>
+        <p><strong>Postcode:</strong> ${postcode || "-"}</p>
+        <p><strong>City:</strong> ${city || "-"}</p>
         <p>📅 Time: ${new Date().toLocaleString()}</p>
       `,
     };
 
-    // 📤 Send email (IMPORTANT FIX)
-    await transporter.sendMail(mailOptions);
-
-    console.log("Email sent successfully");
+    // 📤 Send email safely (won’t crash API)
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log("✅ Email sent");
+    } catch (emailError) {
+      console.error("❌ Email failed:", emailError.message);
+    }
 
     return res.status(201).json({
-      message: "Repair saved and email sent!"
+      message: "Repair saved successfully",
+      data: newRepair,
     });
 
   } catch (error) {
-    console.error("Server error:", error);
-    return res.status(500).json({ error: "Server error" });
+    console.error("🔥 FULL ERROR:", error);
+
+    return res.status(500).json({
+      error: error.message,
+    });
   }
 });
 
