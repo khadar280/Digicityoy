@@ -44,11 +44,24 @@ import { UserProvider } from "./context/UserContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// ✅ Hide footer on these routes
 const hideFooterPaths = [
   "/checkout",
   "/payment-success/stripe",
   "/payment-success/klarna",
   "/booking",
+  "/cart",
+  "/profile",
+  "/reset-password",
+  "/forgot-password",
+];
+
+// ✅ Hide navbar on these routes
+const hideNavbarPaths = [
+  "/booking",
+  "/checkout",
+  "/payment-success/stripe",
+  "/payment-success/klarna",
   "/cart",
   "/profile",
   "/reset-password",
@@ -65,10 +78,12 @@ const AppRoutes = () => {
 
   return (
     <>
-      {/* ✅ NAVBAR (CONNECTED) */}
-      <Navbar onOpenRepair={() => setOpenRepair(true)} />
+      {/* ✅ NAVBAR (conditionally hidden) */}
+      {!hideNavbarPaths.includes(location.pathname) && (
+        <Navbar onOpenRepair={() => setOpenRepair(true)} />
+      )}
 
-      {/* ✅ GLOBAL HOME REPAIR MODAL */}
+      {/* ✅ GLOBAL REPAIR MODAL */}
       {openRepair && (
         <RepairOrderForm onClose={() => setOpenRepair(false)} />
       )}
@@ -104,7 +119,7 @@ const AppRoutes = () => {
           <Route path="/android-repair-details" element={<AndroidRepairDetails />} />
           <Route path="/tablet-laptop-repair" element={<TabletLaptopRepair />} />
 
-          {/* SHOP / CART */}
+          {/* SHOP */}
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutForm />} />
 
@@ -120,7 +135,7 @@ const AppRoutes = () => {
           <Route path="/reset-password/:token" element={<ResetPassword />} />
         </Routes>
 
-        {/* FOOTER */}
+        {/* ✅ FOOTER */}
         {!hideFooterPaths.includes(location.pathname) && <Footer />}
       </div>
     </>

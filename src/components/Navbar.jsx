@@ -7,7 +7,7 @@ import { useCart } from "./CartContext";
 import { useTranslation } from "react-i18next";
 import { UserContext } from "../context/UserContext";
 
-const Navbar = ({ onOpenRepair }) => {
+const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [language, setLanguage] = useState("EN");
@@ -54,14 +54,12 @@ const Navbar = ({ onOpenRepair }) => {
 
   return (
     <header className="navbar">
-
       {/* LOGO */}
       <img src={logo} alt="Logo" className="logo" onClick={handleLogoClick} />
 
       {/* NAV */}
       <nav className={`nav-container ${menuOpen ? "active" : ""}`}>
         <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
-
           <li><Link to="/" onClick={() => setMenuOpen(false)}>{t("nav.home")}</Link></li>
           <li><Link to="/destination" onClick={() => setMenuOpen(false)}>{t("nav.shop")}</Link></li>
           <li><Link to="/buy-iphone" onClick={() => setMenuOpen(false)}>{t("nav.buyIphone")}</Link></li>
@@ -69,21 +67,8 @@ const Navbar = ({ onOpenRepair }) => {
           <li><Link to="/contact" onClick={() => setMenuOpen(false)}>{t("nav.contact")}</Link></li>
           <li><Link to="/about-us" onClick={() => setMenuOpen(false)}>{t("nav.about")}</Link></li>
 
-          {/* 🔧 HOME REPAIR BUTTON */}
-          <li>
-            <button
-              className="repair-btn"
-              onClick={() => {
-                onOpenRepair?.();   // IMPORTANT FIX
-                setMenuOpen(false);
-              }}
-            >
-              {t("nav.repairAtHome")}
-            </button>
-          </li>
-
-          {/* SEARCH */}
-          <div className="search-bar">
+          {/* ✅ FIX: search inside li */}
+          <li className="search-bar">
             <input
               type="text"
               placeholder={t("nav.search")}
@@ -92,14 +77,12 @@ const Navbar = ({ onOpenRepair }) => {
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleSearchKeyDown}
             />
-          </div>
-
+          </li>
         </ul>
       </nav>
 
       {/* RIGHT SIDE */}
       <div className="user-controls" ref={dropdownRef}>
-
         <select value={language} onChange={handleLanguageChange}>
           <option value="EN">EN</option>
           <option value="FI">FI</option>
