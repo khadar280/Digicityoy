@@ -10,41 +10,35 @@ const Booking = () => {
 
   const { t } = useTranslation();
 
+  // ✅ CLEAN DATA (NO t() HERE)
   const appointments = [
     {
       id: 1,
       key: "booking.phoneRepair",
-      name: t("booking.phoneRepair"),
-      time: t("booking.time1"),
-      price: t("booking.price1"),
+      time: "booking.time1",
+      price: "booking.price1",
     },
     {
       id: 2,
       key: "booking.batteryChange",
-      name: t("booking.batteryChange"),
-      time: t("booking.time2"),
-      price: t("booking.price2"),
+      time: "booking.time2",
+      price: "booking.price2",
     },
     {
       id: 3,
       key: "booking.inspection",
-      name: t("booking.inspection"),
-      time: t("booking.time3"),
-      price: t("booking.price3"),
+      time: "booking.time3",
+      price: "booking.price3",
     },
     {
       id: 4,
       key: "booking.passport",
-      name: t("booking.passport"),
-      time: t("booking.time4"),
-      price: t("booking.price4"),
+      time: "booking.time4",
+      price: "booking.price4",
     },
     {
       id: 5,
-      key: "homeRepair",
-      name: t("booking.homeRepair"),
-      time: "",
-      price: "",
+      key: "booking.homeRepair",
       isRepair: true,
     },
   ];
@@ -53,7 +47,7 @@ const Booking = () => {
     if (appointment.isRepair) {
       setShowRepairForm(true);
     } else {
-      // ✅ IMPORTANT FIX: use KEY not name
+      // ✅ send translation KEY only
       setSelectedService(appointment.key);
     }
   };
@@ -67,11 +61,12 @@ const Booking = () => {
           <li key={appointment.id} className="appointment-item">
             <div className="appointment-info">
               <div>
-                <h3>{appointment.name}</h3>
+                {/* ✅ translate here */}
+                <h3>{t(appointment.key)}</h3>
 
                 {!appointment.isRepair && (
                   <p>
-                    {appointment.time} - {appointment.price}
+                    {t(appointment.time)} - {t(appointment.price)}
                   </p>
                 )}
               </div>
