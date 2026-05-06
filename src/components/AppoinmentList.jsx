@@ -10,39 +10,37 @@ const Booking = () => {
 
   const { t } = useTranslation();
 
-  // ✅ CLEAN DATA (NO t() HERE)
-  const appointments = [
-    {
-      id: 1,
-      key: "booking.phoneRepair",
-      time: "booking.time1",
-      price: "booking.price1",
-    },
-    {
-      id: 2,
-      key: "booking.batteryChange",
-      time: "booking.time2",
-      price: "booking.price2",
-    },
-    {
-      id: 3,
-      key: "booking.inspection",
-      time: "booking.time3",
-      price: "booking.price3",
-    },
-    {
-      id: 4,
-      key: "booking.passport",
-      time: "booking.time4",
-      price: "booking.price4",
-    },
-    {
-      id: 5,
-      key: "booking.homeRepair",
-      isRepair: true,
-    },
-  ];
-
+ const appointments = [
+  {
+    id: 1,
+    key: "booking.phoneRepair",
+    time: "booking.time1",
+    price: "booking.price1",
+  },
+  {
+    id: 2,
+    key: "booking.batteryChange",
+    time: "booking.time2",
+    price: "booking.price2",
+  },
+  {
+    id: 3,
+    key: "booking.inspection",
+    time: "booking.time3",
+    price: "booking.price3",
+  },
+  {
+    id: 4,
+    key: "booking.passport",
+    time: "booking.time4",
+    price: "booking.price4",
+  },
+  {
+    id: 5,
+    key: "homeRepair.title",
+    isRepair: true,
+  },
+];
   const handleClick = (appointment) => {
     if (appointment.isRepair) {
       setShowRepairForm(true);
