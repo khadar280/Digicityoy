@@ -116,7 +116,7 @@
   },
 
   "homeRepair": {
-  "title": "Varaa kotikorjaus",
+  "title": "Tilaa kotiin",
   "fullName": "Koko nimi",
   "phone": "Puhelinnumero",
   "email": "Sähköposti",
@@ -136,7 +136,7 @@
     "laptop": "Kannettava tietokone"
   }
 },
-  "booking": {
+ "booking": {
   "title": "Varaa aika",
   "phoneRepair": "Puhelin korjaus",
   "batteryChange": "Akun vaihto",
@@ -150,7 +150,7 @@
   "price2": "Alkaen 39€",
   "price3": "20€",
   "price4": "15€",
-  "book": "Varaa nyt"
+  "bookNow": "Varaa nyt"
 },
 
   "purchase": {

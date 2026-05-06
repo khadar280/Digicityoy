@@ -13,32 +13,35 @@ const Booking = () => {
   const appointments = [
     {
       id: 1,
+      key: "booking.phoneRepair",
       name: t("booking.phoneRepair"),
       time: t("booking.time1"),
       price: t("booking.price1"),
     },
     {
       id: 2,
+      key: "booking.batteryChange",
       name: t("booking.batteryChange"),
       time: t("booking.time2"),
       price: t("booking.price2"),
     },
     {
       id: 3,
+      key: "booking.inspection",
       name: t("booking.inspection"),
       time: t("booking.time3"),
       price: t("booking.price3"),
     },
     {
       id: 4,
+      key: "booking.passport",
       name: t("booking.passport"),
       time: t("booking.time4"),
       price: t("booking.price4"),
     },
-
-    // ✅ ADD THIS (repair inside list)
     {
       id: 5,
+      key: "homeRepair",
       name: t("booking.homeRepair"),
       time: "",
       price: "",
@@ -50,7 +53,8 @@ const Booking = () => {
     if (appointment.isRepair) {
       setShowRepairForm(true);
     } else {
-      setSelectedService(appointment.name);
+      // ✅ IMPORTANT FIX: use KEY not name
+      setSelectedService(appointment.key);
     }
   };
 
@@ -65,7 +69,6 @@ const Booking = () => {
               <div>
                 <h3>{appointment.name}</h3>
 
-                {/* hide time/price for repair */}
                 {!appointment.isRepair && (
                   <p>
                     {appointment.time} - {appointment.price}
@@ -84,7 +87,7 @@ const Booking = () => {
         ))}
       </ul>
 
-      {/* ✅ Booking modal */}
+      {/* Booking modal */}
       {selectedService && (
         <BookingFormModal
           service={selectedService}
@@ -92,11 +95,9 @@ const Booking = () => {
         />
       )}
 
-      {/* ✅ Repair modal */}
+      {/* Repair modal */}
       {showRepairForm && (
-        <RepairOrderForm
-          onClose={() => setShowRepairForm(false)}
-        />
+        <RepairOrderForm onClose={() => setShowRepairForm(false)} />
       )}
     </div>
   );
