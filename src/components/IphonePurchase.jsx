@@ -1,53 +1,216 @@
 // src/components/IphonePurchase.jsx
+
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "./IphonePurchase.css"; 
+import "./IphonePurchase.css";
 
 const IPHONE_MODELS = [
-  { label: "iPhone 17 Pro Max", value: "iphone17_pro_max", storage: [256,512, 1024,2048] },
-  { label: "iPhone 17 Pro", value: "iphone17_pro", storage: [ 256, 512, 1024] },
-  { label: "iPhone 17", value: "iphone17", storage: [256, 512, 1024] },
-    { label: "iPhone 17 Air", value: "iphone17_Air", storage: [256, 512, 1024] },
-  { label: "iPhone 16 Pro Max", value: "iphone16_pro_max", storage: [256,128,512] },
-  { label: "iPhone 16 Pro", value: "iphone16_pro", storage: [128, 256,512,1024] },
-   { label: "iPhone 16 Plus", value: "iphone16_plus", storage: [256,128,512] },
-  { label: "iPhone 16e", value: "iphone16e", storage: [256,128,512] },
-   { label: "iPhone 16 ", value: "iphone16", storage: [256,128,512] },
-  
-  { label: "iPhone 15 Pro Max", value: "iphone15_pro_max", storage: [ 256,512,1024] },
-  { label: "iPhone 15 Pro", value: "iphone15_pro", storage: [128, 256,512,1024] },
-   { label: "iPhone 15 plus", value: "iphone15_Plus", storage: [128, 256, 512] },
-  { label: "iPhone 15", value: "iphone15", storage: [128,556,512] },
-  { label: "iPhone 14 Pro Max", value: "iphone14_pro_max", storage: [128, 256,512,1024] },
-  { label: "iPhone 14 Pro", value: "iphone14_pro", storage: [128, 256,512,1024] },
-    { label: "iPhone 14 Plus", value: "iphone14_Plus", storage: [128, 256,512] },
-  { label: "iPhone 14", value: "iphone14", storage: [128, 256] },
-  { label: "iPhone 13 Pro Max", value: "iphone13_pro_max", storage: [128, 256,512,1024] },
-  { label: "iPhone 13 Pro", value: "iphone13_pro", storage: [128, 256,512,1024] },
-  { label: "iPhone 13", value: "iphone13", storage: [128, 256,512] },
-   { label: "iPhone 13 mini", value: "iphone13 mini", storage: [64,128, 256] },
-  { label: "iPhone 12 Pro Max", value: "iphone12_pro_max", storage: [64, 128, 256] },
-  { label: "iPhone 12 Pro", value: "iphone12_pro", storage: [64, 128] },
-  { label: "iPhone 12", value: "iphone12", storage: [64, 128, 256] },
-    { label: "iPhone 12 mini", value: "iphone12 mini", storage: [64, 128, 256] },
-  { label: "iPhone 11 Pro Max", value: "iphone11_pro_max", storage: [64, 128, 256] },
-  { label: "iPhone 11 Pro", value: "iphone11_pro", storage: [64, 128] },
-  { label: "iPhone 11", value: "iphone11", storage: [64, 128, 256] }
+  {
+    label: "iPhone 17 Pro Max",
+    value: "iphone17_pro_max",
+    storage: [256, 512, 1024, 2048],
+  },
+  {
+    label: "iPhone 17 Pro",
+    value: "iphone17_pro",
+    storage: [256, 512, 1024],
+  },
+  {
+    label: "iPhone 17",
+    value: "iphone17",
+    storage: [256, 512, 1024],
+  },
+  {
+    label: "iPhone 17 Air",
+    value: "iphone17_air",
+    storage: [256, 512, 1024],
+  },
+
+  {
+    label: "iPhone 16 Pro Max",
+    value: "iphone16_pro_max",
+    storage: [128, 256, 512, 1024],
+  },
+  {
+    label: "iPhone 16 Pro",
+    value: "iphone16_pro",
+    storage: [128, 256, 512, 1024],
+  },
+  {
+    label: "iPhone 16 Plus",
+    value: "iphone16_plus",
+    storage: [128, 256, 512],
+  },
+  {
+    label: "iPhone 16e",
+    value: "iphone16e",
+    storage: [128, 256, 512],
+  },
+  {
+    label: "iPhone 16",
+    value: "iphone16",
+    storage: [128, 256, 512],
+  },
+
+  {
+    label: "iPhone 15 Pro Max",
+    value: "iphone15_pro_max",
+    storage: [256, 512, 1024],
+  },
+  {
+    label: "iPhone 15 Pro",
+    value: "iphone15_pro",
+    storage: [128, 256, 512, 1024],
+  },
+  {
+    label: "iPhone 15 Plus",
+    value: "iphone15_plus",
+    storage: [128, 256, 512],
+  },
+  {
+    label: "iPhone 15",
+    value: "iphone15",
+    storage: [128, 256, 512],
+  },
+
+  {
+    label: "iPhone 14 Pro Max",
+    value: "iphone14_pro_max",
+    storage: [128, 256, 512, 1024],
+  },
+  {
+    label: "iPhone 14 Pro",
+    value: "iphone14_pro",
+    storage: [128, 256, 512, 1024],
+  },
+  {
+    label: "iPhone 14 Plus",
+    value: "iphone14_plus",
+    storage: [128, 256, 512],
+  },
+  {
+    label: "iPhone 14",
+    value: "iphone14",
+    storage: [128, 256, 512],
+  },
+
+  {
+    label: "iPhone 13 Pro Max",
+    value: "iphone13_pro_max",
+    storage: [128, 256, 512, 1024],
+  },
+  {
+    label: "iPhone 13 Pro",
+    value: "iphone13_pro",
+    storage: [128, 256, 512, 1024],
+  },
+  {
+    label: "iPhone 13",
+    value: "iphone13",
+    storage: [128, 256, 512],
+  },
+  {
+    label: "iPhone 13 Mini",
+    value: "iphone13_mini",
+    storage: [64, 128, 256],
+  },
+
+  {
+    label: "iPhone 12 Pro Max",
+    value: "iphone12_pro_max",
+    storage: [128, 256, 512],
+  },
+  {
+    label: "iPhone 12 Pro",
+    value: "iphone12_pro",
+    storage: [128, 256, 512],
+  },
+  {
+    label: "iPhone 12",
+    value: "iphone12",
+    storage: [64, 128, 256],
+  },
+  {
+    label: "iPhone 12 Mini",
+    value: "iphone12_mini",
+    storage: [64, 128, 256],
+  },
+
+  {
+    label: "iPhone 11 Pro Max",
+    value: "iphone11_pro_max",
+    storage: [64, 128, 256],
+  },
+  {
+    label: "iPhone 11 Pro",
+    value: "iphone11_pro",
+    storage: [64, 128, 256],
+  },
+  {
+    label: "iPhone 11",
+    value: "iphone11",
+    storage: [64, 128, 256],
+  },
 ];
 
 const BASE_PRICES = {
-  iphone17_pro_max: 950, iphone17_pro: 880, iphone17: 850,
-  iphone16_pro_max: 820, iphone16_pro: 780, iphone16: 750,
-  iphone15_pro_max: 720, iphone15_pro: 680, iphone15: 650,
-  iphone14_pro_max: 500, iphone14_pro: 480, iphone14: 470,
-  iphone13_pro_max: 420, iphone13_pro: 410, iphone13: 400,
-  iphone12_pro_max: 300, iphone12_pro: 290, iphone12: 280,
-  iphone11_pro_max: 260, iphone11_pro: 255, iphone11: 250
+  iphone17_pro_max: 950,
+  iphone17_pro: 880,
+  iphone17: 850,
+  iphone17_air: 830,
+
+  iphone16_pro_max: 820,
+  iphone16_pro: 780,
+  iphone16_plus: 760,
+  iphone16e: 700,
+  iphone16: 750,
+
+  iphone15_pro_max: 720,
+  iphone15_pro: 680,
+  iphone15_plus: 670,
+  iphone15: 650,
+
+  iphone14_pro_max: 500,
+  iphone14_pro: 480,
+  iphone14_plus: 490,
+  iphone14: 470,
+
+  iphone13_pro_max: 420,
+  iphone13_pro: 410,
+  iphone13: 400,
+  iphone13_mini: 390,
+
+  iphone12_pro_max: 300,
+  iphone12_pro: 290,
+  iphone12: 280,
+  iphone12_mini: 270,
+
+  iphone11_pro_max: 260,
+  iphone11_pro: 255,
+  iphone11: 250,
 };
 
-// Use backend URL from environment variable
-const API_URL = process.env.REACT_APP_API_URL || "https://digicityoy-223.onrender.com";
+const STORAGE_PRICE_ADJUSTMENTS = {
+  64: 0,
+  128: 20,
+  256: 50,
+  512: 100,
+  1024: 150,
+  2048: 250,
+};
+
+const CONDITION_ADJUSTMENTS = {
+  excellent: 100,
+  good: 0,
+  fair: -120,
+  poor: -200,
+};
+
+// Backend API URL
+const API_URL =
+  process.env.REACT_APP_API_URL ||
+  "https://digicityoy-223.onrender.com";
 
 export default function IphonePurchase() {
   const { t } = useTranslation();
@@ -55,66 +218,98 @@ export default function IphonePurchase() {
   const location = useLocation();
 
   const params = new URLSearchParams(location.search);
-  const initialModel = params.get("model") 
-    ? IPHONE_MODELS.find(m => m.label === params.get("model"))?.value 
+
+  const initialModel = params.get("model")
+    ? IPHONE_MODELS.find((m) => m.label === params.get("model"))?.value
     : "iphone17_pro_max";
 
+  const currentInitialModel =
+    IPHONE_MODELS.find((m) => m.value === initialModel) ||
+    IPHONE_MODELS[0];
+
   const [model, setModel] = useState(initialModel);
-  const [storage, setStorage] = useState(IPHONE_MODELS.find(m => m.value === initialModel)?.storage[0] || 128);
+  const [storage, setStorage] = useState(
+    currentInitialModel.storage[0]
+  );
   const [condition, setCondition] = useState("good");
   const [price, setPrice] = useState(null);
-  const [customer, setCustomer] = useState({ name: "", email: "", phone: "", address: "" });
+
+  const [customer, setCustomer] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
+
   const [loading, setLoading] = useState(false);
 
-  const currentModel = IPHONE_MODELS.find(m => m.value === model);
+  const currentModel =
+    IPHONE_MODELS.find((m) => m.value === model) ||
+    IPHONE_MODELS[0];
 
+  // Calculate price
   const calculatePrice = () => {
     let total = BASE_PRICES[model] || 0;
-    if (storage === 256) total += 50;
-    if (storage === 512) total += 100;
-    if (storage === 1024) total += 150;
 
-    if (condition === "excellent") total += 100;
-    if (condition === "fair") total -= 120;
-    if (condition === "poor") total -= 200;
+    total += STORAGE_PRICE_ADJUSTMENTS[storage] || 0;
+
+    total += CONDITION_ADJUSTMENTS[condition] || 0;
 
     setPrice(total);
   };
 
-  const handleChange = (e) => setCustomer({ ...customer, [e.target.name]: e.target.value });
+  // Handle form inputs
+  const handleChange = (e) => {
+    setCustomer({
+      ...customer,
+      [e.target.name]: e.target.value,
+    });
+  };
 
+  // Submit order
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!price) return alert(t("purchase.alertCalculatePrice"));
+
+    if (!price) {
+      return alert(t("purchase.alertCalculatePrice"));
+    }
 
     const orderData = {
       model: currentModel.label,
+      modelValue: currentModel.value,
       storage,
       condition,
       price,
-      customer
+      customer,
     };
 
     try {
       setLoading(true);
+
       const response = await fetch(`${API_URL}/api/order`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderData)
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
       });
 
       const result = await response.json();
+
       setLoading(false);
 
       if (response.ok) {
         alert(t("purchase.orderSuccess"));
+
         navigate("/thank-you");
       } else {
         alert(result.message || t("purchase.orderFailed"));
       }
     } catch (error) {
-      setLoading(false);
       console.error(error);
+
+      setLoading(false);
+
       alert(t("purchase.orderFailed"));
     }
   };
@@ -123,49 +318,143 @@ export default function IphonePurchase() {
     <div className="calculator">
       <h2>{t("purchase.title")}</h2>
 
+      {/* Model Selection */}
       <div className="step">
         <label>{t("purchase.selectModel")}</label>
+
         <select
           value={model}
           onChange={(e) => {
-            const selected = e.target.value;
-            setModel(selected);
-            setStorage(IPHONE_MODELS.find(m => m.value === selected).storage[0]);
+            const selectedModel = e.target.value;
+
+            const foundModel = IPHONE_MODELS.find(
+              (m) => m.value === selectedModel
+            );
+
+            setModel(selectedModel);
+
+            // Reset storage to first available option
+            setStorage(foundModel.storage[0]);
+
+            // Reset old price
+            setPrice(null);
           }}
         >
-          {IPHONE_MODELS.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
+          {IPHONE_MODELS.map((m) => (
+            <option key={m.value} value={m.value}>
+              {m.label}
+            </option>
+          ))}
         </select>
       </div>
 
+      {/* Storage Selection */}
       <div className="step">
         <label>{t("purchase.selectStorage")}</label>
-        <select value={storage} onChange={(e) => setStorage(parseInt(e.target.value))}>
-          {currentModel.storage.map(s => <option key={s} value={s}>{s} GB</option>)}
+
+        <select
+          value={storage}
+          onChange={(e) => {
+            setStorage(parseInt(e.target.value));
+            setPrice(null);
+          }}
+        >
+          {currentModel.storage.map((s) => (
+            <option key={s} value={s}>
+              {s} GB
+            </option>
+          ))}
         </select>
       </div>
 
+      {/* Condition Selection */}
       <div className="step">
         <label>{t("purchase.selectCondition")}</label>
-        <select value={condition} onChange={(e) => setCondition(e.target.value)}>
-          <option value="excellent">{t("purchase.condition.excellent")}</option>
-          <option value="good">{t("purchase.condition.good")}</option>
-          <option value="fair">{t("purchase.condition.fair")}</option>
-          <option value="poor">{t("purchase.condition.poor")}</option>
+
+        <select
+          value={condition}
+          onChange={(e) => {
+            setCondition(e.target.value);
+            setPrice(null);
+          }}
+        >
+          <option value="excellent">
+            {t("purchase.condition.excellent")}
+          </option>
+
+          <option value="good">
+            {t("purchase.condition.good")}
+          </option>
+
+          <option value="fair">
+            {t("purchase.condition.fair")}
+          </option>
+
+          <option value="poor">
+            {t("purchase.condition.poor")}
+          </option>
         </select>
       </div>
 
-      <button className="price-btn" onClick={calculatePrice}>{t("purchase.showPrice")}</button>
+      {/* Calculate Button */}
+      <button className="price-btn" onClick={calculatePrice}>
+        {t("purchase.showPrice")}
+      </button>
 
-      {price && (
+      {/* Result + Form */}
+      {price !== null && (
         <div className="result">
-          <p>{t("purchase.total")}: €{price}</p>
-          <form className="customer-form" onSubmit={handleSubmit}>
-            <input name="name" placeholder={t("purchase.name")} value={customer.name} onChange={handleChange} required />
-            <input name="email" placeholder={t("purchase.email")} type="email" value={customer.email} onChange={handleChange} required />
-            <input name="phone" placeholder={t("purchase.phone")} value={customer.phone} onChange={handleChange} required />
-            <textarea name="address" placeholder={t("purchase.address")} value={customer.address} onChange={handleChange} required />
-            <button type="submit" className="buy-btn" disabled={loading}>
-              {loading ? t("purchase.submitting") : t("purchase.submitOrder")}
+          <p>
+            {t("purchase.total")}: <strong>€{price}</strong>
+          </p>
+
+          <form
+            className="customer-form"
+            onSubmit={handleSubmit}
+          >
+            <input
+              type="text"
+              name="name"
+              placeholder={t("purchase.name")}
+              value={customer.name}
+              onChange={handleChange}
+              required
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder={t("purchase.email")}
+              value={customer.email}
+              onChange={handleChange}
+              required
+            />
+
+            <input
+              type="text"
+              name="phone"
+              placeholder={t("purchase.phone")}
+              value={customer.phone}
+              onChange={handleChange}
+              required
+            />
+
+            <textarea
+              name="address"
+              placeholder={t("purchase.address")}
+              value={customer.address}
+              onChange={handleChange}
+              required
+            />
+
+            <button
+              type="submit"
+              className="buy-btn"
+              disabled={loading}
+            >
+              {loading
+                ? t("purchase.submitting")
+                : t("purchase.submitOrder")}
             </button>
           </form>
         </div>
