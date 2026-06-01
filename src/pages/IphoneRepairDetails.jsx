@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./IphoneRepairDetails.css";
 import RepairDetailCard from "./RepairDetailCard";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
 import iphoneImage from "../assets/iphone4.png";
 
 export const iphoneModels = [
 
-  // iPhone 17 Series
   { model: "iPhone 17 Pro Max", screenRepair: [250, 500], batteryReplacement: 149, backRepair: 349, chargingPort: 159, buttons: 169, housing: 289, backCamera: 350, frontCamera: 179, lens: 60, image: iphoneImage },
   { model: "iPhone 17 Pro", screenRepair: [300, 450], batteryReplacement: 149, backRepair: 349, chargingPort: 159, buttons: 169, housing: 279, backCamera: 209, frontCamera: 179, lens: 129, image: iphoneImage },
   { model: "iPhone 17 Air", screenRepair: [300, 450], batteryReplacement: 149, backRepair: 349, chargingPort: 159, buttons: 169, housing: 259, backCamera: 199, frontCamera: 169, lens: 109, image: iphoneImage },
@@ -57,11 +55,14 @@ export const iphoneModels = [
   { model: "iPhone 6", screenRepair: 50, batteryReplacement: 40, backRepair: 60, chargingPort: 69, buttons: 79, housing: 79, backCamera: 79, frontCamera: 69, lens: 39, image: iphoneImage },
 
 ];
-
 const IphoneRepairDetails = () => {
   const [selectedModel, setSelectedModel] = useState(null);
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="repair-container">
