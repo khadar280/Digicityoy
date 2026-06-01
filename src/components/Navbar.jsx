@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
 import "./Navbar.css";
-import logo from "../assets/banner1600p.jpg";
+import logo from "../assets/Banner1600p.jpg";
 import { useCart } from "./CartContext";
 import { useTranslation } from "react-i18next";
 import { UserContext } from "../context/UserContext";
@@ -55,7 +55,7 @@ const Navbar = () => {
   return (
     <header className="navbar">
       {/* LOGO */}
-      <img src={logo} alt="Logo" className="logo" onClick={handleLogoClick} />
+      <img src={logo} alt="Banner1600p" className="logo" onClick={handleLogoClick} />
 
       {/* NAV */}
       <nav className={`nav-container ${menuOpen ? "active" : ""}`}>
