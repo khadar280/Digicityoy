@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
 import "./Navbar.css";
-import logo from "../assets/city.jpg";
+import logo from "../assets/banner1600p.jpg";
 import { useCart } from "./CartContext";
 import { useTranslation } from "react-i18next";
 import { UserContext } from "../context/UserContext";
